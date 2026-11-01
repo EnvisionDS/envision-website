@@ -6,8 +6,8 @@
   ================================================================
   BEGINNER'S GUIDE — read the comments top to bottom.
   A simple dark landing page:
-    LAYER 0: Intro — each letter of "envision" appears with its own effect, the word pulses, then
-             shrinks and docks onto the logo in the top-left of the nav.
+    LAYER 0: Intro — the Envision logo builds itself, then its eight rings fly out and become the eight
+             letters of "envision", and the word shrinks and docks onto the logo in the top-left of the nav.
     NAV:     logo · Services / About / Our work · pill button
     HERO:    big centred headline with gradient words, pill CTA, and the company logo built from
              ~2,000 tiny cubes (three.js) rising from the bottom of the screen.
@@ -617,40 +617,29 @@
   @keyframes moLabel { from { opacity: 0; translate: 0 18px; letter-spacing: .6em; filter: blur(4px); } }
   @media (prefers-reduced-motion: reduce) { .reveal:not(.visible) { opacity: 1; } .reveal.visible { animation: none; } html { scroll-behavior: auto; } }
 
-  /* ---------- LAYER 0: INTRO SCREEN (v134: the torch film) ----------
-     A short 3D clip plays in the dark, as one continuous shot (v140): slim letters are mounted on a dark plaster
-     wall; a torch glides across them so their shadows swing, the sign's brand-blue backlight follows close behind
-     it, and the camera settles square-on as the faces come up to the word's own white and the wall falls away.
-     The clip is sized from the same font size as the live word (17.45em x 9.82em) and centred on it, and its
-     last frame IS the live word, so the real text fades in on top without a visible change, then docks. */
+  /* ---------- LAYER 0: INTRO SCREEN (v150: the logo becomes the word) ----------
+     The Envision mark builds itself in the dark: the blue disc rises, its eight arms grow out from the centre and a
+     ring lands on the end of each one. The mark turns into place, then lets go: the disc and arms fold away and the
+     eight rings fly out to the eight letters of "envision", each ring turning into its letter as it lands. Then the
+     word docks onto the nav logo. The script drives the motion; these rules only set up the pieces. */
   #intro { position: fixed; inset: 0; z-index: 20; overflow: hidden; pointer-events: none; }
   #intro.gone { display: none; }
   #introBg { position: absolute; inset: 0; background: var(--bg); transition: opacity .8s ease; }
   #intro.unveil #introBg { opacity: 0; }
   #stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-           --introfs: max(calc(clamp(3.5rem, 14vw, 11rem) - 100px), 2.2rem); }
+           --introfs: max(calc(clamp(3.5rem, 14vw, 11rem) - 100px), 2.2rem); --marksz: min(44vmin, 240px); }
   #introWord { font-family: "Sora", sans-serif; font-weight: 700; letter-spacing: -0.02em; font-size: var(--introfs); line-height: 1; display: flex; position: relative; transform-origin: top left; will-change: transform; }
   #introWord span { display: inline-block; }
   #introWord.dock { transition: transform .85s cubic-bezier(.65,0,.25,1), color .55s ease .25s; }
-  /* the room is dark for the film in both themes (light mode brightens as the backdrop fades away) */
-  @media (prefers-reduced-motion: no-preference) { #intro:not(.torch-still) #introBg { background: #0a0a0b; } }
-  #intro.torch-on:not(.docking) #introWord { color: #e0fbfc; }
-  #intro.torch-on #introWord { opacity: 0; transition: opacity .25s ease; }
-  #intro.torch-on.torch-done #introWord { opacity: 1; }
-  .torch-film { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: calc(var(--introfs) * 17.4545); height: calc(var(--introfs) * 9.8182);
-                max-width: none; object-fit: fill; pointer-events: none; opacity: 0; transition: opacity .35s ease; background: #0a0a0b;
-                -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%); mask-image: radial-gradient(closest-side, #000 70%, transparent 100%); }
-  .torch-film.torch-play { opacity: 1; }
-  /* while the film plays the room is as deep as the film's own blacks, and it lifts to the page's black with the film's last frames */
-  #intro.torch-deep #introBg { background-color: #020203; transition: opacity .8s ease, background-color .5s ease-in-out; }
-  #intro.torch-deep.torch-dawn #introBg { background-color: #0a0a0b; }
-  .torch-film.torch-gone { visibility: hidden; transition: none; }
-  /* if the film can't play (blocked, slow, missing), the same idea runs live: a beam crosses the real word */
-  #introWord.torch-sweep { -webkit-mask-image: radial-gradient(circle var(--sweepr, 2em) at var(--sweepx, -20%) 55%, #000 42%, rgba(0,0,0,.08) 100%);
-                                   mask-image: radial-gradient(circle var(--sweepr, 2em) at var(--sweepx, -20%) 55%, #000 42%, rgba(0,0,0,.08) 100%); }
-  #stage.torch-sweep::before { content: ""; position: absolute; inset: 0; pointer-events: none; transition: opacity .6s ease;
-    background: radial-gradient(circle calc(var(--introfs) * var(--poolr, 2.2)) at var(--poolx, -50%) var(--pooly, 50%), rgba(152,193,217,.24), rgba(152,193,217,.08) 45%, transparent 70%); }
-  #stage.torch-lit::before { opacity: 0; }
+  /* the room is dark for the intro in both themes (light mode brightens as the backdrop fades away) */
+  @media (prefers-reduced-motion: no-preference) { #intro:not(.mark-still) #introBg { background: #0a0a0b; } }
+  #intro.mark-on:not(.docking) #introWord { color: #e0fbfc; }
+  #intro.mark-on #introWord span { opacity: 0; }          /* each letter appears as its ring lands */
+  /* the mark, centred on the word: the same drawing as favicon.svg, with each ring as its own element so it can fly */
+  #introMark { position: absolute; left: 50%; top: 50%; width: var(--marksz); height: var(--marksz); margin: calc(var(--marksz) / -2) 0 0 calc(var(--marksz) / -2); }
+  #introMark svg, #introMark .spin { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  #introMark .glow { position: absolute; inset: -40%; border-radius: 50%; background: radial-gradient(closest-side, rgba(21,97,173,.42), rgba(21,97,173,.1) 55%, transparent); }
+  .intro-ring { position: absolute; border-radius: 50%; border: 0 solid #fff; box-sizing: border-box; }
   @media (prefers-reduced-motion: reduce) { #introWord.dock { transition: none; } }
 
 
@@ -2834,65 +2823,79 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     // the live word: one box per letter, laid out exactly like the nav logo so the dock lands on it
     [...'envision'].forEach(ch => box.appendChild(Object.assign(document.createElement('span'), { textContent: ch })));
 
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {    // no film: the word is simply there, then docks
-      intro.classList.add('torch-still'); setTimeout(dock, 900); return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {    // no motion: the word is simply there, then docks
+      intro.classList.add('mark-still'); setTimeout(dock, 900); return;
     }
 
-    // 1. THE FILM: a torch finds the word in the dark. It plays muted and inline (allowed to autoplay everywhere).
-    intro.classList.add('torch-on');
-    const film = document.createElement('video');
-    film.className = 'torch-film'; film.muted = film.defaultMuted = true; film.playsInline = true; film.preload = 'auto';
-    film.disablePictureInPicture = true; film.setAttribute('muted', ''); film.setAttribute('playsinline', ''); film.setAttribute('aria-hidden', 'true');
-    [['img/torch-intro2.mp4', 'video/mp4'], ['img/torch-intro2.webm', 'video/webm']].forEach(([src, type], i, all) => {
-      const so = Object.assign(document.createElement('source'), { src, type });
-      if (i === all.length - 1) so.addEventListener('error', fallback);   // every source failed
-      film.appendChild(so);
-    });
-    stage.insertBefore(film, box);
+    // 1. THE MARK: build the logo in the middle of the screen (a 100 x 100 drawing, the same as favicon.svg)
+    intro.classList.add('mark-on');
+    const NS = 'http://www.w3.org/2000/svg', EASE_OUT = 'cubic-bezier(.2,.8,.2,1)', EASE_IN = 'cubic-bezier(.6,0,.8,.4)';
+    const markEl = Object.assign(document.createElement('div'), { id: 'introMark' });
+    const glow = Object.assign(document.createElement('div'), { className: 'glow' });
+    const spin = Object.assign(document.createElement('div'), { className: 'spin' });   // turns the disc, arms and rings together
+    const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 100 100');
+    svg.innerHTML = '<circle cx="50" cy="50" r="48" fill="#1561ad"/>';
+    const disc = svg.firstChild, arms = [], rings = [];
+    const RING = { x: 44.7, y: 13.5, d: 16.4, w: 3.6 };   // the top arm's ring (centre, outer size, line width); the other seven turn in 45° steps
+    for (let i = 0; i < 8; i++) {
+      const g = document.createElementNS(NS, 'g'); g.setAttribute('transform', `rotate(${i * 45} 50 50)`);
+      g.innerHTML = '<g><polygon points="50.3,45 53.6,30 57.6,31.2" fill="#fff"/><polyline points="55.6,30.6 48,18.7" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></g>';
+      svg.appendChild(g); arms.push(g.firstChild);
+      const t = i * Math.PI / 4, ox = RING.x - 50, oy = RING.y - 50;
+      const cx = 50 + ox * Math.cos(t) - oy * Math.sin(t), cy = 50 + ox * Math.sin(t) + oy * Math.cos(t);
+      const ring = Object.assign(document.createElement('div'), { className: 'intro-ring' });
+      Object.assign(ring.style, { left: (cx - RING.d / 2) + '%', top: (cy - RING.d / 2) + '%', width: RING.d + '%', height: RING.d + '%',
+                                  borderWidth: `calc(var(--marksz) * ${RING.w / 100})` });
+      rings.push(ring);
+    }
+    [disc, ...arms].forEach(el => { el.style.transformOrigin = '50px 50px'; });   // grow and shrink from the centre of the disc
+    spin.append(svg, ...rings); markEl.append(glow, spin); stage.insertBefore(markEl, box);
 
-    let mode = 'wait', giveUp = 0, safety = 0;
-    film.addEventListener('playing', () => {
-      if (mode !== 'wait') return;
-      mode = 'film'; clearTimeout(giveUp); film.classList.add('torch-play');
-      intro.classList.add('torch-deep'); setTimeout(() => intro.classList.add('torch-dawn'), Math.max(0, 3.9 - film.currentTime) * 1000);
-      safety = setTimeout(ended, ((isFinite(film.duration) ? film.duration : 4.8) + 2) * 1000);   // if it ever stalls
-    });
-    film.addEventListener('ended', ended);
-    film.addEventListener('error', fallback);
-    const play = () => { const p = film.play(); if (p && p.catch) p.catch(e => { if (e && e.name === 'NotAllowedError') fallback(); }); };
-    // if the film hasn't started within 2s (slow connection, power saving), don't keep the visitor waiting
-    const arm = () => { giveUp = setTimeout(fallback, 2000); play(); };
-    if (document.hidden) document.addEventListener('visibilitychange', function v() { if (document.hidden) return; document.removeEventListener('visibilitychange', v); arm(); });
-    else arm();
+    // the build: disc rises, arms grow out one after another, a ring pops onto each, and the whole mark turns into place
+    glow.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 1000, easing: EASE_OUT, fill: 'both' });
+    disc.animate([{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1.05)', offset: .7 }, { opacity: 1, transform: 'scale(1)' }], { duration: 700, easing: EASE_OUT, fill: 'both' });
+    arms.forEach((a, i) => a.animate([{ transform: 'scale(0)' }, { transform: 'scale(1)' }], { duration: 450, delay: 300 + i * 45, easing: EASE_OUT, fill: 'both' }));
+    rings.forEach((r, i) => r.animate([{ opacity: 0, transform: 'scale(0)' }, { opacity: 1, transform: 'scale(1.2)', offset: .65 }, { opacity: 1, transform: 'scale(1)' }],
+                                     { duration: 380, delay: 640 + i * 45, easing: EASE_OUT, fill: 'both' }));
+    spin.animate([{ transform: 'rotate(-110deg)' }, { transform: 'rotate(0deg)' }], { duration: 1900, easing: 'cubic-bezier(.3,.7,.25,1)', fill: 'both' });
 
-    // 2. HAND-OVER: the live word fades in on top of the film's identical last frame, the film goes, the word docks
-    function ended() {
-      if (mode !== 'film') return; mode = 'done'; clearTimeout(safety);
-      const font = document.fonts && document.fonts.load ? document.fonts.load('700 1em Sora') : Promise.resolve();
-      Promise.race([font, new Promise(r => setTimeout(r, 600))]).then(() => {
-        intro.classList.add('torch-done');
-        setTimeout(() => { film.classList.add('torch-gone'); film.pause(); }, 280);
-        setTimeout(dock, 320);
+    // the word has to be in its real font before its letters can be measured
+    const font = document.fonts && document.fonts.load ? document.fonts.load('700 1em Sora') : Promise.resolve();
+    Promise.all([Promise.race([font, new Promise(r => setTimeout(r, 1200))]), new Promise(r => setTimeout(r, 1950))]).then(release);
+
+    // 2. THE RELEASE: the disc and arms fold away; each ring flies to a letter and becomes it
+    function release() {
+      const sr = stage.getBoundingClientRect(), fs = parseFloat(getComputedStyle(box).fontSize);
+      const letters = [...box.children];
+      // pair rings with letters left to right, so the rings on the left of the logo become the first letters
+      const from = rings.map(r => { const b = r.getBoundingClientRect(); return { x: b.left + b.width / 2 - sr.left, y: b.top + b.height / 2 - sr.top, d: b.width, bw: r.style.borderWidth }; })
+                        .sort((a, b) => a.x - b.x);
+      rings.forEach(r => { r.style.visibility = 'hidden'; });
+      arms.forEach((a, i) => a.animate([{ transform: 'scale(1)' }, { transform: 'scale(0)' }], { duration: 320, delay: i * 20, easing: EASE_IN, fill: 'forwards' }));
+      disc.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.2)' }], { duration: 560, delay: 120, easing: EASE_IN, fill: 'forwards' });
+      glow.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.7)' }], { duration: 900, easing: 'ease-out', fill: 'forwards' });
+
+      const FLY = 720, STEP = 40;
+      letters.forEach((letter, k) => {
+        const f = from[k], b = letter.getBoundingClientRect();
+        const tx = b.left + b.width / 2 - sr.left, ty = b.top + b.height * .58 - sr.top;   // land on the body of the letter (below the cap line)
+        const end = fs * .5 / f.d;                                                           // shrink to about the letter's x-height
+        const ring = Object.assign(document.createElement('div'), { className: 'intro-ring' });
+        Object.assign(ring.style, { left: (f.x - f.d / 2) + 'px', top: (f.y - f.d / 2) + 'px', width: f.d + 'px', height: f.d + 'px', borderWidth: f.bw });
+        stage.appendChild(ring);
+        const dx = tx - f.x, dy = ty - f.y, lift = -fs * .35;                                // a slight arc on the way
+        ring.animate([{ transform: 'translate(0,0) scale(1)' },
+                      { transform: `translate(${dx * .55}px, ${dy * .55 + lift}px) scale(${(1 + end) / 2})`, offset: .55 },
+                      { transform: `translate(${dx}px, ${dy}px) scale(${end})` }],
+                     { duration: FLY, delay: k * STEP, easing: 'cubic-bezier(.55,0,.3,1)', fill: 'forwards' });
+        // as it lands, the ring tightens and fades while its letter sharpens into place
+        const landAt = k * STEP + FLY - 140;
+        ring.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, delay: landAt, easing: 'ease-out', fill: 'forwards' }).onfinish = () => ring.remove();
+        letter.animate([{ opacity: 0, transform: 'scale(.55)', filter: 'blur(6px)' }, { opacity: 1, transform: 'scale(1)', filter: 'blur(0)' }],
+                       { duration: 420, delay: landAt, easing: EASE_OUT, fill: 'forwards' });
       });
-    }
-
-    // 3. FALLBACK: the same idea, live — a beam crosses the real word, opens up, and the word is on
-    function fallback() {
-      if (mode !== 'wait') return; mode = 'sweep'; clearTimeout(giveUp);
-      try { film.pause(); film.removeAttribute('src'); film.remove(); } catch (e) {}
-      intro.classList.add('torch-done'); box.classList.add('torch-sweep'); stage.classList.add('torch-sweep');
-      const t0 = performance.now(), D = 2000;
-      const ease = u => u < .5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
-      (function step() {
-        const u = Math.min(1, (performance.now() - t0) / D), r = box.getBoundingClientRect(), sr = stage.getBoundingClientRect();
-        const m = ease(Math.min(1, u / .72)), w = ease(Math.max(0, (u - .62) / .38));   // cross the word, then open up
-        const fx = (-.08 + 1.16 * m) * (1 - w) + .5 * w;
-        box.style.setProperty('--sweepx', (fx * 100) + '%'); box.style.setProperty('--sweepr', (2 + 7 * w) + 'em');
-        stage.style.setProperty('--poolx', (r.left - sr.left + r.width * fx) + 'px'); stage.style.setProperty('--pooly', (r.top - sr.top + r.height * .55) + 'px');
-        stage.style.setProperty('--poolr', 2.2 + 3 * w);
-        if (u < 1) requestAnimationFrame(step);
-        else { box.classList.remove('torch-sweep'); stage.classList.add('torch-lit'); setTimeout(dock, 350); }
-      })();
+      setTimeout(() => markEl.remove(), 1000);
+      setTimeout(dock, (letters.length - 1) * STEP + FLY + 650);   // a beat with the whole word, then it docks
     }
 
     // 4. THE DOCK: the word flies into the nav logo (FLIP: measure both, then one transform does the journey)
@@ -2913,7 +2916,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       setTimeout(resolveIntro, 700);                          // homepage animations begin
       // the moment the journey ends, show the real logo and drop the intro layer in the same frame
       let landed = false;
-      const land = () => { if (landed) return; landed = true; logo.classList.remove('waiting'); intro.classList.add('gone'); const f = stage.querySelector('video'); if (f) f.remove(); };
+      const land = () => { if (landed) return; landed = true; logo.classList.remove('waiting'); intro.classList.add('gone'); const m = document.getElementById('introMark'); if (m) m.remove(); };
       box.addEventListener('transitionend', e => { if (e.propertyName === 'transform') land(); });
       setTimeout(land, 1300);   // safety net
     }
