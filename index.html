@@ -638,8 +638,10 @@
   /* the mark, centred on the word: the same drawing as favicon.svg, with each ring as its own element so it can fly */
   #introMark { position: absolute; left: 50%; top: 50%; width: var(--marksz); height: var(--marksz); margin: calc(var(--marksz) / -2) 0 0 calc(var(--marksz) / -2); }
   #introMark svg, #introMark .spin { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  #introMark .glow { position: absolute; inset: -40%; border-radius: 50%; background: radial-gradient(closest-side, rgba(21,97,173,.42), rgba(21,97,173,.1) 55%, transparent); }
-  .intro-ring { position: absolute; border-radius: 50%; border: 0 solid #fff; box-sizing: border-box; }
+  #introMark .glow { position: absolute; inset: -40%; border-radius: 50%; background: radial-gradient(closest-side, rgba(91,155,230,.22), rgba(21,97,173,.07) 55%, transparent); }
+  /* the rings are ice blue with a soft glow, like the lit-up parts of the page */
+  .intro-ring { position: absolute; border-radius: 50%; border: 0 solid #8fd3f4; box-sizing: border-box;
+                box-shadow: 0 0 calc(var(--marksz) * .03) rgba(143,211,244,.4); }
   @media (prefers-reduced-motion: reduce) { #introWord.dock { transition: none; } }
 
 
@@ -2834,13 +2836,18 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     const glow = Object.assign(document.createElement('div'), { className: 'glow' });
     const spin = Object.assign(document.createElement('div'), { className: 'spin' });   // turns the disc, arms and rings together
     const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 100 100');
-    svg.innerHTML = '<circle cx="50" cy="50" r="48" fill="#1561ad"/>';
-    const disc = svg.firstChild, arms = [], rings = [];
+    // night version of the logo, to match the site: a dark disc with a fine outline, and arms that light up from the
+    // centre outwards in the site's blue-to-ice gradient (the gradient is drawn along the top arm and turns with each copy)
+    svg.innerHTML = '<defs><radialGradient id="imDisc"><stop offset="0" stop-color="#17202d"/><stop offset="1" stop-color="#0c1016"/></radialGradient>'
+      + '<linearGradient id="imArm" gradientUnits="userSpaceOnUse" x1="50" y1="47" x2="50" y2="14"><stop offset="0" stop-color="#1561ad"/><stop offset=".5" stop-color="#5b9be6"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>'
+      + '<filter id="imGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'
+      + '<circle cx="50" cy="50" r="48" fill="url(#imDisc)" stroke="#3d5a80" stroke-width=".8"/><g filter="url(#imGlow)"></g>';
+    const disc = svg.querySelector('circle'), armLayer = svg.querySelector('g[filter]'), arms = [], rings = [];
     const RING = { x: 44.7, y: 13.5, d: 16.4, w: 3.6 };   // the top arm's ring (centre, outer size, line width); the other seven turn in 45° steps
     for (let i = 0; i < 8; i++) {
       const g = document.createElementNS(NS, 'g'); g.setAttribute('transform', `rotate(${i * 45} 50 50)`);
-      g.innerHTML = '<g><polygon points="50.3,45 53.6,30 57.6,31.2" fill="#fff"/><polyline points="55.6,30.6 48,18.7" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></g>';
-      svg.appendChild(g); arms.push(g.firstChild);
+      g.innerHTML = '<g><polygon points="50.3,45 53.6,30 57.6,31.2" fill="url(#imArm)"/><polyline points="55.6,30.6 48,18.7" fill="none" stroke="url(#imArm)" stroke-width="3.6" stroke-linecap="round"/></g>';
+      armLayer.appendChild(g); arms.push(g.firstChild);
       const t = i * Math.PI / 4, ox = RING.x - 50, oy = RING.y - 50;
       const cx = 50 + ox * Math.cos(t) - oy * Math.sin(t), cy = 50 + ox * Math.sin(t) + oy * Math.cos(t);
       const ring = Object.assign(document.createElement('div'), { className: 'intro-ring' });
@@ -2857,11 +2864,22 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     arms.forEach((a, i) => a.animate([{ transform: 'scale(0)' }, { transform: 'scale(1)' }], { duration: 450, delay: 300 + i * 45, easing: EASE_OUT, fill: 'both' }));
     rings.forEach((r, i) => r.animate([{ opacity: 0, transform: 'scale(0)' }, { opacity: 1, transform: 'scale(1.2)', offset: .65 }, { opacity: 1, transform: 'scale(1)' }],
                                      { duration: 380, delay: 640 + i * 45, easing: EASE_OUT, fill: 'both' }));
-    spin.animate([{ transform: 'rotate(-110deg)' }, { transform: 'rotate(0deg)' }], { duration: 1900, easing: 'cubic-bezier(.3,.7,.25,1)', fill: 'both' });
+    const turn = spin.animate([{ transform: 'rotate(-110deg)' }, { transform: 'rotate(0deg)' }], { duration: 1900, easing: 'cubic-bezier(.3,.7,.25,1)', fill: 'both' });
 
-    // the word has to be in its real font before its letters can be measured
+    // let go once the mark has finished turning (waiting on the animation itself, not a clock, so a slow or
+    // background tab can't start the release before the logo is built), and once the word's font is in so its
+    // letters can be measured
     const font = document.fonts && document.fonts.load ? document.fonts.load('700 1em Sora') : Promise.resolve();
-    Promise.all([Promise.race([font, new Promise(r => setTimeout(r, 1200))]), new Promise(r => setTimeout(r, 1950))]).then(release);
+    Promise.all([Promise.race([font, new Promise(r => setTimeout(r, 1200))]), turn.finished]).then(() => setTimeout(release, 50));
+    // safety net: if the browser stops drawing frames (some background or power-saving states), the animations stall
+    // and their 'finished' never comes, so after a few seconds on screen, jump each step to its end and carry on
+    const rescue = () => setTimeout(() => {
+      if (document.hidden) { document.addEventListener('visibilitychange', rescue, { once: true }); return; }
+      if (intro.classList.contains('docking')) return;
+      intro.querySelectorAll('*').forEach(el => el.getAnimations().forEach(a => { try { a.finish(); } catch (e) {} }));
+      rescue();                                              // the next step's animations may now be waiting too
+    }, 3500);
+    setTimeout(rescue, 1500);
 
     // 2. THE RELEASE: the disc and arms fold away; each ring flies to a letter and becomes it
     function release() {
@@ -2872,10 +2890,10 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
                         .sort((a, b) => a.x - b.x);
       rings.forEach(r => { r.style.visibility = 'hidden'; });
       arms.forEach((a, i) => a.animate([{ transform: 'scale(1)' }, { transform: 'scale(0)' }], { duration: 320, delay: i * 20, easing: EASE_IN, fill: 'forwards' }));
-      disc.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.2)' }], { duration: 560, delay: 120, easing: EASE_IN, fill: 'forwards' });
-      glow.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.7)' }], { duration: 900, easing: 'ease-out', fill: 'forwards' });
+      const folded = disc.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.2)' }], { duration: 560, delay: 120, easing: EASE_IN, fill: 'forwards' });
+      const faded = glow.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.7)' }], { duration: 900, easing: 'ease-out', fill: 'forwards' });
 
-      const FLY = 720, STEP = 40;
+      const FLY = 720, STEP = 40, landed = [];
       letters.forEach((letter, k) => {
         const f = from[k], b = letter.getBoundingClientRect();
         const tx = b.left + b.width / 2 - sr.left, ty = b.top + b.height * .58 - sr.top;   // land on the body of the letter (below the cap line)
@@ -2891,11 +2909,11 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
         // as it lands, the ring tightens and fades while its letter sharpens into place
         const landAt = k * STEP + FLY - 140;
         ring.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, delay: landAt, easing: 'ease-out', fill: 'forwards' }).onfinish = () => ring.remove();
-        letter.animate([{ opacity: 0, transform: 'scale(.55)', filter: 'blur(6px)' }, { opacity: 1, transform: 'scale(1)', filter: 'blur(0)' }],
-                       { duration: 420, delay: landAt, easing: EASE_OUT, fill: 'forwards' });
+        landed.push(letter.animate([{ opacity: 0, transform: 'scale(.55)', filter: 'blur(6px)' }, { opacity: 1, transform: 'scale(1)', filter: 'blur(0)' }],
+                                   { duration: 420, delay: landAt, easing: EASE_OUT, fill: 'forwards' }).finished);
       });
-      setTimeout(() => markEl.remove(), 1000);
-      setTimeout(dock, (letters.length - 1) * STEP + FLY + 650);   // a beat with the whole word, then it docks
+      Promise.all([folded.finished, faded.finished]).then(() => markEl.remove());
+      Promise.all(landed).then(() => setTimeout(dock, 370));   // a beat with the whole word, then it docks
     }
 
     // 4. THE DOCK: the word flies into the nav logo (FLIP: measure both, then one transform does the journey)

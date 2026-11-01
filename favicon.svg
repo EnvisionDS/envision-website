@@ -1,13 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Envision mark: blue disc with eight bent "network" arms, each ending in a ring -->
+  <!-- Envision mark, night version to match the site: a dark disc with a fine outline, and eight arms that
+       light up from the centre outwards in the site's blue-to-ice gradient, each ending in an ice-blue ring -->
   <defs>
+    <radialGradient id="emDisc" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#17202d"/>
+      <stop offset="1" stop-color="#0c1016"/>
+    </radialGradient>
+    <!-- drawn along the top arm (centre to tip); the other arms are turned copies, so the gradient turns with them -->
+    <linearGradient id="emArm" gradientUnits="userSpaceOnUse" x1="50" y1="47" x2="50" y2="14">
+      <stop offset="0" stop-color="#1561ad"/>
+      <stop offset=".5" stop-color="#5b9be6"/>
+      <stop offset="1" stop-color="#8fd3f4"/>
+    </linearGradient>
     <g id="arm">
-      <polygon points="50.3,45 53.6,30 57.6,31.2" fill="#fff"/>
-      <polyline points="55.6,30.6 48,18.7" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/>
-      <circle cx="44.7" cy="13.5" r="6.4" fill="none" stroke="#fff" stroke-width="3.6"/>
+      <polygon points="50.3,45 53.6,30 57.6,31.2" fill="url(#emArm)"/>
+      <polyline points="55.6,30.6 48,18.7" fill="none" stroke="url(#emArm)" stroke-width="3.6" stroke-linecap="round"/>
+      <circle cx="44.7" cy="13.5" r="6.4" fill="none" stroke="#8fd3f4" stroke-width="3.6"/>
     </g>
   </defs>
-  <circle cx="50" cy="50" r="48" fill="#1561ad"/>
+  <circle cx="50" cy="50" r="48" fill="url(#emDisc)" stroke="#3d5a80" stroke-width="1.4"/>
   <use href="#arm"/>
   <use href="#arm" transform="rotate(45 50 50)"/>
   <use href="#arm" transform="rotate(90 50 50)"/>
