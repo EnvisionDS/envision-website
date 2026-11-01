@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Envision mark: blue disc with eight bent "network" arms, each ending in a ring -->
+  <defs>
+    <g id="arm">
+      <polygon points="50.3,45 53.6,30 57.6,31.2" fill="#fff"/>
+      <polyline points="55.6,30.6 48,18.7" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/>
+      <circle cx="44.7" cy="13.5" r="6.4" fill="none" stroke="#fff" stroke-width="3.6"/>
+    </g>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="#1561ad"/>
+  <use href="#arm"/>
+  <use href="#arm" transform="rotate(45 50 50)"/>
+  <use href="#arm" transform="rotate(90 50 50)"/>
+  <use href="#arm" transform="rotate(135 50 50)"/>
+  <use href="#arm" transform="rotate(180 50 50)"/>
+  <use href="#arm" transform="rotate(225 50 50)"/>
+  <use href="#arm" transform="rotate(270 50 50)"/>
+  <use href="#arm" transform="rotate(315 50 50)"/>
+</svg>
