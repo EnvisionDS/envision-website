@@ -450,6 +450,24 @@
   .offer li { font-size: .95rem; color: var(--muted); padding-left: 1.4rem; position: relative; }
   .offer li::before { content: ""; position: absolute; left: 0; top: .45em; width: 9px; height: 5px; border-left: 2px solid var(--accent-2); border-bottom: 2px solid var(--accent-2); transform: rotate(-45deg); }
   .offer h4 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text); margin-top: 1rem; }
+
+  /* ---------- HOW PRICING WORKS (v135): a wide card under the two offers. No packages: three steps from the
+       client's budget, then the two ways to work together. ---------- */
+  .pr { margin-top: 3rem; border: 1px solid var(--line); border-radius: 24px; padding: clamp(1.6rem, 3vw, 2.6rem); background: var(--bg-2); scroll-margin-top: 90px; }
+  .pr-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: .8rem 3rem; align-items: end; }
+  .pr-head .tag { grid-column: 1 / -1; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); }
+  .pr-head h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 500; line-height: 1.15; letter-spacing: -.02em; text-wrap: balance; }
+  .pr-head p { color: var(--muted); margin: 0; }
+  .pr-steps { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .pr-steps li { position: relative; padding: 1.3rem 1.3rem 1.4rem; border-radius: 16px; border: 1px solid var(--line); background: var(--bg); }
+  .pr-steps li + li::before { content: ""; position: absolute; left: -1rem; top: 1.75rem; width: 1rem; height: 1px; background: var(--orange); opacity: .6; }   /* joins the steps */
+  .pr-n { font: 600 .75rem "Sora", sans-serif; letter-spacing: .14em; color: var(--orange); }
+  .pr-steps h4 { font-size: 1.05rem; font-weight: 500; margin: .6rem 0 .45rem; color: var(--text); }
+  .pr-steps p { font-size: .93rem; color: var(--muted); margin: 0; }
+  .pr-foot { margin-top: 1.6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
+  .pr-foot p { margin: 0; color: var(--muted); max-width: 60ch; font-size: .98rem; }
+  .pr-foot b { color: var(--text); font-weight: 500; }
+  @media (max-width: 860px) { .pr-head, .pr-steps { grid-template-columns: minmax(0, 1fr); } .pr-steps li + li::before { display: none; } }
   .capture { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .4rem; }
   .capture input { flex: 1 1 220px; padding: .8rem 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; }
   .capture input:focus { outline: none; border-color: var(--accent-2); }
@@ -811,6 +829,34 @@
   #explore h2, #explore > p, #explore .seek, #explore .eyebrow { text-shadow: 0 0 22px #070809, 0 0 10px #070809, 0 0 3px #070809; }
   #explore h2 .grad { text-shadow: none; }
   @media (max-width: 900px) { section.block.explore { min-height: 125vh; } }
+
+  /* the hidden notes (v135). Each one is a pin on the map with a card beside it. Until it is found the card is a faint blur
+     that only shows near the torch (the script sets its opacity); once found it lights up in its service colour. */
+  section.block.explore { min-height: 112vh; }
+  #explore > .hk-notes { position: absolute; inset: 0; z-index: 1; list-style: none; margin: 0; padding: 0; pointer-events: none; }
+  .hk-note { position: absolute; left: calc(var(--fx) * 100%); top: calc(var(--fy) * 100%); width: 0; height: 0; }
+  .hk-card { position: absolute; left: 34px; top: 0; width: 280px; transform: translateY(-50%); padding: .85rem 1rem .8rem; border-radius: 14px;
+             background: rgba(10,10,11,.84); border: 1px solid rgba(238,108,77,.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+             opacity: 0; filter: blur(3px); transition: filter .5s, border-color .5s, box-shadow .5s; }
+  .hk-note[data-side="l"] .hk-card { left: auto; right: 34px; }
+  .hk-card q { display: block; font-style: italic; font-size: .98rem; line-height: 1.4; color: var(--text); quotes: "\201C" "\201D"; }
+  .hk-fix { display: inline-block; margin-top: .55rem; font-size: .8rem; font-weight: 500; color: var(--c); text-decoration: none; }
+  .hk-fix span:first-child { color: var(--muted); font-weight: 400; }
+  .hk-fix:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .hk-note.found .hk-card { opacity: 1 !important; filter: none; pointer-events: auto; border-color: color-mix(in srgb, var(--c) 60%, transparent);
+                            box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 18%, transparent), 0 14px 40px rgba(0,0,0,.45), 0 0 34px color-mix(in srgb, var(--c) 18%, transparent);
+                            animation: hkIn .55s cubic-bezier(.2,.8,.2,1); }
+  @keyframes hkIn { from { transform: translateY(-50%) scale(.92); } to { transform: translateY(-50%) scale(1); } }
+  /* narrower screens: the notes become a list under the copy, each with its pin on the left */
+  @media (max-width: 999px) {
+    section.block.explore { min-height: 0; }
+    #explore > .hk-notes { position: relative; inset: auto; display: grid; gap: 1.1rem; margin-top: 2.6rem; max-width: 460px; }
+    .hk-note { position: relative; left: auto; top: auto; width: auto; height: auto; padding-left: 34px; }
+    .hk-pin { position: absolute; left: 6px; top: 1.15rem; width: 1px; height: 1px; }
+    .hk-card, .hk-note[data-side="l"] .hk-card { position: relative; left: auto; right: auto; width: auto; transform: none; }
+    @keyframes hkIn { from { transform: scale(.95); } to { transform: none; } }
+  }
+  @media (prefers-reduced-motion: reduce) { .hk-note.found .hk-card { animation: none; } }
 
   /* ---------- HERO LENS (v116): a calm aperture of thin rings, like the iris of an eye, drawn behind the copy.
      The rings are barely there until the torch passes over them; the whole lens leans slightly towards the cursor. ---------- */
@@ -2309,6 +2355,10 @@ html[data-theme="light"] .vw-pts svg { stroke: color-mix(in srgb, var(--c) 58%, 
 html[data-theme="light"] .vw-foot { border-top-color: #d6dee6; }
 html[data-theme="light"] .vw-nav button { border-color: rgba(19,32,46,.2); }
 html[data-theme="light"] .vw-label { opacity: 1; }
+/* sound familiar? (v135): light note cards, with the link colours deepened */
+html[data-theme="light"] .hk-card { background: rgba(255,255,255,.92); }
+html[data-theme="light"] .hk-note.found .hk-card { box-shadow: 0 14px 34px -18px rgba(19,32,46,.35), 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent); }
+html[data-theme="light"] .hk-fix { color: color-mix(in srgb, var(--c) 55%, #13202e); }
 
 /* growth planner, simpler (v132) */
 html[data-theme="light"] :is(.gp-stat, .gp-pin, .gp-stems line) { --pc: color-mix(in srgb, var(--pc0) 70%, #13202e); }
@@ -2411,15 +2461,25 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 </section>
 
 
-<!-- ================= SEE WHAT OTHERS MISS: the torch map. A hidden map of Melbourne that only shows where your
-     torch points; five opportunities are hidden in it. (Moved here from the hero in v116.) ================= -->
+<!-- ================= SOUND FAMILIAR? (v135): the torch map, now the hook. Six things business owners struggle with
+     are hidden in the dark map; holding the torch on one lights it up as a note, with a link to the service that fixes
+     it. On narrower screens the notes sit in a list under the copy and the torch finds each one as you scroll to it.
+     --fx/--fy place each note on wide screens (fractions of the section); data-side says which side its card opens. ================= -->
 <section class="block explore" id="explore">
   <canvas id="exploreScene" aria-hidden="true"></canvas>
-  <p class="eyebrow reveal">See what others miss</p>
-  <h2 class="reveal">Most businesses market in the dark. <span class="grad">We switch the light on.</span></h2>
-  <p class="reveal">Somewhere in your area there are customers searching, suburbs no one is targeting and gaps your competitors have left open. Move your torch across the map and see how many you can find.</p>
-  <div class="seek reveal" id="seek" aria-live="polite"><span class="seek-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span id="seekText">Move your torch to uncover <b>5 hidden opportunities</b></span></div>
-  <a class="pill reveal" href="#contact">Find the ones in my area</a>
+  <p class="eyebrow reveal">Sound familiar?</p>
+  <h2 class="reveal">You're good at what you do. <span class="grad">So why isn't the phone ringing?</span></h2>
+  <p class="reveal">Most owners we meet aren't short on effort. They're short on time, on straight answers, and on marketing that actually brings work in. Shine your torch around the map and see which of these sound familiar.</p>
+  <div class="seek reveal" id="seek" aria-live="polite"><span class="seek-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span id="seekText">Move your torch to find <b>6 things</b> holding businesses back</span></div>
+  <a class="pill reveal" href="#services">See how we fix them</a>
+  <ol class="hk-notes" id="hkNotes">
+    <li class="hk-note" style="--fx:.55;--fy:.18;--c:#f2b84b"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>Spent $2,000 on ads last month. Got clicks, not calls.</q><a class="hk-fix" href="#svc-3"><span>How we fix it:</span> Paid ads management <span aria-hidden="true">&rarr;</span></a></div></li>
+    <li class="hk-note" data-side="l" style="--fx:.84;--fy:.32;--c:#7fe0c8"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>The competitor down the road always shows up first on Google.</q><a class="hk-fix" href="#svc-2"><span>How we fix it:</span> SEO and content strategy <span aria-hidden="true">&rarr;</span></a></div></li>
+    <li class="hk-note" style="--fx:.55;--fy:.46;--c:#5b9be6"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>Our website looks fine. It just doesn't bring in any work.</q><a class="hk-fix" href="#svc-1"><span>How we fix it:</span> Website design and development <span aria-hidden="true">&rarr;</span></a></div></li>
+    <li class="hk-note" data-side="l" style="--fx:.84;--fy:.60;--c:#9ccc65"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>An enquiry came in Friday night. Nobody replied until Tuesday.</q><a class="hk-fix" href="#svc-7"><span>How we fix it:</span> Automation <span aria-hidden="true">&rarr;</span></a></div></li>
+    <li class="hk-note" style="--fx:.55;--fy:.74;--c:#ee6c4d"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>We're paying to reach suburbs our customers don't even live in.</q><a class="hk-fix" href="#svc-8"><span>How we fix it:</span> Location strategy <span aria-hidden="true">&rarr;</span></a></div></li>
+    <li class="hk-note" data-side="l" style="--fx:.84;--fy:.88;--c:#8fd3f4"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>The last agency sent a 20-page report I couldn't understand.</q><a class="hk-fix" href="#about"><span>How we fix it:</span> Plain-English updates, every week <span aria-hidden="true">&rarr;</span></a></div></li>
+  </ol>
 </section>
 
 <section class="block lift" id="services">
@@ -2825,6 +2885,22 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       <a class="pill" href="#contact" style="justify-self:start">Start my trial</a>
     </div>
   </div>
+
+  <!-- ================= HOW PRICING WORKS (v135): no fixed packages. Every plan starts from the client's budget, as a
+       one-off project or a monthly plan, and grows with them when they're ready. ================= -->
+  <div class="pr reveal" id="pricing">
+    <div class="pr-head">
+      <span class="tag">How pricing works</span>
+      <h3>Pricing that starts with <span class="grad">your budget</span>, not a package.</h3>
+      <p>Every business is at a different stage, so we don't sell fixed packages. Tell us what you're comfortable investing and we'll build the plan around it.</p>
+    </div>
+    <ol class="pr-steps">
+      <li><b class="pr-n">01</b><h4>Tell us your budget</h4><p>Share a figure you're comfortable with, monthly or one-off. There's no wrong answer, and no pressure to stretch it.</p></li>
+      <li><b class="pr-n">02</b><h4>We focus it where it counts</h4><p>We put it into the one or two things most likely to bring in enquiries first, and we're upfront about what it can achieve, so there are no surprises.</p></li>
+      <li><b class="pr-n">03</b><h4>Grow at your own pace</h4><p>As results come in, you can add more. A bigger budget lets us do more at once, and you decide when that makes sense.</p></li>
+    </ol>
+    <div class="pr-foot"><p><b>One-off projects</b>, like a new website, or <b>monthly plans and retainers</b> for ongoing marketing. Both are shaped around your budget.</p><a class="pill" href="#contact">Talk to us about your budget</a></div>
+  </div>
 </section>
 
 <!-- ================= BEFORE YOU GET IN TOUCH (v118, open since v136): three honest questions with their answers ================= -->
@@ -2868,7 +2944,8 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   <h2 class="reveal">Honest answers to what clients usually <span class="grad">ask first</span></h2>
   <div class="faq">
     <details class="reveal"><summary>What if I have tried agencies before and been disappointed?</summary><p>That is common. Our approach is intentionally transparent, strategy-led, and grounded in practical weekly actions tied to real outcomes.</p></details>
-    <details class="reveal"><summary>Do I need a large budget to get started?</summary><p>Not always. We start by prioritising the highest-leverage channels for your stage, then scale once consistent signals appear.</p></details>
+    <details class="reveal"><summary>How much does it cost?</summary><p>It depends on what you need, and we don't have fixed packages. We start from your budget, whether that's a one-off project like a new website or a monthly plan for ongoing marketing, and tell you upfront what it can achieve. <a href="#pricing">How pricing works</a></p></details>
+    <details class="reveal"><summary>Do I need a large budget to get started?</summary><p>No. We start with what you're comfortable spending and put it into the one or two things most likely to bring in enquiries first. As results come in, you can add more at your own pace.</p></details>
     <details class="reveal"><summary>How quickly can we start seeing useful signals?</summary><p>Most businesses start seeing clearer performance direction in the early weeks, with stronger improvements as optimisation compounds.</p></details>
     <details class="reveal"><summary>Can you handle website builds if I do not need full design?</summary><p>Yes. We can work from existing brand assets, simple references, or wireframes and focus on a strong development implementation.</p></details>
   </div>
@@ -3497,14 +3574,10 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     // a seeded random, so the city looks the same on every visit
     let seed = 7; const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
 
-    // the five things to find (positions are fractions of the hero, kept clear of the copy)
-    const SPOTS = [
-      { fx: .62, fy: .20, mx: .20, my: .64, label: 'Untapped suburb' },
-      { fx: .90, fy: .36, mx: .78, my: .70, label: 'Rising local searches' },
-      { fx: .74, fy: .70, mx: .48, my: .80, label: 'Competitor gap' },
-      { fx: .44, fy: .86, mx: .16, my: .91, label: 'Better-fit audience' },
-      { fx: .12, fy: .80, mx: .80, my: .90, label: 'Missed enquiries' },
-    ].map(s => ({ ...s, x: 0, y: 0, dwell: 0, found: false, at: 0 }));
+    // the six things to find: the notes in the page. On wide screens CSS places them on the map; on narrower ones they
+    // are a list under the copy, and the torch goes to each one as it scrolls into the middle of the screen.
+    const SPOTS = [...hero.querySelectorAll('.hk-note')].map(el => ({ el, pin: el.querySelector('.hk-pin'), card: el.querySelector('.hk-card'), x: 0, y: 0, dwell: 0, found: false, at: 0 }));
+    const listed = matchMedia('(max-width: 999px)');
     const SUBURBS = ['Richmond', 'Fitzroy', 'St Kilda', 'Brunswick', 'Hawthorn', 'Box Hill', 'Footscray', 'Carlton', 'Prahran', 'Dandenong', 'Glen Waverley', 'Northcote', 'Doncaster', 'Moorabbin', 'Werribee', 'Clayton', 'Camberwell', 'Preston'];
 
     function drawMap() {
@@ -3550,7 +3623,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       W = Math.round(r.width); H = Math.round(r.height); DPR = Math.min(2, devicePixelRatio || 1); R = W < 700 ? 150 : 220;
       cv.width = map.width = W * DPR; cv.height = map.height = H * DPR;
       rev.width = Math.ceil(W / RS); rev.height = Math.ceil(H / RS);
-      SPOTS.forEach(s => { const m = W < 700; s.x = (m ? s.mx : s.fx) * W; s.y = (m ? s.my : s.fy) * H; });
+      SPOTS.forEach(s => { const p = s.pin.getBoundingClientRect(); s.x = p.left - r.left; s.y = p.top - r.top; });
       drawMap();
     }
 
@@ -3575,11 +3648,11 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     });
 
     function found(s, now) {
-      s.found = true; s.at = now; pings.push({ x: s.x, y: s.y, t: now });
+      s.found = true; s.at = now; pings.push({ x: s.x, y: s.y, t: now }); s.el.classList.add('found');
       const n = SPOTS.filter(q => q.found).length;
       dots.forEach((d, i) => d.classList.toggle('got', i < n));
-      if (n < SPOTS.length) seekText.innerHTML = `<b>${n} of 5</b> found. Keep looking.`;
-      else { seekText.innerHTML = '<b>All 5 found.</b> Imagine what we could find for your business.'; hero.classList.add('all'); }
+      if (n < SPOTS.length) seekText.innerHTML = `<b>${n} of ${SPOTS.length}</b> found. Keep looking.`;
+      else { seekText.innerHTML = `<b>All ${SPOTS.length} found.</b> If even one sounds like you, we can help.`; hero.classList.add('all'); }
     }
 
     let last = performance.now(), running = true;
@@ -3627,23 +3700,14 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       pulses.forEach(p => { const age = Math.max(0, (now - p.t) / 1600); ctx.strokeStyle = `rgba(152,193,217,${.6 * (1 - age)})`; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(p.x, p.y, age * Math.hypot(W, H), 0, 7); ctx.stroke(); });
       pings = pings.filter(p => now - p.t < 1400);
       pings.forEach(p => { const age = Math.max(0, (now - p.t) / 1400); [0, .25].forEach(o => { const a = Math.max(0, age - o) / (1 - o); if (a <= 0) return; ctx.strokeStyle = `rgba(238,108,77,${1 - a})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(p.x, p.y, 10 + a * 90, 0, 7); ctx.stroke(); }); });
-      // found labels, and the dwell ring while you hold the beam on a spot
-      ctx.font = '500 12px "IBM Plex Sans", sans-serif'; ctx.textBaseline = 'middle';
+      // the dwell ring while you hold the beam on a spot; a note not yet found shows as a faint blur near the beam
       SPOTS.forEach(s => {
+        if (s.found) return;
         const d = Math.hypot(s.x - beam.x, s.y - beam.y);
-        if (!s.found) {
-          if (d < 60 && beam.k > .6 && (user || reduce)) { s.dwell += dt; if (s.dwell > 650) found(s, now); }
-          else s.dwell = Math.max(0, s.dwell - dt * 2);
-          if (s.dwell > 0) { ctx.strokeStyle = 'rgba(238,108,77,.9)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(s.x, s.y, 32, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.min(1, s.dwell / 650)); ctx.stroke(); }
-          return;
-        }
-        const a = Math.min(1, (now - s.at) / 500), tw = ctx.measureText(s.label).width, left = s.x > W - tw - 70;
-        const lx = left ? s.x - 34 - tw - 20 : s.x + 34, ly = s.y;
-        ctx.globalAlpha = a;
-        ctx.fillStyle = 'rgba(10,10,11,.75)'; ctx.strokeStyle = 'rgba(238,108,77,.7)'; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.roundRect(lx, ly - 13, tw + 20, 26, 13); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = '#e0fbfc'; ctx.fillText(s.label, lx + 10, ly + 1);
-        ctx.globalAlpha = 1;
+        if (d < 60 && beam.k > .6 && (user || reduce)) { s.dwell += dt; if (s.dwell > 650) { found(s, now); s.card.style.opacity = ''; return; } }
+        else s.dwell = Math.max(0, s.dwell - dt * 2);
+        if (s.dwell > 0) { ctx.strokeStyle = 'rgba(238,108,77,.9)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(s.x, s.y, 32, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.min(1, s.dwell / 650)); ctx.stroke(); }
+        s.card.style.opacity = Math.max(listed.matches ? .3 : 0, Math.max(0, 1 - d / (R * 1.2)) * .6 * beam.k).toFixed(3);   // in the list, a faint blur from the start so there's no empty gap
       });
       // the cursor: a small lens ring at the centre of the beam (desktop only)
       if (!touch && inside) { ctx.strokeStyle = 'rgba(224,251,252,.85)'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(beam.tx, beam.ty, 12, 0, 7); ctx.stroke(); ctx.fillStyle = '#e0fbfc'; ctx.beginPath(); ctx.arc(beam.tx, beam.ty, 1.8, 0, 7); ctx.fill(); }
@@ -3655,13 +3719,23 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 
     size(); beam.x = beam.tx = W * .5; beam.y = beam.ty = H * .5;
     addEventListener('resize', () => { size(); });
-    if (document.fonts) document.fonts.ready.then(drawMap);
+    if (document.fonts) document.fonts.ready.then(size);
+    // the list layout: the torch moves to whichever note reaches the middle of the screen, and holds there to find it
+    if ('IntersectionObserver' in window) {
+      const mid = new IntersectionObserver(es => es.forEach(en => {
+        if (!en.isIntersecting || !listed.matches) return;
+        const s = SPOTS.find(q => q.el === en.target); if (!s) return;
+        user = true; beam.tx = s.x; beam.ty = s.y; beam.tk = 1; lastMove = performance.now(); seek.classList.add('on');
+      }), { rootMargin: '-42% 0px -42% 0px' });
+      SPOTS.forEach(s => mid.observe(s.el));
+    }
     // only animate while the hero is on screen
     new IntersectionObserver(([en]) => { const was = running; running = en.isIntersecting; if (running && !was) { last = performance.now(); requestAnimationFrame(frame); } if (!running && torch) torch.classList.remove('off'); }).observe(hero);
     requestAnimationFrame(frame);
     (window.introDone || Promise.resolve()).then(() => setTimeout(() => {
       seek.classList.add('on');
-      if (touch) seekText.innerHTML = 'Tap around to uncover <b>5 hidden opportunities</b>';
+      if (listed.matches) seekText.innerHTML = `Scroll down to find <b>${SPOTS.length} things</b> holding businesses back`;
+      else if (touch) seekText.innerHTML = `Tap around to find <b>${SPOTS.length} things</b> holding businesses back`;
     }, 1200));
   })();
 </script>
