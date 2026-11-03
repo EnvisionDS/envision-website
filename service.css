@@ -23,6 +23,7 @@ a { color: inherit; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
 .skip { position: absolute; left: 16px; top: -60px; padding: .6rem 1rem; background: var(--text); color: var(--bg); z-index: 20; }
 .skip:focus { top: 12px; }
+#maintenance { scroll-margin-top: 110px; }
 .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 .label { font: 500 .74rem/1.2 var(--body); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
 
