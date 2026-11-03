@@ -1469,65 +1469,6 @@
   @media (max-height: 720px) { .st-card .st-sum { display: none; } }
   @media (prefers-reduced-motion: reduce) { .st-photo { animation: none; } }
 
-  /* ---------- WHAT WE STAND FOR (v134): the logo as a wheel. Each of the mark's eight arms holds the mission, the vision
-       or one of the six values. Picking one turns the wheel so its arm points at the panel, lights it in its own colour and
-       shows its words; until someone picks, it steps round on its own. The wheel is drawn in units of 1/140 of its width
-       (the mark's 100-unit drawing plus 20 units of room each side for the labels). ---------- */
-  .vw { margin-top: 5rem; }
-  .vw-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; margin-top: 2.6rem; }
-  .vw-wheel { --rot: 0deg; --u: calc(100cqw / 140); position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; margin-inline: auto; container-type: inline-size; }
-  .vw-glow { position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--c, #5b9be6) 30%, transparent), transparent); transition: background .8s; }
-  .vw-spin { position: absolute; inset: 0; transform: rotate(var(--rot)); transition: transform 1.1s cubic-bezier(.65,0,.25,1); }
-  .vw-spin svg.vw-mark { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .vw-arm .base { opacity: .3; transition: opacity .6s; }
-  .vw-arm .lit { opacity: 0; transition: opacity .6s; }
-  .vw-arm.on .base { opacity: 0; } .vw-arm.on .lit { opacity: 1; }
-  /* each ring is a button sitting on the drawing's ring; its icon and label turn the other way so they stay upright */
-  .vw-ring { position: absolute; width: calc(var(--u) * 16.4); height: calc(var(--u) * 16.4); transform: translate(-50%, -50%); border-radius: 50%; padding: 0; cursor: pointer;
-             border: calc(var(--u) * 3.4) solid rgba(143,211,244,.42); background: #0c1016; color: #b6cbda; display: grid; place-items: center;
-             transition: border-color .5s, background .5s, box-shadow .5s, color .5s; }
-  .vw-ring span, .vw-label span { display: block; transform: rotate(calc(-1 * var(--rot))); transition: transform 1.1s cubic-bezier(.65,0,.25,1); }
-  .vw-ring svg { display: block; width: calc(var(--u) * 5.4); height: calc(var(--u) * 5.4); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .vw-ring:hover { border-color: var(--rc); color: #fff; }
-  .vw-ring:focus-visible { outline: 2px solid var(--rc); outline-offset: 3px; }
-  .vw-ring.on { border-color: var(--rc); background: var(--rc); color: #06101c; box-shadow: 0 0 calc(var(--u) * 6) var(--rc), 0 0 calc(var(--u) * 14) color-mix(in srgb, var(--rc) 45%, transparent); }
-  .vw-label { position: absolute; transform: translate(-50%, -50%); pointer-events: none; white-space: nowrap; font-size: clamp(.66rem, calc(var(--u) * 3.2), .88rem); font-weight: 500;
-              color: var(--muted); opacity: .75; transition: opacity .5s, color .3s; }
-  .vw-label.on { opacity: 0; }
-  .vw-ring:hover + .vw-label { opacity: 1; color: var(--text); }
-  .vw-beam { position: absolute; left: 82%; top: 50%; width: calc(18% + clamp(2rem, 5vw, 5rem)); height: 2px; margin-top: -1px; transform-origin: left; pointer-events: none;
-             background: linear-gradient(90deg, var(--c, #5b9be6), transparent); box-shadow: 0 0 12px var(--c, #5b9be6); animation: vwBeam .9s .9s both; }
-  @keyframes vwBeam { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  /* the panel: every item is in the page; with the script running only the chosen one shows */
-  .vw-panel { --c: #ee6c4d; position: relative; border-radius: 26px; padding: clamp(1.5rem, 2.8vw, 2.4rem); display: flex; flex-direction: column; gap: 2rem; min-height: 470px;
-              background: radial-gradient(90% 60% at 0% 50%, color-mix(in srgb, var(--c) 13%, transparent), transparent 70%), #0d0f13;
-              border: 1px solid color-mix(in srgb, var(--c) 35%, #1d2128); transition: border-color .6s; }
-  .vw-item { display: flex; flex-direction: column; gap: .9rem; }
-  .vw.js .vw-item { display: none; }
-  .vw.js .vw-item.on { display: flex; animation: vwIn .45s cubic-bezier(.2,.7,.2,1); }
-  @keyframes vwIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .vw-ico { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; color: var(--c);
-            background: color-mix(in srgb, var(--c) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 26px color-mix(in srgb, var(--c) 25%, transparent); }
-  .vw-ico svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .vw-tag { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--c); margin: .4rem 0 0; }
-  .vw-item h4 { font-family: "Sora", sans-serif; font-size: clamp(1.45rem, 2.4vw, 2.05rem); font-weight: 400; letter-spacing: -0.03em; line-height: 1.14; color: var(--text); text-wrap: balance; }
-  .vw-p { color: var(--muted); font-size: 1rem; margin: 0; max-width: 48ch; }
-  .vw-pts { list-style: none; display: grid; gap: .5rem; margin: .3rem 0 0; padding: 0; }
-  .vw-pts li { display: flex; gap: .55rem; font-size: .92rem; color: var(--text); opacity: .9; line-height: 1.4; }
-  .vw-foot { margin-top: auto; padding-top: 1.1rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.07); }
-  .vw-count { font: 500 .8rem "Sora", sans-serif; color: var(--muted); letter-spacing: .08em; }
-  .vw-nav { display: flex; gap: .5rem; }
-  .vw-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: none; color: var(--text); cursor: pointer; display: grid; place-items: center; transition: border-color .2s, color .2s; }
-  .vw-nav button:hover { border-color: var(--c); color: var(--c); }
-  .vw-prev svg { transform: scaleX(-1); }
-  @media (max-width: 860px) {
-    .vw-grid { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
-    .vw-wheel { max-width: min(420px, 80vw); }
-    .vw-beam { left: 50%; top: 82%; width: 2px; height: calc(18% + 1.4rem); margin: 0 0 0 -1px; transform-origin: top; background: linear-gradient(var(--c, #5b9be6), transparent); animation-name: vwBeamDown; }
-    .vw-panel { min-height: 0; }
-  }
-  @keyframes vwBeamDown { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-  @media (prefers-reduced-motion: reduce) { .vw-spin, .vw-ring span, .vw-label span { transition: none; } .vw-beam, .vw.js .vw-item.on { animation: none; } }
   /* the moving pictures, one per service; --c is the service colour, set on the card */
   .sp { position: relative; width: 100%; height: 100%; min-height: 150px; font-size: .74rem; }
 
@@ -2222,13 +2163,6 @@ html[data-theme="light"] .gp-hint2 { color: var(--muted); }
 /* services (v134): the stacking cards stay dark in light mode; only their shadow softens */
 html[data-theme="light"] .st-card { box-shadow: 0 -10px 40px rgba(19,32,46,.22); }
 /* what we stand for (v134): a light panel, with the accent colours deepened so they read on white */
-html[data-theme="light"] .vw-panel { background: radial-gradient(90% 60% at 0% 50%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%), #fff;
-  border-color: color-mix(in srgb, var(--c) 40%, #d6dee6); box-shadow: 0 18px 40px -24px rgba(19,32,46,.3); }
-html[data-theme="light"] .vw-tag, html[data-theme="light"] .vw-ico, html[data-theme="light"] .vw-nav button:hover { color: color-mix(in srgb, var(--c) 58%, #13202e); }
-html[data-theme="light"] .vw-pts svg { stroke: color-mix(in srgb, var(--c) 58%, #13202e); }
-html[data-theme="light"] .vw-foot { border-top-color: #d6dee6; }
-html[data-theme="light"] .vw-nav button { border-color: rgba(19,32,46,.2); }
-html[data-theme="light"] .vw-label { opacity: 1; }
 /* sound familiar? (v135): light note cards, with the link colours deepened */
 
 /* growth planner, simpler (v132) */
@@ -2258,14 +2192,15 @@ body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, r
 /* the sections on the page itself keep the page colour, with a hairline between two of them */
 body section.block:not(.panel) { background: transparent; }
 /* WHO WE ARE: headline left, the brief right; one column on narrow screens */
-section.block.who { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
-section.block.who h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.06; max-width: 12ch; margin-bottom: 0; }
+section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
+section.block.who h2 { font-size: clamp(2.1rem, 3.3vw, 3.4rem); line-height: 1.08; max-width: none; margin-bottom: 0; }   /* three lines: One team, / one plan, / results you can measure. */
+@media (min-width: 861px) { section.block.who h2 .grad { white-space: nowrap; } }
 section.block.who .who-copy { padding-top: 2.1rem; }
 section.block.who .who-copy p { font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; }
 section.block.who .who-copy p + p { margin-top: 1.1rem; }
 .who-more { display: inline-flex; gap: .5rem; margin-top: 1.6rem; color: var(--accent-2); font-weight: 500; text-decoration: none; }
 .who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
-@media (max-width: 860px) { section.block.who { grid-template-columns: minmax(0, 1fr); } section.block.who .who-copy { padding-top: 0; } section.block.who h2 { max-width: 16ch; } }
+@media (max-width: 860px) { section.block.who { grid-template-columns: minmax(0, 1fr); } section.block.who .who-copy { padding-top: 0; } }
 html[data-theme="light"] body section.block.panel { border-color: rgba(19,32,46,.08); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 -18px 50px -30px rgba(19,32,46,.25); }
 html[data-theme="light"] body section.block.panel.tone-slate { background: #fff; }
 html[data-theme="light"] body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.07), transparent 70%), #fbfcfe; }
@@ -2287,7 +2222,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <a class="skip" href="#who">Skip to content</a>
 <nav>
   <a class="logo waiting" id="logo" href="#hero" aria-label="envision home"><span id="logoText"><span class="l">e</span><span class="l">n</span><span class="l">v</span><span class="l">i</span><span class="l">s</span><span class="l">i</span><span class="l">o</span><span class="l">n</span></span></a>
-  <div class="links" id="topLinks"><a href="#services">Services</a><a href="#work">Our work</a><a href="#about">About</a><a href="contact.html">Contact</a></div>
+  <div class="links" id="topLinks"><a href="#services">Services</a><a href="#work">Our work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
   <div class="nav-end"><button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><a class="nav-cta" id="navPill" href="contact.html"><b class="nc-txt"><em class="nc-long">Book a </em>Discovery call</b><span aria-hidden="true">&rarr;</span></a></div>
   <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
   <div class="mobile-menu" id="mobileMenu" hidden></div>
@@ -2337,13 +2272,13 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <section class="block who" id="who">
   <div class="about-intro">
     <p class="eyebrow reveal">Who we are</p>
-    <h2 class="reveal">One team, one plan, <span class="grad">results you can measure.</span></h2>
+    <h2 class="reveal">One team,<br>one plan,<br><span class="grad">results you can measure.</span></h2>
   </div>
   <div class="about-intro who-copy">
     <p class="reveal">Envision Digital Solutions is a Melbourne team of strategists, developers and creative thinkers. We help local businesses get found, earn trust and turn interest into real enquiries.</p>
     <p class="reveal">Instead of a website from one place and ads from another, we plan your website, search, ads, social media and follow-up as one connected system, built around your goals and your budget.</p>
     <p class="reveal">Every decision is backed by numbers you can see: calls, forms and bookings traced back to where they came from, and reported in plain English. So you always know what's working, and what we're doing next.</p>
-    <a class="who-more" href="#about">More about us <span aria-hidden="true">&rarr;</span></a>
+    <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
   </div>
 </section>
 
@@ -2351,7 +2286,6 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   <p class="eyebrow reveal">Services</p>
   <h2 class="reveal">Everything you need to <span class="grad">grow smarter</span>.</h2>
   <p class="reveal">Websites, digital marketing, and automation and CRM: three connected areas, planned as one system so each part makes the next one work harder. Start with one, or let us bring them together.</p>
-  <p class="svc-note reveal"><span class="star">*</span> Three areas, nineteen services. One goal: the phone rings.</p>
 
   <div class="st" id="svcStack">
     <article class="st-card" id="svc-1" style="--c:#5b9be6;--i:0">
@@ -2428,93 +2362,12 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 
 
 <!-- ===== MERGED: About + Why + single process ===== -->
-<section class="block about panel navy" id="about">
+<section class="block about panel navy" id="how">
   <div class="about-intro">
-    <p class="eyebrow reveal">About Envision</p>
-    <h2 class="reveal">Digital marketing meets <span class="grad">smarter decision-making</span>.</h2>
-    <p class="lead-copy reveal">Most businesses spend on marketing before they know who they're targeting, where those people actually are, or what to say to them. We fix that first. Envision combines digital marketing with location insight, so every dollar you spend is aimed at a real customer in a real place, and you can see what it brought back.</p>
-    <p class="reveal">Whether you're starting from scratch, rebuilding something that isn't working, or expanding into new areas, you get the strategy and the execution from one team.</p>
+    <p class="eyebrow reveal">How we work</p>
+    <h2 class="reveal">A plan that grows with you, <span class="grad">built in the right order</span>.</h2>
+    <p class="reveal">See how results build over your first year, the order we put things in place, and the four steps from first call to a phone that rings.</p>
   </div>
-
-  <h3 class="about-head reveal">What makes our approach <span class="grad">different</span></h3>
-  <div class="grid">
-    <div class="card reveal"><span class="num">01</span><h3>Strategy before spending</h3><p>We find where your best opportunities are before recommending what to invest. Location data, audience insight and market context shape the plan before any budget moves.</p></div>
-    <div class="card reveal"><span class="num">02</span><h3>One system, not scattered tactics</h3><p>SEO, paid ads, website, social and location strategy are planned as one connected system. Every channel reinforces the same message instead of competing for attention.</p></div>
-    <div class="card reveal"><span class="num">03</span><h3>Plain English, every week</h3><p>Clear, honest updates on what's working, what's not, and what's changing. No jargon, no vanity metrics, just a straight read on where things stand and what happens next.</p></div>
-  </div>
-
-  <!-- ================= WHAT WE STAND FOR (v134): the logo as a wheel. Its eight arms hold the mission, the vision and
-       the six values; picking a ring turns the wheel so that arm points at the panel and shows its words. ================= -->
-  <div class="vw" id="values">
-    <div class="bo-top reveal">
-      <div><span class="gv-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10.2A4.3 4.3 0 0 1 12 8a4.3 4.3 0 0 1 7 2.8C19 16.6 12 21 12 21z"/></svg>Who we are</span>
-      <h3 class="bo-h">What we <span class="grad">stand for</span></h3></div>
-      <div class="bo-side"><p>Our mission, our vision, and the six values behind every decision we make. Eight arms on our logo, one for each. Pick a ring to turn the wheel.</p></div>
-    </div>
-    <div class="vw-grid">
-      <div class="vw-wheel" id="vwWheel"><div class="vw-glow"></div><div class="vw-beam" aria-hidden="true"></div><div class="vw-spin" id="vwSpin"></div></div>
-      <div class="vw-panel" id="vwPanel" aria-live="polite">
-      <article class="vw-item" id="vw-mission" style="--c:#ee6c4d" data-label="Mission">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/></svg></span>
-        <p class="vw-tag">Our mission</p>
-        <h4>Help businesses grow by combining strategy, technology and creativity.</h4>
-        <p class="vw-p">We build tailored solutions that make your business easier to find, easier to choose and easier to run. Then we measure what each one brings back, so the value is something you can see.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Strategy first, shaped around your goals</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Real, measurable results, reported in plain English</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Lasting value for every client, not quick fixes</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-vision" style="--c:#8fd3f4" data-label="Vision">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
-        <p class="vw-tag">Our vision</p>
-        <h4>Every business equipped to thrive, adapt and lead in the digital world.</h4>
-        <p class="vw-p">Innovative, data-driven tools used to be something only big companies could afford. We want local businesses to have them too, set up simply and working together.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Data-driven decisions, made simple</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Technology that grows with the business</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Local businesses leading, not catching up</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-customer" style="--c:#5b9be6" data-label="Customer-centric">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span>
-        <p class="vw-tag">Value 01 · Customer-centricity</p>
-        <h4>Your goals set our direction.</h4>
-        <p class="vw-p">We start with what you need to achieve and shape every recommendation around it. Your growth is how we measure our own success.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>We listen before we recommend</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>A named contact and a clear measure of success for every client</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Advice that fits your stage and your budget</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-integrity" style="--c:#7fe0c8" data-label="Integrity">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.4-3 7.8-7 9.5-4-1.7-7-5.1-7-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.4-4.6"/></svg></span>
-        <p class="vw-tag">Value 02 · Integrity</p>
-        <h4>We do what we say.</h4>
-        <p class="vw-p">Honest advice and clear terms, even when the honest answer is that you don’t need something yet. Our actions match our words.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Scope, price and timing agreed in writing before we start</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>No promises we can’t keep</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Straight answers on what’s working and what isn’t</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-reliability" style="--c:#f2b84b" data-label="Reliability">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
-        <p class="vw-tag">Value 03 · Reliability</p>
-        <h4>Consistent work, on time, without surprises.</h4>
-        <p class="vw-p">High-quality work delivered the same way every time, with open and proactive communication from the first call to the latest report.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Dates we plan for, and keep</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Updates before you have to ask</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Requests written down, so nothing gets missed</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-resilience" style="--c:#b58cf0" data-label="Resilience">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 19l6.5-11 4 6.5 2.5-3.5L21 19z"/></svg></span>
-        <p class="vw-tag">Value 04 · Resilience</p>
-        <h4>Steady when things get hard.</h4>
-        <p class="vw-p">Algorithms change, campaigns dip and deadlines move. We stay calm, find the fix and keep things moving, so you can keep trusting the plan.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Problems raised early, with a fix in hand</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Calm, practical support when something breaks</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>In it for the long term</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-adaptability" style="--c:#4fc3f7" data-label="Adaptability">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v3.7h-3.7M6 21v-3.7h3.7"/></svg></span>
-        <p class="vw-tag">Value 05 · Adaptability</p>
-        <h4>Always learning, so you don’t have to.</h4>
-        <p class="vw-p">Digital moves fast. We keep up with new tools and trends, test them properly, and bring you only what is worth your time and budget.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>New ideas tested before they’re recommended</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Strategies refined from real results</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Ready for whatever changes next</span></li></ul>
-      </article>
-      <article class="vw-item" id="vw-clarity" style="--c:#9ccc65" data-label="Clarity">
-        <span class="vw-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></span>
-        <p class="vw-tag">Value 06 · Clarity</p>
-        <h4>Complex made simple.</h4>
-        <p class="vw-p">We started Envision to bridge the gap between technology and business strategy. That means no jargon and no black boxes: you will always know what we are doing and why.</p>
-        <ul class="vw-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Plain-English reports</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>One clear next step at a time</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Powerful tools made easy to use</span></li></ul>
-      </article>
-        <div class="vw-foot" hidden><span class="vw-count" id="vwCount">01 / 08</span><div class="vw-nav"><button class="vw-prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><button class="vw-next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
-      </div>
-    </div>
-  </div>
-
 
   <!-- ================= GROWTH PLANNER (v130): pick one service or several. The curve shows enquiries over the first year,
        the lanes underneath show how each service is set up and when its results build, and services that work together
@@ -2773,7 +2626,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <footer>
   <div class="fcols">
     <div><div class="fbrand">envision</div><p style="font-size:.9rem">Stop guessing. Start growing.</p><p style="font-size:.85rem;margin-top:.4rem">Melbourne, Victoria, Australia</p></div>
-    <div><h4>Quick links</h4><ul><li><a href="#hero">Home</a></li><li><a href="#services">Services</a></li><li><a href="location-strategy.html">Location Strategy</a></li><li><a href="#about">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Quick links</h4><ul><li><a href="#hero">Home</a></li><li><a href="#services">Services</a></li><li><a href="location-strategy.html">Location Strategy</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Core services</h4><ul><li><a href="website-design.html">Website Design &amp; Development</a></li><li><a href="seo.html">SEO &amp; Content Strategy</a></li><li><a href="paid-ads.html">Paid Ads Management</a></li><li><a href="location-strategy.html">Location Strategy</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="mailto:hello@envisionds.com.au">hello@envisionds.com.au</a></li><li><a href="tel:+61399693883">03 9969 3883</a></li></ul><h4 style="margin-top:1.2rem">Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
   </div>
@@ -3884,71 +3737,6 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   })();
 </script>
 
-<!-- ================= WHAT WE STAND FOR (v134, JS half): draws the mark as a wheel with a ring button on each arm, turns
-     the chosen arm to point at the panel (straight down on a phone, where the panel sits below), and steps round on its
-     own every few seconds while on screen, until someone picks a ring or uses the arrows. ================= -->
-<script>
-  (function () {
-    const root = document.getElementById('values'), wheel = document.getElementById('vwWheel'), spin = document.getElementById('vwSpin'), panel = document.getElementById('vwPanel');
-    if (!root || !wheel || !spin || !panel) return;
-    const items = [...panel.querySelectorAll('.vw-item')], n = items.length;
-    const colour = el => el.style.getPropertyValue('--c').trim();
-    // the mark's geometry (as in the favicon): arm k is the top arm turned 45°·k about the centre (50,50)
-    const C = 50, RX = 44.7, RY = 13.5, BOX = 140, OFF = 20;
-    const R = Math.hypot(RX - C, RY - C), theta0 = Math.atan2(RX - C, C - RY) * 180 / Math.PI;
-    const at = (deg, r) => { const a = deg * Math.PI / 180; return [C + r * Math.sin(a), C - r * Math.cos(a)]; };
-    const pct = v => ((v + OFF) / BOX * 100).toFixed(3) + '%';
-    const arm = (fill, stroke) => `<polygon points="50.3,45 53.6,30 57.6,31.2" fill="${fill}"/><polyline points="55.6,30.6 48,18.7" fill="none" stroke="${stroke}" stroke-width="3.6" stroke-linecap="round"/>`;
-    spin.innerHTML = `<svg class="vw-mark" viewBox="${-OFF} ${-OFF} ${BOX} ${BOX}" aria-hidden="true"><defs>
-        <radialGradient id="vwDisc"><stop offset="0" stop-color="#17202d"/><stop offset="1" stop-color="#0c1016"/></radialGradient>
-        <linearGradient id="vwArm" gradientUnits="userSpaceOnUse" x1="50" y1="47" x2="50" y2="14"><stop offset="0" stop-color="#1561ad"/><stop offset=".5" stop-color="#5b9be6"/><stop offset="1" stop-color="#8fd3f4"/></linearGradient>
-        <filter id="vwGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-        <circle cx="50" cy="50" r="48" fill="url(#vwDisc)" stroke="#3d5a80" stroke-width=".6"/>
-        <circle cx="50" cy="50" r="62" fill="none" stroke="rgba(152,193,217,.14)" stroke-width=".3" stroke-dasharray="1 2"/>
-        ${items.map((it, k) => `<g class="vw-arm" transform="rotate(${45 * k} 50 50)"><g class="base">${arm('url(#vwArm)', 'url(#vwArm)')}</g><g class="lit" filter="url(#vwGlow)">${arm(colour(it), colour(it))}</g></g>`).join('')}
-        <circle cx="50" cy="50" r="2.4" fill="#e0fbfc" opacity=".8"/></svg>`
-      + items.map((it, k) => {
-          const [rx, ry] = at(theta0 + 45 * k, R), [lx, ly] = at(theta0 + 45 * k, R + 24);
-          return `<button class="vw-ring" type="button" style="left:${pct(rx)};top:${pct(ry)};--rc:${colour(it)}" aria-controls="${it.id}" aria-label="${it.dataset.label}">`
-               + `<span>${it.querySelector('.vw-ico').innerHTML}</span></button><div class="vw-label" style="left:${pct(lx)};top:${pct(ly)}" aria-hidden="true"><span>${it.dataset.label}</span></div>`;
-        }).join('');
-    const arms = [...spin.querySelectorAll('.vw-arm')], rings = [...spin.querySelectorAll('.vw-ring')], labels = [...spin.querySelectorAll('.vw-label')];
-    const beam = wheel.querySelector('.vw-beam'), count = document.getElementById('vwCount'), foot = panel.querySelector('.vw-foot');
-    const narrow = matchMedia('(max-width: 860px)'), still = matchMedia('(prefers-reduced-motion: reduce)');
-    root.classList.add('js'); foot.hidden = false;
-    let cur = -1, rot = 0, auto = !still.matches, timer = 0, seen = false;
-
-    function show(k) {
-      k = (k + n) % n;
-      if (k === cur) return;
-      const c = colour(items[k]);
-      // turn the shortest way round until this ring points at the panel
-      const target = (narrow.matches ? 180 : 90) - (theta0 + 45 * k);
-      rot += ((target - rot) % 360 + 540) % 360 - 180;
-      wheel.style.setProperty('--rot', rot.toFixed(2) + 'deg');
-      wheel.style.setProperty('--c', c); panel.style.setProperty('--c', c);
-      arms.forEach((a, i) => a.classList.toggle('on', i === k));
-      rings.forEach((r, i) => { r.classList.toggle('on', i === k); r.setAttribute('aria-pressed', i === k); });
-      labels.forEach((l, i) => l.classList.toggle('on', i === k));
-      items.forEach((it, i) => it.classList.toggle('on', i === k));
-      beam.style.animation = 'none'; void beam.offsetWidth; beam.style.animation = '';
-      count.textContent = String(k + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0');
-      cur = k;
-    }
-    const stop = () => { auto = false; clearInterval(timer); };
-    const tick = () => { clearInterval(timer); if (auto && seen) timer = setInterval(() => { if (!document.hidden) show(cur + 1); }, 5000); };
-    rings.forEach((r, i) => r.addEventListener('click', () => { stop(); show(i); }));
-    panel.querySelector('.vw-prev').addEventListener('click', () => { stop(); show(cur - 1); });
-    panel.querySelector('.vw-next').addEventListener('click', () => { stop(); show(cur + 1); });
-    wheel.addEventListener('keydown', e => {
-      const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]; if (!d) return;
-      e.preventDefault(); stop(); show(cur + d); rings[cur].focus();
-    });
-    narrow.addEventListener('change', () => { const k = cur; cur = -1; show(k); });
-    show(0);
-    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { seen = e.isIntersecting; tick(); }, { threshold: .35 }).observe(wheel);
-  })();
-</script>
 
 
 <!-- ================= MOTION, SMALLER TEXT (v133, JS half): the paragraphs under the headings rise word by word ================= -->
