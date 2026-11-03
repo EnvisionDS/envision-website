@@ -1445,12 +1445,6 @@
               background: rgba(10,12,16,.62); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.08); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
   /* pictures only move while their card is near the screen */
   .st-card:not(.st-run) .st-glass *, .st-card:not(.st-run) .st-glass *::before, .st-card:not(.st-run) .st-glass *::after, .st-card:not(.st-run) .st-photo { animation-play-state: paused; }
-  .st-end { position: relative; margin-top: 1rem; border-radius: 30px; padding: clamp(1.6rem, 3.4vw, 3rem); display: flex; align-items: center; justify-content: space-between; gap: 1.4rem 2rem; flex-wrap: wrap;
-            border: 1px dashed rgba(152,193,217,.32); text-decoration: none; color: var(--text); transition: border-color .3s; }
-  .st-end:hover { border-color: var(--orange); }
-  .st-end b { font: 400 clamp(1.3rem, 2.2vw, 1.8rem) "Sora", sans-serif; letter-spacing: -0.02em; max-width: 30ch; }
-  .st-go { display: inline-flex; align-items: center; gap: .6rem; padding: .9rem 1.4rem; border-radius: 999px; font-weight: 500; background: var(--text); color: var(--bg); white-space: nowrap; }
-  .st-end:hover .st-go svg { transform: translateX(4px); }
   @media (max-width: 860px) {
     .st { gap: 5vh; }
     .st-card { --top: calc(var(--navh, 64px) + 10px + var(--i) * 8px); height: min(640px, calc(100svh - var(--top) - 16px)); grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(140px, 34%) minmax(0, 1fr); border-radius: 24px; }
@@ -2227,7 +2221,6 @@ html[data-theme="light"] .gp-hint2 { color: var(--muted); }
   html[data-theme="light"] .bo-step:hover .bo-t b, html[data-theme="light"] .bo-step.lit .bo-t b { color: color-mix(in srgb, var(--c) 80%, #13202e); }
 /* services (v134): the stacking cards stay dark in light mode; only their shadow softens */
 html[data-theme="light"] .st-card { box-shadow: 0 -10px 40px rgba(19,32,46,.22); }
-html[data-theme="light"] .st-end { border-color: rgba(19,32,46,.25); }
 /* what we stand for (v134): a light panel, with the accent colours deepened so they read on white */
 html[data-theme="light"] .vw-panel { background: radial-gradient(90% 60% at 0% 50%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%), #fff;
   border-color: color-mix(in srgb, var(--c) 40%, #d6dee6); box-shadow: 0 18px 40px -24px rgba(19,32,46,.3); }
@@ -2395,7 +2388,6 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-network.jpg)"></i><div class="st-glass"><div class="sp sp-auto" aria-hidden="true"><div class="sp-mu-line"><i class="sp-mu-dot"></i></div> <span class="sp-mu-n" style="--i:0">Web form</span><span class="sp-mu-n" style="--i:1">CRM</span><span class="sp-mu-n" style="--i:2">Text sent &#10003;</span></div></div></div>
     </article>
   </div>
-  <a class="st-end" href="#finder"><b>Not sure which one you need? Three quick questions will light up your starting point.</b><span class="st-go">Find my starting point <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </section>
 
 
