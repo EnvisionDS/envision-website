@@ -8,7 +8,7 @@ html.cx {
   color-scheme: dark;
 }
 html.cx[data-theme="light"] { --bg: #f4f7fa; --bg-2: #eaf0f5; --text: #13202e; --muted: #4a5d70; --line: #d6dee6; --accent-2: #264f67; color-scheme: light; }
-.cx *, .cx *::before, .cx *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:where(.cx .cx-wrap) *, :where(.cx .cx-wrap) *::before, :where(.cx .cx-wrap) *::after { box-sizing: border-box; margin: 0; padding: 0; }   /* (not the nav, which keeps its own spacing) */
 .cx body { min-height: 100vh; font-family: "IBM Plex Sans", system-ui, sans-serif; line-height: 1.55; color: var(--text); background: var(--bg); }
 .cx h2, .cx h3 { font-family: "Sora", sans-serif; }
 .cx p { color: var(--muted); }
@@ -19,7 +19,8 @@ html.cx[data-theme="light"] { --bg: #f4f7fa; --bg-2: #eaf0f5; --text: #13202e; -
 .cx-bg::after { content: ""; position: absolute; left: 50%; top: 50%; width: 140vmax; height: 140vmax; transform: translate(-50%, -50%); border-radius: 50%; opacity: .5;
                 background: repeating-radial-gradient(circle, transparent 0 calc(7vmax - 1px), rgba(152,193,217,.07) calc(7vmax - 1px) 7vmax); }
 html.cx[data-theme="light"] .cx-bg { background: radial-gradient(60% 50% at 30% 20%, rgba(21,97,173,.12), transparent 70%), radial-gradient(50% 45% at 80% 85%, rgba(23,151,122,.08), transparent 70%), var(--bg); }
-.cx-wrap { position: relative; z-index: 1; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.cx-wrap { position: relative; z-index: 1; min-height: calc(100vh - 92px); display: grid; place-items: center; padding: 24px; }   /* 92px: the nav above */
+.cx .frame { max-height: calc(100vh - 140px); }
 .cx .frame { animation: cxIn .55s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes cxIn { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cx .frame { animation: none; } }
