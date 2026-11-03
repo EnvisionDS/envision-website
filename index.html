@@ -18,6 +18,7 @@
 -->
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="contact.css">
 
 <style>
   /* ---------- DESIGN TOKENS ---------- */
@@ -569,8 +570,8 @@
 
 
   /* ---------- CONTACT POP-UP ----------
-     A frame that opens over the page (not a section). Backdrop blurs the page; the frame scales in.
-     Left: the pitch and the email. Right: the enquiry form. */
+     contact.html is the contact page; links to it open its frame over this page instead (the script loads it in).
+     Backdrop blurs the page; a pill grows from the clicked button into the frame. The frame and form are styled in contact.css. */
   #modal { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px;
            visibility: hidden; transition: visibility 0s linear .5s; }
   #modal.open { visibility: visible; transition-delay: 0s; }
@@ -583,50 +584,13 @@
            box-shadow: 0 40px 100px rgba(0,0,0,.6);
            transition: top .6s cubic-bezier(.7,0,.2,1), left .6s cubic-bezier(.7,0,.2,1), width .6s cubic-bezier(.7,0,.2,1), height .6s cubic-bezier(.7,0,.2,1),
                        border-radius .6s cubic-bezier(.7,0,.2,1), background .6s ease, opacity .25s ease; }
-  .frame { position: relative; z-index: 2; width: min(1120px, 100%); max-height: calc(100vh - 48px); overflow: auto; border-radius: 28px; border: 1px solid #26282c;
-           background: linear-gradient(160deg, #0d1220, #090c14); display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; padding: 3rem;
-           box-shadow: 0 40px 100px rgba(0,0,0,.6); opacity: 0; transition: opacity .25s ease; }
+  #modal .frame { opacity: 0; transition: opacity .25s ease; }   /* the frame itself is styled in contact.css */
   #modal.show .frame { opacity: 1; }
   /* the frame's contents rise in just after the morph lands */
-  .frame > * { opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+  #modal .frame > * { opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
   #modal.show .frame > * { opacity: 1; transform: none; }
   #modal.show .frame > :nth-child(3) { transition-delay: .08s; }
   .pill.lift { opacity: 0; transition: opacity .1s; }
-  .frame h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.12; max-width: 16ch; margin-bottom: 1.2rem; }
-  .frame p { font-size: 1.02rem; }
-  .frame .prefer { margin-top: 1.2rem; }
-  .copy-email { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.4rem; padding: .5rem 0; background: none; border: 0; color: var(--accent-2); font: inherit; font-size: 1.05rem; cursor: pointer; }
-  .copy-email svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-  .copy-email small { font-size: .78rem; color: var(--muted); opacity: 0; transition: opacity .25s; }
-  .copy-email.copied small { opacity: 1; }
-  .close { position: absolute; top: 18px; right: 18px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg-2); color: var(--muted); cursor: pointer; display: grid; place-items: center; font-size: 20px; line-height: 1; transition: color .2s, border-color .2s; }
-  .close:hover { color: var(--text); border-color: #3a3d44; }
-  /* the form */
-  .form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.4rem; }
-  .form .full { grid-column: 1 / -1; }
-  .form label { display: grid; gap: .45rem; font-size: .95rem; color: var(--text); }
-  .form label .req { color: var(--accent-2); }
-  .form input, .form select, .form textarea { font: inherit; font-size: .98rem; color: var(--text); background: #0c1119; border: 1px solid #26282c; border-radius: 14px; padding: .95rem 1.1rem; width: 100%; transition: border-color .2s, box-shadow .2s; }
-  .form input::placeholder, .form textarea::placeholder { color: #5b6068; }
-  .form select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%; background-size: 6px 6px; background-repeat: no-repeat; }
-  .form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(152,193,217,.15); }
-  .form textarea { min-height: 150px; resize: vertical; }
-  .form .err { font-size: .8rem; color: #ee6c4d; }
-  .form input.bad, .form textarea.bad { border-color: rgba(238,108,77,.7); }
-  .send { grid-column: 1 / -1; justify-self: start; display: inline-flex; align-items: center; gap: .7rem; padding: 1rem 1.6rem; border: 0; border-radius: 999px;
-          background: var(--accent-2); color: #061020; font: 600 1rem "IBM Plex Sans", system-ui, sans-serif; cursor: pointer; transition: background .2s, transform .2s; }
-  .send:hover { background: #a9cde0; transform: translateY(-1px); }
-  .send svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
-  /* after sending */
-  .sent { display: none; grid-column: 1 / -1; gap: 1rem; }
-  .form.done .sent { display: grid; }
-  .form.done > :not(.sent) { display: none; }
-  .sent h3 { font-family: "Sora", sans-serif; font-weight: 500; font-size: 1.3rem; }
-  .sent pre { white-space: pre-wrap; font: inherit; font-size: .92rem; color: var(--muted); background: #0c1119; border: 1px solid #26282c; border-radius: 14px; padding: 1rem 1.1rem; max-height: 220px; overflow: auto; }
-  .sent .row { display: flex; gap: .8rem; flex-wrap: wrap; }
-  .ghost { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.3rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.4); background: none; color: var(--text); font: 500 .92rem "IBM Plex Sans", system-ui, sans-serif; cursor: pointer; text-decoration: none; }
-  .ghost:hover { background: rgba(255,255,255,.08); }
-  @media (max-width: 860px) { .frame { grid-template-columns: 1fr; padding: 2rem 1.4rem; gap: 1.6rem; border-radius: 20px; } .form { grid-template-columns: 1fr; } }
   body.modal-open { overflow: hidden; }
 
   /* ---------- LAYER 2: reveal-on-scroll (CSS half) ---------- */
@@ -731,6 +695,11 @@
   #hero h1 { font-size: clamp(2.4rem, 6vw, 5.6rem); max-width: 17ch; min-height: 3.3em; margin: 0 auto; }
   #hero .sub { margin: 1.6rem auto 0; max-width: 64ch; font-size: 1.05rem; text-wrap: pretty; }
   #hero .pill { margin-top: 2.2rem; }
+  /* the hero's two buttons side by side (v137): "Explore services" is the solid one */
+  .hero-ctas { display: flex; justify-content: center; align-items: center; gap: .9rem 1rem; flex-wrap: wrap; margin-top: 2.2rem; }
+  #hero .hero-ctas .pill { margin-top: 0; }
+  .pill.solid { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .pill.solid:hover { color: #fff; border-color: #98c1d9; }
   #hero > .hero-bar { position: absolute; z-index: 2; left: max(6vw, calc((100% - 1200px) / 2)); right: max(6vw, calc((100% - 1200px) / 2)); top: calc(100svh - 112px);
               display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,.08); pointer-events: none; }
   .hero-bar a { pointer-events: auto; }
@@ -814,6 +783,13 @@
   /* a dark halo behind the copy, so the lit map never fights the words */
   #hero h1, #hero .sub, #hero .proof, #hero .trust li { text-shadow: 0 0 22px #0a0a0b, 0 0 10px #0a0a0b, 0 0 3px #0a0a0b; }
   #hero h1 .grad { text-shadow: none; }
+  /* the reading light on the first headline (v138): each letter glows briefly as the light passes; a gradient word starts
+     in the text colour (a solid layer over its gradient) and that layer shrinks away left to right as the light crosses it */
+  #slot span { transition: text-shadow .6s ease-out; }
+  #slot span.lit { text-shadow: 0 0 .32em rgba(143,211,244,.95), 0 0 .06em #fff; transition-duration: .08s; }
+  #slot .grad.unlit { background-image: linear-gradient(var(--text), var(--text)), var(--grad); background-repeat: no-repeat;
+                      background-size: 100% 100%, 100% 100%; background-position: 100% 0, 0 0; }
+  #slot .grad.unlit.lit-up { background-size: 0% 100%, 100% 100%; transition: background-size var(--rd, .3s) linear; }
   @media (max-width: 900px) { .seek { font-size: .72rem; } #hero .scrollcue { display: none; } }
 
   /* ---------- SEE WHAT OTHERS MISS (the torch map section) ---------- */
@@ -1962,26 +1938,6 @@ html[data-theme="light"] .tl-name { color: var(--text); }
 html[data-theme="light"] #about .tl-node { background-image: initial; background-color: rgb(233, 237, 244); }
 html[data-theme="light"] #modal .backdrop { background-image: initial; background-color: rgba(246, 247, 249, 0.72); }
 html[data-theme="light"] #morph { background-image: initial; background-color: rgb(61, 90, 128); border-top-color: rgb(211, 213, 217); border-right-color: rgb(211, 213, 217); border-bottom-color: rgb(211, 213, 217); border-left-color: rgb(211, 213, 217); box-shadow: rgba(251, 251, 251, 0.6) 0px 40px 100px; }
-html[data-theme="light"] .frame { border-top-color: rgb(211, 213, 217); border-right-color: rgb(211, 213, 217); border-bottom-color: rgb(211, 213, 217); border-left-color: rgb(211, 213, 217); background-image: linear-gradient(160deg, rgb(233, 236, 244), rgb(239, 241, 247)); background-color: initial; box-shadow: rgba(251, 251, 251, 0.6) 0px 40px 100px; }
-html[data-theme="light"] .copy-email { background-image: none; background-color: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; color: var(--accent-2); }
-html[data-theme="light"] .copy-email svg { fill: none; stroke: currentcolor; }
-html[data-theme="light"] .copy-email small { color: var(--muted); }
-html[data-theme="light"] .close { color: var(--muted); }
-html[data-theme="light"] .close:hover { color: var(--text); border-top-color: rgb(187, 190, 197); border-right-color: rgb(187, 190, 197); border-bottom-color: rgb(187, 190, 197); border-left-color: rgb(187, 190, 197); }
-html[data-theme="light"] .form label { color: var(--text); }
-html[data-theme="light"] .form label .req { color: var(--accent-2); }
-html[data-theme="light"] .form input, html[data-theme="light"] .form select, html[data-theme="light"] .form textarea { color: var(--text); background-image: initial; background-color: rgb(236, 240, 246); border-top-color: rgb(211, 213, 217); border-right-color: rgb(211, 213, 217); border-bottom-color: rgb(211, 213, 217); border-left-color: rgb(211, 213, 217); }
-html[data-theme="light"] .form input::placeholder, html[data-theme="light"] .form textarea::placeholder { color: rgb(151, 156, 164); }
-html[data-theme="light"] .form select { background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); }
-html[data-theme="light"] .form input:focus, html[data-theme="light"] .form select:focus, html[data-theme="light"] .form textarea:focus { outline-color: initial; box-shadow: rgba(38, 79, 103, 0.15) 0px 0px 0px 3px; }
-html[data-theme="light"] .form .err { color: rgb(238, 108, 77); }
-html[data-theme="light"] .form input.bad, html[data-theme="light"] .form textarea.bad { border-top-color: rgba(238, 108, 77, 0.7); border-right-color: rgba(238, 108, 77, 0.7); border-bottom-color: rgba(238, 108, 77, 0.7); border-left-color: rgba(238, 108, 77, 0.7); }
-html[data-theme="light"] .send { border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; color: rgb(236, 240, 246); }
-html[data-theme="light"] .send:hover { background-image: initial; background-color: rgb(38, 65, 79); }
-html[data-theme="light"] .send svg { fill: none; stroke: currentcolor; }
-html[data-theme="light"] .sent pre { color: var(--muted); background-image: initial; background-color: rgb(236, 240, 246); border-top-color: rgb(211, 213, 217); border-right-color: rgb(211, 213, 217); border-bottom-color: rgb(211, 213, 217); border-left-color: rgb(211, 213, 217); }
-html[data-theme="light"] .ghost { border-top-color: rgba(0, 0, 0, 0.4); border-right-color: rgba(0, 0, 0, 0.4); border-bottom-color: rgba(0, 0, 0, 0.4); border-left-color: rgba(0, 0, 0, 0.4); background-image: none; background-color: initial; color: var(--text); text-decoration-color: initial; }
-html[data-theme="light"] .ghost:hover { background-image: initial; background-color: rgba(0, 0, 0, 0.08); }
 html[data-theme="light"] .skip { background-image: initial; background-color: rgb(21, 97, 173); color: rgb(0, 0, 0); text-decoration-color: initial; }
 html[data-theme="light"] a:focus-visible, html[data-theme="light"] button:focus-visible, html[data-theme="light"] input:focus-visible, html[data-theme="light"] select:focus-visible, html[data-theme="light"] textarea:focus-visible { outline-color: rgb(38, 79, 103); }
 html[data-theme="light"] .proof { color: var(--muted); }
@@ -2387,7 +2343,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 <nav>
   <a class="logo waiting" id="logo" href="#hero" aria-label="envision home"><span id="logoText"><span class="l">e</span><span class="l">n</span><span class="l">v</span><span class="l">i</span><span class="l">s</span><span class="l">i</span><span class="l">o</span><span class="l">n</span></span></a>
   <div class="links" id="topLinks"><a href="#hero">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#work">Our work</a><a href="#faq">FAQ</a></div>
-  <div class="nav-end"><button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><a class="nav-cta" id="navPill" href="#contact">Contact us<span aria-hidden="true">&rarr;</span></a></div>
+  <div class="nav-end"><button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><a class="nav-cta" id="navPill" href="contact.html">Contact us<span aria-hidden="true">&rarr;</span></a></div>
   <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
   <div class="mobile-menu" id="mobileMenu" hidden></div>
   <div class="nav-drop" id="navDrop" role="menu" aria-label="Services"><a href="website-design.html" style="--c:#5b9be6">Website design</a><a href="seo.html" style="--c:#7fe0c8">SEO and content</a><a href="paid-ads.html" style="--c:#f2b84b">Paid ads</a><a href="social-media.html" style="--c:#f48fb1">Social media</a><a href="conversion.html" style="--c:#b58cf0">Conversion</a><a href="email-crm.html" style="--c:#4fc3f7">Email and CRM</a><a href="automation.html" style="--c:#9ccc65">Automation</a><a href="location-strategy.html" style="--c:#ee6c4d">Location strategy</a><a class="all" href="#finder">Not sure? Find your starting point &rarr;</a></div>
@@ -2396,40 +2352,11 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 
 
 
-<!-- ================= CONTACT POP-UP ================= -->
-<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+<!-- ================= CONTACT POP-UP: the frame is loaded in from contact.html when a contact link is clicked ================= -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
   <div class="backdrop"></div>
   <div id="morph"></div>
-  <div class="frame">
-    <button class="close" type="button" id="modalClose" aria-label="Close">×</button>
-    <div>
-      <p class="eyebrow">Get in touch</p>
-      <h2 id="modalTitle">Send us a brief and we will take it from there.</h2>
-      <p>Whether you are starting fresh, rebuilding something that is not working, or looking to expand into new areas, we will map the highest-leverage next step.</p>
-      <p class="prefer">Prefer email? Tap the address below to copy it across.</p>
-      <button class="copy-email" type="button" id="copyEmail"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="M3 6l9 7 9-7"/></svg>hello@envisionds.com.au <small>copied</small></button>
-    </div>
-    <form class="form" id="enquiry" novalidate>
-      <label><span>Full name <span class="req">*</span></span><input name="name" type="text" placeholder="Jane Smith" autocomplete="name" required></label>
-      <label><span>Email address <span class="req">*</span></span><input name="email" type="email" placeholder="jane@example.com" autocomplete="email" required></label>
-      <label><span>Business name</span><input name="business" type="text" placeholder="Acme Pty Ltd" autocomplete="organization"></label>
-      <label><span>Service of interest</span>
-        <select name="service">
-          <option value="">Select a service (optional)</option>
-          <option>Website Design and Development</option><option>SEO and Content Strategy</option><option>Paid Ads Management</option><option>Social Media Marketing</option>
-          <option>Conversion Optimisation</option><option>Email and CRM Nurture</option><option>Automation</option><option>Location Strategy</option><option>Not sure yet</option>
-        </select>
-      </label>
-      <label class="full"><span>How can we help? <span class="req">*</span></span><textarea name="message" placeholder="Tell us a bit about your business and what you are looking to achieve..." required></textarea><span class="err" id="errMsg"></span></label>
-      <button class="send" type="submit">Send Enquiry <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      <div class="sent">
-        <h3>Thanks — your enquiry is ready to send.</h3>
-        <p>Your email app should have opened with everything filled in. If it didn't, copy the message below and send it to <b>hello@envisionds.com.au</b>.</p>
-        <pre id="sentText"></pre>
-        <div class="row"><button class="ghost" type="button" id="copyMsg">Copy message</button><a class="ghost" id="mailAgain" href="#">Open email app again</a></div>
-      </div>
-    </form>
-  </div>
+  <div class="frame" id="contactFrame"></div>
 </div>
 
 <section id="hero">
@@ -2437,9 +2364,12 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   <!-- the copy sits in the middle of the dark "room"; the map and the hidden opportunities surround it -->
   <div class="hero-wrap">
     <p class="hero-eyebrow vf"><span class="vf-ret" aria-hidden="true"><i></i></span><span class="vf-t">Digital solutions agency</span><i class="vf-sep" aria-hidden="true"></i><span class="vf-t">Melbourne</span></p>
-    <h1 id="slot">We bring your <span class="grad">visions</span> to life, and the <span class="grad">customers</span> to you</h1>
+    <h1 id="slot">We bring your <span class="grad unlit">visions</span> to life, and the <span class="grad unlit">customers</span> to you</h1>
     <p class="sub">Envision is a Melbourne digital solutions agency: a team of strategists, developers, analysts and creative thinkers. We build websites, run SEO, Google and Meta ads, social media and email, automate the follow-up, and use location data to show where your best customers are, all planned as one connected system. One team, one plan, and results you can measure.</p>
-    <a class="pill call" href="#contact">Envision what’s next<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 2.8c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8L9.6 8.2c-.3.3-.3.8-.1 1.1 1.2 2.1 3 3.9 5.1 5.1.4.2.8.2 1.1-.1l1.2-1.2c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8l-1.5 1.5c-1 1-2.6 1.4-4 .9C10.4 17.9 6.1 13.6 4.3 8.4c-.5-1.4-.1-3 .9-4z"/></svg></span></a>
+    <div class="hero-ctas">
+      <a class="pill solid" href="#services">Explore services</a>
+      <a class="pill call" href="contact.html">Envision what’s next<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 2.8c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8L9.6 8.2c-.3.3-.3.8-.1 1.1 1.2 2.1 3 3.9 5.1 5.1.4.2.8.2 1.1-.1l1.2-1.2c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8l-1.5 1.5c-1 1-2.6 1.4-4 .9C10.4 17.9 6.1 13.6 4.3 8.4c-.5-1.4-.1-3 .9-4z"/></svg></span></a>
+    </div>
   </div>
 </section>
 
@@ -2882,7 +2812,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       <ul><li>Campaign strategy and audience targeting</li><li>Ad copy and creative direction</li><li>Google Ads and Meta Ads setup</li><li>Weekly optimisation and bid management</li><li>Plain-English reporting every week</li></ul>
       <h4>How it works</h4>
       <ul><li>Starts with a strategy call to align on goals and targeting</li><li>You set the ad budget, we make it work as hard as possible</li><li>90-day window with clear weekly milestones</li><li>No lock-in contract after the trial period</li></ul>
-      <a class="pill" href="#contact" style="justify-self:start">Start my trial</a>
+      <a class="pill" href="contact.html" style="justify-self:start">Start my trial</a>
     </div>
   </div>
 
@@ -2899,7 +2829,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       <li><b class="pr-n">02</b><h4>We focus it where it counts</h4><p>We put it into the one or two things most likely to bring in enquiries first, and we're upfront about what it can achieve, so there are no surprises.</p></li>
       <li><b class="pr-n">03</b><h4>Grow at your own pace</h4><p>As results come in, you can add more. A bigger budget lets us do more at once, and you decide when that makes sense.</p></li>
     </ol>
-    <div class="pr-foot"><p><b>One-off projects</b>, like a new website, or <b>monthly plans and retainers</b> for ongoing marketing. Both are shaped around your budget.</p><a class="pill" href="#contact">Talk to us about your budget</a></div>
+    <div class="pr-foot"><p><b>One-off projects</b>, like a new website, or <b>monthly plans and retainers</b> for ongoing marketing. Both are shaped around your budget.</p><a class="pill" href="contact.html">Talk to us about your budget</a></div>
   </div>
 </section>
 
@@ -2915,7 +2845,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       <div class="bq-body">
         <p class="bq-lead">We work best with local, service-based businesses that rely on people nearby finding them, trusting them and getting in touch. If that is you, the odds are good. If it is not, we would rather say so on the first call.</p>
         <h4>A good fit if</h4><ul><li>You want more enquiries and bookings, not just more likes</li><li>You can take on more work when it comes in</li><li>You are starting out, rebuilding, or expanding into a new area</li><li>You want a plain-English update every week</li></ul><h4>Probably not yet if</h4><ul><li>You need results inside a week</li><li>Nobody is free to answer new enquiries</li><li>You are only after the cheapest one-off job</li></ul>
-        <a class="bq-ask" href="#contact">Ask us about this <span>&rarr;</span></a>
+        <a class="bq-ask" href="contact.html">Ask us about this <span>&rarr;</span></a>
       </div>
     </article>
     <article class="bq lit reveal">
@@ -2924,7 +2854,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       <div class="bq-body">
         <p class="bq-lead">You will not need to read a dashboard to understand it. Each week we tell you, in plain English, what came in and what we are changing.</p>
         <h4>What we report on</h4><ul><li>Calls, form enquiries and bookings</li><li>Where each enquiry came from</li><li>What each enquiry cost you</li><li>What we are changing next, and why</li></ul><h4>What we do not lead with</h4><ul><li>Impressions, reach or likes on their own</li><li>Jargon you would need us to translate</li></ul>
-        <a class="bq-ask" href="#contact">Ask us about this <span>&rarr;</span></a>
+        <a class="bq-ask" href="contact.html">Ask us about this <span>&rarr;</span></a>
       </div>
     </article>
     <article class="bq lit reveal">
@@ -2933,7 +2863,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       <div class="bq-body">
         <p class="bq-lead">Because we check results every week, problems show up early and we change course, rather than finding out months later.</p>
         <h4>What you can count on</h4><ul><li>An honest read every week, including what is not working</li><li>A change of plan when the numbers say so</li><li>No lock-in contract after the first 90 days</li><li>The free location snapshot is yours to keep either way</li></ul>
-        <a class="bq-ask" href="#contact">Ask us about this <span>&rarr;</span></a>
+        <a class="bq-ask" href="contact.html">Ask us about this <span>&rarr;</span></a>
       </div>
     </article>
   </div>
@@ -2972,7 +2902,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 <footer>
   <div class="fcols">
     <div><div class="fbrand">envision</div><p style="font-size:.9rem">Stop guessing. Start growing.</p><p style="font-size:.85rem;margin-top:.4rem">Melbourne, Victoria, Australia</p></div>
-    <div><h4>Quick links</h4><ul><li><a href="#hero">Home</a></li><li><a href="#services">Services</a></li><li><a href="location-strategy.html">Location Strategy</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Quick links</h4><ul><li><a href="#hero">Home</a></li><li><a href="#services">Services</a></li><li><a href="location-strategy.html">Location Strategy</a></li><li><a href="#about">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Core services</h4><ul><li><a href="website-design.html">Website Design &amp; Development</a></li><li><a href="seo.html">SEO &amp; Content Strategy</a></li><li><a href="paid-ads.html">Paid Ads Management</a></li><li><a href="location-strategy.html">Location Strategy</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="mailto:hello@envisionds.com.au">hello@envisionds.com.au</a></li><li><a href="tel:+61399693883">03 9969 3883</a></li></ul><h4 style="margin-top:1.2rem">Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
   </div>
@@ -3155,16 +3085,14 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     // (before: the text typed so far, wrong: what the fingers hit, right: what it should have been — same length).
     const TITLES = [
       Object.assign([{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
-        { typos: [ { before: 'We bri', wrong: 'mg', right: 'ng' },            // m sits next to n on the keyboard
-                   { before: 'your vis', wrong: 'oins', right: 'ions' },      // letters swapped
-                   { before: 'the cust', wrong: 'oemrs', right: 'omers' } ] }),
+        { read: true }),      // read: not typed; it's already there and a reading light runs across it (see readTitle)
       [{ t: 'From first ' }, { t: 'search', g: true }, { t: ' to repeat ' }, { t: 'customer', g: true }, { t: '.' }],
       Object.assign([{ t: 'Be ' }, { t: 'found', g: true }, { t: ' first.', br: true }, { t: 'Be ' }, { t: 'chosen.', g: true, tries: ['seen', 'liked', 'picked'] }],
         { align: 'left' }),   // br: forced line break after the piece; align: both "Be"s share a left edge; tries: weaker words typed and deleted first
     ];
     const HOLD = 3400, TYPE_MS = 38, DELETE_MS = 15, GAP_MS = 260;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { h1.querySelectorAll('.unlit').forEach(el => el.classList.remove('unlit')); return; }
 
     let chars = [], rethink = null, typos = [];                // rethink: { at, len, tries } for a piece typed with "mistakes"
     function layout(title) {                                   // one <span> per character, gradient pieces keep their class
@@ -3174,7 +3102,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       const full = title.map(pc => pc.t).join('');
       typos = (title.typos || []).map(t => ({ at: full.indexOf(t.before) + t.before.length, wrong: t.wrong, right: t.right }));
       title.forEach(piece => {
-        const cls = piece.g ? 'grad' : piece.cls;
+        const cls = piece.g ? (title.read ? 'grad unlit' : 'grad') : piece.cls;
         const wrap = cls ? Object.assign(document.createElement('span'), { className: cls }) : h1;
         if (piece.tries) rethink = { at: chars.length, len: piece.t.length, tries: piece.tries, final: piece.t };
         [...piece.t].forEach(ch => { const sp = document.createElement('span'); sp.textContent = ch; sp.style.visibility = 'hidden'; wrap.appendChild(sp); chars.push(sp); });
@@ -3244,6 +3172,21 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       await typeTo(pos, chars.length);
     }
     const show = n => chars.forEach((sp, i) => { sp.style.visibility = i < n ? 'visible' : 'hidden'; });
+    // A title that is read rather than typed: all of it is there at once, then a light runs across it letter by letter,
+    // like an eye reading. Each gradient word starts in the text colour and takes its colour as the light crosses it.
+    async function readTitle(fadeIn) {
+      show(chars.length);
+      if (fadeIn) h1.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 450, easing: 'ease-out' });
+      await sleep(fadeIn ? 700 : 250);
+      const STEP = 34;
+      for (const sp of chars) {
+        const g = sp.parentNode.classList.contains('grad') ? sp.parentNode : null;
+        if (g && sp === g.firstChild) { g.style.setProperty('--rd', (g.children.length * STEP) + 'ms'); g.classList.add('lit-up'); }
+        sp.classList.add('lit'); setTimeout(() => sp.classList.remove('lit'), 280);
+        await sleep(sp.textContent === ' ' ? STEP * 1.6 : STEP);
+      }
+    }
+    const play = (title, fadeIn) => title.read ? readTitle(fadeIn) : typeTitle();
     // Reserve the height of the tallest title so the copy around the headline never moves between titles.
     // The hidden copy is absolutely placed inside the hero column, so it gets the same width the real headline would.
     function reserve() {
@@ -3269,20 +3212,21 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     addEventListener('resize', () => { cancelAnimationFrame(resizing); resizing = requestAnimationFrame(reserve); });
 
     let i = 0;
-    layout(TITLES[0]);                                         // hide the static headline straight away…
+    layout(TITLES[0]);                                         // swap the static headline for one span per letter…
+    if (TITLES[0].read) show(chars.length);                    // (a read title stays on screen, in the text colour)
     reserve();
     await window.introDone;
     await document.fonts.ready;                                // measure and type only once the real font is in, so nothing re-flows mid-word
     reserve();
     await sleep(350);
-    await typeTitle();                                         // …and type it in (slips included) once the intro has docked
+    await play(TITLES[0]);                                     // …then read or type it once the intro has docked
     while (true) {
       await sleep(HOLD);
       for (let n = chars.length - 1; n >= 0; n--) { show(n); await sleep(DELETE_MS); }   // backspace
       await sleep(GAP_MS);
       i = (i + 1) % TITLES.length;
       layout(TITLES[i]);
-      await typeTitle();                                           // type (with any slips or rethinks the title defines)
+      await play(TITLES[i], true);                                 // read it, or type it (with any slips or rethinks the title defines)
     }
   })();
 </script>
@@ -3379,26 +3323,43 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 
 
 <!-- ================= CONTACT POP-UP (behaviour) =================
-     Every "contact" link on the page opens the frame. Esc, the ×, or clicking the backdrop closes it.
-     There's no server behind this page, so "send" composes the email for the visitor's own mail app
-     (mailto:) and shows the message to copy as a fallback. -->
+     contact.html is the contact page. Every link to it on this page opens its frame here instead, as a pop-up: the frame
+     is loaded in from contact.html (once, ahead of time), and while it's open the address bar shows /contact.html, so the
+     back button closes it and a reload lands on the page itself. Esc, the ×, or clicking the backdrop closes it too.
+     The form's own behaviour is in contact.js. If the frame can't be loaded, the link simply goes to the page. -->
+<script src="contact.js"></script>
 <script>
   (function () {
-    const modal = document.getElementById('modal'), frame = modal.querySelector('.frame'), morph = document.getElementById('morph');
-    const form = document.getElementById('enquiry');
+    const modal = document.getElementById('modal'), morph = document.getElementById('morph');
+    let frame = document.getElementById('contactFrame');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let lastFocus = null, origin = null, timers = [];
+    let lastFocus = null, origin = null, timers = [], loading = null, pushed = false;
     const setBox = (el, r) => Object.assign(el.style, { top: r.top + 'px', left: r.left + 'px', width: r.width + 'px', height: r.height + 'px' });
     const FRAME_BG = '#0c1119';
     const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 
-    // OPEN: (1) freeze the page, (2) park the white morph exactly on the clicked button, (3) let it grow into
-    // the frame's box, (4) fade the real frame in over it, (5) hide the morph.
-    function open(btn) {
+    // fetch contact.html and swap its frame in for the empty one here
+    function load() {
+      if (!loading) loading = fetch('contact.html').then(r => { if (!r.ok) throw 0; return r.text(); }).then(html => {
+        const src = new DOMParser().parseFromString(html, 'text/html').getElementById('contactFrame');
+        if (!src) throw 0;
+        const fresh = document.importNode(src, true);
+        frame.replaceWith(fresh); frame = fresh;
+        initContactForm(frame);
+        frame.querySelector('.close').addEventListener('click', e => { e.preventDefault(); close(); });
+        return frame;
+      }).catch(() => { loading = null; return null; });
+      return loading;
+    }
+    const firstField = () => frame.querySelector('input');
+
+    // OPEN: (1) freeze the page, (2) park the pill exactly on the clicked button, (3) let it grow into the frame's box,
+    // (4) fade the real frame in over it, (5) hide the pill.
+    function show(btn) {
       clearTimers();
       lastFocus = document.activeElement; origin = btn || null;
       modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-open');
-      if (reduce || !btn) { modal.classList.add('show'); timers.push(setTimeout(() => form.querySelector('input').focus(), 300)); return; }
+      if (reduce || !btn) { modal.classList.add('show'); timers.push(setTimeout(() => firstField().focus(), 300)); return; }
       const from = btn.getBoundingClientRect();                       // measured after the scrollbar is gone, so it lines up exactly
       morph.style.transition = 'none';
       setBox(morph, from); Object.assign(morph.style, { borderRadius: '999px', background: '#5f83a8', opacity: 1 });
@@ -3408,10 +3369,10 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       setBox(morph, frame.getBoundingClientRect());
       Object.assign(morph.style, { borderRadius: '28px', background: FRAME_BG });
       timers.push(setTimeout(() => modal.classList.add('show'), 420));
-      timers.push(setTimeout(() => { morph.style.opacity = 0; form.querySelector('input').focus(); }, 700));
+      timers.push(setTimeout(() => { morph.style.opacity = 0; firstField().focus(); }, 700));
     }
-    // CLOSE: the reverse — frame contents drop away, the morph shrinks back into the button and turns white again.
-    function close() {
+    // CLOSE: the reverse; the frame's contents drop away and the pill shrinks back into the button.
+    function hide() {
       clearTimers();
       modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true');
       const btn = origin, canReturn = btn && !reduce && (() => { const r = btn.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; })();
@@ -3428,51 +3389,34 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
         document.body.classList.remove('modal-open'); modal.classList.remove('open'); morph.style.opacity = 0;
         if (btn) btn.classList.remove('lift');
       }
-      if (lastFocus) lastFocus.focus();
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
     }
-    // anything that points at #contact or the email address opens the pop-up instead
-    document.querySelectorAll('a[href="#contact"], a[href^="mailto:"]').forEach(a => {
-      if (a.closest('#modal') || a.closest('footer')) return;
-      a.addEventListener('click', e => { e.preventDefault(); open(a); });
+    const isOpen = () => modal.classList.contains('open') && modal.getAttribute('aria-hidden') === 'false';
+    // the address bar follows the pop-up: open adds a /contact.html entry, closing steps back off it
+    function open(btn) {
+      return load().then(f => {
+        if (!f) { location.href = 'contact.html'; return; }
+        if (!pushed) { history.pushState({ envContact: true }, '', 'contact.html'); pushed = true; }
+        show(btn);
+      });
+    }
+    function close() { if (pushed) history.back(); else hide(); }
+    addEventListener('popstate', e => {
+      const want = !!(e.state && e.state.envContact);
+      pushed = want;
+      if (want && !isOpen()) show(null); else if (!want && isOpen()) hide();
     });
-    document.getElementById('modalClose').addEventListener('click', close);
-    if (location.hash === '#contact') (window.introDone || Promise.resolve()).then(() => setTimeout(() => open(null), 350));
+
+    document.querySelectorAll('a[href="contact.html"], a[href^="mailto:"]').forEach(a => {
+      if (a.closest('footer')) return;
+      a.addEventListener('click', e => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); open(a); });
+    });
     modal.addEventListener('click', e => { if (!frame.contains(e.target)) close(); });
-    addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
-
-    // copy the email address
-    const copyBtn = document.getElementById('copyEmail');
-    copyBtn.addEventListener('click', () => {
-      const addr = 'hello@envisionds.com.au';
-      (navigator.clipboard ? navigator.clipboard.writeText(addr) : Promise.reject()).catch(() => {
-        const r = document.createRange(); r.selectNodeContents(copyBtn); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
-      }).finally(() => { copyBtn.classList.add('copied'); setTimeout(() => copyBtn.classList.remove('copied'), 1800); });
-    });
-
-    // send: validate, compose the email, show the fallback
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const f = Object.fromEntries(new FormData(form).entries());
-      let ok = true;
-      form.querySelectorAll('.bad').forEach(el => el.classList.remove('bad'));
-      if (f.name.trim().length < 2) { form.name.classList.add('bad'); ok = false; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) { form.email.classList.add('bad'); ok = false; }
-      if (f.message.trim().length < 10) { form.message.classList.add('bad'); ok = false; }
-      document.getElementById('errMsg').textContent = ok ? '' : 'Please fill in the required fields (a sentence or two about what you need helps us prepare).';
-      if (!ok) return;
-      const subject = `Enquiry from ${f.name}${f.business ? ' — ' + f.business : ''}`;
-      const body = `Name: ${f.name}\nEmail: ${f.email}\nBusiness: ${f.business || '-'}\nService: ${f.service || '-'}\n\n${f.message}`;
-      const href = `mailto:hello@envisionds.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      document.getElementById('sentText').textContent = `To: hello@envisionds.com.au\nSubject: ${subject}\n\n${body}`;
-      document.getElementById('mailAgain').href = href;
-      form.classList.add('done');
-      try { window.location.href = href; } catch (err) {}
-    });
-    document.getElementById('copyMsg').addEventListener('click', () => {
-      const txt = document.getElementById('sentText').textContent;
-      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => { document.getElementById('copyMsg').textContent = 'Copied'; setTimeout(() => document.getElementById('copyMsg').textContent = 'Copy message', 1800); })
-        .catch(() => { const r = document.createRange(); r.selectNodeContents(document.getElementById('sentText')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); });
-    });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) close(); });
+    // older links to index.html#contact still open it
+    if (location.hash === '#contact') (window.introDone || Promise.resolve()).then(() => setTimeout(() => open(null), 350));
+    // load the frame ahead of time, once the page has settled
+    (window.introDone || Promise.resolve()).then(() => ('requestIdleCallback' in window ? requestIdleCallback(load) : setTimeout(load, 1500)));
   })();
 </script>
 

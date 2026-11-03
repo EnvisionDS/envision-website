@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" class="cx">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Contact Envision Digital Solutions</title>
+<meta name="description" content="Tell us about your business and what you want to achieve, and we'll map the most useful next step.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
+<script>try { if (localStorage.getItem("envision-theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="contact.css">
+</head>
+<body>
+<!--
+  CONTACT: its own page, laid out like a pop-up (a frame over a dim backdrop, with a × to close).
+  The homepage loads the frame below (#contactFrame) into its pop-up, so this is the one place to edit the form.
+-->
+<div class="cx-bg" aria-hidden="true"></div>
+<main class="cx-wrap">
+  <div class="frame" id="contactFrame">
+    <a class="close" href="index.html" id="contactClose" aria-label="Close">×</a>
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2 id="contactTitle">Send us a brief and we will take it from there.</h2>
+      <p>Whether you are starting fresh, rebuilding something that is not working, or looking to expand into new areas, we will map the highest-leverage next step.</p>
+      <p class="prefer">Prefer email? Tap the address below to copy it across.</p>
+      <button class="copy-email" type="button" id="copyEmail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z"/><path d="M3 6l9 7 9-7"/></svg>hello@envisionds.com.au <small>copied</small></button>
+    </div>
+    <form class="form" id="enquiry" novalidate>
+      <label><span>Full name <span class="req">*</span></span><input name="name" type="text" placeholder="Jane Smith" autocomplete="name" required></label>
+      <label><span>Email address <span class="req">*</span></span><input name="email" type="email" placeholder="jane@example.com" autocomplete="email" required></label>
+      <label><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" placeholder="04xx xxx xxx" autocomplete="tel"></label>
+      <label><span>Website <span class="opt">(optional)</span></span><input name="website" type="text" inputmode="url" placeholder="www.yourwebsite.com.au" autocomplete="url"></label>
+      <label class="full"><span>Service of interest</span>
+        <select name="service">
+          <option value="">Select a service (optional)</option>
+          <option>Website Design and Development</option><option>SEO and Content Strategy</option><option>Paid Ads Management</option><option>Social Media Marketing</option>
+          <option>Conversion Optimisation</option><option>Email and CRM Nurture</option><option>Automation</option><option>Location Strategy</option><option>Not sure yet</option>
+        </select>
+      </label>
+      <label class="full"><span>How can we help? <span class="req">*</span></span><textarea name="message" placeholder="Tell us a bit about your business and what you are looking to achieve..." required></textarea><span class="err" id="errMsg"></span></label>
+      <button class="send" type="submit">Send Enquiry <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <div class="sent">
+        <h3>Thanks, your enquiry is ready to send.</h3>
+        <p>Your email app should have opened with everything filled in. If it didn't, copy the message below and send it to <b>hello@envisionds.com.au</b>.</p>
+        <pre id="sentText"></pre>
+        <div class="row"><button class="ghost" type="button" id="copyMsg">Copy message</button><a class="ghost" id="mailAgain" href="#">Open email app again</a></div>
+      </div>
+    </form>
+  </div>
+</main>
+<script src="contact.js"></script>
+<script>
+  // on its own page the × (or Esc) goes back to where the visitor came from on this site, or to the homepage
+  (function () {
+    var frame = document.getElementById('contactFrame'), close = document.getElementById('contactClose');
+    initContactForm(frame);
+    var fromSite = false;
+    try { fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+    function leave(e) { if (fromSite && history.length > 1) { if (e) e.preventDefault(); history.back(); } }
+    close.addEventListener('click', leave);
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') { if (fromSite && history.length > 1) history.back(); else location.href = close.href; } });
+    // clicking the backdrop closes it too, like a pop-up
+    document.querySelector('.cx-wrap').addEventListener('click', function (e) { if (!frame.contains(e.target)) { if (fromSite && history.length > 1) history.back(); else location.href = close.href; } });
+    frame.querySelector('input').focus({ preventScroll: true });
+  })();
+</script>
+</body>
+</html>
