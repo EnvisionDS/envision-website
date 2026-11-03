@@ -35,8 +35,10 @@
       <label class="full"><span>Service of interest</span>
         <select name="service">
           <option value="">Select a service (optional)</option>
-          <option>Website Design and Development</option><option>SEO and Content Strategy</option><option>Paid Ads Management</option><option>Social Media Marketing</option>
-          <option>Conversion Optimisation</option><option>Email and CRM Nurture</option><option>Automation</option><option>Location Strategy</option><option>Not sure yet</option>
+          <optgroup label="Websites"><option data-slug="website-design">Website design</option><option data-slug="website-development">Website development</option><option data-slug="landing-pages">Landing pages</option><option data-slug="conversion">Conversion optimisation</option><option data-slug="speed-technical-fixes">Speed and technical fixes</option><option data-slug="call-form-tracking">Call and form tracking</option><option data-slug="website-maintenance">Website maintenance</option></optgroup>
+          <optgroup label="Digital marketing"><option data-slug="seo">SEO and local search</option><option data-slug="content-strategy">Content strategy</option><option data-slug="google-business-profile">Google Business Profile</option><option data-slug="paid-ads">Google Ads and Meta Ads</option><option data-slug="social-media">Social media management</option><option data-slug="location-strategy">Location strategy</option></optgroup>
+          <optgroup label="Automation and CRM"><option data-slug="crm-setup">CRM setup and clean-up</option><option data-slug="email-crm">Email follow-up sequences</option><option data-slug="lead-capture">Lead capture into your CRM</option><option data-slug="booking-reminders">Booking confirmations and reminders</option><option data-slug="review-requests">Review requests</option><option data-slug="connecting-tools">Connecting your tools</option><option data-slug="automation">Automation (general)</option></optgroup>
+          <option data-slug="not-sure">Not sure yet</option>
         </select>
       </label>
       <label class="full"><span>How can we help? <span class="req">*</span></span><textarea name="message" placeholder="Tell us a bit about your business and what you are looking to achieve..." required></textarea><span class="err" id="errMsg"></span></label>
@@ -56,6 +58,11 @@
   (function () {
     var frame = document.getElementById('contactFrame'), close = document.getElementById('contactClose');
     initContactForm(frame);
+    // a service page's "Book a discovery call" link names its service (contact.html?service=landing-pages); pick it in the form
+    try {
+      var want = new URLSearchParams(location.search).get('service'), opt = want && frame.querySelector('option[data-slug="' + want.replace(/[^a-z-]/g, '') + '"]');
+      if (opt) opt.selected = true;
+    } catch (e) {}
     var fromSite = false;
     try { fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
     function leave(e) { if (fromSite && history.length > 1) { if (e) e.preventDefault(); history.back(); } }
