@@ -1001,6 +1001,14 @@
     animation: vfFocus 1.4s cubic-bezier(.2,.8,.2,1) .3s both; transition: inset .45s cubic-bezier(.2,.8,.2,1); }
   @keyframes vfFocus { 0% { inset: -18px -34px; opacity: 0; } 55% { inset: -3px -6px; opacity: 1; } 75% { inset: 2px 3px; } 100% { inset: 0; opacity: 1; } }
   .hero-eyebrow.vf:hover::before { inset: 3px 5px; }
+  /* under the fixed label, the services the current headline speaks for (v141). Its height is kept even when it's empty
+     (the first headline), so the headline never moves; it fades out and back in as the headlines change. */
+  .hero-svc { height: 1.5em; margin: -1.15rem 0 1.15rem; display: flex; align-items: center; justify-content: center; gap: .75rem;
+              font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-2); max-width: none;
+              opacity: 0; transform: translateY(-4px); transition: opacity .45s ease, transform .45s ease; }
+  .hero-svc.on { opacity: 1; transform: none; }
+  .hero-svc i { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); flex: none; }
+  @media (max-width: 760px) { .hero-svc { font-size: .6rem; letter-spacing: .16em; gap: .55rem; margin: -.7rem 0 .9rem; } }
   .vf-ret { position: relative; width: 15px; height: 15px; flex: none; border: 1px solid var(--vc); border-radius: 50%; }
   .vf-ret::before, .vf-ret::after { content: ""; position: absolute; background: var(--vc); }
   .vf-ret::before { left: 50%; top: -4px; bottom: -4px; width: 1px; transform: translateX(-50%); }
@@ -1009,7 +1017,7 @@
               box-shadow: 0 0 0 0 rgba(238,108,77,.6); animation: beacon 2.4s ease-out infinite; }
   .vf-sep { width: 1px; height: 11px; background: var(--vc); opacity: .55; flex: none; }
   .vf-t { background: linear-gradient(100deg, var(--muted) 0 42%, var(--text) 50%, var(--muted) 58% 100%) 100% 0 / 260% 100%;
-          -webkit-background-clip: text; background-clip: text; color: transparent; animation: vfSweep 1.6s ease 1.2s both; white-space: nowrap; }
+          -webkit-background-clip: text; background-clip: text; color: transparent; animation: vfSweep 1.6s ease 1.2s both; }
   .vf-t:nth-of-type(3) { animation-delay: 1.35s; } .vf-t:nth-of-type(4) { animation-delay: 1.5s; }
   .hero-eyebrow.vf:hover .vf-t { animation: vfSweep 1.1s ease both; }
   @keyframes vfSweep { from { background-position: 0% 0; } to { background-position: 100% 0; } }
@@ -2359,6 +2367,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   <!-- the copy sits in the middle of the dark "room"; the map and the hidden opportunities surround it -->
   <div class="hero-wrap">
     <p class="hero-eyebrow vf"><span class="vf-ret" aria-hidden="true"><i></i></span><span class="vf-t">Digital solutions agency</span><i class="vf-sep" aria-hidden="true"></i><span class="vf-t">Melbourne</span></p>
+    <p class="hero-svc" id="heroSvc" aria-hidden="true"></p>
     <h1 id="slot"><span class="slot-in">We bring your <span class="grad">visions</span> to life, and the <span class="grad">customers</span> to you</span></h1>
     <p class="sub">Envision is a Melbourne digital solutions agency: a team of strategists, developers, analysts and creative thinkers. We build websites, run SEO, Google and Meta ads, social media and email, automate the follow-up, and use location data to show where your best customers are, all planned as one connected system. One team, one plan, and results you can measure.</p>
     <div class="hero-ctas">
@@ -3079,7 +3088,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     const h1 = document.getElementById('slot');
     const TITLES = [
       Object.assign([{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
-        { label: ['Digital solutions agency', 'Melbourne'] }),
+        { label: null }),
       Object.assign([{ t: 'A website that turns ' }, { t: 'visitors', g: true }, { t: ' into ' }, { t: 'enquiries.', g: true }],
         { label: ['Website design', 'Conversion'] }),
       Object.assign([{ t: 'Be ' }, { t: 'found', g: true }, { t: ' first, in the suburbs that ' }, { t: 'matter.', g: true }],
@@ -3088,7 +3097,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
         { label: ['Paid ads', 'Social media'] }),
       Object.assign([{ t: 'Every enquiry ' }, { t: 'followed up', g: true }, { t: ', even after hours.' }],
         { label: ['Email & CRM', 'Automation'] }),
-    ];   // label: the two names shown in the frame above the headline while that title is up
+    ];   // label: the services a title speaks for, shown under the fixed label above the headline (none for the first)
     const HOLD = 3800, STEP = 42, FADE = 380;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -3120,16 +3129,13 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       }
       torch.classList.remove('on');
     }
-    // the label above the headline: its words fade out, the frame glides to the new width, and the new words fade in
-    const eyebrow = h1.parentNode.querySelector('.hero-eyebrow'), tags = eyebrow ? [...eyebrow.querySelectorAll('.vf-t')] : [];
-    async function relabel(label) {
-      if (tags.length !== 2 || !label || tags.every((t, k) => t.textContent === label[k])) return;
-      await Promise.all(tags.map(t => t.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-in', fill: 'forwards' }).finished));
-      const w0 = eyebrow.getBoundingClientRect().width;
-      tags.forEach((t, k) => { t.textContent = label[k]; t.getAnimations().forEach(a => a.cancel()); });
-      const w1 = eyebrow.getBoundingClientRect().width;
-      eyebrow.animate([{ width: w0 + 'px' }, { width: w1 + 'px' }], { duration: 450, easing: 'cubic-bezier(.2,.8,.2,1)' });
-      tags.forEach(t => t.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, delay: 300, easing: 'ease-out', fill: 'backwards' }));
+    // the services line under the fixed label: fades out with the old headline, and in with the new one
+    const svc = document.getElementById('heroSvc');
+    function relabel(label) {
+      if (!svc) return;
+      svc.classList.remove('on');
+      if (!label) return;
+      setTimeout(() => { svc.innerHTML = label.map(t => `<span>${t}</span>`).join('<i></i>'); svc.classList.add('on'); }, FADE + 200);
     }
     const fade = to => { const a = h1.animate([{ opacity: 1 - to }, { opacity: to }], { duration: FADE, easing: 'ease' }); h1.style.opacity = to; return a.finished; };
     // Reserve the height of the tallest title so the copy around the headline never moves between titles.
@@ -3157,7 +3163,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       if (!first) { layout(TITLES[i]); h1.style.opacity = 1; await sleep(300); }
       await read();
       await sleep(HOLD);
-      relabel(TITLES[(i + 1) % TITLES.length].label);            // the label changes over while the title fades
+      relabel(TITLES[(i + 1) % TITLES.length].label);            // the services line changes over while the title fades
       await fade(0);
     }
   })();
