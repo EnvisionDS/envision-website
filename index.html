@@ -116,16 +116,6 @@
   /* the "chosen" bump: the final word is orange (the one place the accent earns its keep). The last weak word
      gets a ghost copy that is knocked out to the right and tumbles away, while the final word shoves in from the
      left with a little overshoot and a warm glow. */
-  /* THE WINNER: an orange gradient that carries a bright gloss band. On reveal the band sweeps across the word once
-     (background-position), the word pops from slightly small, and a warm glow blooms behind it and fades. */
-  :root { --grad-hot: linear-gradient(110deg, #d9553a 0%, #ee6c4d 30%, #fde0d6 50%, #ee6c4d 70%, #f4a48e 100%); }
-  .grad.hot { background-image: var(--grad-hot); background-size: 250% 100%; background-position: 100% 0; }   /* background-image, not the shorthand: the shorthand would reset background-clip and paint a block */
-  .grad.shine { display: inline-block; position: relative; animation: shineSweep 1.3s cubic-bezier(.3,.1,.2,1) both, shinePop .7s cubic-bezier(.2,1.3,.4,1) both; }
-  @keyframes shineSweep { 0% { background-position: 100% 0; } 100% { background-position: 0% 0; } }
-  @keyframes shinePop { 0% { transform: scale(.82); filter: brightness(1.8) blur(3px); } 45% { transform: scale(1.05); filter: brightness(1.25) blur(0); } 100% { transform: scale(1); filter: none; } }
-  .grad.shine::after { content: ""; position: absolute; inset: -.15em -.2em; border-radius: .3em; pointer-events: none;
-                       background: radial-gradient(closest-side, rgba(238,108,77,.45), rgba(238,108,77,0)); filter: blur(10px);
-                       animation: slamGlow 1.2s ease-out .1s both; }
   @keyframes slamGlow { 0% { opacity: 0; transform: scale(.6) } 30% { opacity: 1 } 100% { opacity: 0; transform: scale(1.6) } }
   .sub { margin-top: 1.4rem; max-width: 46ch; color: var(--muted); font-size: 1.05rem; }
   #hero .pill { justify-self: auto; margin-top: 2.2rem; }
@@ -783,13 +773,21 @@
   /* a dark halo behind the copy, so the lit map never fights the words */
   #hero h1, #hero .sub, #hero .proof, #hero .trust li { text-shadow: 0 0 22px #0a0a0b, 0 0 10px #0a0a0b, 0 0 3px #0a0a0b; }
   #hero h1 .grad { text-shadow: none; }
-  /* the reading light on the first headline (v138): each letter glows briefly as the light passes; a gradient word starts
-     in the text colour (a solid layer over its gradient) and that layer shrinks away left to right as the light crosses it */
-  #slot span { transition: text-shadow .6s ease-out; }
+  /* the headline is read by torchlight (v139): every letter starts dark (--dim, solid so a gradient can't show through), a
+     soft light travels across the line, and each letter lights up as it passes and stays lit. A gradient word's dark
+     layer shrinks away left to right as the light crosses it, uncovering its colour. */
+  #slot { position: relative; isolation: isolate; --dim: #262c31; }
+  html[data-theme="light"] #slot { --dim: #c5ced6; }
+  #slot span { transition: color .45s ease-out, text-shadow .6s ease-out; }
+  #slot span.dim { color: var(--dim); }
   #slot span.lit { text-shadow: 0 0 .32em rgba(143,211,244,.95), 0 0 .06em #fff; transition-duration: .08s; }
-  #slot .grad.unlit { background-image: linear-gradient(var(--text), var(--text)), var(--grad); background-repeat: no-repeat;
+  #slot .grad.unlit { background-image: linear-gradient(var(--dim), var(--dim)), var(--grad); background-repeat: no-repeat;
                       background-size: 100% 100%, 100% 100%; background-position: 100% 0, 0 0; }
   #slot .grad.unlit.lit-up { background-size: 0% 100%, 100% 100%; transition: background-size var(--rd, .3s) linear; }
+  .slot-torch { position: absolute; left: 0; top: 0; z-index: -1; width: 2.8em; height: 2.8em; margin: -1.4em 0 0 -1.4em; border-radius: 50%; pointer-events: none;
+                background: radial-gradient(closest-side, rgba(143,211,244,.34), rgba(91,155,230,.12) 55%, transparent); opacity: 0;
+                transition: transform .17s linear, opacity .5s ease; }
+  .slot-torch.on { opacity: 1; }
   @media (max-width: 900px) { .seek { font-size: .72rem; } #hero .scrollcue { display: none; } }
 
   /* ---------- SEE WHAT OTHERS MISS (the torch map section) ---------- */
@@ -1771,9 +1769,6 @@ html[data-theme="light"] .pill.call::before { background: conic-gradient(from 0d
 html[data-theme="light"] .pill.call:hover { color: var(--text); border-top-color: rgba(0, 0, 0, 0.25); border-right-color: rgba(0, 0, 0, 0.25); border-bottom-color: rgba(0, 0, 0, 0.25); border-left-color: rgba(0, 0, 0, 0.25); }
 html[data-theme="light"] .pill.call .ph svg { fill: currentcolor; }
 html[data-theme="light"] .grad { color: transparent; }
-html[data-theme="light"] { --grad-hot: linear-gradient(110deg, rgb(217, 85, 58) 0%, rgb(238, 108, 77) 30%, rgb(29, 18, 14) 50%, rgb(238, 108, 77) 70%, rgb(105, 37, 19) 100%); }
-html[data-theme="light"] .grad.hot { background-image: var(--grad-hot); }
-html[data-theme="light"] .grad.shine::after { background-image: radial-gradient(closest-side, rgba(238, 108, 77, 0.45), rgba(238, 108, 77, 0)); background-color: initial; }
 html[data-theme="light"] .sub { color: var(--muted); }
 html[data-theme="light"] .scrollcue { color: var(--muted); }
 html[data-theme="light"] .scrollcue .line { background-image: initial; background-color: rgba(0, 0, 0, 0.14); }
@@ -3074,119 +3069,52 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 </script>
 
 
-<!-- ================= ROTATING HEADLINES: backspace, then type the next one =================
-     Each title is a list of pieces; a piece marked g:true is painted with the brand gradient.
-     The whole title is laid out at once (one span per character) so the line breaks never change
-     while typing — "typing" just flips characters from hidden to visible. -->
+<!-- ================= ROTATING HEADLINES: read by torchlight =================
+     Each title is a list of pieces; a piece marked g:true is painted with the brand gradient. A title arrives dark, then a
+     soft light travels across it letter by letter, like a torch, and each letter lights up as the light passes (gradient
+     words take their colour as it crosses them). After a pause it fades and the next arrives. The first is the brand line;
+     the rest are one hook line for each main group of services. -->
 <script>
   (async function () {
     const h1 = document.getElementById('slot');
-    // A title is a list of pieces. Optional extras: .typos on a title = slips a human would make and fix
-    // (before: the text typed so far, wrong: what the fingers hit, right: what it should have been — same length).
     const TITLES = [
-      Object.assign([{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
-        { read: true }),      // read: not typed; it's already there and a reading light runs across it (see readTitle)
-      [{ t: 'From first ' }, { t: 'search', g: true }, { t: ' to repeat ' }, { t: 'customer', g: true }, { t: '.' }],
-      Object.assign([{ t: 'Be ' }, { t: 'found', g: true }, { t: ' first.', br: true }, { t: 'Be ' }, { t: 'chosen.', g: true, tries: ['seen', 'liked', 'picked'] }],
-        { align: 'left' }),   // br: forced line break after the piece; align: both "Be"s share a left edge; tries: weaker words typed and deleted first
+      [{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
+      [{ t: 'A website that turns ' }, { t: 'visitors', g: true }, { t: ' into ' }, { t: 'enquiries.', g: true }],        // websites + conversion
+      [{ t: 'Be ' }, { t: 'found', g: true }, { t: ' first, in the suburbs that ' }, { t: 'matter.', g: true }],          // SEO + location strategy
+      [{ t: 'Ads and socials that reach people ' }, { t: 'ready to buy.', g: true }],                                    // paid ads + social media
+      [{ t: 'Every enquiry ' }, { t: 'followed up', g: true }, { t: ', even after hours.' }],                            // email and CRM + automation
     ];
-    const HOLD = 3400, TYPE_MS = 38, DELETE_MS = 15, GAP_MS = 260;
+    const HOLD = 3800, STEP = 42, FADE = 380;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { h1.querySelectorAll('.unlit').forEach(el => el.classList.remove('unlit')); return; }
 
-    let chars = [], rethink = null, typos = [];                // rethink: { at, len, tries } for a piece typed with "mistakes"
-    function layout(title) {                                   // one <span> per character, gradient pieces keep their class
-      h1.textContent = '';
-      h1.classList.toggle('left', title.align === 'left');
-      chars = []; rethink = null;
-      const full = title.map(pc => pc.t).join('');
-      typos = (title.typos || []).map(t => ({ at: full.indexOf(t.before) + t.before.length, wrong: t.wrong, right: t.right }));
+    const torch = Object.assign(document.createElement('i'), { className: 'slot-torch' });
+    torch.setAttribute('aria-hidden', 'true');
+    let chars = [];
+    function layout(title) {                                   // one <span> per letter, all dark to begin with
+      h1.textContent = ''; chars = [];
       title.forEach(piece => {
-        const cls = piece.g ? (title.read ? 'grad unlit' : 'grad') : piece.cls;
-        const wrap = cls ? Object.assign(document.createElement('span'), { className: cls }) : h1;
-        if (piece.tries) rethink = { at: chars.length, len: piece.t.length, tries: piece.tries, final: piece.t };
-        [...piece.t].forEach(ch => { const sp = document.createElement('span'); sp.textContent = ch; sp.style.visibility = 'hidden'; wrap.appendChild(sp); chars.push(sp); });
-        if (cls) h1.appendChild(wrap);
-        if (piece.br) h1.appendChild(document.createElement('br'));
+        const wrap = piece.g ? Object.assign(document.createElement('span'), { className: 'grad unlit' }) : h1;
+        [...piece.t].forEach(ch => { const sp = document.createElement('span'); sp.textContent = ch; if (!piece.g) sp.className = 'dim'; wrap.appendChild(sp); chars.push(sp); });
+        if (piece.g) h1.appendChild(wrap);
       });
+      h1.appendChild(torch);
     }
-    // Wrap a run of letter spans in a box, then pin that box to the width it has right now.
-    // While letters inside it change (a typo, a weaker word) the box keeps its size, so the line
-    // never re-centres or re-wraps. unfreeze() puts things back once the right letters are in.
-    function freeze(at, len) {
-      // widen the run to its whole word (out to the spaces either side, within the same piece): a box around only
-      // part of a word adds a new place for the line to break, and the word could split across two lines
-      const par = chars[at].parentNode; let a = at, b = at + len;
-      while (a > 0 && chars[a - 1].parentNode === par && chars[a - 1].textContent.trim()) a--;
-      while (b < chars.length && chars[b].parentNode === par && chars[b].textContent.trim()) b++;
-      const box = document.createElement('span'), first = chars[a];
-      first.parentNode.insertBefore(box, first);
-      for (let k = a; k < b; k++) box.appendChild(chars[k]);
-      const w = box.getBoundingClientRect().width;
-      Object.assign(box.style, { display: 'inline-block', position: 'relative', width: w + 'px', whiteSpace: 'pre', textAlign: 'left', verticalAlign: 'baseline' });
-      return box;
-    }
-    function unfreeze(box) { while (box.firstChild) box.parentNode.insertBefore(box.firstChild, box); box.remove(); }
-    const typeTo = async (from, to) => { for (let n = from + 1; n <= to; n++) { show(n); await sleep(TYPE_MS + (chars[n - 1].textContent === ' ' ? 50 : 0) + Math.random() * 25); } };
-    const eraseTo = async (from, to, ms) => { for (let n = from - 1; n >= to; n--) { show(n); await sleep(ms); } };
-    // Types each weaker word into the same letter slots, pauses as if unsure, deletes it, then commits to the real word.
-    async function typeWithRethink(r) {
-      const slots = chars.slice(r.at, r.at + r.len);
-      const box = freeze(r.at, r.len);
-      for (const word of r.tries) {
-        slots.forEach((sp, k) => { sp.textContent = word[k] || ''; });          // borrow the slots (all tries are shorter than the final word)
-        await typeTo(r.at, r.at + word.length);
-        await sleep(420 + Math.random() * 160);                                  // hmm…
-        await eraseTo(r.at + word.length, r.at, 38);                             // a touch slower than a normal backspace: deliberate
-        await sleep(200);
-      }
-      // THE REVEAL: a beat of thought, then the whole word lands at once in orange and a gloss sweeps across it.
-      slots.forEach((sp, k) => { sp.textContent = r.final[k]; });
-      unfreeze(box);
-      await sleep(380);
-      const wrap = chars[r.at].closest('.grad');
-      wrap.classList.add('hot', 'shine');
-      show(r.at + r.len);
-      await sleep(1600);
-      wrap.classList.remove('shine');
-    }
-    // A slip: the wrong letters go in, a beat passes before the eye catches it, backspace, retype.
-    async function typeTypo(t) {
-      const slots = chars.slice(t.at, t.at + t.wrong.length);
-      const box = freeze(t.at, t.wrong.length);                                // 'm' is wider than 'n' — the box hides that
-      slots.forEach((sp, k) => { sp.textContent = t.wrong[k]; });
-      await typeTo(t.at, t.at + t.wrong.length);
-      await sleep(150 + Math.random() * 90);                                    // quick catch
-      await eraseTo(t.at + t.wrong.length, t.at, 32);
-      slots.forEach((sp, k) => { sp.textContent = t.right[k]; });
-      unfreeze(box);
-      await sleep(60);
-    }
-    // Types a whole title, stopping at each "event" (a typo or a rethink) in order.
-    async function typeTitle() {
-      const events = typos.map(t => ({ at: t.at, run: () => typeTypo(t), skip: 0 }));
-      if (rethink) events.push({ at: rethink.at, run: () => typeWithRethink(rethink), skip: rethink.len });
-      events.sort((a, b) => a.at - b.at);
-      let pos = 0;
-      for (const ev of events) { await typeTo(pos, ev.at); await ev.run(); pos = ev.at + ev.skip; }
-      await typeTo(pos, chars.length);
-    }
-    const show = n => chars.forEach((sp, i) => { sp.style.visibility = i < n ? 'visible' : 'hidden'; });
-    // A title that is read rather than typed: all of it is there at once, then a light runs across it letter by letter,
-    // like an eye reading. Each gradient word starts in the text colour and takes its colour as the light crosses it.
-    async function readTitle(fadeIn) {
-      show(chars.length);
-      if (fadeIn) h1.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 450, easing: 'ease-out' });
-      await sleep(fadeIn ? 700 : 250);
-      const STEP = 34;
+    const at = sp => { const b = h1.getBoundingClientRect(), r = sp.getBoundingClientRect(); return `translate(${r.left - b.left + r.width / 2}px, ${r.top - b.top + r.height / 2}px)`; };
+    // the torch travels across the title; each letter lights up as it passes, and stays lit
+    async function read() {
+      torch.style.transition = 'none'; torch.style.transform = at(chars[0]); torch.offsetWidth; torch.style.transition = '';
+      torch.classList.add('on');
       for (const sp of chars) {
-        const g = sp.parentNode.classList.contains('grad') ? sp.parentNode : null;
+        torch.style.transform = at(sp);
+        const g = sp.parentNode !== h1 ? sp.parentNode : null;
         if (g && sp === g.firstChild) { g.style.setProperty('--rd', (g.children.length * STEP) + 'ms'); g.classList.add('lit-up'); }
-        sp.classList.add('lit'); setTimeout(() => sp.classList.remove('lit'), 280);
-        await sleep(sp.textContent === ' ' ? STEP * 1.6 : STEP);
+        sp.classList.remove('dim'); sp.classList.add('lit'); setTimeout(() => sp.classList.remove('lit'), 300);
+        await sleep(sp.textContent === ' ' ? STEP * 1.5 : STEP);
       }
+      torch.classList.remove('on');
     }
-    const play = (title, fadeIn) => title.read ? readTitle(fadeIn) : typeTitle();
+    const fade = to => { const a = h1.animate([{ opacity: 1 - to }, { opacity: to }], { duration: FADE, easing: 'ease' }); h1.style.opacity = to; return a.finished; };
     // Reserve the height of the tallest title so the copy around the headline never moves between titles.
     // The hidden copy is absolutely placed inside the hero column, so it gets the same width the real headline would.
     function reserve() {
@@ -3201,7 +3129,6 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
           const wrap = piece.g ? Object.assign(document.createElement('span'), { className: 'grad' }) : ghost;
           [...piece.t].forEach(ch => wrap.appendChild(Object.assign(document.createElement('span'), { textContent: ch })));
           if (wrap !== ghost) ghost.appendChild(wrap);
-          if (piece.br) ghost.appendChild(document.createElement('br'));
         });
         tallest = Math.max(tallest, ghost.getBoundingClientRect().height);
       });
@@ -3211,22 +3138,17 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     let resizing = 0;
     addEventListener('resize', () => { cancelAnimationFrame(resizing); resizing = requestAnimationFrame(reserve); });
 
-    let i = 0;
-    layout(TITLES[0]);                                         // swap the static headline for one span per letter…
-    if (TITLES[0].read) show(chars.length);                    // (a read title stays on screen, in the text colour)
+    layout(TITLES[0]);                                         // the first title waits, dark, behind the intro…
     reserve();
     await window.introDone;
-    await document.fonts.ready;                                // measure and type only once the real font is in, so nothing re-flows mid-word
+    await document.fonts.ready;                                // measure only once the real font is in, so the torch lands on each letter
     reserve();
-    await sleep(350);
-    await play(TITLES[0]);                                     // …then read or type it once the intro has docked
-    while (true) {
+    await sleep(450);
+    for (let i = 0; ; i = (i + 1) % TITLES.length) {          // …then each title is read, held, and swapped for the next
+      if (i) { layout(TITLES[i]); await fade(1); await sleep(250); }
+      await read();
       await sleep(HOLD);
-      for (let n = chars.length - 1; n >= 0; n--) { show(n); await sleep(DELETE_MS); }   // backspace
-      await sleep(GAP_MS);
-      i = (i + 1) % TITLES.length;
-      layout(TITLES[i]);
-      await play(TITLES[i], true);                                 // read it, or type it (with any slips or rethinks the title defines)
+      await fade(0);
     }
   })();
 </script>
