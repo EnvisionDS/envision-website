@@ -15,7 +15,7 @@
 body { --ink: var(--c); }
 :root[data-theme="light"] body { --ink: color-mix(in srgb, var(--c) 55%, #0b1520); }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 body { margin: 0; background: var(--bg); color: var(--text); font: 400 1.0625rem/1.65 var(--body); overflow-x: hidden; }
 h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -.02em; line-height: 1.12; margin: 0; text-wrap: balance; }
 p { margin: 0; }

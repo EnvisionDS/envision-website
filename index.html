@@ -35,7 +35,7 @@
     color-scheme: dark;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }   /* links jump straight to their section (see JUMP LINKS below) */
   body { font-family: "IBM Plex Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; overflow-x: hidden;
          transition: background-color 1s ease; }               /* the page colour shifts as you scroll between sections */
   section.block { position: relative; z-index: 1; counter-increment: sec; }
@@ -3417,7 +3417,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       const item = document.querySelector(a.getAttribute('href')); if (!item || !item.classList.contains('svc-detail')) return;
       e.preventDefault(); e.stopImmediatePropagation();
       toggle(item, true);
-      setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+      setTimeout(() => item.scrollIntoView({ block: 'start' }), 60);
     }, true);
   })();
 </script>
@@ -3865,7 +3865,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       top.style.setProperty('--p', max > 0 ? Math.min(1, y / max).toFixed(3) : 0);
     }
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
-    top.addEventListener('click', () => { scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); document.getElementById('logo').focus({ preventScroll: true }); });
+    top.addEventListener('click', () => { scrollTo({ top: 0, behavior: 'instant' }); arriveAt(document.getElementById('hero')); document.getElementById('logo').focus({ preventScroll: true }); });
     upd();
   })();
 </script>
@@ -4207,7 +4207,8 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       const i = cards.findIndex(c => c.id === id); if (i < 0) return false;
       const gap = parseFloat(getComputedStyle(stack).rowGap) || 0;
       const y = stack.getBoundingClientRect().top + scrollY + cards.slice(0, i).reduce((s, c) => s + c.offsetHeight + gap, 0) - parseFloat(getComputedStyle(cards[i]).top);
-      scrollTo({ top: y + 2, behavior: smooth && !still.matches ? 'smooth' : 'auto' });
+      scrollTo({ top: y + 2, behavior: 'instant' });
+      if (smooth) arriveAt(cards[i]);
       return true;
     }
     document.addEventListener('click', e => {
@@ -4327,5 +4328,28 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     }), { threshold: .25, rootMargin: '0px 0px -6% 0px' });
     paras.forEach(p => io.observe(p));
   })();
+</script>
+<!-- ================= JUMP LINKS: a button or link to another part of the page goes straight there, with no scrolling
+     past everything in between. The section it lands on fades up briefly so the jump doesn't feel like a cut. ================= -->
+<style>
+  .arrive { animation: arrive .4s ease-out; }
+  @keyframes arrive { from { opacity: .15; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .arrive { animation: none; } }
+</style>
+<script>
+  function arriveAt(el) {
+    if (!el) return;
+    el.classList.remove('arrive'); void el.offsetWidth; el.classList.add('arrive');
+    el.addEventListener('animationend', () => el.classList.remove('arrive'), { once: true });
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'), id = a && a.getAttribute('href').slice(1);
+    if (!id || e.defaultPrevented) return;                     // (#svc-N links are handled by the services deck)
+    const t = document.getElementById(id); if (!t) return;
+    e.preventDefault();
+    history.pushState(null, '', '#' + id);
+    t.scrollIntoView({ behavior: 'instant', block: 'start' });
+    arriveAt(t.closest('section') || t);
+  });
 </script>
 </body></html>
