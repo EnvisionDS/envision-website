@@ -659,21 +659,6 @@
   .flow .get { font-size: .82rem; font-weight: 500; color: var(--ink); border-top: 1px solid var(--rule); padding-top: .8rem; margin-top: .2rem; }
   @media (max-width: 960px) { .flow { grid-template-columns: repeat(2, 1fr); } .flow::before { display: none; } }
   @media (max-width: 560px) { .flow { grid-template-columns: 1fr; } }
-
-  /* ---------- WHO WE WORK WITH ---------- */
-  .inds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.6rem; }
-  .ind { position: relative; display: flex; flex-direction: column; gap: .35rem; padding: 1.4rem; border: 1px solid var(--line); border-radius: 16px; background: #0c0d10;
-         color: var(--text); text-decoration: none; overflow: hidden; transition: border-color .3s, transform .3s; }
-  .ind::after { content: ""; position: absolute; inset: auto 0 0 0; height: 2px; background: var(--c); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
-  .ind:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); transform: translateY(-3px); }
-  .ind:hover::after { transform: scaleX(1); }
-  .ind svg { width: 30px; height: 30px; fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: .8rem; }
-  .ind b { font-family: "Sora", sans-serif; font-weight: 600; font-size: 1.02rem; line-height: 1.3; }
-  .ind span { font-size: .88rem; color: var(--muted); }
-  a.ind span { color: var(--c); }
-  a.ind span::after { content: " \2192"; }
-  @media (max-width: 960px) { .inds { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 420px) { .ind { padding: 1.1rem; } .ind b { font-size: .95rem; } }
   /* ---------- REDESIGN (v113, from the Superdesign "Sharper and shorter" direction) ----------
      Two-column hero with the mark drawn on the right, a proof strip under the button, and the merged sections. */
   /* HERO (v115): centred copy in the middle of the dark room, a thin bar along the bottom */
@@ -1949,11 +1934,6 @@ html[data-theme="light"] .flow .ico { color: rgb(0, 0, 0); box-shadow: 0 6px 16p
 html[data-theme="light"] .flow .ico svg { fill: none; stroke: currentcolor; }
 html[data-theme="light"] .flow .n { color: var(--c); }
 html[data-theme="light"] .flow .get { color: var(--ink); }
-html[data-theme="light"] .ind { background-image: initial; background-color: rgb(242, 243, 245); color: var(--text); text-decoration-color: initial; }
-html[data-theme="light"] .ind:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); }
-html[data-theme="light"] .ind svg { fill: none; stroke: var(--c); }
-html[data-theme="light"] .ind span { color: var(--muted); }
-html[data-theme="light"] a.ind span { color: var(--c); }
 html[data-theme="light"] .hero-eyebrow { border-top-color: rgba(38, 79, 103, 0.28); border-right-color: rgba(38, 79, 103, 0.28); border-bottom-color: rgba(38, 79, 103, 0.28); border-left-color: rgba(38, 79, 103, 0.28); background-image: initial; background-color: rgba(245, 245, 246, 0.6); color: var(--accent-2); }
 html[data-theme="light"] .hero-eyebrow .dot { background-image: initial; background-color: rgb(238, 108, 77); box-shadow: rgba(238, 108, 77, 0.6) 0px 0px 0px 0px; }
 html[data-theme="light"] #hero > .hero-bar { border-top-color: rgba(0, 0, 0, 0.08); }
@@ -2346,7 +2326,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <script>try { if (localStorage.getItem("envision-theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}</script>
 <div id="torch" aria-hidden="true"><div class="torch-glow"></div><div class="torch-grid"></div></div>
 
-<a class="skip" href="#industries">Skip to content</a>
+<a class="skip" href="#explore">Skip to content</a>
 <nav>
   <a class="logo waiting" id="logo" href="#hero" aria-label="envision home"><span id="logoText"><span class="l">e</span><span class="l">n</span><span class="l">v</span><span class="l">i</span><span class="l">s</span><span class="l">i</span><span class="l">o</span><span class="l">n</span></span></a>
   <div class="links" id="topLinks"><a href="#services">Services</a><a href="#work">Our work</a><a href="#about">About</a><a href="contact.html">Contact</a></div>
@@ -2394,24 +2374,6 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     </div>
   </div>
 </section>
-
-<!-- ================= WHO WE WORK WITH: the kinds of local businesses we help, as a grid of tiles ================= -->
-<section class="block panel tone-slate" id="industries">
-  <p class="eyebrow reveal">Who we work with</p>
-  <h2 class="reveal">Built for local businesses where <span class="grad">every enquiry counts</span></h2>
-  <p class="reveal">We work best with service businesses that rely on people nearby finding them, trusting them and getting in touch.</p>
-  <div class="inds">
-    <a class="ind reveal" href="#work" style="--c:#5b9be6"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><b>NDIS and disability support</b><span>See our EdenCare work</span></a>
-    <a class="ind reveal" href="#work" style="--c:#7fe0c8"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg><b>Allied health and physio</b><span>See our Greater Health work</span></a>
-    <div class="ind reveal" style="--c:#98c1d9"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg><b>Aged and in-home care</b><span>Families researching options</span></div>
-    <div class="ind reveal" style="--c:#8fd3f4"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M9 9h6M12 6v6"/></svg><b>Clinics and practices</b><span>Booked appointments</span></div>
-    <div class="ind reveal" style="--c:#ee6c4d"><svg viewBox="0 0 24 24"><path d="M5 10h12v4a6 6 0 0 1-12 0z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v4M12 3v4"/></svg><b>Cafes and restaurants</b><span>Foot traffic and bookings</span></div>
-    <div class="ind reveal" style="--c:#f4a48e"><svg viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></svg><b>Gyms and fitness</b><span>Trials and memberships</span></div>
-    <div class="ind reveal" style="--c:#5b9be6"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1 12H5z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><b>Retail stores</b><span>Local shoppers and walk-ins</span></div>
-    <div class="ind reveal" style="--c:#7fe0c8"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/></svg><b>New locations and franchises</b><span>Choosing where to open next</span></div>
-  </div>
-</section>
-
 
 <!-- ================= SOUND FAMILIAR? (v135): the torch map, now the hook. Six things business owners struggle with
      are hidden in the dark map; holding the torch on one lights it up as a note, with a link to the service that fixes
