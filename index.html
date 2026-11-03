@@ -1402,7 +1402,7 @@
 
   /* ---------- SERVICES (v134): STACKING CARDS. One large card per service. Each card sticks just under the nav and the
        next one slides up over it; the cards underneath shrink and dim a little (the script sets their scale and --dark),
-       so the eight services build into a deck as you scroll. The cards stay dark in both themes. ---------- */
+       so the three service groups build into a deck as you scroll. The cards stay dark in both themes. ---------- */
   .st { margin-top: 3rem; display: grid; gap: 7vh; padding-bottom: 22vh; }   /* the bottom space lets the full deck rest a moment before it scrolls away */
   .st-card { --top: calc(var(--navh, 80px) + 14px + var(--i) * 14px); --text: #eef9fa; --muted: rgba(224,251,252,.72);
              position: sticky; top: var(--top); height: min(560px, calc(100vh - var(--top) - 24px)); transform-origin: 50% 0;
@@ -1422,6 +1422,15 @@
   .st-read { display: inline-flex; align-items: center; gap: .45rem; color: var(--c); text-decoration: none; font-weight: 500; font-size: .95rem; align-self: flex-start; }
   .st-read svg, .st-go svg, .vw-nav svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
   .st-read:hover svg { transform: translateX(4px); }
+  /* each card lists its services, two columns of links with their icons (the same ones as the Services menu) */
+  .st-card { height: min(620px, calc(100vh - var(--top) - 24px)); }
+  .st-card .st-num { font-size: clamp(3.4rem, 6vw, 5.5rem); }
+  .st-links { list-style: none; margin: .4rem 0 0; padding: .9rem 0 0; border-top: 1px solid rgba(255,255,255,.09); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem 1.2rem; }
+  .st-links a { display: flex; align-items: center; gap: .6rem; padding: .42rem .5rem; margin: 0 -.5rem; border-radius: 8px; color: var(--text); text-decoration: none; font-size: .92rem; line-height: 1.3; transition: background .2s, color .2s; }
+  .st-links svg { width: 17px; height: 17px; flex: none; fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
+  .st-links a::after { content: "\2192"; margin-left: auto; color: var(--c); opacity: 0; transform: translateX(-4px); transition: opacity .2s, transform .2s; }
+  .st-links a:hover, .st-links a:focus-visible { background: color-mix(in srgb, var(--c) 13%, transparent); }
+  .st-links a:hover::after, .st-links a:focus-visible::after { opacity: 1; transform: none; }
   .st-vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .st-count { position: absolute; top: clamp(1.6rem, 3.4vw, 3rem); right: clamp(1.4rem, 2.6vw, 2.2rem); display: flex; gap: 4px; z-index: 2; }
   .st-count i { width: 16px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.14); }
@@ -1455,6 +1464,15 @@
     .st-count i { width: 10px; }
   }
   @media (max-width: 860px) and (max-height: 700px), (min-width: 861px) and (max-height: 700px) { .st-keys { display: none; } }
+  @media (max-width: 1100px) and (min-width: 861px) { .st-links { grid-template-columns: minmax(0, 1fr); } .st-card .st-sum { display: none; } }
+  @media (max-width: 860px) {
+    .st-card { grid-template-rows: minmax(110px, 22%) minmax(0, 1fr); }
+    .st-card .st-num { display: none; }
+    .st-links { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: .5rem; margin-top: .1rem; }
+    .st-links a { padding: .32rem .5rem; font-size: .88rem; }
+    .st-count { top: 1.25rem; bottom: auto; }
+  }
+  @media (max-height: 720px) { .st-card .st-sum { display: none; } }
   @media (prefers-reduced-motion: reduce) { .st-photo { animation: none; } }
 
   /* ---------- WHAT WE STAND FOR (v134): the logo as a wheel. Each of the mark's eight arms holds the mission, the vision
@@ -2291,7 +2309,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
         <a class="mg-ex" href="#svc-2">Explore digital marketing <span aria-hidden="true">&rarr;</span></a></div>
       <div class="mg-col" style="--c:#9ccc65"><p class="mg-h"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/><path d="M15.5 12.5L18 15l2.5-2.5"/></svg>Automation and CRM</p>
         <ul><li><a href="crm-setup.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 17a3.5 3.5 0 0 1 7 0"/></svg>CRM setup and clean-up</a></li><li><a href="email-crm.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email follow-up sequences</a></li><li><a href="lead-capture.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-8h11L20 13v6H4z"/><path d="M4 13h4l1.5 2.5h5L16 13h4"/></svg>Lead capture into your CRM</a></li><li><a href="booking-reminders.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4"/></svg>Booking confirmations and reminders</a></li><li><a href="review-requests.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z"/></svg>Review requests</a></li><li><a href="connecting-tools.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></svg>Connecting your tools</a></li></ul>
-        <a class="mg-ex" href="#svc-6">Explore automation and CRM <span aria-hidden="true">&rarr;</span></a></div>
+        <a class="mg-ex" href="#svc-3">Explore automation and CRM <span aria-hidden="true">&rarr;</span></a></div>
     </div>
     <div class="mg-foot"><span>Not sure where to start? Three quick questions will point you there.</span><a href="#finder">Find your starting point <span aria-hidden="true">&rarr;</span></a></div>
   </div>
@@ -2339,105 +2357,42 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <section class="block panel tone-ink" id="services">
   <p class="eyebrow reveal">Services</p>
   <h2 class="reveal">Everything you need to <span class="grad">grow smarter</span>.</h2>
-  <p class="reveal">From websites and SEO to paid ads, automation, and location strategy, we help businesses build a stronger digital foundation and make smarter growth decisions.</p>
-  <p class="svc-note reveal"><span class="star">*</span> Eight services. One goal: the phone rings.</p>
+  <p class="reveal">Websites, digital marketing, and automation and CRM: three connected areas, planned as one system so each part makes the next one work harder. Start with one, or let us bring them together.</p>
+  <p class="svc-note reveal"><span class="star">*</span> Three areas, nineteen services. One goal: the phone rings.</p>
 
   <div class="st" id="svcStack">
     <article class="st-card" id="svc-1" style="--c:#5b9be6;--i:0">
-      <div class="st-count" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="st-count" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <div class="st-txt">
         <span class="st-num" aria-hidden="true">01</span>
-        <p class="st-tag">Website</p>
-        <h3>Website design and development</h3>
-        <p class="st-sum">We design and build websites that communicate clearly, load fast, and turn visitors into enquiries.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Page structure and messaging planned around how your customers decide</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Design in your brand, built to read clearly on a phone</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Fast, search-friendly development</span></li></ul>
-        <a class="st-read" href="website-design.html">Read more<span class="st-vh"> about website design and development</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="st-tag">Websites</p>
+        <h3>Websites that turn visitors into enquiries</h3>
+        <p class="st-sum">We design, build and look after websites that read clearly, load fast and make it easy for people to get in touch.</p>
+        <ul class="st-links" aria-label="Websites services"><li><a href="website-design.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg>Website design</a></li><li><a href="website-development.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12"/></svg>Website development</a></li><li><a href="landing-pages.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>Landing pages</a></li><li><a href="conversion.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6"/></svg>Conversion optimisation</a></li><li><a href="speed-technical-fixes.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg>Speed and technical fixes</a></li><li><a href="call-form-tracking.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg>Call and form tracking</a></li><li><a href="website-maintenance.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>Website maintenance</a></li></ul>
       </div>
       <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-screen.jpg)"></i><div class="st-glass"><div class="sp sp-web" aria-hidden="true"><div class="sp-mw"><div class="sp-mw-top"><i></i><i></i><i></i></div> <i class="sp-mw-l" style="--w:42%;--i:0"></i><i class="sp-mw-l sp-mw-hero" style="--w:82%;--i:1"></i><i class="sp-mw-l" style="--w:64%;--i:2"></i><b class="sp-mw-btn">Get a quote</b></div></div></div></div>
     </article>
     <article class="st-card" id="svc-2" style="--c:#7fe0c8;--i:1">
-      <div class="st-count" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="st-count" aria-hidden="true"><i></i><i class="on"></i><i></i></div>
       <div class="st-txt">
         <span class="st-num" aria-hidden="true">02</span>
-        <p class="st-tag">SEO</p>
-        <h3>SEO and content strategy</h3>
-        <p class="st-sum">If your ideal customers are searching online and not finding you, we fix that.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Local keyword and intent research</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Service and suburb pages built around what people actually search</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Site structure, speed and technical fixes</span></li></ul>
-        <a class="st-read" href="seo.html">Read more<span class="st-vh"> about seo and content strategy</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="st-tag">Digital marketing</p>
+        <h3>Be found by the people ready to buy</h3>
+        <p class="st-sum">Search, ads, social media and local strategy that put you in front of the right people, in the suburbs that matter.</p>
+        <ul class="st-links" aria-label="Digital marketing services"><li><a href="seo.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>SEO and local search</a></li><li><a href="content-strategy.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>Content strategy</a></li><li><a href="google-business-profile.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Google Business Profile</a></li><li><a href="paid-ads.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9l10 4-4 1.5L13.5 19z"/><path d="M5 5l2 2M9 3v2M3 9h2"/></svg>Google Ads and Meta Ads</a></li><li><a href="social-media.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Social media management</a></li><li><a href="location-strategy.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Location strategy</a></li></ul>
       </div>
       <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-beam.jpg)"></i><div class="st-glass"><div class="sp sp-seo" aria-hidden="true"><div class="sp-ms-q"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg><span class="sp-ms-t">plumber near me</span></div> <div class="sp-ms-r"><i style="--a:0;--b:1"></i><i style="--a:1;--b:2"></i><i class="sp-you" style="--a:2;--b:0"><b>Your business</b></i></div></div></div></div>
     </article>
-    <article class="st-card" id="svc-3" style="--c:#f2b84b;--i:2">
-      <div class="st-count" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+    <article class="st-card" id="svc-3" style="--c:#9ccc65;--i:2">
+      <div class="st-count" aria-hidden="true"><i></i><i></i><i class="on"></i></div>
       <div class="st-txt">
         <span class="st-num" aria-hidden="true">03</span>
-        <p class="st-tag">Paid ads</p>
-        <h3>Paid ads management</h3>
-        <p class="st-sum">Google Ads and Meta Ads campaigns that reach the right people with the right message. No wasted clicks.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Campaign strategy and audience targeting</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Ad copy and creative direction</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Google Ads and Meta Ads setup, including conversion tracking</span></li></ul>
-        <a class="st-read" href="paid-ads.html">Read more<span class="st-vh"> about paid ads management</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-      <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-bokehcity.jpg)"></i><div class="st-glass"><div class="sp sp-ads" aria-hidden="true"><div class="sp-ma-b"><i style="--h:0.3;--i:0"></i><i style="--h:0.42;--i:1"></i><i style="--h:0.38;--i:2"></i><i style="--h:0.55;--i:3"></i><i style="--h:0.64;--i:4"></i><i style="--h:0.6;--i:5"></i><i style="--h:0.86;--i:6"></i></div> <span class="sp-ma-c" style="--i:0">+1 enquiry</span><span class="sp-ma-c" style="--i:1">+1 call</span><span class="sp-ma-c" style="--i:2">+1 booking</span></div></div></div>
-    </article>
-    <article class="st-card" id="svc-4" style="--c:#f48fb1;--i:3">
-      <div class="st-count" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
-      <div class="st-txt">
-        <span class="st-num" aria-hidden="true">04</span>
-        <p class="st-tag">Social</p>
-        <h3>Social media marketing</h3>
-        <p class="st-sum">Content that builds genuine trust and drives real enquiries, not just likes.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Content strategy tied to what your customers are weighing up</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>A realistic posting calendar</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Content creation and scheduling</span></li></ul>
-        <a class="st-read" href="social-media.html">Read more<span class="st-vh"> about social media marketing</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-      <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-ripples.jpg)"></i><div class="st-glass"><div class="sp sp-soc" aria-hidden="true"><div class="sp-so-post"><i class="sp-so-img"></i><span class="sp-so-h">&#9829; 128</span></div> <span class="sp-so-heart" style="--i:0;--x:-14">&#9829;</span><span class="sp-so-heart" style="--i:1;--x:10">&#9829;</span><span class="sp-so-heart" style="--i:2;--x:-4">&#9829;</span><span class="sp-so-heart" style="--i:3;--x:18">&#9829;</span> <span class="sp-so-b sp-so-q">Do you come out to Box Hill?</span><span class="sp-so-b sp-so-a">Yes, every week. Give us a call!</span></div></div></div>
-    </article>
-    <article class="st-card" id="svc-5" style="--c:#b58cf0;--i:4">
-      <div class="st-count" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
-      <div class="st-txt">
-        <span class="st-num" aria-hidden="true">05</span>
-        <p class="st-tag">Conversion</p>
-        <h3>Conversion optimisation</h3>
-        <p class="st-sum">Often the fastest win is not more traffic; it is doing more with the traffic you already have.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Review of your highest-traffic and highest-value pages</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Simplifying the path from landing to enquiry</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Clearer calls to action, forms and phone prompts</span></li></ul>
-        <a class="st-read" href="conversion.html">Read more<span class="st-vh"> about conversion optimisation</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-      <div class="st-vis" aria-hidden="true"><div class="st-glass"><div class="sp sp-conv" aria-hidden="true"><div class="sp-mc-f"><i style="--w:100%">Visitors</i><i style="--w:70%">Interested</i><i style="--w:44%">Enquiries</i></div> <b class="sp-mc-d" style="--x:-70px;--dl:0s"></b><b class="sp-mc-d sp-go" style="--x:-16px;--dl:0.45s"></b><b class="sp-mc-d" style="--x:52px;--dl:0.9s"></b><b class="sp-mc-d sp-go" style="--x:-40px;--dl:1.35s"></b><b class="sp-mc-d" style="--x:74px;--dl:1.8s"></b><b class="sp-mc-d sp-go" style="--x:18px;--dl:2.25s"></b><b class="sp-mc-d" style="--x:-2px;--dl:2.7s"></b></div></div></div>
-    </article>
-    <article class="st-card" id="svc-6" style="--c:#4fc3f7;--i:5">
-      <div class="st-count" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
-      <div class="st-txt">
-        <span class="st-num" aria-hidden="true">06</span>
-        <p class="st-tag">Email & CRM</p>
-        <h3>Email and CRM nurture</h3>
-        <p class="st-sum">Most leads do not buy immediately. We keep warm leads engaged and guide them back when they are ready.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>CRM setup or clean-up, so every enquiry is captured</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Welcome and follow-up sequences written in your voice</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Segmenting by service, area or stage</span></li></ul>
-        <a class="st-read" href="email-crm.html">Read more<span class="st-vh"> about email and crm nurture</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-      <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-trails.jpg)"></i><div class="st-glass"><div class="sp sp-mail" aria-hidden="true"><span class="sp-me" style="--i:0"><b>Day 1</b>Welcome</span><span class="sp-me" style="--i:1"><b>Day 3</b>A helpful tip</span> <span class="sp-me" style="--i:2"><b>Day 7</b>Ready to talk?</span><span class="sp-me-ok">&#10003; Booked</span></div></div></div>
-    </article>
-    <article class="st-card" id="svc-7" style="--c:#9ccc65;--i:6">
-      <div class="st-count" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div>
-      <div class="st-txt">
-        <span class="st-num" aria-hidden="true">07</span>
-        <p class="st-tag">Automation</p>
-        <h3>Automation</h3>
-        <p class="st-sum">Automations that handle the repetitive parts of your marketing and follow-up, so nothing falls through the cracks.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Lead capture from website, ads and social straight into your CRM</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Instant acknowledgements, booking confirmations and reminders</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Handoffs and alerts so the right person follows up fast</span></li></ul>
-        <a class="st-read" href="automation.html">Read more<span class="st-vh"> about automation</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="st-tag">Automation and CRM</p>
+        <h3>Every enquiry captured and followed up</h3>
+        <p class="st-sum">Systems that capture every lead, follow up automatically and give your team back their time, even after hours.</p>
+        <ul class="st-links" aria-label="Automation and CRM services"><li><a href="crm-setup.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 17a3.5 3.5 0 0 1 7 0"/></svg>CRM setup and clean-up</a></li><li><a href="email-crm.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email follow-up sequences</a></li><li><a href="lead-capture.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-8h11L20 13v6H4z"/><path d="M4 13h4l1.5 2.5h5L16 13h4"/></svg>Lead capture into your CRM</a></li><li><a href="booking-reminders.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4"/></svg>Booking confirmations and reminders</a></li><li><a href="review-requests.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z"/></svg>Review requests</a></li><li><a href="connecting-tools.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></svg>Connecting your tools</a></li></ul>
       </div>
       <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-network.jpg)"></i><div class="st-glass"><div class="sp sp-auto" aria-hidden="true"><div class="sp-mu-line"><i class="sp-mu-dot"></i></div> <span class="sp-mu-n" style="--i:0">Web form</span><span class="sp-mu-n" style="--i:1">CRM</span><span class="sp-mu-n" style="--i:2">Text sent &#10003;</span></div></div></div>
-    </article>
-    <article class="st-card" id="svc-8" style="--c:#ee6c4d;--i:7">
-      <div class="st-count" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
-      <div class="st-txt">
-        <span class="st-num" aria-hidden="true">08</span>
-        <p class="st-tag">Location</p>
-        <h3>Location strategy</h3>
-        <p class="st-sum">Understand where your best opportunities actually are before you spend a dollar on marketing.</p>
-        <ul class="st-keys"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Customer demographics and local demand by suburb</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Nearby competitor and opportunity-gap analysis</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Accessibility, visibility and search behaviour</span></li></ul>
-        <a class="st-read" href="location-strategy.html">Read more<span class="st-vh"> about location strategy</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-      <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-map.jpg)"></i><div class="st-glass"><div class="sp sp-loc" aria-hidden="true"><i class="sp-ml-grid"></i><i class="sp-ml-road"></i> <span class="sp-ml-p" style="--x:26%;--y:36%;--i:0"></span><span class="sp-ml-p" style="--x:58%;--y:26%;--i:1"></span><span class="sp-ml-p" style="--x:40%;--y:70%;--i:2"></span> <span class="sp-ml-p sp-ml-best" style="--x:72%;--y:58%;--i:3"><b>Best opportunity</b></span></div></div></div>
     </article>
   </div>
   <a class="st-end" href="#finder"><b>Not sure which one you need? Three quick questions will light up your starting point.</b><span class="st-go">Find my starting point <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -2463,7 +2418,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
         <div class="pairs"><span>Pairs well with</span></div>
         <div class="fd-acts">
           <a class="pill call fd-talk" href="mailto:hello@envisionds.com.au">Talk to us about this<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 2.8c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8L9.6 8.2c-.3.3-.3.8-.1 1.1 1.2 2.1 3 3.9 5.1 5.1.4.2.8.2 1.1-.1l1.2-1.2c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8l-1.5 1.5c-1 1-2.6 1.4-4 .9C10.4 17.9 6.1 13.6 4.3 8.4c-.5-1.4-.1-3 .9-4z"/></svg></span></a>
-          <a class="fd-see" href="#svc-1">See how it works →</a>
+          <a class="fd-see" href="website-design.html">See how it works →</a>
           <button class="fd-again" type="button">Start again</button>
         </div>
       </div>
@@ -2631,11 +2586,11 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       <div class="bo-side"><p>Each layer makes the next one work harder, so we build from the ground up. Pick any step to see that service.</p>
       <a class="gv-cta" href="#finder">Find my starting point <span aria-hidden="true">&rarr;</span></a></div>
     </div>
-    <ol class="bo-stairs" id="boStairs"><li style="--c0:#ee6c4d;--i:0"><a class="bo-step" href="#svc-8"><span class="bo-n">01</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><span class="bo-t"><b>Find the opportunity</b><small>Location strategy</small></span></a></li><li style="--c0:#5b9be6;--i:1"><a class="bo-step" href="#svc-1"><span class="bo-n">02</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9h18M6.5 6.8h.01M9 6.8h.01"/></svg></span><span class="bo-t"><b>Fix the foundation</b><small>Website</small></span></a></li><li style="--c0:#7fe0c8;--i:2"><a class="bo-step" href="#svc-2"><span class="bo-n">03</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span><span class="bo-t"><b>Get found locally</b><small>SEO</small></span></a></li><li style="--c0:#f2b84b;--i:3"><a class="bo-step" href="#svc-3"><span class="bo-n">04</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l7 4V6L7 10H4z"/><path d="M17.5 9.5a3.5 3.5 0 0 1 0 5"/></svg></span><span class="bo-t"><b>Switch on demand</b><small>Paid ads</small></span></a></li><li style="--c0:#b58cf0;--i:4"><a class="bo-step" href="#svc-5"><span class="bo-n">05</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span><span class="bo-t"><b>Turn visits into calls</b><small>Conversion</small></span></a></li><li style="--c0:#4fc3f7;--i:5"><a class="bo-step" href="#svc-6"><span class="bo-n">06</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span><span class="bo-t"><b>Never lose a lead</b><small>Email and automation</small></span></a></li><li style="--c0:#7fe0c8;--i:6"><a class="bo-step" href="#finder"><span class="bo-n">07</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="bo-t"><b>Growth that compounds</b><small>Everything pulling together</small></span></a></li></ol>
+    <ol class="bo-stairs" id="boStairs"><li style="--c0:#ee6c4d;--i:0"><a class="bo-step" href="location-strategy.html"><span class="bo-n">01</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><span class="bo-t"><b>Find the opportunity</b><small>Location strategy</small></span></a></li><li style="--c0:#5b9be6;--i:1"><a class="bo-step" href="website-design.html"><span class="bo-n">02</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9h18M6.5 6.8h.01M9 6.8h.01"/></svg></span><span class="bo-t"><b>Fix the foundation</b><small>Website</small></span></a></li><li style="--c0:#7fe0c8;--i:2"><a class="bo-step" href="seo.html"><span class="bo-n">03</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span><span class="bo-t"><b>Get found locally</b><small>SEO</small></span></a></li><li style="--c0:#f2b84b;--i:3"><a class="bo-step" href="paid-ads.html"><span class="bo-n">04</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l7 4V6L7 10H4z"/><path d="M17.5 9.5a3.5 3.5 0 0 1 0 5"/></svg></span><span class="bo-t"><b>Switch on demand</b><small>Paid ads</small></span></a></li><li style="--c0:#b58cf0;--i:4"><a class="bo-step" href="conversion.html"><span class="bo-n">05</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span><span class="bo-t"><b>Turn visits into calls</b><small>Conversion</small></span></a></li><li style="--c0:#4fc3f7;--i:5"><a class="bo-step" href="email-crm.html"><span class="bo-n">06</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span><span class="bo-t"><b>Never lose a lead</b><small>Email and automation</small></span></a></li><li style="--c0:#7fe0c8;--i:6"><a class="bo-step" href="#finder"><span class="bo-n">07</span><span class="bo-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="bo-t"><b>Growth that compounds</b><small>Everything pulling together</small></span></a></li></ol>
     <div class="bo-facts reveal">
       <div><b data-to="90" data-suf=" days">90 days</b><span>To a plan with weekly milestones</span></div>
       <div><b>Weekly</b><span>Plain-English progress reports</span></div>
-      <div><b data-to="8" data-suf=" services">8 services</b><span>Planned as one connected system</span></div>
+      <div><b data-to="19" data-suf=" services">19 services</b><span>Planned as one connected system</span></div>
       <div><b>1 day</b><span>Usual reply time on business days</span></div>
     </div>
   </div>
@@ -3472,15 +3427,15 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <script>
   (function () {
     const sec = document.getElementById('finder'); if (!sec) return;
-    const SV = [  // id matches #svc-N in the Services list
-      { id: 1, n: 'Website',     full: 'website design and development', c: '#5b9be6', why: 'Your website is where people decide whether to get in touch. We would build one that is clear, fast and set up to turn visitors into enquiries, so everything else you do has somewhere good to land.' },
-      { id: 2, n: 'SEO',         full: 'SEO and content strategy',        c: '#7fe0c8', why: 'Your customers are already searching. We would make sure they find you first, with local SEO and content that keeps working for you month after month.' },
-      { id: 3, n: 'Paid ads',    full: 'paid ads',                        c: '#f2b84b', why: 'You need people calling soon. Google and Meta ads put you in front of the right people this month, and we keep the spend on audiences that actually convert.' },
-      { id: 4, n: 'Social',      full: 'social media marketing',          c: '#f48fb1', why: 'People need to see you, trust you and remember you. Consistent social content built around your audience keeps you front of mind until they are ready.' },
-      { id: 5, n: 'Conversion',  full: 'conversion optimisation',         c: '#b58cf0', why: 'People are already finding you, but too few get in touch. We would fix the gaps between visit and enquiry before you pay for more traffic.' },
-      { id: 6, n: 'Email & CRM', full: 'email and CRM nurture',           c: '#4fc3f7', why: 'Most leads do not buy straight away. A simple nurture system keeps them warm and brings them back when they are ready, instead of letting them go cold.' },
-      { id: 7, n: 'Automation',  full: 'automation',                      c: '#9ccc65', why: 'Your follow-up is eating time you do not have. We would automate the repetitive parts so every lead gets a fast reply without you chasing it.' },
-      { id: 8, n: 'Location',    full: 'location strategy',               c: '#ee6c4d', why: 'Where you show up matters as much as how. We would map demand, competitors and opportunity gaps first, so every dollar after that goes to the right area.' },
+    const SV = [  // pg: the service's own page
+      { id: 1, n: 'Website', pg: 'website-design.html',     full: 'website design and development', c: '#5b9be6', why: 'Your website is where people decide whether to get in touch. We would build one that is clear, fast and set up to turn visitors into enquiries, so everything else you do has somewhere good to land.' },
+      { id: 2, n: 'SEO', pg: 'seo.html',         full: 'SEO and content strategy',        c: '#7fe0c8', why: 'Your customers are already searching. We would make sure they find you first, with local SEO and content that keeps working for you month after month.' },
+      { id: 3, n: 'Paid ads', pg: 'paid-ads.html',    full: 'paid ads',                        c: '#f2b84b', why: 'You need people calling soon. Google and Meta ads put you in front of the right people this month, and we keep the spend on audiences that actually convert.' },
+      { id: 4, n: 'Social', pg: 'social-media.html',      full: 'social media marketing',          c: '#f48fb1', why: 'People need to see you, trust you and remember you. Consistent social content built around your audience keeps you front of mind until they are ready.' },
+      { id: 5, n: 'Conversion', pg: 'conversion.html',  full: 'conversion optimisation',         c: '#b58cf0', why: 'People are already finding you, but too few get in touch. We would fix the gaps between visit and enquiry before you pay for more traffic.' },
+      { id: 6, n: 'Email & CRM', pg: 'email-crm.html', full: 'email and CRM nurture',           c: '#4fc3f7', why: 'Most leads do not buy straight away. A simple nurture system keeps them warm and brings them back when they are ready, instead of letting them go cold.' },
+      { id: 7, n: 'Automation', pg: 'automation.html',  full: 'automation',                      c: '#9ccc65', why: 'Your follow-up is eating time you do not have. We would automate the repetitive parts so every lead gets a fast reply without you chasing it.' },
+      { id: 8, n: 'Location', pg: 'location-strategy.html',    full: 'location strategy',               c: '#ee6c4d', why: 'Where you show up matters as much as how. We would map demand, competitors and opportunity gaps first, so every dollar after that goes to the right area.' },
     ];
     // points each answer sends to each service (by id)
     const PTS = {
@@ -3532,9 +3487,9 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       res.querySelector('h3 em').textContent = win.full;
       res.querySelector('.why').textContent = win.why;
       const pb = res.querySelector('.pairs'); pb.querySelectorAll('a').forEach(a => a.remove());
-      pairs.forEach(v => { const a = document.createElement('a'); a.href = '#svc-' + v.id; a.textContent = v.n; a.style.setProperty('--pc', v.c); pb.appendChild(a); });
+      pairs.forEach(v => { const a = document.createElement('a'); a.href = v.pg; a.textContent = v.n; a.style.setProperty('--pc', v.c); pb.appendChild(a); });
       pb.style.display = pairs.length ? '' : 'none';
-      res.querySelector('.fd-see').href = '#svc-' + win.id;
+      res.querySelector('.fd-see').href = win.pg;
       const ans = qs.map((q, i) => '- ' + q.querySelector('h3').textContent + ' ' + q.querySelector('[data-a="' + picks[i] + '"] span:last-child').textContent).join('\n');
       res.querySelector('.fd-talk').href = 'mailto:hello@envisionds.com.au?subject=' + encodeURIComponent('Enquiry: ' + win.full) +
         '&body=' + encodeURIComponent('Hi Envision,\n\nYour service finder suggested ' + win.full + ' for us. Our answers:\n' + ans + '\n\nCould we have a chat about it?\n');
@@ -3559,7 +3514,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     const sky = sec.querySelector('.fd-sky');
     sec.addEventListener('pointermove', e => { const r = sky.getBoundingClientRect(); sky.style.setProperty('--x', (e.clientX - r.left) + 'px'); sky.style.setProperty('--y', (e.clientY - r.top) + 'px'); });
     // clicking a star (after the result) jumps to that service
-    stars.forEach(st => st.g.addEventListener('click', () => { const a = document.createElement('a'); a.href = '#svc-' + st.sv.id; document.body.appendChild(a); a.click(); a.remove(); }));
+    stars.forEach(st => st.g.addEventListener('click', () => { const a = document.createElement('a'); a.href = st.sv.pg; document.body.appendChild(a); a.click(); a.remove(); }));
     if (matchMedia('(hover: none)').matches) tip.textContent = 'Tap an answer to send the light';
     show(0);
   })();
