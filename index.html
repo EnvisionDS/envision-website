@@ -773,17 +773,17 @@
   /* a dark halo behind the copy, so the lit map never fights the words */
   #hero h1, #hero .sub, #hero .proof, #hero .trust li { text-shadow: 0 0 22px #0a0a0b, 0 0 10px #0a0a0b, 0 0 3px #0a0a0b; }
   #hero h1 .grad { text-shadow: none; }
-  /* the headline is read by torchlight (v139): every letter starts dark (--dim, solid so a gradient can't show through), a
-     soft light travels across the line, and each letter lights up as it passes and stays lit. A gradient word's dark
-     layer shrinks away left to right as the light crosses it, uncovering its colour. */
-  #slot { position: relative; isolation: isolate; --dim: #262c31; }
-  html[data-theme="light"] #slot { --dim: #c5ced6; }
-  #slot span { transition: color .45s ease-out, text-shadow .6s ease-out; }
-  #slot span.dim { color: var(--dim); }
+  /* the headline is read by torchlight (v140): every letter starts unseen, a soft light travels across the line, and each
+     letter appears as the light reaches it and stays. Letters in a gradient word are hidden with visibility, not opacity,
+     because the word's gradient is clipped to its letters and only visibility takes a letter out of that clip.
+     The headline box is as tall as the tallest title, and each title sits in the middle of it, so the space above and
+     below stays even whether a title runs to two lines or three. */
+  #hero h1#slot { position: relative; isolation: isolate; display: flex; align-items: center; justify-content: center; }
+  #slot .slot-in { display: block; }
+  #slot span { transition: opacity .45s ease-out, text-shadow .6s ease-out; }
+  #slot span.hide { opacity: 0; }
+  #slot .grad > span.hide { visibility: hidden; }
   #slot span.lit { text-shadow: 0 0 .32em rgba(143,211,244,.95), 0 0 .06em #fff; transition-duration: .08s; }
-  #slot .grad.unlit { background-image: linear-gradient(var(--dim), var(--dim)), var(--grad); background-repeat: no-repeat;
-                      background-size: 100% 100%, 100% 100%; background-position: 100% 0, 0 0; }
-  #slot .grad.unlit.lit-up { background-size: 0% 100%, 100% 100%; transition: background-size var(--rd, .3s) linear; }
   .slot-torch { position: absolute; left: 0; top: 0; z-index: -1; width: 2.8em; height: 2.8em; margin: -1.4em 0 0 -1.4em; border-radius: 50%; pointer-events: none;
                 background: radial-gradient(closest-side, rgba(143,211,244,.34), rgba(91,155,230,.12) 55%, transparent); opacity: 0;
                 transition: transform .17s linear, opacity .5s ease; }
@@ -2359,7 +2359,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   <!-- the copy sits in the middle of the dark "room"; the map and the hidden opportunities surround it -->
   <div class="hero-wrap">
     <p class="hero-eyebrow vf"><span class="vf-ret" aria-hidden="true"><i></i></span><span class="vf-t">Digital solutions agency</span><i class="vf-sep" aria-hidden="true"></i><span class="vf-t">Melbourne</span></p>
-    <h1 id="slot">We bring your <span class="grad unlit">visions</span> to life, and the <span class="grad unlit">customers</span> to you</h1>
+    <h1 id="slot"><span class="slot-in">We bring your <span class="grad">visions</span> to life, and the <span class="grad">customers</span> to you</span></h1>
     <p class="sub">Envision is a Melbourne digital solutions agency: a team of strategists, developers, analysts and creative thinkers. We build websites, run SEO, Google and Meta ads, social media and email, automate the follow-up, and use location data to show where your best customers are, all planned as one connected system. One team, one plan, and results you can measure.</p>
     <div class="hero-ctas">
       <a class="pill solid" href="#services">Explore services</a>
@@ -3070,9 +3070,9 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 
 
 <!-- ================= ROTATING HEADLINES: read by torchlight =================
-     Each title is a list of pieces; a piece marked g:true is painted with the brand gradient. A title arrives dark, then a
-     soft light travels across it letter by letter, like a torch, and each letter lights up as the light passes (gradient
-     words take their colour as it crosses them). After a pause it fades and the next arrives. The first is the brand line;
+     Each title is a list of pieces; a piece marked g:true is painted with the brand gradient. A soft light travels across
+     the title letter by letter, like a torch, and each letter appears as the light reaches it. After a pause the title
+     fades and the light reads in the next. The first is the brand line;
      the rest are one hook line for each main group of services. -->
 <script>
   (async function () {
@@ -3086,20 +3086,23 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     ];
     const HOLD = 3800, STEP = 42, FADE = 380;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { h1.querySelectorAll('.unlit').forEach(el => el.classList.remove('unlit')); return; }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const torch = Object.assign(document.createElement('i'), { className: 'slot-torch' });
     torch.setAttribute('aria-hidden', 'true');
     let chars = [];
-    function layout(title) {                                   // one <span> per letter, all dark to begin with
-      h1.textContent = ''; chars = [];
+    // one <span> per letter, all unseen to begin with, inside a block that the headline box centres
+    function build(title, box, hidden) {
+      const inner = Object.assign(document.createElement('span'), { className: 'slot-in' }), letters = [];
       title.forEach(piece => {
-        const wrap = piece.g ? Object.assign(document.createElement('span'), { className: 'grad unlit' }) : h1;
-        [...piece.t].forEach(ch => { const sp = document.createElement('span'); sp.textContent = ch; if (!piece.g) sp.className = 'dim'; wrap.appendChild(sp); chars.push(sp); });
-        if (piece.g) h1.appendChild(wrap);
+        const wrap = piece.g ? Object.assign(document.createElement('span'), { className: 'grad' }) : inner;
+        [...piece.t].forEach(ch => { const sp = Object.assign(document.createElement('span'), { textContent: ch }); if (hidden) sp.className = 'hide'; wrap.appendChild(sp); letters.push(sp); });
+        if (piece.g) inner.appendChild(wrap);
       });
-      h1.appendChild(torch);
+      box.textContent = ''; box.appendChild(inner);
+      return letters;
     }
+    function layout(title) { chars = build(title, h1, true); h1.appendChild(torch); }
     const at = sp => { const b = h1.getBoundingClientRect(), r = sp.getBoundingClientRect(); return `translate(${r.left - b.left + r.width / 2}px, ${r.top - b.top + r.height / 2}px)`; };
     // the torch travels across the title; each letter lights up as it passes, and stays lit
     async function read() {
@@ -3107,9 +3110,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       torch.classList.add('on');
       for (const sp of chars) {
         torch.style.transform = at(sp);
-        const g = sp.parentNode !== h1 ? sp.parentNode : null;
-        if (g && sp === g.firstChild) { g.style.setProperty('--rd', (g.children.length * STEP) + 'ms'); g.classList.add('lit-up'); }
-        sp.classList.remove('dim'); sp.classList.add('lit'); setTimeout(() => sp.classList.remove('lit'), 300);
+        sp.classList.remove('hide'); sp.classList.add('lit'); setTimeout(() => sp.classList.remove('lit'), 300);
         await sleep(sp.textContent === ' ' ? STEP * 1.5 : STEP);
       }
       torch.classList.remove('on');
@@ -3123,29 +3124,21 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       Object.assign(ghost.style, { position: 'absolute', left: '0', top: '0', visibility: 'hidden', pointerEvents: 'none', minHeight: '0' });
       h1.parentNode.appendChild(ghost);
       let tallest = 0;
-      TITLES.forEach(title => {
-        ghost.textContent = '';
-        title.forEach(piece => {
-          const wrap = piece.g ? Object.assign(document.createElement('span'), { className: 'grad' }) : ghost;
-          [...piece.t].forEach(ch => wrap.appendChild(Object.assign(document.createElement('span'), { textContent: ch })));
-          if (wrap !== ghost) ghost.appendChild(wrap);
-        });
-        tallest = Math.max(tallest, ghost.getBoundingClientRect().height);
-      });
+      TITLES.forEach(title => { build(title, ghost, false); tallest = Math.max(tallest, ghost.getBoundingClientRect().height); });
       ghost.remove();
       h1.style.minHeight = Math.ceil(tallest) + 'px';
     }
     let resizing = 0;
     addEventListener('resize', () => { cancelAnimationFrame(resizing); resizing = requestAnimationFrame(reserve); });
 
-    layout(TITLES[0]);                                         // the first title waits, dark, behind the intro…
+    layout(TITLES[0]);                                         // the first title waits, unseen, behind the intro…
     reserve();
     await window.introDone;
     await document.fonts.ready;                                // measure only once the real font is in, so the torch lands on each letter
     reserve();
     await sleep(450);
     for (let i = 0; ; i = (i + 1) % TITLES.length) {          // …then each title is read, held, and swapped for the next
-      if (i) { layout(TITLES[i]); await fade(1); await sleep(250); }
+      if (i) { layout(TITLES[i]); h1.style.opacity = 1; await sleep(300); }
       await read();
       await sleep(HOLD);
       await fade(0);
