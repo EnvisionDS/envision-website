@@ -1264,11 +1264,6 @@
   .bo-t b { font: 500 1rem/1.25 "Sora", sans-serif; text-wrap: balance; transition: color .3s; }
   .bo-step:hover .bo-t b, .bo-step.lit .bo-t b { color: var(--c); }
   .bo-t small { font-size: .76rem; color: var(--muted); }
-  .bo-facts { margin-top: 1.6rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #1d2128; border-bottom: 1px solid #1d2128; }
-  .bo-facts div { padding: 1.1rem 1.4rem; display: grid; gap: .25rem; border-right: 1px solid #1d2128; }
-  .bo-facts div:last-child { border-right: 0; }
-  .bo-facts b { font: 500 clamp(1.4rem, 2.2vw, 1.9rem)/1.1 "Sora", sans-serif; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-  .bo-facts span { color: var(--muted); font-size: .85rem; }
   @media (max-width: 960px) {
     .bo-top { grid-template-columns: 1fr; gap: 1rem; }
     .bo-stairs { grid-template-columns: 1fr; gap: 8px; }
@@ -1277,10 +1272,8 @@
     .bo-step::after { left: auto; right: 0; top: 0; bottom: 0; width: 2px; height: auto; }
     .bo-t { margin: 0; } .bo-t b { font-size: .92rem; }
     .bo-n { order: 3; margin-left: auto; }
-    .bo-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .bo-facts div { padding: .9rem 1rem; border-bottom: 1px solid #1d2128; } .bo-facts div:nth-child(2n) { border-right: 0; } .bo-facts div:nth-child(n+3) { border-bottom: 0; }
   }
-  @media (max-width: 560px) { .bo-stairs li { width: calc(72% + var(--i) * 4.66%); } .bo-ico { width: 34px; height: 34px; } .bo-facts span { font-size: .76rem; } }
+  @media (max-width: 560px) { .bo-stairs li { width: calc(72% + var(--i) * 4.66%); } .bo-ico { width: 34px; height: 34px; } }
   @media (prefers-reduced-motion: reduce) { .bo-step, .bo-stairs.in .bo-step { opacity: 1; transform: none; transition: none; } }
 
   /* ---------- SERVICES (v127): cards start closed, showing only the service. A click opens the essentials and a
@@ -2047,15 +2040,6 @@ html[data-theme="light"] .bo-step:hover .bo-ico, html[data-theme="light"] .bo-st
 html[data-theme="light"] .bo-ico svg { fill: none; stroke: currentcolor; }
 html[data-theme="light"] .bo-step:hover .bo-t b, html[data-theme="light"] .bo-step.lit .bo-t b { color: var(--c); }
 html[data-theme="light"] .bo-t small { color: var(--muted); }
-html[data-theme="light"] .bo-facts { border-top-color: rgb(215, 219, 226); border-bottom-color: rgb(215, 219, 226); }
-html[data-theme="light"] .bo-facts div { border-right-color: rgb(215, 219, 226); }
-html[data-theme="light"] .bo-facts div:last-child { border-right-color: initial; }
-html[data-theme="light"] .bo-facts span { color: var(--muted); }
-@media (max-width: 960px) {
-html[data-theme="light"] .bo-facts div { border-bottom-color: rgb(215, 219, 226); }
-html[data-theme="light"] .bo-facts div:nth-child(2n) { border-right-color: initial; }
-html[data-theme="light"] .bo-facts div:nth-child(n+3) { border-bottom-color: initial; }
-}
 html[data-theme="light"] .sm-head { color: var(--text); }
 html[data-theme="light"] .sm-ico { color: var(--c); background: color-mix(in srgb, var(--c) 8%, transparent); border: 1px solid color-mix(in srgb, var(--c) 38%, transparent); }
 html[data-theme="light"] .sm-ico svg { fill: none; stroke: currentcolor; }
@@ -2284,7 +2268,6 @@ html[data-theme="light"] nav.scrolled .menu-btn span { background: #e0fbfc; }
    light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */
 section.block.who { padding-top: 22vh; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 2.6rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
 section.block.who > .about-intro { align-self: start; }
-section.block.who > .who-facts { grid-column: 1 / -1; margin-top: 1.6rem; }
 section.block.who > .about-intro { grid-column: 1 / -1; margin-bottom: -1.2rem; }
 .wl-row { position: relative; z-index: 1; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
 .who-p { margin: 0; font-size: 1.08rem; line-height: 1.6; color: var(--text); opacity: .9; max-width: 54ch; }
@@ -2398,12 +2381,6 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   <div class="who-cell reveal">
     <p class="who-p">Your growth is our measure: every call, form and booking tracked and reported in plain English.</p>
     <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
-  </div>
-  <div class="bo-facts who-facts reveal">
-    <div><b>1 team</b><span>Strategy to launch under one roof</span></div>
-    <div><b data-to="19" data-suf=" services">19 services</b><span>Across websites, marketing and automation</span></div>
-    <div><b>Weekly</b><span>Plain-English progress reports</span></div>
-    <div><b>1 day</b><span>Usual reply time on business days</span></div>
   </div>
   <span class="wl-line" aria-hidden="true"><i></i></span>
 </section>
@@ -3758,7 +3735,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 </script>
 
 <!-- ================= BUILD ORDER (JS half): the steps rise into place, the torch lights the step under it,
-     on touch screens the light climbs the stairs once, and the facts count up ================= -->
+     and on touch screens the light climbs the stairs once ================= -->
 <script>
   (function () {
     const ol = document.getElementById('boStairs'); if (!ol) return;
@@ -3767,21 +3744,12 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       a.addEventListener('pointermove', e => { const r = a.getBoundingClientRect(); a.style.setProperty('--lx', (e.clientX - r.left) + 'px'); a.style.setProperty('--ly', (e.clientY - r.top) + 'px'); });
       a.addEventListener('pointerleave', () => { a.style.setProperty('--lx', '-999px'); a.style.setProperty('--ly', '-999px'); });
     });
-    function count(box) {
-      const facts = [...box.querySelectorAll('b[data-to]')];
-      if (reduce || !facts.length) return;
-      facts.forEach(b => b.textContent = '0' + b.dataset.suf);
-      const t0 = performance.now();
-      (function f(now) { const t = Math.min(1, (now - t0) / 1500), e = 1 - Math.pow(1 - t, 3); facts.forEach(b => b.textContent = Math.round(+b.dataset.to * e) + b.dataset.suf); if (t < 1) requestAnimationFrame(f); })(t0);
-    }
     if (!('IntersectionObserver' in window)) { ol.classList.add('in'); return; }
     const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect(); ol.classList.add('in');
       if (matchMedia('(hover: none)').matches && !reduce) steps.forEach((a, i) => { setTimeout(() => a.classList.add('lit'), 900 + i * 260); setTimeout(() => a.classList.remove('lit'), 900 + i * 260 + 700); });
       setTimeout(() => steps[steps.length - 1].classList.add('lit'), 900 + steps.length * 260);
     }, { threshold: .3 });
     io.observe(ol);
-    const fo = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { fo.unobserve(en.target); count(en.target); } }), { threshold: .6 });
-    document.querySelectorAll('.bo-facts').forEach(b => fo.observe(b));
   })();
 </script>
 
