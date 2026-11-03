@@ -252,7 +252,7 @@
   /* ---------- SECTIONS ---------- */
   /* SECTIONS: full-width bands so each one reads as its own chapter. The content inside still sits in a
      1200px column. Tones alternate: base, lifted, and deep navy for the two "story" sections. */
-  section.block { padding: 12vh max(6vw, calc((100% - 1200px) / 2)); scroll-margin-top: 64px; background: var(--bg); }
+  section.block { padding: 22vh max(6vw, calc((100% - 1200px) / 2)) 12vh; scroll-margin-top: 64px; background: var(--bg); }   /* more room above each section than below, so a new section reads as a new start */
   section.block.lift { background: #101216; }
   /* a LIGHT chapter: ice background, navy text. Everything inside flips to dark-on-light. */
   /* a LIGHT chapter that fades in as you scroll to it. One number, --t (0 = dark, 1 = light), is set on <body> by
@@ -2249,7 +2249,7 @@ html[data-theme="light"] nav.scrolled .menu-btn span { background: #e0fbfc; }
 /* WHO WE ARE: three rows. On the left each line of the heading with its icon and a short note; on the right, the
    paragraph that goes with it, so each pair lines up. A thin line (placed by the script) joins the icons, and a soft
    light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */
-section.block.who { padding-top: 22vh; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 2.6rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
+section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 2.6rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
 section.block.who > .about-intro { align-self: start; }
 section.block.who > .about-intro { grid-column: 1 / -1; margin-bottom: -1.2rem; }
 .wl-row { position: relative; z-index: 1; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
