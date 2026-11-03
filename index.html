@@ -2193,27 +2193,29 @@ body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, r
 body section.block:not(.panel) { background: transparent; }
 /* WHO WE ARE: headline left, the brief right; one column on narrow screens */
 section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
-section.block.who h2 { font-size: clamp(2.1rem, 3.3vw, 3.4rem); line-height: 1.08; max-width: none; margin-bottom: 0; }   /* three lines: One team, / one plan, / results you can measure. */
-@media (min-width: 861px) { section.block.who h2 .grad { white-space: nowrap; } }
 section.block.who .who-copy { padding-top: 2.1rem; }
 section.block.who .who-copy p { font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; }
 section.block.who .who-copy p + p { margin-top: 1.1rem; }
-/* under the heading: its three promises as linked points, with a soft light travelling down the line between them */
-.who-pillars { position: relative; list-style: none; margin: 2.8rem 0 0; padding: 0; display: grid; gap: .6rem; max-width: 470px; }
-.who-pillars::before { content: ""; position: absolute; left: 24px; top: 26px; bottom: 26px; width: 1px; background: linear-gradient(#5b9be6, #8fd3f4, #7fe0c8); opacity: .35; }
-.who-pillars::after { content: ""; position: absolute; left: 22px; top: 26px; width: 5px; height: 5px; border-radius: 50%; background: #e0fbfc; box-shadow: 0 0 10px #8fd3f4, 0 0 22px #5b9be6;
-                      animation: wpTravel 4.5s ease-in-out infinite; }
-@keyframes wpTravel { 0% { top: 26px; opacity: 0; } 12%, 88% { opacity: 1; } 100% { top: calc(100% - 31px); opacity: 0; } }
-.who-pillars li { display: flex; align-items: center; gap: 1.1rem; padding: .75rem 0; }
-.wp-ico { position: relative; z-index: 1; flex: none; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; color: var(--c); background: #0d1118;
-          border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); transition: box-shadow .3s, border-color .3s; }
-.wp-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.who-pillars li:hover .wp-ico { border-color: var(--c); box-shadow: 0 0 28px color-mix(in srgb, var(--c) 40%, transparent); }
-.who-pillars b { display: block; font: 500 1.08rem/1.3 "Sora", sans-serif; letter-spacing: -.01em; color: var(--text); }
-.who-pillars li div span { display: block; margin-top: .15rem; font-size: .93rem; color: var(--muted); }
-html[data-theme="light"] .wp-ico { background: #fff; color: color-mix(in srgb, var(--c) 60%, #0b1520); }
-html[data-theme="light"] .who-pillars::after { background: #1561ad; box-shadow: 0 0 10px rgba(21,97,173,.5); }
-@media (prefers-reduced-motion: reduce) { .who-pillars::after { display: none; } }
+/* the heading, line by line: each line has its icon beside it and a short note underneath; a soft light travels down
+   the line joining the icons. (The real h2 is visually hidden above; these lines are its visible form.) */
+.who-lines { position: relative; list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: 1.5rem; }
+.who-lines::before { content: ""; position: absolute; left: var(--lx, 26px); top: var(--lt, 26px); height: var(--lh, 0px); width: 1px; background: linear-gradient(#5b9be6, #8fd3f4, #7fe0c8); opacity: .35; }
+.who-lines::after { content: ""; position: absolute; left: calc(var(--lx, 26px) - 2px); top: calc(var(--lt, 26px) - 2px); width: 5px; height: 5px; border-radius: 50%; background: #e0fbfc;
+                    box-shadow: 0 0 10px #8fd3f4, 0 0 22px #5b9be6; animation: wlTravel 4.5s ease-in-out infinite; }
+@keyframes wlTravel { 0% { transform: translateY(0); opacity: 0; } 12%, 88% { opacity: 1; } 100% { transform: translateY(var(--lh, 0px)); opacity: 0; } }
+html[data-theme="light"] .who-lines::after { background: #1561ad; box-shadow: 0 0 10px rgba(21,97,173,.5); }
+@media (prefers-reduced-motion: reduce) { .who-lines::after { display: none; } }
+.who-lines li { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
+.wl-ico { position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--c); background: #0d1118; margin-top: calc((1.08em - 52px) / 2);
+          font-size: clamp(2rem, 3vw, 3.1rem); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); transition: box-shadow .3s, border-color .3s; }
+.wl-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.who-lines li:hover .wl-ico { border-color: var(--c); box-shadow: 0 0 28px color-mix(in srgb, var(--c) 40%, transparent); }
+.wl-t { margin: 0; font: 400 clamp(2rem, 3vw, 3.1rem)/1.08 "Sora", sans-serif; letter-spacing: -0.03em; color: var(--text); }
+.wl-d { margin: .45rem 0 0; font-size: .98rem; color: var(--muted); max-width: 44ch; }
+.wl-t.grad { color: transparent; }
+@media (min-width: 1100px) { .wl-t.grad { white-space: nowrap; } }
+html[data-theme="light"] .wl-ico { background: #fff; color: color-mix(in srgb, var(--c) 60%, #0b1520); }
+@media (max-width: 560px) { .who-lines li { grid-template-columns: 40px minmax(0, 1fr); column-gap: .9rem; } .wl-ico { width: 40px; height: 40px; margin-top: calc((1.08em - 40px) / 2); } .wl-ico svg { width: 18px; height: 18px; } }
 .who-more { display: inline-flex; gap: .5rem; margin-top: 1.6rem; color: var(--accent-2); font-weight: 500; text-decoration: none; }
 .who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
 @media (max-width: 860px) { section.block.who { grid-template-columns: minmax(0, 1fr); } section.block.who .who-copy { padding-top: 0; } }
@@ -2288,11 +2290,11 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <section class="block who" id="who">
   <div class="about-intro">
     <p class="eyebrow reveal">Who we are</p>
-    <h2 class="reveal">One team,<br>one plan,<br><span class="grad">results you can measure.</span></h2>
-    <ul class="who-pillars reveal" aria-label="What that means for you">
-      <li style="--c:#5b9be6"><span class="wp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2a4.5 4.5 0 0 1 5 4.8"/></svg></span><div><b>One team</b><span>Strategy, design, build and marketing under one roof.</span></div></li>
-      <li style="--c:#8fd3f4"><span class="wp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg></span><div><b>One plan</b><span>Website, search, ads and follow-up, planned together.</span></div></li>
-      <li style="--c:#7fe0c8"><span class="wp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg></span><div><b>Results you can measure</b><span>Every call, form and booking traced to where it came from.</span></div></li>
+    <h2 class="st-vh">One team, one plan, results you can measure.</h2>
+    <ul class="who-lines">
+      <li class="reveal" style="--c:#5b9be6"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2a4.5 4.5 0 0 1 5 4.8"/></svg></span><div><p class="wl-t" aria-hidden="true">One team,</p><p class="wl-d">Strategy, design, build and marketing under one roof.</p></div></li>
+      <li class="reveal" style="--c:#8fd3f4"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg></span><div><p class="wl-t" aria-hidden="true">one plan,</p><p class="wl-d">Website, search, ads and follow-up, planned together.</p></div></li>
+      <li class="reveal" style="--c:#7fe0c8"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg></span><div><p class="wl-t grad" aria-hidden="true">results you can measure.</p><p class="wl-d">Every call, form and booking traced to where it came from.</p></div></li>
     </ul>
   </div>
   <div class="about-intro who-copy">
@@ -3798,6 +3800,20 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     paras.forEach(p => io.observe(p));
   })();
 </script>
+<!-- ================= WHO WE ARE: the line joining the icons runs from the first icon's centre to the last one's ================= -->
+<script>
+  (function () {
+    const ul = document.querySelector('.who-lines'); if (!ul) return;
+    function set() {
+      const ic = ul.querySelectorAll('.wl-ico'), a = ic[0], b = ic[ic.length - 1];
+      ul.style.setProperty('--lx', (a.offsetLeft + a.offsetWidth / 2) + 'px');
+      ul.style.setProperty('--lt', (a.offsetTop + a.offsetHeight / 2) + 'px');
+      ul.style.setProperty('--lh', (b.offsetTop - a.offsetTop) + 'px');
+    }
+    set(); addEventListener('resize', set); if (document.fonts) document.fonts.ready.then(set);
+  })();
+</script>
+
 <!-- ================= JUMP LINKS: a button or link to another part of the page goes straight there, with no scrolling
      past everything in between. The section it lands on fades up briefly so the jump doesn't feel like a cut. ================= -->
 <style>
