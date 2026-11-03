@@ -2330,6 +2330,27 @@ html[data-theme="light"] .gp-lh .ph2::before { background: linear-gradient(90deg
 html[data-theme="light"] .gp-lh .ph3::before { background: rgba(61,90,128,.55); }
 html[data-theme="light"] .gp-lh .ph4::before { background: linear-gradient(100deg, rgba(61,90,128,.55) 30%, rgba(255,255,255,.95) 50%, rgba(61,90,128,.55) 70%); }
 html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.22); border-top-color: rgba(23,128,106,.7); }
+
+/* ---------- SECTION RHYTHM (v142): every other chapter is a raised panel, inset from the page edges with rounded corners and
+     its own tint, so scrolling into a new section feels like a new sheet arriving. The chapters in between sit on the page
+     itself. Panels: Who we work with, Services, About, Engagement, Common questions. ---------- */
+body section.block.panel { margin: 0 var(--pm); border-radius: var(--pr); border: 1px solid rgba(152,193,217,.1); border-top: 1px solid rgba(152,193,217,.16);
+                           box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 -24px 60px -30px rgba(0,0,0,.9); }
+body { --pm: clamp(8px, 1.4vw, 20px); --pr: clamp(22px, 3vw, 40px); }
+body section.block.panel + section.block, body section.block + section.block.panel { border-top: 0; }
+body section.block + section.block.panel { border-top: 1px solid rgba(152,193,217,.16); }
+body section.block.panel.tone-slate { background: linear-gradient(180deg, #14171d, #0f1116 70%); }
+body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.16), transparent 70%), linear-gradient(180deg, #0f131a, #0c0f14); }
+body section.block.panel.navy { background: radial-gradient(60% 35% at 80% 0%, rgba(91,155,230,.14), transparent 70%), linear-gradient(180deg, #0a1730, #081226 60%, #071023); }
+body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, rgba(238,108,77,.1), transparent 70%), linear-gradient(180deg, #17110f, #110d0c); }
+/* the sections on the page itself keep the page colour, with a hairline between two of them */
+body section.block:not(.panel) { background: transparent; }
+html[data-theme="light"] body section.block.panel { border-color: rgba(19,32,46,.08); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 -18px 50px -30px rgba(19,32,46,.25); }
+html[data-theme="light"] body section.block.panel.tone-slate { background: #fff; }
+html[data-theme="light"] body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.07), transparent 70%), #fbfcfe; }
+html[data-theme="light"] body section.block.panel.navy { background: linear-gradient(180deg, #e8eef8, #e1e9f5); }
+html[data-theme="light"] body section.block.panel.warm { background: linear-gradient(180deg, #fbf4f1, #f7eeea); }
+html[data-theme="light"] body section.block + section.block.panel { border-top-color: rgba(19,32,46,.1); }
 </style>
 
 <!-- ================= LAYER 0: INTRO ================= -->
@@ -2378,7 +2399,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 </section>
 
 <!-- ================= WHO WE WORK WITH: the kinds of local businesses we help, as a grid of tiles ================= -->
-<section class="block lift" id="industries">
+<section class="block panel tone-slate" id="industries">
   <p class="eyebrow reveal">Who we work with</p>
   <h2 class="reveal">Built for local businesses where <span class="grad">every enquiry counts</span></h2>
   <p class="reveal">We work best with service businesses that rely on people nearby finding them, trusting them and getting in touch.</p>
@@ -2416,7 +2437,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   </ol>
 </section>
 
-<section class="block lift" id="services">
+<section class="block panel tone-ink" id="services">
   <p class="eyebrow reveal">Services</p>
   <h2 class="reveal">Everything you need to <span class="grad">grow smarter</span>.</h2>
   <p class="reveal">From websites and SEO to paid ads, automation, and location strategy, we help businesses build a stronger digital foundation and make smarter growth decisions.</p>
@@ -2561,7 +2582,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 
 
 <!-- ===== MERGED: About + Why + single process ===== -->
-<section class="block about navy" id="about">
+<section class="block about panel navy" id="about">
   <div class="about-intro">
     <p class="eyebrow reveal">About Envision</p>
     <h2 class="reveal">Digital marketing meets <span class="grad">smarter decision-making</span>.</h2>
@@ -2750,7 +2771,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 </section>
 
 
-<section class="block lift" id="work">
+<section class="block" id="work">
   <p class="eyebrow reveal">Our work</p>
   <h2 class="reveal">Businesses we have <span class="grad">helped grow</span></h2>
   <p class="reveal">A look at websites we have built for local businesses. Click through to see them live.</p>
@@ -2797,7 +2818,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 </section>
 
 
-<section class="block warm" id="offers">
+<section class="block panel warm" id="offers">
   <p class="eyebrow reveal">Engagement</p>
   <h2 class="reveal">Clear scope, clear process, <span class="grad">clear outcomes</span></h2>
   <div class="two">
@@ -2873,7 +2894,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   </div>
 </section>
 
-<section class="block" id="faq">
+<section class="block panel tone-slate" id="faq">
   <p class="eyebrow reveal">Common questions</p>
   <h2 class="reveal">Honest answers to what clients usually <span class="grad">ask first</span></h2>
   <div class="faq">
