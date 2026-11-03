@@ -44,6 +44,7 @@ a { color: inherit; }
 .nav-cta { display: inline-flex; align-items: center; gap: .8rem; padding: 0 1.4rem; margin-left: .6rem; text-decoration: none; background: var(--text); color: var(--bg);
            font: 500 .8rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 .nav-cta:hover { background: var(--ink); color: var(--bg); }
+.nav-cta .nc-txt { font-weight: inherit; } .nav-cta .nc-long { font-style: normal; }
 
 /* hero */
 .hero { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 4rem); }
@@ -178,7 +179,7 @@ a { color: inherit; }
 @media (max-width: 560px) {
   .steps { grid-template-columns: 1fr; }
   .pager { grid-template-columns: 1fr; } .pager .next { text-align: left; }
-  .nav-cta { padding: 0 .9rem; font-size: .7rem; letter-spacing: .1em; } .nav-cta span { display: none; }
+  .nav-cta { padding: 0 .9rem; font-size: .7rem; letter-spacing: .1em; } .nav-cta span, .nav-cta .nc-long { display: none; }
   .nav-end { padding-left: .4rem; } .theme-btn { width: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {

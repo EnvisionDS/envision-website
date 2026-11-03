@@ -8,7 +8,7 @@
   A simple dark landing page:
     LAYER 0: Intro — the Envision logo builds itself, then its eight rings fly out and become the eight
              letters of "envision", and the word shrinks and docks onto the logo in the top-left of the nav.
-    NAV:     logo · Services / About / Our work · pill button
+    NAV:     logo (home) · Services / Our work / About / Contact · discovery-call button
     HERO:    big centred headline with gradient words, pill CTA, and the company logo built from
              ~2,000 tiny cubes (three.js) rising from the bottom of the screen.
     SERVICES: one large card per service; scrolling stacks them into a deck under the nav.
@@ -1082,6 +1082,7 @@
              position: relative; overflow: hidden; isolation: isolate; transition: color .3s; }
   .nav-cta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #1561ad, #2f80c9); transform: translateX(-101%); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
   .nav-cta:hover { color: #fff; } .nav-cta:hover::before { transform: none; }
+  .nav-cta .nc-txt { font-weight: inherit; } .nav-cta .nc-long { font-style: normal; }
   .nav-cta span { transition: transform .25s; } .nav-cta:hover span { transform: translateX(3px); }
   nav.blue { --rule: rgba(255,255,255,.35); }
   nav.blue .nav-cta { background: #fff; color: #1561ad; }
@@ -1109,7 +1110,7 @@
     .nav-end { padding-left: .4rem; }
     .theme-btn { width: 40px; height: 44px; }
     .nav-cta { height: 44px; padding: 0 .85rem; font-size: .66rem; letter-spacing: .1em; gap: .5rem; margin-left: .3rem; white-space: nowrap; }
-    .nav-cta span { display: none; }
+    .nav-cta span, .nav-cta .nc-long { display: none; }
     .menu-btn { border-radius: 0; border: 0; border-left: 1px solid var(--rule); width: 44px; }
     .nav-drop { display: none; }
   }
@@ -2366,8 +2367,8 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <a class="skip" href="#industries">Skip to content</a>
 <nav>
   <a class="logo waiting" id="logo" href="#hero" aria-label="envision home"><span id="logoText"><span class="l">e</span><span class="l">n</span><span class="l">v</span><span class="l">i</span><span class="l">s</span><span class="l">i</span><span class="l">o</span><span class="l">n</span></span></a>
-  <div class="links" id="topLinks"><a href="#hero">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#work">Our work</a><a href="#faq">FAQ</a></div>
-  <div class="nav-end"><button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><a class="nav-cta" id="navPill" href="contact.html">Contact us<span aria-hidden="true">&rarr;</span></a></div>
+  <div class="links" id="topLinks"><a href="#services">Services</a><a href="#work">Our work</a><a href="#about">About</a><a href="contact.html">Contact</a></div>
+  <div class="nav-end"><button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button><a class="nav-cta" id="navPill" href="contact.html"><b class="nc-txt"><em class="nc-long">Book a </em>Discovery call</b><span aria-hidden="true">&rarr;</span></a></div>
   <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
   <div class="mobile-menu" id="mobileMenu" hidden></div>
   <div class="nav-drop" id="navDrop" role="menu" aria-label="Services"><a href="website-design.html" style="--c:#5b9be6">Website design</a><a href="seo.html" style="--c:#7fe0c8">SEO and content</a><a href="paid-ads.html" style="--c:#f2b84b">Paid ads</a><a href="social-media.html" style="--c:#f48fb1">Social media</a><a href="conversion.html" style="--c:#b58cf0">Conversion</a><a href="email-crm.html" style="--c:#4fc3f7">Email and CRM</a><a href="automation.html" style="--c:#9ccc65">Automation</a><a href="location-strategy.html" style="--c:#ee6c4d">Location strategy</a><a class="all" href="#finder">Not sure? Find your starting point &rarr;</a></div>
@@ -3226,13 +3227,13 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <script>
   (function () {
     const nav = document.querySelector('nav');
-    const links = [...document.querySelectorAll('#topLinks a')];
+    const links = [...document.querySelectorAll('#topLinks a[href^="#"]')];
     const targets = links.map(a => document.querySelector(a.getAttribute('href')));
     let ticking = false;
     function update() {
       ticking = false;
       const line = nav.offsetHeight + 2;
-      let cur = 0, best = -Infinity;
+      let cur = -1, best = -Infinity;
       targets.forEach((el, i) => { const t = el ? el.getBoundingClientRect().top : Infinity; if (t <= line && t > best) { best = t; cur = i; } });
       links.forEach((a, i) => a.classList.toggle('on', i === cur));
     }
@@ -3366,9 +3367,10 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       if (want && !isOpen()) show(null); else if (!want && isOpen()) hide();
     });
 
-    document.querySelectorAll('a[href="contact.html"], a[href^="mailto:"]').forEach(a => {
-      if (a.closest('footer')) return;
-      a.addEventListener('click', e => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); open(a); });
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href="contact.html"], a[href^="mailto:"]');
+      if (!a || a.closest('footer, #contactFrame') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault(); open(a);
     });
     modal.addEventListener('click', e => { if (!frame.contains(e.target)) close(); });
     addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) close(); });
