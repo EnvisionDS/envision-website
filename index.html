@@ -768,6 +768,15 @@
                 background: radial-gradient(closest-side, rgba(143,211,244,.15), rgba(91,155,230,.05) 55%, transparent); opacity: 0;
                 transition: transform .17s linear, opacity .5s ease; }
   .slot-torch.on { opacity: 1; }
+  /* the backspace cursor, and letters taken away by it (gone at once, no fade) */
+  .slot-caret { position: absolute; left: 0; top: 0; width: .055em; height: 1em; border-radius: 2px; background: #8fd3f4; box-shadow: 0 0 12px rgba(143,211,244,.7);
+                opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .slot-caret.on { opacity: 1; animation: caretBlink 1s steps(1) infinite; }
+  .slot-caret.typing { animation: none; }
+  @keyframes caretBlink { 50% { opacity: 0; } }
+  #slot span.gone { opacity: 0; transition: none; }
+  #slot .grad > span.gone { visibility: hidden; }
+  html[data-theme="light"] .slot-caret { background: #1561ad; box-shadow: 0 0 10px rgba(21,97,173,.45); }
   @media (max-width: 900px) { #hero .scrollcue { display: none; } }
 
   /* ---------- HERO LENS (v116): a calm aperture of thin rings, like the iris of an eye, drawn behind the copy.
@@ -2191,34 +2200,74 @@ body section.block.panel.navy { background: radial-gradient(60% 35% at 80% 0%, r
 body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, rgba(238,108,77,.1), transparent 70%), linear-gradient(180deg, #17110f, #110d0c); }
 /* the sections on the page itself keep the page colour, with a hairline between two of them */
 body section.block:not(.panel) { background: transparent; }
-/* WHO WE ARE: headline left, the brief right; one column on narrow screens */
-section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
-section.block.who .who-copy { padding-top: 2.1rem; }
-section.block.who .who-copy p { font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; }
-section.block.who .who-copy p + p { margin-top: 1.1rem; }
-/* the heading, line by line: each line has its icon beside it and a short note underneath; a soft light travels down
-   the line joining the icons. (The real h2 is visually hidden above; these lines are its visible form.) */
-.who-lines { position: relative; list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: 1.5rem; }
-.who-lines::before { content: ""; position: absolute; left: var(--lx, 26px); top: var(--lt, 26px); height: var(--lh, 0px); width: 1px; background: linear-gradient(#5b9be6, #8fd3f4, #7fe0c8); opacity: .35; }
-.who-lines::after { content: ""; position: absolute; left: calc(var(--lx, 26px) - 2px); top: calc(var(--lt, 26px) - 2px); width: 5px; height: 5px; border-radius: 50%; background: #e0fbfc;
-                    box-shadow: 0 0 10px #8fd3f4, 0 0 22px #5b9be6; animation: wlTravel 4.5s ease-in-out infinite; }
-@keyframes wlTravel { 0% { transform: translateY(0); opacity: 0; } 12%, 88% { opacity: 1; } 100% { transform: translateY(var(--lh, 0px)); opacity: 0; } }
-html[data-theme="light"] .who-lines::after { background: #1561ad; box-shadow: 0 0 10px rgba(21,97,173,.5); }
-@media (prefers-reduced-motion: reduce) { .who-lines::after { display: none; } }
-.who-lines li { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
+/* NAV, PAST THE HERO: once the hero has scrolled by, the bar grows a little and turns deep company blue (the script
+   further down adds .scrolled). On phones it only changes colour. */
+nav { transition: background .45s ease, box-shadow .45s ease, padding .4s cubic-bezier(.2,.8,.2,1); }
+nav::after { transition: top .4s cubic-bezier(.2,.8,.2,1), bottom .4s cubic-bezier(.2,.8,.2,1), border-color .45s; }
+nav .nav-cta { transition: color .3s, height .4s cubic-bezier(.2,.8,.2,1), padding .4s cubic-bezier(.2,.8,.2,1), font-size .4s; }
+nav .theme-btn { transition: height .4s cubic-bezier(.2,.8,.2,1), width .4s, background .2s; }
+#logoText, nav .links a { transition: font-size .4s cubic-bezier(.2,.8,.2,1), color .2s, background-size .35s cubic-bezier(.2,.8,.2,1), opacity .2s; }
+nav.scrolled { background: linear-gradient(90deg, #0a1a2f, #0f2b4f 55%, #0c2242); box-shadow: 0 12px 34px rgba(0,0,0,.4); --rule: rgba(143,211,244,.3); }
+@media (min-width: 761px) {
+  nav.scrolled { padding-top: 16px; padding-bottom: 16px; }
+  nav.scrolled::after { top: 16px; bottom: 16px; }
+  nav.scrolled > * { min-height: 60px; }
+  nav.scrolled #logoText { font-size: 1.62rem; }
+  nav.scrolled .links a { font-size: 1.03rem; }
+  nav.scrolled .nav-cta { height: 60px; padding: 0 1.9rem; font-size: .88rem; }
+  nav.scrolled .theme-btn { height: 60px; width: 54px; }
+  nav.scrolled > .nav-drop.mega { top: calc(100% - 16px); }
+}
+html[data-theme="light"] nav.scrolled { --rule: rgba(224,251,252,.35); box-shadow: 0 12px 34px rgba(19,32,46,.25); }
+html[data-theme="light"] nav.scrolled #logoText span, html[data-theme="light"] nav.scrolled .links a, html[data-theme="light"] nav.scrolled .theme-btn { color: #e0fbfc; }
+html[data-theme="light"] nav.scrolled .links a.on, html[data-theme="light"] nav.scrolled .links a:hover { color: #8fd3f4; }
+html[data-theme="light"] nav.scrolled .nav-cta { background: #e0fbfc; color: #0b1520; }
+html[data-theme="light"] nav.scrolled .menu-btn span { background: #e0fbfc; }
+
+/* WHO WE ARE: three rows. On the left each line of the heading with its icon and a short note; on the right, the
+   paragraph that goes with it, so each pair lines up. A thin line (placed by the script) joins the icons, and a soft
+   light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */
+section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2.6rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
+section.block.who > .about-intro { grid-column: 1 / -1; margin-bottom: -1.2rem; }
+.wl-row { position: relative; z-index: 1; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
+.who-p { margin: 0; font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; padding-top: .35rem; }
+.who-more { grid-column: 2; display: inline-flex; gap: .5rem; margin-top: -1rem; color: var(--accent-2); font-weight: 500; text-decoration: none; justify-self: start; }
+.who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
 .wl-ico { position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--c); background: #0d1118; margin-top: calc((1.08em - 52px) / 2);
           font-size: clamp(2rem, 3vw, 3.1rem); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); transition: box-shadow .3s, border-color .3s; }
 .wl-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.who-lines li:hover .wl-ico { border-color: var(--c); box-shadow: 0 0 28px color-mix(in srgb, var(--c) 40%, transparent); }
+.wl-row:hover .wl-ico { border-color: var(--c); box-shadow: 0 0 28px color-mix(in srgb, var(--c) 40%, transparent); }
 .wl-t { margin: 0; font: 400 clamp(2rem, 3vw, 3.1rem)/1.08 "Sora", sans-serif; letter-spacing: -0.03em; color: var(--text); }
-.wl-d { margin: .45rem 0 0; font-size: .98rem; color: var(--muted); max-width: 44ch; }
 .wl-t.grad { color: transparent; }
 @media (min-width: 1100px) { .wl-t.grad { white-space: nowrap; } }
-html[data-theme="light"] .wl-ico { background: #fff; color: color-mix(in srgb, var(--c) 60%, #0b1520); }
-@media (max-width: 560px) { .who-lines li { grid-template-columns: 40px minmax(0, 1fr); column-gap: .9rem; } .wl-ico { width: 40px; height: 40px; margin-top: calc((1.08em - 40px) / 2); } .wl-ico svg { width: 18px; height: 18px; } }
-.who-more { display: inline-flex; gap: .5rem; margin-top: 1.6rem; color: var(--accent-2); font-weight: 500; text-decoration: none; }
-.who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
-@media (max-width: 860px) { section.block.who { grid-template-columns: minmax(0, 1fr); } section.block.who .who-copy { padding-top: 0; } }
+.wl-d { margin: .45rem 0 0; font-size: .98rem; color: var(--muted); max-width: 44ch; }
+.wl-line { position: absolute; z-index: 0; left: var(--lx, 0); top: var(--lt, 0); height: var(--lh, 0px); width: 1px; pointer-events: none; --p: 1; --ease: cubic-bezier(.45,0,.25,1); }
+.wl-line::before { content: ""; position: absolute; inset: 0; background: linear-gradient(#5b9be6, #8fd3f4, #7fe0c8); opacity: .35; transform-origin: top; transform: scaleY(var(--p)); transition: transform 1.1s var(--ease); }
+.wl-line i { position: absolute; left: -2px; top: -2px; width: 5px; height: 5px; border-radius: 50%; background: #e0fbfc; box-shadow: 0 0 10px #8fd3f4, 0 0 22px #5b9be6;
+             transform: translateY(calc(var(--lh, 0px) * var(--p))); transition: transform 1.1s var(--ease); }
+.wl-line.loop i { transition: none; animation: wlTravel 4.5s ease-in-out infinite; }
+@keyframes wlTravel { 0% { transform: translateY(0); opacity: 0; } 12%, 88% { opacity: 1; } 100% { transform: translateY(var(--lh, 0px)); opacity: 0; } }
+/* the reading sequence (the script adds .seq): each line, its note and its paragraph appear as the light reaches its icon */
+.who .wl-t, .who .wl-d, .who .who-p, .who .wl-ico { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.15,1), filter .7s ease, box-shadow .3s, border-color .3s; }
+.who.seq .wl-row:not(.lit) .wl-t, .who.seq .wl-row:not(.lit) .wl-d, .who.seq .who-p:not(.lit) { opacity: 0; transform: translateY(14px); }
+.who.seq .wl-row .wl-d { transition-delay: .12s; }
+.who.seq .wl-row:not(.lit) .wl-ico { opacity: .35; filter: grayscale(1); box-shadow: none; }
+.wl-ico.ping { animation: wlPing .9s ease-out; }
+@keyframes wlPing { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 70%, transparent), 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); }
+                    100% { box-shadow: 0 0 0 16px transparent, 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); } }
+html[data-theme="light"] .wl-line i { background: #1561ad; box-shadow: 0 0 10px rgba(21,97,173,.5); }
+@media (prefers-reduced-motion: reduce) { .wl-line i { display: none; } }
+@media (max-width: 860px) {
+  section.block.who { grid-template-columns: minmax(0, 1fr); row-gap: 1rem; }
+  section.block.who > .about-intro { margin-bottom: 0; }
+  .who-p { padding: 0 0 1.4rem 72px; font-size: 1rem; }
+  .who-more { grid-column: 1; margin: 0 0 0 72px; }
+}
+@media (max-width: 560px) {
+  .wl-row { grid-template-columns: 40px minmax(0, 1fr); column-gap: .9rem; }
+  .wl-ico { width: 40px; height: 40px; margin-top: calc((1.08em - 40px) / 2); } .wl-ico svg { width: 18px; height: 18px; }
+  .who-p, .who-more { padding-left: 55px; } .who-more { margin-left: 0; }
+}
 html[data-theme="light"] body section.block.panel { border-color: rgba(19,32,46,.08); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 -18px 50px -30px rgba(19,32,46,.25); }
 html[data-theme="light"] body section.block.panel.tone-slate { background: #fff; }
 html[data-theme="light"] body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.07), transparent 70%), #fbfcfe; }
@@ -2277,7 +2326,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   <div class="hero-wrap">
     <p class="hero-eyebrow vf"><span class="vf-ret" aria-hidden="true"><i></i></span><span class="vf-t">Digital solutions agency</span><i class="vf-sep" aria-hidden="true"></i><span class="vf-t">Melbourne</span></p>
     <p class="hero-svc" id="heroSvc" aria-hidden="true"></p>
-    <h1 id="slot"><span class="slot-in">We bring your <span class="grad">visions</span> to life, and the <span class="grad">customers</span> to you</span></h1>
+    <h1 id="slot"><span class="slot-in">We bring your <span class="grad">visions</span> to life, and the <span class="grad">customers</span> to you.</span></h1>
     <p class="sub">We're a Melbourne team of strategists, developers and creative thinkers. Websites, search, ads and automation, planned as one system that brings in real enquiries.</p>
     <div class="hero-ctas">
       <a class="pill solid" href="#services">Explore services</a>
@@ -2290,19 +2339,16 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <section class="block who" id="who">
   <div class="about-intro">
     <p class="eyebrow reveal">Who we are</p>
-    <h2 class="st-vh">One team, one plan, results you can measure.</h2>
-    <ul class="who-lines">
-      <li class="reveal" style="--c:#5b9be6"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2a4.5 4.5 0 0 1 5 4.8"/></svg></span><div><p class="wl-t" aria-hidden="true">One team,</p><p class="wl-d">Strategy, design, build and marketing under one roof.</p></div></li>
-      <li class="reveal" style="--c:#8fd3f4"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg></span><div><p class="wl-t" aria-hidden="true">one plan,</p><p class="wl-d">Website, search, ads and follow-up, planned together.</p></div></li>
-      <li class="reveal" style="--c:#7fe0c8"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg></span><div><p class="wl-t grad" aria-hidden="true">results you can measure.</p><p class="wl-d">Every call, form and booking traced to where it came from.</p></div></li>
-    </ul>
+    <h2 class="st-vh">One Team. One Plan. Results You Can Measure.</h2>
   </div>
-  <div class="about-intro who-copy">
-    <p class="reveal">Envision Digital Solutions is a Melbourne team of strategists, developers and creative thinkers. We help local businesses get found, earn trust and turn interest into real enquiries.</p>
-    <p class="reveal">Instead of a website from one place and ads from another, we plan your website, search, ads, social media and follow-up as one connected system, built around your goals and your budget.</p>
-    <p class="reveal">Every decision is backed by numbers you can see: calls, forms and bookings traced back to where they came from, and reported in plain English. So you always know what's working, and what we're doing next.</p>
-    <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
-  </div>
+  <div class="wl-row reveal" style="--c:#5b9be6"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2a4.5 4.5 0 0 1 5 4.8"/></svg></span><div><p class="wl-t" aria-hidden="true">One Team.</p><p class="wl-d">Strategy, design, build and marketing under one roof.</p></div></div>
+  <p class="who-p reveal">Envision Digital Solutions is a Melbourne team of strategists, developers and creative thinkers. We help local businesses get found, earn trust and turn interest into real enquiries.</p>
+  <div class="wl-row reveal" style="--c:#8fd3f4"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg></span><div><p class="wl-t" aria-hidden="true">One Plan.</p><p class="wl-d">Website, search, ads and follow-up, planned together.</p></div></div>
+  <p class="who-p reveal">Instead of a website from one place and ads from another, we plan your website, search, ads, social media and follow-up as one connected system, built around your goals and your budget.</p>
+  <div class="wl-row reveal" style="--c:#7fe0c8"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg></span><div><p class="wl-t grad" aria-hidden="true">Results You Can Measure.</p><p class="wl-d">Every call, form and booking traced to where it came from.</p></div></div>
+  <p class="who-p reveal">Every decision is backed by numbers you can see: calls, forms and bookings traced back to where they came from, and reported in plain English. So you always know what's working, and what we're doing next.</p>
+  <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
+  <span class="wl-line" aria-hidden="true"><i></i></span>
 </section>
 
 <section class="block panel tone-ink" id="services">
@@ -2823,14 +2869,14 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 
 <!-- ================= ROTATING HEADLINES: read by torchlight =================
      Each title is a list of pieces; a piece marked g:true is painted with the brand gradient. A soft light travels across
-     the title letter by letter, like a torch, and each letter appears as the light reaches it. After a pause the title
-     fades and the light reads in the next. The first is the brand line;
+     the title letter by letter, like a torch, and each letter appears as the light reaches it. After a pause a cursor
+     appears at the end and the title is backspaced away, letter by letter, before the light reads in the next. The first is the brand line;
      the rest are one hook line for each main group of services. -->
 <script>
   (async function () {
     const h1 = document.getElementById('slot');
     const TITLES = [
-      Object.assign([{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
+      Object.assign([{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you.' }],
         { label: null }),
       Object.assign([{ t: 'A website that turns ' }, { t: 'visitors', g: true }, { t: ' into ' }, { t: 'enquiries.', g: true }],
         { label: ['Website design', 'Conversion'] }),
@@ -2846,7 +2892,8 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const torch = Object.assign(document.createElement('i'), { className: 'slot-torch' });
-    torch.setAttribute('aria-hidden', 'true');
+    const caret = Object.assign(document.createElement('i'), { className: 'slot-caret' });
+    torch.setAttribute('aria-hidden', 'true'); caret.setAttribute('aria-hidden', 'true');
     let chars = [];
     // one <span> per letter, all unseen to begin with, inside a block that the headline box centres
     function build(title, box, hidden) {
@@ -2859,7 +2906,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       box.textContent = ''; box.appendChild(inner);
       return letters;
     }
-    function layout(title) { chars = build(title, h1, true); h1.appendChild(torch); }
+    function layout(title) { chars = build(title, h1, true); h1.appendChild(torch); h1.appendChild(caret); }
     const at = sp => { const b = h1.getBoundingClientRect(), r = sp.getBoundingClientRect(); return `translate(${r.left - b.left + r.width / 2}px, ${r.top - b.top + r.height / 2}px)`; };
     // the torch travels across the title; each letter lights up as it passes, and stays lit
     async function read() {
@@ -2872,15 +2919,35 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       }
       torch.classList.remove('on');
     }
+    // the cursor sits just after a letter (or before the first one)
+    function place(sp, before) {
+      const b = h1.getBoundingClientRect(), r = sp.getBoundingClientRect();
+      caret.style.height = r.height * .82 + 'px';
+      caret.style.transform = `translate(${(before ? r.left : r.right) - b.left}px, ${r.top - b.top + r.height * .09}px)`;
+    }
+    // backspace: the cursor blinks at the end for a moment, then the letters go one by one from the last
+    async function erase() {
+      const last = chars.length - 1;
+      place(chars[last]); caret.classList.add('on');
+      await sleep(700);
+      caret.classList.add('typing');
+      for (let k = last; k >= 0; k--) {
+        chars[k].classList.add('gone');
+        if (k > 0) place(chars[k - 1]); else place(chars[0], true);
+        await sleep(chars[k].textContent === ' ' ? 45 : 28);
+      }
+      caret.classList.remove('typing');
+      await sleep(380);
+      caret.classList.remove('on');
+    }
     // the services line under the fixed label: fades out with the old headline, and in with the new one
     const svc = document.getElementById('heroSvc');
     function relabel(label) {
       if (!svc) return;
       svc.classList.remove('on');
       if (!label) return;
-      setTimeout(() => { svc.innerHTML = label.map(t => `<span>${t}</span>`).join('<i></i>'); svc.classList.add('on'); }, FADE + 200);
+      setTimeout(() => { svc.innerHTML = label.map(t => `<span>${t}</span>`).join('<i></i>'); svc.classList.add('on'); }, FADE + 900);
     }
-    const fade = to => { const a = h1.animate([{ opacity: 1 - to }, { opacity: to }], { duration: FADE, easing: 'ease' }); h1.style.opacity = to; return a.finished; };
     // Reserve the height of the tallest title so the copy around the headline never moves between titles.
     // The hidden copy is absolutely placed inside the hero column, so it gets the same width the real headline would.
     function reserve() {
@@ -2903,11 +2970,11 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     reserve();
     await sleep(450);
     for (let i = 0, first = true; ; i = (i + 1) % TITLES.length, first = false) {   // …then each title is read, held, and swapped for the next
-      if (!first) { layout(TITLES[i]); h1.style.opacity = 1; await sleep(300); }
+      if (!first) { layout(TITLES[i]); await sleep(300); }
       await read();
       await sleep(HOLD);
-      relabel(TITLES[(i + 1) % TITLES.length].label);            // the services line changes over while the title fades
-      await fade(0);
+      relabel(TITLES[(i + 1) % TITLES.length].label);            // the services line changes over while the title is backspaced
+      await erase();
     }
   })();
 </script>
@@ -2963,12 +3030,21 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   })();
 </script>
 
-<!-- ================= NAV COLOUR: the bar stays put; once the hero has scrolled out from under it, it turns company blue ================= -->
+<!-- ================= NAV, PAST THE HERO: once the hero has scrolled out from under the bar, it grows a little and turns
+     deep blue; back over the hero it returns to normal ================= -->
 <script>
   (function () {
     const nav = document.querySelector('nav'), hero = document.getElementById('hero');
-    // v126: the bar now keeps one colour all the way down (the user asked to drop the switch to blue)
     nav.classList.remove('blue');
+    if (!hero) return;
+    let on = null, queued = false;
+    function check() {
+      queued = false;
+      const past = hero.getBoundingClientRect().bottom <= nav.offsetHeight;
+      if (past !== on) { on = past; nav.classList.toggle('scrolled', past); }
+    }
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(check); } }, { passive: true });
+    check();
   })();
 </script>
 
@@ -3737,6 +3813,8 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; frame(); }); } }, { passive: true });
     addEventListener('resize', () => { setNav(); frame(); });
     setNav(); frame();
+    // the bar grows once past the hero, so keep the cards' resting place in step with its height
+    if ('ResizeObserver' in window) new ResizeObserver(() => { setNav(); frame(); }).observe(nav);
 
     // a sticky card's own position moves, so work out where it sits in the page before it sticks
     function goTo(id, smooth) {
@@ -3800,17 +3878,43 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     paras.forEach(p => io.observe(p));
   })();
 </script>
-<!-- ================= WHO WE ARE: the line joining the icons runs from the first icon's centre to the last one's ================= -->
+<!-- ================= WHO WE ARE (JS half): the line joining the icons runs from the first icon's centre to the last one's.
+     When the section comes into view the first line shows, then the light travels down the line and each line (with its
+     note and its paragraph) appears as the light reaches its icon; after that the light keeps drifting down on a loop. ================= -->
 <script>
   (function () {
-    const ul = document.querySelector('.who-lines'); if (!ul) return;
+    const sec = document.getElementById('who'), line = sec && sec.querySelector('.wl-line'); if (!line) return;
+    const rows = [...sec.querySelectorAll('.wl-row')], paras = [...sec.querySelectorAll('.who-p')], icons = rows.map(r => r.querySelector('.wl-ico'));
+    let stops = [0, .5, 1];
     function set() {
-      const ic = ul.querySelectorAll('.wl-ico'), a = ic[0], b = ic[ic.length - 1];
-      ul.style.setProperty('--lx', (a.offsetLeft + a.offsetWidth / 2) + 'px');
-      ul.style.setProperty('--lt', (a.offsetTop + a.offsetHeight / 2) + 'px');
-      ul.style.setProperty('--lh', (b.offsetTop - a.offsetTop) + 'px');
+      const pos = el => { let y = 0, x = 0; for (let n = el; n && n !== sec; n = n.offsetParent) { x += n.offsetLeft; y += n.offsetTop; } return [x, y]; };
+      const ys = icons.map(i => pos(i)[1]), a = icons[0], h = ys[ys.length - 1] - ys[0];
+      sec.style.setProperty('--lx', (pos(a)[0] + a.offsetWidth / 2) + 'px');
+      sec.style.setProperty('--lt', (ys[0] + a.offsetHeight / 2) + 'px');
+      sec.style.setProperty('--lh', h + 'px');
+      stops = ys.map(y => h ? (y - ys[0]) / h : 0);
     }
     set(); addEventListener('resize', set); if (document.fonts) document.fonts.ready.then(set);
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { line.classList.add('loop'); return; }
+    // the sequence replaces the usual rise-on-scroll for these pieces
+    rows.concat(paras).forEach(el => el.classList.remove('reveal'));
+    sec.classList.add('seq'); line.style.setProperty('--p', 0);
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const light = k => { rows[k].classList.add('lit'); if (paras[k]) paras[k].classList.add('lit'); icons[k].classList.add('ping'); };
+    async function play() {
+      light(0);
+      for (let k = 1; k < rows.length; k++) {
+        await wait(k === 1 ? 700 : 350);
+        line.style.setProperty('--p', stops[k]);
+        await wait(1100);
+        light(k);
+      }
+      await wait(1600);
+      line.classList.add('loop');
+    }
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); play(); } }, { threshold: .35 });
+    io.observe(sec);
   })();
 </script>
 
