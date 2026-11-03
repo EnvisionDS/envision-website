@@ -2251,6 +2251,7 @@ html[data-theme="light"] nav.scrolled .menu-btn span { background: #e0fbfc; }
    light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */
 section.block.who { padding-top: 22vh; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 2.6rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
 section.block.who > .about-intro { align-self: start; }
+section.block.who > .who-facts { grid-column: 1 / -1; margin-top: 1.6rem; }
 section.block.who > .about-intro { grid-column: 1 / -1; margin-bottom: -1.2rem; }
 .wl-row { position: relative; z-index: 1; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
 .who-p { margin: 0; font-size: 1.08rem; line-height: 1.6; color: var(--text); opacity: .9; max-width: 54ch; }
@@ -2373,6 +2374,12 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   <div class="who-cell">
     <p class="who-p reveal">Your growth is our measure: every call, form and booking tracked and reported in plain English.</p>
     <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="bo-facts who-facts reveal">
+    <div><b>1 team</b><span>Strategy to launch under one roof</span></div>
+    <div><b data-to="19" data-suf=" services">19 services</b><span>Across websites, marketing and automation</span></div>
+    <div><b>Weekly</b><span>Plain-English progress reports</span></div>
+    <div><b>1 day</b><span>Usual reply time on business days</span></div>
   </div>
   <span class="wl-line" aria-hidden="true"><i></i></span>
 </section>
@@ -3737,9 +3744,9 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       a.addEventListener('pointermove', e => { const r = a.getBoundingClientRect(); a.style.setProperty('--lx', (e.clientX - r.left) + 'px'); a.style.setProperty('--ly', (e.clientY - r.top) + 'px'); });
       a.addEventListener('pointerleave', () => { a.style.setProperty('--lx', '-999px'); a.style.setProperty('--ly', '-999px'); });
     });
-    const facts = [...document.querySelectorAll('.bo-facts b[data-to]')];
-    function count() {
-      if (reduce) return;
+    function count(box) {
+      const facts = [...box.querySelectorAll('b[data-to]')];
+      if (reduce || !facts.length) return;
       facts.forEach(b => b.textContent = '0' + b.dataset.suf);
       const t0 = performance.now();
       (function f(now) { const t = Math.min(1, (now - t0) / 1500), e = 1 - Math.pow(1 - t, 3); facts.forEach(b => b.textContent = Math.round(+b.dataset.to * e) + b.dataset.suf); if (t < 1) requestAnimationFrame(f); })(t0);
@@ -3750,8 +3757,8 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
       setTimeout(() => steps[steps.length - 1].classList.add('lit'), 900 + steps.length * 260);
     }, { threshold: .3 });
     io.observe(ol);
-    const fo = new IntersectionObserver(es => { if (es[0].isIntersecting) { fo.disconnect(); count(); } }, { threshold: .6 });
-    const fb = document.querySelector('.bo-facts'); if (fb) fo.observe(fb);
+    const fo = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { fo.unobserve(en.target); count(en.target); } }), { threshold: .6 });
+    document.querySelectorAll('.bo-facts').forEach(b => fo.observe(b));
   })();
 </script>
 
