@@ -2249,12 +2249,12 @@ html[data-theme="light"] nav.scrolled .menu-btn span { background: #e0fbfc; }
 /* WHO WE ARE: three rows. On the left each line of the heading with its icon and a short note; on the right, the
    paragraph that goes with it, so each pair lines up. A thin line (placed by the script) joins the icons, and a soft
    light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */
-section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, 1fr) auto; gap: 2.2rem clamp(2.5rem, 7vw, 7rem); align-items: center; }
-section.block.who > .about-intro, .who-more { align-self: start; }
+section.block.who { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 2.2rem clamp(2.5rem, 7vw, 7rem); align-items: end; }
+section.block.who > .about-intro { align-self: start; }
 section.block.who > .about-intro { grid-column: 1 / -1; margin-bottom: -1.2rem; }
 .wl-row { position: relative; z-index: 1; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 1.3rem; align-items: start; }
 .who-p { margin: 0; font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; }
-.who-more { grid-column: 2; display: inline-flex; gap: .5rem; margin-top: -.6rem; color: var(--accent-2); font-weight: 500; text-decoration: none; justify-self: start; }
+.who-more { display: inline-flex; gap: .5rem; margin-top: 1.1rem; color: var(--accent-2); font-weight: 500; text-decoration: none; justify-self: start; }
 .who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
 .wl-ico { position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--c); background: #0d1118; margin-top: calc((1.08em - 52px) / 2);
           font-size: clamp(2rem, 3vw, 3.1rem); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); transition: box-shadow .3s, border-color .3s; }
@@ -2272,7 +2272,8 @@ section.block.who > .about-intro { grid-column: 1 / -1; margin-bottom: -1.2rem; 
 @keyframes wlTravel { 0% { transform: translateY(0); opacity: 0; } 12%, 88% { opacity: 1; } 100% { transform: translateY(var(--lh, 0px)); opacity: 0; } }
 /* the reading sequence (the script adds .seq): each line, its note and its paragraph appear as the light reaches its icon */
 .who .wl-t, .who .wl-d, .who .who-p, .who .wl-ico { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.15,1), filter .7s ease, box-shadow .3s, border-color .3s; }
-.who.seq .wl-row:not(.lit) .wl-t, .who.seq .wl-row:not(.lit) .wl-d, .who.seq .who-p:not(.lit) { opacity: 0; transform: translateY(14px); }
+.who.seq .wl-row:not(.lit) .wl-t, .who.seq .wl-row:not(.lit) .wl-d, .who.seq .who-p:not(.lit), .who.seq .who-p:not(.lit) + .who-more { opacity: 0; transform: translateY(14px); }
+.who .who-more { transition: opacity .7s ease .15s, transform .7s cubic-bezier(.2,.75,.15,1) .15s; }
 .who.seq .wl-row .wl-d { transition-delay: .12s; }
 .who.seq .wl-row:not(.lit) .wl-ico { opacity: .35; filter: grayscale(1); box-shadow: none; }
 .wl-ico.ping { animation: wlPing .9s ease-out; }
@@ -2284,7 +2285,7 @@ html[data-theme="light"] .wl-line i { background: #1561ad; box-shadow: 0 0 10px 
   section.block.who { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 1rem; align-items: start; }
   section.block.who > .about-intro { margin-bottom: 0; }
   .who-p { padding: 0 0 1.4rem 72px; font-size: 1rem; }
-  .who-more { grid-column: 1; margin: 0 0 0 72px; }
+  .who-more { margin: 0 0 0 72px; }
 }
 @media (max-width: 560px) {
   .wl-row { grid-template-columns: 40px minmax(0, 1fr); column-gap: .9rem; }
@@ -2365,12 +2366,14 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
     <h2 class="st-vh">One Team. One Plan. One Goal.</h2>
   </div>
   <div class="wl-row reveal" style="--c:#5b9be6"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2a4.5 4.5 0 0 1 5 4.8"/></svg></span><div><p class="wl-t" aria-hidden="true">One Team.</p><p class="wl-d">Strategy, design, build and marketing under one roof.</p></div></div>
-  <p class="who-p reveal">Envision Digital Solutions is a Melbourne team of strategists, developers and creative thinkers. We help local businesses get found, earn trust and turn interest into real enquiries.</p>
+  <p class="who-p reveal">Envision Digital Solutions is a Melbourne team of strategists, designers, developers and marketers. You deal with one team from the first call to launch and beyond, so nothing gets lost between agencies.</p>
   <div class="wl-row reveal" style="--c:#8fd3f4"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg></span><div><p class="wl-t" aria-hidden="true">One Plan.</p><p class="wl-d">Website, search, ads and follow-up, planned together.</p></div></div>
-  <p class="who-p reveal">Instead of a website from one place and ads from another, we plan your website, search, ads, social media and follow-up as one connected system, built around your goals and your budget.</p>
+  <p class="who-p reveal">We bring your website, search, ads, social media and follow-up together into one connected plan, built around your goals and your budget, so every channel works towards the same result.</p>
   <div class="wl-row reveal" style="--c:#7fe0c8"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><div><p class="wl-t grad" aria-hidden="true">One Goal.</p><p class="wl-d">Real, measurable growth for your business.</p></div></div>
-  <p class="who-p reveal">Growing your business is the goal behind everything we do. Every decision is backed by numbers you can see: calls, forms and bookings traced back to where they came from, and reported in plain English. So you always know what's working, and what we're doing next.</p>
-  <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
+  <div class="who-cell">
+    <p class="who-p reveal">Growing your business is what we measure ourselves by. Every call, form and booking is traced to where it came from and reported in plain English, so you always know what's working.</p>
+    <a class="who-more" href="about.html">More about us <span aria-hidden="true">&rarr;</span></a>
+  </div>
   <span class="wl-line" aria-hidden="true"><i></i></span>
 </section>
 

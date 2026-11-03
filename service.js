@@ -18,6 +18,15 @@
     });
   }
 
+  // the nav bar: once the hero has scrolled out from under it, it grows a little and turns deep blue (as on the home page)
+  var bar = document.querySelector('.top'), hero = document.querySelector('.hero');
+  if (bar && hero) {
+    var past = null, queued = false;
+    var check = function () { queued = false; var p = hero.getBoundingClientRect().bottom <= bar.offsetHeight; if (p !== past) { past = p; bar.classList.toggle('scrolled', p); } };
+    addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(check); } }, { passive: true });
+    check();
+  }
+
   // going back to the home page (by a link or the browser's back button) skips its opening animation
   try { sessionStorage.setItem('envision-skip-intro', '1'); } catch (e) {}
 
