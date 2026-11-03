@@ -1496,7 +1496,7 @@
   /* ---------- SERVICES (v134): STACKING CARDS. One large card per service. Each card sticks just under the nav and the
        next one slides up over it; the cards underneath shrink and dim a little (the script sets their scale and --dark),
        so the eight services build into a deck as you scroll. The cards stay dark in both themes. ---------- */
-  .st { margin-top: 3rem; display: grid; gap: 7vh; }
+  .st { margin-top: 3rem; display: grid; gap: 7vh; padding-bottom: 22vh; }   /* the bottom space lets the full deck rest a moment before it scrolls away */
   .st-card { --top: calc(var(--navh, 80px) + 14px + var(--i) * 14px); --text: #eef9fa; --muted: rgba(224,251,252,.72);
              position: sticky; top: var(--top); height: min(560px, calc(100vh - var(--top) - 24px)); transform-origin: 50% 0;
              border-radius: 30px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); color: var(--text);
@@ -1529,7 +1529,7 @@
               background: rgba(10,12,16,.62); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.08); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
   /* pictures only move while their card is near the screen */
   .st-card:not(.st-run) .st-glass *, .st-card:not(.st-run) .st-glass *::before, .st-card:not(.st-run) .st-glass *::after, .st-card:not(.st-run) .st-photo { animation-play-state: paused; }
-  .st-end { position: relative; border-radius: 30px; padding: clamp(1.6rem, 3.4vw, 3rem); display: flex; align-items: center; justify-content: space-between; gap: 1.4rem 2rem; flex-wrap: wrap;
+  .st-end { position: relative; margin-top: 1rem; border-radius: 30px; padding: clamp(1.6rem, 3.4vw, 3rem); display: flex; align-items: center; justify-content: space-between; gap: 1.4rem 2rem; flex-wrap: wrap;
             border: 1px dashed rgba(152,193,217,.32); text-decoration: none; color: var(--text); transition: border-color .3s; }
   .st-end:hover { border-color: var(--orange); }
   .st-end b { font: 400 clamp(1.3rem, 2.2vw, 1.8rem) "Sora", sans-serif; letter-spacing: -0.02em; max-width: 30ch; }
@@ -2585,8 +2585,8 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       </div>
       <div class="st-vis" aria-hidden="true"><i class="st-photo" style="background-image:url(img/sx-map.jpg)"></i><div class="st-glass"><div class="sp sp-loc" aria-hidden="true"><i class="sp-ml-grid"></i><i class="sp-ml-road"></i> <span class="sp-ml-p" style="--x:26%;--y:36%;--i:0"></span><span class="sp-ml-p" style="--x:58%;--y:26%;--i:1"></span><span class="sp-ml-p" style="--x:40%;--y:70%;--i:2"></span> <span class="sp-ml-p sp-ml-best" style="--x:72%;--y:58%;--i:3"><b>Best opportunity</b></span></div></div></div>
     </article>
-    <a class="st-end" href="#finder"><b>Not sure which one you need? Three quick questions will light up your starting point.</b><span class="st-go">Find my starting point <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   </div>
+  <a class="st-end" href="#finder"><b>Not sure which one you need? Three quick questions will light up your starting point.</b><span class="st-go">Find my starting point <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </section>
 
 
