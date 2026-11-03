@@ -2185,26 +2185,81 @@ body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, r
 /* the sections on the page itself keep the page colour, with a hairline between two of them */
 body section.block:not(.panel) { background: transparent; }
 /* OUR PROMISE: four commitment cards, then a scoreboard of what we count as success and what we don't */
-.pm-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.pm-grid .card { background: rgba(255,255,255,.03); }
-@media (max-width: 1100px) { .pm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .pm-grid { grid-template-columns: minmax(0, 1fr); } }
-.pm-measure { margin-top: 1.4rem; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 2rem clamp(1.5rem, 3vw, 3rem); align-items: start;
-              padding: clamp(1.5rem, 3vw, 2.4rem); border-radius: 22px; border: 1px solid rgba(127,224,200,.22);
-              background: radial-gradient(70% 120% at 0% 0%, rgba(127,224,200,.08), transparent 60%), rgba(255,255,255,.02); }
-.pm-label { margin: 0 0 .7rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: #7fe0c8; }
-.pm-head h3 { margin: 0; font-family: "Sora", sans-serif; font-size: clamp(1.35rem, 2.2vw, 1.8rem); font-weight: 400; line-height: 1.2; letter-spacing: -.02em; color: var(--text); max-width: 16ch; }
-.pm-t { margin: 0 0 .8rem; font-size: .82rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.pm-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
-.pm-col li { display: flex; align-items: flex-start; gap: .6rem; font-size: .96rem; line-height: 1.4; }
-.pm-col svg { flex: none; width: 18px; height: 18px; margin-top: .1em; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.pm-yes li { color: var(--text); } .pm-yes svg { stroke: #7fe0c8; }
-.pm-no li { color: var(--muted); } .pm-no li span { text-decoration: line-through; text-decoration-color: rgba(238,108,77,.55); text-decoration-thickness: 1px; } .pm-no svg { stroke: #ee6c4d; opacity: .8; }
-@media (max-width: 960px) { .pm-measure { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .pm-head { grid-column: 1 / -1; } .pm-head h3 { max-width: none; } }
-@media (max-width: 600px) { .pm-measure { grid-template-columns: minmax(0, 1fr); } }
-html[data-theme="light"] .pm-grid .card { background: rgba(0,0,0,.025); }
-html[data-theme="light"] .pm-measure { border-color: rgba(23,151,122,.3); background: radial-gradient(70% 120% at 0% 0%, rgba(23,151,122,.07), transparent 60%), #fff; }
-html[data-theme="light"] .pm-label { color: #12806a; } html[data-theme="light"] .pm-yes svg { stroke: #17806a; }
+/* Our promise: the four commitments as a ledger. Each row has a big outlined number, its title, its note and an icon;
+   hovering a row fills the number, washes the row in its colour and draws a line along its foot. */
+.pm-list { list-style: none; margin: clamp(2.2rem, 4vw, 3.2rem) 0 0; padding: 0; border-top: 1px solid rgba(255,255,255,.08); }
+.pm-row { position: relative; isolation: isolate; display: grid; grid-template-columns: clamp(4.5rem, 8vw, 7.5rem) minmax(0, 1fr) minmax(0, 1.2fr) 56px; align-items: center;
+          gap: 1rem clamp(1.5rem, 3vw, 3rem); padding: clamp(1.4rem, 2.6vw, 2.1rem) clamp(.4rem, 1.4vw, 1.4rem); border-bottom: 1px solid rgba(255,255,255,.08); }
+.pm-row::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 13%, transparent), transparent 75%); opacity: 0; transition: opacity .45s; }
+.pm-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, var(--c), transparent 85%); transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.pm-row:hover::before { opacity: 1; } .pm-row:hover::after { transform: scaleX(1); }
+.pm-n { font: 300 clamp(2.6rem, 5vw, 4.4rem)/1 "Sora", sans-serif; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.2px color-mix(in srgb, var(--c) 90%, transparent); transition: color .45s; }
+.pm-row:hover .pm-n { color: var(--c); }
+.pm-row h3 { margin: 0; font: 500 clamp(1.25rem, 2vw, 1.65rem)/1.2 "Sora", sans-serif; letter-spacing: -.02em; color: var(--text); text-wrap: balance; }
+.pm-row p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--muted); max-width: 52ch; }
+.pm-ico { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+          transition: transform .45s cubic-bezier(.2,.8,.2,1), background .45s, color .45s, box-shadow .45s; }
+.pm-ico svg, .pr-ico svg, .pr-tr svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.pm-row:hover .pm-ico { background: var(--c); color: #0a0a0b; transform: rotate(-10deg) scale(1.06); box-shadow: 0 0 30px color-mix(in srgb, var(--c) 40%, transparent); }
+@media (max-width: 860px) {
+  .pm-row { grid-template-columns: 3.6rem minmax(0, 1fr) 44px; row-gap: .6rem; }
+  .pm-n { font-size: 2.4rem; } .pm-ico { grid-column: 3; grid-row: 1; width: 44px; height: 44px; } .pm-row p { grid-column: 2 / -1; grid-row: 2; }
+}
+@media (max-width: 520px) { .pm-row p { grid-column: 1 / -1; } }
+
+/* How we measure: the headline and what we don't count on the left, a "monthly report" on the right listing what we do,
+   whose bars fill in when the panel arrives */
+.pm-measure { margin-top: clamp(2.5rem, 5vw, 4rem); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 2.5rem clamp(2rem, 5vw, 5rem); align-items: center;
+              padding: clamp(1.6rem, 3.4vw, 3rem); border-radius: 26px; border: 1px solid rgba(127,224,200,.2);
+              background: radial-gradient(60% 90% at 100% 0%, rgba(127,224,200,.09), transparent 60%), radial-gradient(50% 80% at 0% 100%, rgba(91,155,230,.08), transparent 60%), rgba(255,255,255,.02); }
+.pm-label { margin: 0 0 .8rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: #7fe0c8; }
+.pm-head h3 { margin: 0; font: 400 clamp(1.7rem, 3vw, 2.5rem)/1.15 "Sora", sans-serif; letter-spacing: -.025em; color: var(--text); max-width: 14ch; }
+.pm-t { margin: 0 0 .8rem; font-size: .78rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pm-no { margin-top: 2rem; padding-top: 1.4rem; border-top: 1px dashed rgba(255,255,255,.12); }
+.pm-no ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.pm-no li { display: inline-flex; align-items: center; gap: .45rem; padding: .42rem .85rem .42rem .6rem; border-radius: 999px; font-size: .88rem; color: var(--muted);
+            border: 1px solid rgba(238,108,77,.25); background: rgba(238,108,77,.05); }
+.pm-no li span { text-decoration: line-through; text-decoration-color: rgba(238,108,77,.6); text-decoration-thickness: 1px; }
+.pm-no svg { flex: none; width: 14px; height: 14px; fill: none; stroke: #ee6c4d; stroke-width: 2.2; stroke-linecap: round; opacity: .85; }
+.pm-report { border-radius: 18px; overflow: hidden; background: linear-gradient(180deg, #131a24, #0d1117); border: 1px solid rgba(255,255,255,.08); box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+.pr-top { display: flex; align-items: center; gap: .9rem; padding: .85rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,.07); font-size: .86rem; }
+.pr-top b { font-weight: 500; color: var(--text); }
+.pr-dots { display: flex; gap: 5px; } .pr-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.14); }
+.pr-live { margin-left: auto; display: inline-flex; align-items: center; gap: .45rem; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: #7fe0c8; }
+.pr-live i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: prPulse 2.2s ease-out infinite; }
+@keyframes prPulse { 0% { box-shadow: 0 0 0 0 rgba(127,224,200,.55); } 100% { box-shadow: 0 0 0 9px transparent; } }
+.pm-report .pm-t { margin: 0; padding: 1.2rem 1.3rem .2rem; }
+.pm-report ul { list-style: none; margin: 0; padding: 0 1.3rem .7rem; }
+.pm-report li { display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, .9fr) 20px; align-items: center; gap: .9rem; padding: .8rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.pm-report li:last-child { border-bottom: 0; }
+.pr-ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: #7fe0c8; background: rgba(127,224,200,.1); }
+.pr-ico svg { width: 17px; height: 17px; }
+.pr-l { font-size: .98rem; color: var(--text); }
+.pr-track { display: flex; gap: 3px; height: 6px; border-radius: 6px; overflow: hidden; background: rgba(255,255,255,.06); }
+.pr-track i { flex: none; width: var(--w); height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5b9be6, #7fe0c8); transform: scaleX(0); transform-origin: left;
+              transition: transform 1.3s cubic-bezier(.2,.8,.2,1) var(--d, .4s); }
+.pm-report li:nth-child(2) { --d: .55s; } .pm-report li:nth-child(3) { --d: .7s; } .pm-report li:nth-child(4) { --d: .85s; } .pm-report li:nth-child(5) { --d: 1s; }
+.pr-src .pr-track i { border-radius: 0; } .pr-src .pr-track i:nth-child(1) { background: #5b9be6; } .pr-src .pr-track i:nth-child(2) { background: #8fd3f4; } .pr-src .pr-track i:nth-child(3) { background: #7fe0c8; }
+.pm-measure.visible .pr-track i { transform: scaleX(1); }
+.pr-tr { color: #7fe0c8; display: grid; place-items: center; } .pr-tr svg { width: 16px; height: 16px; stroke-width: 2; }
+@media (max-width: 960px) { .pm-measure { grid-template-columns: minmax(0, 1fr); } .pm-head h3 { max-width: 20ch; } }
+@media (max-width: 520px) {
+  .pm-report li { grid-template-columns: 34px minmax(0, 1fr) 20px; row-gap: .5rem; }
+  .pr-track { grid-column: 2 / 3; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) { .pr-track i { transform: none; transition: none; } .pr-live i { animation: none; } .pm-row::after, .pm-row::before, .pm-ico, .pm-n { transition: none; } }
+html[data-theme="light"] .pm-list, html[data-theme="light"] .pm-row { border-color: rgba(19,32,46,.1); }
+html[data-theme="light"] .pm-n { -webkit-text-stroke-color: color-mix(in srgb, var(--c) 70%, #13202e); }
+html[data-theme="light"] .pm-row:hover .pm-n { color: color-mix(in srgb, var(--c) 70%, #13202e); }
+html[data-theme="light"] .pm-ico { color: color-mix(in srgb, var(--c) 65%, #13202e); border-color: color-mix(in srgb, color-mix(in srgb, var(--c) 65%, #13202e) 40%, transparent); }
+html[data-theme="light"] .pm-row:hover .pm-ico { color: #0a0a0b; }
+html[data-theme="light"] .pm-measure { border-color: rgba(23,151,122,.3); background: radial-gradient(60% 90% at 100% 0%, rgba(23,151,122,.07), transparent 60%), radial-gradient(50% 80% at 0% 100%, rgba(21,97,173,.06), transparent 60%), #fff; }
+html[data-theme="light"] .pm-label, html[data-theme="light"] .pr-live, html[data-theme="light"] .pr-tr, html[data-theme="light"] .pr-ico { color: #17806a; }
+html[data-theme="light"] .pr-ico { background: rgba(23,151,122,.1); }
+html[data-theme="light"] .pm-no { border-top-color: rgba(19,32,46,.15); }
+html[data-theme="light"] .pm-report { background: #fff; border-color: rgba(19,32,46,.1); box-shadow: 0 24px 50px rgba(19,32,46,.12); }
+html[data-theme="light"] .pr-top, html[data-theme="light"] .pm-report li { border-color: rgba(19,32,46,.08); }
+html[data-theme="light"] .pr-dots i, html[data-theme="light"] .pr-track { background: rgba(19,32,46,.08); }
 
 /* PHOTOS. A floating "result" card (.ph-chip) sits on each picture: the glass stays dark in both themes. */
 .ph-chip { position: absolute; z-index: 2; display: flex; align-items: center; gap: .7rem; padding: .65rem .95rem .65rem .65rem; border-radius: 14px;
@@ -2391,16 +2446,23 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   <p class="eyebrow reveal">Our promise</p>
   <h2 class="reveal">We don't stop until <span class="grad">you grow</span>.</h2>
   <p class="reveal">Launching something is the start, not the finish. These are the commitments behind every project we take on, whatever the size of the budget.</p>
-  <div class="grid pm-grid">
-    <div class="card reveal"><span class="num">01</span><h3>Value first, price second</h3><p>We start by showing you what's possible: where the opportunity is and what it would take. Then we shape the work around your budget, not the other way round.</p></div>
-    <div class="card reveal"><span class="num">02</span><h3>Measured by enquiries, not likes</h3><p>Success is calls, forms and bookings, traced back to where they came from. If something isn't bringing in work, we change it.</p></div>
-    <div class="card reveal"><span class="num">03</span><h3>Honest when it's not working</h3><p>Not every idea lands. When something underperforms we tell you early, in plain English, and move the effort to what does.</p></div>
-    <div class="card reveal"><span class="num">04</span><h3>We don't stop at launch</h3><p>A site going live or ads switching on is day one. We keep testing, improving and reporting, month after month, as your business grows.</p></div>
-  </div>
+  <ol class="pm-list">
+    <li class="pm-row reveal" style="--c:#5b9be6"><span class="pm-n" aria-hidden="true">01</span><h3>Value first, price second</h3><p>We start by showing you what's possible: where the opportunity is and what it would take. Then we shape the work around your budget, not the other way round.</p><span class="pm-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6"/></svg></span></li>
+    <li class="pm-row reveal" style="--c:#8fd3f4"><span class="pm-n" aria-hidden="true">02</span><h3>Measured by enquiries, not likes</h3><p>Success is calls, forms and bookings, traced back to where they came from. If something isn't bringing in work, we change it.</p><span class="pm-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M2 20h20"/></svg></span></li>
+    <li class="pm-row reveal" style="--c:#7fe0c8"><span class="pm-n" aria-hidden="true">03</span><h3>Honest when it's not working</h3><p>Not every idea lands. When something underperforms we tell you early, in plain English, and move the effort to what does.</p><span class="pm-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 10.5h7"/></svg></span></li>
+    <li class="pm-row reveal" style="--c:#f2b84b"><span class="pm-n" aria-hidden="true">04</span><h3>We don't stop at launch</h3><p>A site going live or ads switching on is day one. We keep testing, improving and reporting, month after month, as your business grows.</p><span class="pm-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></span></li>
+  </ol>
   <div class="pm-measure reveal">
-    <div class="pm-head"><p class="pm-label">How we measure our work</p><h3>If it doesn't bring in work, it doesn't count.</h3></div>
-    <div class="pm-col pm-yes"><p class="pm-t">What we count as success</p><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Phone calls</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Form enquiries</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Booked appointments</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Cost per enquiry</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Where every lead came from</span></li></ul></div>
-    <div class="pm-col pm-no"><p class="pm-t">What we don't</p><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Likes and followers on their own</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Impressions nobody acts on</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Traffic that never gets in touch</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Rankings for searches nobody makes</span></li></ul></div>
+    <div class="pm-head">
+      <p class="pm-label">How we measure our work</p>
+      <h3>If it doesn't bring in work, it doesn't count.</h3>
+      <div class="pm-no"><p class="pm-t">What we don't count</p><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Likes and followers on their own</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Impressions nobody acts on</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Traffic that never gets in touch</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span>Rankings for searches nobody makes</span></li></ul></div>
+    </div>
+    <div class="pm-report">
+      <div class="pr-top" aria-hidden="true"><span class="pr-dots"><i></i><i></i><i></i></span><b>Your monthly report</b><span class="pr-live"><i></i>Tracked</span></div>
+      <p class="pm-t">What we count as success</p>
+      <ul><li><span class="pr-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 2.8c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8L9.6 8.2c-.3.3-.3.8-.1 1.1 1.2 2.1 3 3.9 5.1 5.1.4.2.8.2 1.1-.1l1.2-1.2c.5-.5 1.3-.5 1.8 0l2.4 2.4c.5.5.5 1.3 0 1.8l-1.5 1.5c-1 1-2.6 1.4-4 .9C10.4 17.9 6.1 13.6 4.3 8.4c-.5-1.4-.1-3 .9-4z"/></svg></span><span class="pr-l">Phone calls</span><span class="pr-track" aria-hidden="true"><i style="--w:84%"></i></span><span class="pr-tr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></li><li><span class="pr-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><span class="pr-l">Form enquiries</span><span class="pr-track" aria-hidden="true"><i style="--w:68%"></i></span><span class="pr-tr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></li><li><span class="pr-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4"/></svg></span><span class="pr-l">Booked appointments</span><span class="pr-track" aria-hidden="true"><i style="--w:74%"></i></span><span class="pr-tr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></li><li><span class="pr-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M16.5 7.5c-.7-1.4-2.4-2.2-4.5-2.2-2.6 0-4.3 1.3-4.3 3.2 0 4.5 9 2.3 9 6.8 0 1.9-1.9 3.4-4.7 3.4-2.3 0-4-.9-4.8-2.4"/></svg></span><span class="pr-l">Cost per enquiry</span><span class="pr-track" aria-hidden="true"><i style="--w:42%"></i></span><span class="pr-tr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 9v8H9"/></svg></span></li><li class="pr-src"><span class="pr-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><span class="pr-l">Where every lead came from</span><span class="pr-track" aria-hidden="true"><i style="--w:41%"></i><i style="--w:32%"></i><i style="--w:25%"></i></span><span class="pr-tr"></span></li></ul>
+    </div>
   </div>
 </section>
 
