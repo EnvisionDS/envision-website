@@ -783,9 +783,9 @@
   #slot span { transition: opacity .45s ease-out, text-shadow .6s ease-out; }
   #slot span.hide { opacity: 0; }
   #slot .grad > span.hide { visibility: hidden; }
-  #slot span.lit { text-shadow: 0 0 .32em rgba(143,211,244,.95), 0 0 .06em #fff; transition-duration: .08s; }
+  #slot span.lit { text-shadow: 0 0 .3em rgba(143,211,244,.5); transition-duration: .08s; }
   .slot-torch { position: absolute; left: 0; top: 0; z-index: -1; width: 2.8em; height: 2.8em; margin: -1.4em 0 0 -1.4em; border-radius: 50%; pointer-events: none;
-                background: radial-gradient(closest-side, rgba(143,211,244,.34), rgba(91,155,230,.12) 55%, transparent); opacity: 0;
+                background: radial-gradient(closest-side, rgba(143,211,244,.15), rgba(91,155,230,.05) 55%, transparent); opacity: 0;
                 transition: transform .17s linear, opacity .5s ease; }
   .slot-torch.on { opacity: 1; }
   @media (max-width: 900px) { .seek { font-size: .72rem; } #hero .scrollcue { display: none; } }
@@ -1009,7 +1009,7 @@
               box-shadow: 0 0 0 0 rgba(238,108,77,.6); animation: beacon 2.4s ease-out infinite; }
   .vf-sep { width: 1px; height: 11px; background: var(--vc); opacity: .55; flex: none; }
   .vf-t { background: linear-gradient(100deg, var(--muted) 0 42%, var(--text) 50%, var(--muted) 58% 100%) 100% 0 / 260% 100%;
-          -webkit-background-clip: text; background-clip: text; color: transparent; animation: vfSweep 1.6s ease 1.2s both; }
+          -webkit-background-clip: text; background-clip: text; color: transparent; animation: vfSweep 1.6s ease 1.2s both; white-space: nowrap; }
   .vf-t:nth-of-type(3) { animation-delay: 1.35s; } .vf-t:nth-of-type(4) { animation-delay: 1.5s; }
   .hero-eyebrow.vf:hover .vf-t { animation: vfSweep 1.1s ease both; }
   @keyframes vfSweep { from { background-position: 0% 0; } to { background-position: 100% 0; } }
@@ -3078,12 +3078,17 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
   (async function () {
     const h1 = document.getElementById('slot');
     const TITLES = [
-      [{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
-      [{ t: 'A website that turns ' }, { t: 'visitors', g: true }, { t: ' into ' }, { t: 'enquiries.', g: true }],        // websites + conversion
-      [{ t: 'Be ' }, { t: 'found', g: true }, { t: ' first, in the suburbs that ' }, { t: 'matter.', g: true }],          // SEO + location strategy
-      [{ t: 'Ads and socials that reach people ' }, { t: 'ready to buy.', g: true }],                                    // paid ads + social media
-      [{ t: 'Every enquiry ' }, { t: 'followed up', g: true }, { t: ', even after hours.' }],                            // email and CRM + automation
-    ];
+      Object.assign([{ t: 'We bring your ' }, { t: 'visions', g: true }, { t: ' to life, and the ' }, { t: 'customers', g: true }, { t: ' to you' }],
+        { label: ['Digital solutions agency', 'Melbourne'] }),
+      Object.assign([{ t: 'A website that turns ' }, { t: 'visitors', g: true }, { t: ' into ' }, { t: 'enquiries.', g: true }],
+        { label: ['Website design', 'Conversion'] }),
+      Object.assign([{ t: 'Be ' }, { t: 'found', g: true }, { t: ' first, in the suburbs that ' }, { t: 'matter.', g: true }],
+        { label: ['SEO', 'Location strategy'] }),
+      Object.assign([{ t: 'Ads and socials that reach people ' }, { t: 'ready to buy.', g: true }],
+        { label: ['Paid ads', 'Social media'] }),
+      Object.assign([{ t: 'Every enquiry ' }, { t: 'followed up', g: true }, { t: ', even after hours.' }],
+        { label: ['Email & CRM', 'Automation'] }),
+    ];   // label: the two names shown in the frame above the headline while that title is up
     const HOLD = 3800, STEP = 42, FADE = 380;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -3115,6 +3120,17 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
       }
       torch.classList.remove('on');
     }
+    // the label above the headline: its words fade out, the frame glides to the new width, and the new words fade in
+    const eyebrow = h1.parentNode.querySelector('.hero-eyebrow'), tags = eyebrow ? [...eyebrow.querySelectorAll('.vf-t')] : [];
+    async function relabel(label) {
+      if (tags.length !== 2 || !label || tags.every((t, k) => t.textContent === label[k])) return;
+      await Promise.all(tags.map(t => t.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-in', fill: 'forwards' }).finished));
+      const w0 = eyebrow.getBoundingClientRect().width;
+      tags.forEach((t, k) => { t.textContent = label[k]; t.getAnimations().forEach(a => a.cancel()); });
+      const w1 = eyebrow.getBoundingClientRect().width;
+      eyebrow.animate([{ width: w0 + 'px' }, { width: w1 + 'px' }], { duration: 450, easing: 'cubic-bezier(.2,.8,.2,1)' });
+      tags.forEach(t => t.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, delay: 300, easing: 'ease-out', fill: 'backwards' }));
+    }
     const fade = to => { const a = h1.animate([{ opacity: 1 - to }, { opacity: to }], { duration: FADE, easing: 'ease' }); h1.style.opacity = to; return a.finished; };
     // Reserve the height of the tallest title so the copy around the headline never moves between titles.
     // The hidden copy is absolutely placed inside the hero column, so it gets the same width the real headline would.
@@ -3137,10 +3153,11 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
     await document.fonts.ready;                                // measure only once the real font is in, so the torch lands on each letter
     reserve();
     await sleep(450);
-    for (let i = 0; ; i = (i + 1) % TITLES.length) {          // …then each title is read, held, and swapped for the next
-      if (i) { layout(TITLES[i]); h1.style.opacity = 1; await sleep(300); }
+    for (let i = 0, first = true; ; i = (i + 1) % TITLES.length, first = false) {   // …then each title is read, held, and swapped for the next
+      if (!first) { layout(TITLES[i]); h1.style.opacity = 1; await sleep(300); }
       await read();
       await sleep(HOLD);
+      relabel(TITLES[(i + 1) % TITLES.length].label);            // the label changes over while the title fades
       await fade(0);
     }
   })();
