@@ -749,13 +749,6 @@
   #hero > #heroLens { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
   #hero .hero-wrap { position: relative; z-index: 1; }
   #torch.off { opacity: 0; }
-  .seek { display: flex; align-items: center; gap: .8rem;
-          font-size: .78rem; letter-spacing: .08em; color: var(--muted); opacity: 0; transition: opacity 1s ease; pointer-events: none; }
-  .seek.on { opacity: 1; }
-  .seek-dots { display: flex; gap: 5px; }
-  .seek-dots i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(152,193,217,.6); transition: background .4s, border-color .4s, box-shadow .4s; }
-  .seek-dots i.got { background: #ee6c4d; border-color: #ee6c4d; box-shadow: 0 0 10px rgba(238,108,77,.8); }
-  #seekText b { color: var(--text); font-weight: 500; }
 
   /* a dark halo behind the copy, so the lit map never fights the words */
   #hero h1, #hero .sub, #hero .proof, #hero .trust li { text-shadow: 0 0 22px #0a0a0b, 0 0 10px #0a0a0b, 0 0 3px #0a0a0b; }
@@ -775,49 +768,7 @@
                 background: radial-gradient(closest-side, rgba(143,211,244,.15), rgba(91,155,230,.05) 55%, transparent); opacity: 0;
                 transition: transform .17s linear, opacity .5s ease; }
   .slot-torch.on { opacity: 1; }
-  @media (max-width: 900px) { .seek { font-size: .72rem; } #hero .scrollcue { display: none; } }
-
-  /* ---------- SEE WHAT OTHERS MISS (the torch map section) ---------- */
-  section.block.explore { min-height: 96vh; overflow: hidden; cursor: none; background: #070809; }
-  #explore a, #explore button { cursor: pointer; }
-  #explore > #exploreScene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-  #explore > :not(canvas) { position: relative; z-index: 1; }
-  #explore h2 { max-width: 16ch; }
-  #explore > p { max-width: 46ch; }
-  #explore .seek { opacity: 1; margin-top: 2rem; }
-  #explore .pill { margin-top: 1.6rem; justify-self: start; display: inline-flex; }
-  #explore.all .pill { border-color: #ee6c4d; box-shadow: 0 0 0 6px rgba(238,108,77,.12), 0 0 30px rgba(238,108,77,.35); }
-  #explore h2, #explore > p, #explore .seek, #explore .eyebrow { text-shadow: 0 0 22px #070809, 0 0 10px #070809, 0 0 3px #070809; }
-  #explore h2 .grad { text-shadow: none; }
-  @media (max-width: 900px) { section.block.explore { min-height: 125vh; } }
-
-  /* the hidden notes (v135). Each one is a pin on the map with a card beside it. Until it is found the card is a faint blur
-     that only shows near the torch (the script sets its opacity); once found it lights up in its service colour. */
-  section.block.explore { min-height: 112vh; }
-  #explore > .hk-notes { position: absolute; inset: 0; z-index: 1; list-style: none; margin: 0; padding: 0; pointer-events: none; }
-  .hk-note { position: absolute; left: calc(var(--fx) * 100%); top: calc(var(--fy) * 100%); width: 0; height: 0; }
-  .hk-card { position: absolute; left: 34px; top: 0; width: 280px; transform: translateY(-50%); padding: .85rem 1rem .8rem; border-radius: 14px;
-             background: rgba(10,10,11,.84); border: 1px solid rgba(238,108,77,.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-             opacity: 0; filter: blur(3px); transition: filter .5s, border-color .5s, box-shadow .5s; }
-  .hk-note[data-side="l"] .hk-card { left: auto; right: 34px; }
-  .hk-card q { display: block; font-style: italic; font-size: .98rem; line-height: 1.4; color: var(--text); quotes: "\201C" "\201D"; }
-  .hk-fix { display: inline-block; margin-top: .55rem; font-size: .8rem; font-weight: 500; color: var(--c); text-decoration: none; }
-  .hk-fix span:first-child { color: var(--muted); font-weight: 400; }
-  .hk-fix:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .hk-note.found .hk-card { opacity: 1 !important; filter: none; pointer-events: auto; border-color: color-mix(in srgb, var(--c) 60%, transparent);
-                            box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 18%, transparent), 0 14px 40px rgba(0,0,0,.45), 0 0 34px color-mix(in srgb, var(--c) 18%, transparent);
-                            animation: hkIn .55s cubic-bezier(.2,.8,.2,1); }
-  @keyframes hkIn { from { transform: translateY(-50%) scale(.92); } to { transform: translateY(-50%) scale(1); } }
-  /* narrower screens: the notes become a list under the copy, each with its pin on the left */
-  @media (max-width: 999px) {
-    section.block.explore { min-height: 0; }
-    #explore > .hk-notes { position: relative; inset: auto; display: grid; gap: 1.1rem; margin-top: 2.6rem; max-width: 460px; }
-    .hk-note { position: relative; left: auto; top: auto; width: auto; height: auto; padding-left: 34px; }
-    .hk-pin { position: absolute; left: 6px; top: 1.15rem; width: 1px; height: 1px; }
-    .hk-card, .hk-note[data-side="l"] .hk-card { position: relative; left: auto; right: auto; width: auto; transform: none; }
-    @keyframes hkIn { from { transform: scale(.95); } to { transform: none; } }
-  }
-  @media (prefers-reduced-motion: reduce) { .hk-note.found .hk-card { animation: none; } }
+  @media (max-width: 900px) { #hero .scrollcue { display: none; } }
 
   /* ---------- HERO LENS (v116): a calm aperture of thin rings, like the iris of an eye, drawn behind the copy.
      The rings are barely there until the torch passes over them; the whole lens leans slightly towards the cursor. ---------- */
@@ -939,7 +890,6 @@
   section.block, section.block.lift, section.block.navy, section.block.warm, section.block.finale, section.block.questions, section.block.explore, #hero { background: transparent; }
   #hero { overflow: visible; z-index: 0; }
   #hero > #heroLens { inset: 0 0 auto 0; height: 130%; }
-  #explore h2, #explore > p, #explore .seek, #explore .eyebrow { text-shadow: 0 0 22px var(--bg), 0 0 10px var(--bg), 0 0 3px var(--bg); }
 
   /* nav: theme switch sits beside the Contact pill */
   .nav-end { justify-self: end; display: flex; align-items: center; gap: .7rem; }
@@ -1950,16 +1900,8 @@ html[data-theme="light"] #about .flow .get { color: var(--text); border-top-colo
 html[data-theme="light"] .snap-list li { color: var(--muted); }
 html[data-theme="light"] .cta-ghost { border-top-color: rgba(0, 0, 0, 0.3); border-right-color: rgba(0, 0, 0, 0.3); border-bottom-color: rgba(0, 0, 0, 0.3); border-left-color: rgba(0, 0, 0, 0.3); color: var(--text); text-decoration-color: initial; }
 html[data-theme="light"] .cta-ghost:hover { background-image: initial; background-color: rgba(38, 79, 103, 0.08); }
-html[data-theme="light"] .seek { color: var(--muted); }
-html[data-theme="light"] .seek-dots i { border-top-color: rgba(38, 79, 103, 0.6); border-right-color: rgba(38, 79, 103, 0.6); border-bottom-color: rgba(38, 79, 103, 0.6); border-left-color: rgba(38, 79, 103, 0.6); }
-html[data-theme="light"] .seek-dots i.got { background-image: initial; background-color: rgb(238, 108, 77); border-top-color: rgb(238, 108, 77); border-right-color: rgb(238, 108, 77); border-bottom-color: rgb(238, 108, 77); border-left-color: rgb(238, 108, 77); box-shadow: rgba(238, 108, 77, 0.8) 0px 0px 10px; }
-html[data-theme="light"] #seekText b { color: var(--text); }
 html[data-theme="light"] #hero h1, html[data-theme="light"] #hero .sub, html[data-theme="light"] #hero .proof, html[data-theme="light"] #hero .trust li { text-shadow: rgb(245, 245, 246) 0px 0px 22px, rgb(245, 245, 246) 0px 0px 10px, rgb(245, 245, 246) 0px 0px 3px; }
 html[data-theme="light"] #hero h1 .grad { text-shadow: none; }
-html[data-theme="light"] section.block.explore { background-image: initial; background-color: rgb(246, 247, 248); }
-html[data-theme="light"] #explore.all .pill { border-top-color: rgb(238, 108, 77); border-right-color: rgb(238, 108, 77); border-bottom-color: rgb(238, 108, 77); border-left-color: rgb(238, 108, 77); box-shadow: rgba(238, 108, 77, 0.12) 0px 0px 0px 6px, rgba(238, 108, 77, 0.35) 0px 0px 30px; }
-html[data-theme="light"] #explore h2, html[data-theme="light"] #explore > p, html[data-theme="light"] #explore .seek, html[data-theme="light"] #explore .eyebrow { text-shadow: rgb(246, 247, 248) 0px 0px 22px, rgb(246, 247, 248) 0px 0px 10px, rgb(246, 247, 248) 0px 0px 3px; }
-html[data-theme="light"] #explore h2 .grad { text-shadow: none; }
 html[data-theme="light"] #hero { background: radial-gradient(70% 55% at 50% 110%, rgba(21, 97, 173, 0.22), transparent 70%), var(--bg); }
 html[data-theme="light"] section.block.questions { background-image: radial-gradient(60% 50% at 50% 0%, rgba(21, 97, 173, 0.12), transparent 70%), initial; background-color: rgb(245, 246, 247); }
 html[data-theme="light"] .bq { background-image: initial; background-color: rgb(242, 243, 245); border-top-color: rgb(217, 220, 226); border-right-color: rgb(217, 220, 226); border-bottom-color: rgb(217, 220, 226); border-left-color: rgb(217, 220, 226); }
@@ -2009,7 +1951,6 @@ html[data-theme="light"] .fd-sky .core { fill: rgb(11, 23, 23); }
 html[data-theme="light"] .fd-sky .core-glow { fill: url("#fdCore"); }
 html[data-theme="light"] .fd-sky .core-t { fill: var(--muted); }
 html[data-theme="light"] section.block, html[data-theme="light"] section.block.lift, html[data-theme="light"] section.block.navy, html[data-theme="light"] section.block.warm, html[data-theme="light"] section.block.finale, html[data-theme="light"] section.block.questions, html[data-theme="light"] section.block.explore, html[data-theme="light"] #hero { background-image: initial; background-color: transparent; }
-html[data-theme="light"] #explore h2, html[data-theme="light"] #explore > p, html[data-theme="light"] #explore .seek, html[data-theme="light"] #explore .eyebrow { text-shadow: 0 0 22px var(--bg), 0 0 10px var(--bg), 0 0 3px var(--bg); }
 html[data-theme="light"] .theme-btn { border-top-color: rgba(0, 0, 0, 0.75); border-right-color: rgba(0, 0, 0, 0.75); border-bottom-color: rgba(0, 0, 0, 0.75); border-left-color: rgba(0, 0, 0, 0.75); background-image: initial; background-color: transparent; color: var(--text); }
 html[data-theme="light"] .theme-btn:hover { box-shadow: rgba(38, 79, 103, 0.12) 0px 0px 0px 5px, rgba(38, 79, 103, 0.35) 0px 0px 22px; }
 html[data-theme="light"] .theme-btn svg { fill: none; stroke: currentcolor; }
@@ -2225,8 +2166,7 @@ html[data-theme="light"] .gp-hint2 { color: var(--muted); }
   html[data-theme="light"] .torch-glow { mix-blend-mode: multiply; background: radial-gradient(circle 230px at var(--mx) var(--my), rgba(21,97,173,.10), rgba(21,97,173,.04) 45%, transparent 70%); }
   html[data-theme="light"] .torch-grid { background: radial-gradient(circle, rgba(21,97,173,.35) 1px, transparent 1.4px) 0 0 / 22px 22px; }
   /* the drawn scenes (hero lens, hidden map) are re-inked for a light page */
-  html[data-theme="light"] #heroLens, html[data-theme="light"] #exploreScene { filter: invert(1) hue-rotate(180deg); }
-  html[data-theme="light"] .to-top .tt-track { stroke: rgba(21,97,173,.22); }
+  html[data-theme="light"] #heroLens,   html[data-theme="light"] .to-top .tt-track { stroke: rgba(21,97,173,.22); }
   html[data-theme="light"] .to-top .tt-fill { stroke: #1561ad; filter: drop-shadow(0 0 3px rgba(21,97,173,.45)); }
   html[data-theme="light"] .to-top { box-shadow: 0 6px 18px rgba(19,32,46,.12); }
   html[data-theme="light"] nav.blue .nav-cta { background: #fff; color: #1561ad; }
@@ -2279,9 +2219,6 @@ html[data-theme="light"] .vw-foot { border-top-color: #d6dee6; }
 html[data-theme="light"] .vw-nav button { border-color: rgba(19,32,46,.2); }
 html[data-theme="light"] .vw-label { opacity: 1; }
 /* sound familiar? (v135): light note cards, with the link colours deepened */
-html[data-theme="light"] .hk-card { background: rgba(255,255,255,.92); }
-html[data-theme="light"] .hk-note.found .hk-card { box-shadow: 0 14px 34px -18px rgba(19,32,46,.35), 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent); }
-html[data-theme="light"] .hk-fix { color: color-mix(in srgb, var(--c) 55%, #13202e); }
 
 /* growth planner, simpler (v132) */
 html[data-theme="light"] :is(.gp-stat, .gp-pin, .gp-stems line) { --pc: color-mix(in srgb, var(--pc0) 70%, #13202e); }
@@ -2297,7 +2234,7 @@ html[data-theme="light"] .gp-legend .l3::before { background: rgba(23,128,106,.2
 
 /* ---------- SECTION RHYTHM (v142): every other chapter is a raised panel, inset from the page edges with rounded corners and
      its own tint, so scrolling into a new section feels like a new sheet arriving. The chapters in between sit on the page
-     itself. Panels: Who we work with, Services, About, Engagement, Common questions. ---------- */
+     itself. Panels: Services, About, Engagement, Common questions. ---------- */
 body section.block.panel { margin: 0 var(--pm); border-radius: var(--pr); border: 1px solid rgba(152,193,217,.1); border-top: 1px solid rgba(152,193,217,.16);
                            box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 -24px 60px -30px rgba(0,0,0,.9); }
 body { --pm: clamp(8px, 1.4vw, 20px); --pr: clamp(22px, 3vw, 40px); }
@@ -2309,6 +2246,15 @@ body section.block.panel.navy { background: radial-gradient(60% 35% at 80% 0%, r
 body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, rgba(238,108,77,.1), transparent 70%), linear-gradient(180deg, #17110f, #110d0c); }
 /* the sections on the page itself keep the page colour, with a hairline between two of them */
 body section.block:not(.panel) { background: transparent; }
+/* WHO WE ARE: headline left, the brief right; one column on narrow screens */
+section.block.who { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem clamp(2.5rem, 7vw, 7rem); align-items: start; }
+section.block.who h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.06; max-width: 12ch; margin-bottom: 0; }
+section.block.who .who-copy { padding-top: 2.1rem; }
+section.block.who .who-copy p { font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; }
+section.block.who .who-copy p + p { margin-top: 1.1rem; }
+.who-more { display: inline-flex; gap: .5rem; margin-top: 1.6rem; color: var(--accent-2); font-weight: 500; text-decoration: none; }
+.who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
+@media (max-width: 860px) { section.block.who { grid-template-columns: minmax(0, 1fr); } section.block.who .who-copy { padding-top: 0; } section.block.who h2 { max-width: 16ch; } }
 html[data-theme="light"] body section.block.panel { border-color: rgba(19,32,46,.08); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 -18px 50px -30px rgba(19,32,46,.25); }
 html[data-theme="light"] body section.block.panel.tone-slate { background: #fff; }
 html[data-theme="light"] body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.07), transparent 70%), #fbfcfe; }
@@ -2327,7 +2273,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 <script>try { if (localStorage.getItem("envision-theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}</script>
 <div id="torch" aria-hidden="true"><div class="torch-glow"></div><div class="torch-grid"></div></div>
 
-<a class="skip" href="#explore">Skip to content</a>
+<a class="skip" href="#who">Skip to content</a>
 <nav>
   <a class="logo waiting" id="logo" href="#hero" aria-label="envision home"><span id="logoText"><span class="l">e</span><span class="l">n</span><span class="l">v</span><span class="l">i</span><span class="l">s</span><span class="l">i</span><span class="l">o</span><span class="l">n</span></span></a>
   <div class="links" id="topLinks"><a href="#services">Services</a><a href="#work">Our work</a><a href="#about">About</a><a href="contact.html">Contact</a></div>
@@ -2376,25 +2322,18 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   </div>
 </section>
 
-<!-- ================= SOUND FAMILIAR? (v135): the torch map, now the hook. Six things business owners struggle with
-     are hidden in the dark map; holding the torch on one lights it up as a note, with a link to the service that fixes
-     it. On narrower screens the notes sit in a list under the copy and the torch finds each one as you scroll to it.
-     --fx/--fy place each note on wide screens (fractions of the section); data-side says which side its card opens. ================= -->
-<section class="block explore" id="explore">
-  <canvas id="exploreScene" aria-hidden="true"></canvas>
-  <p class="eyebrow reveal">Sound familiar?</p>
-  <h2 class="reveal">You're good at what you do. <span class="grad">So why isn't the phone ringing?</span></h2>
-  <p class="reveal">Most owners we meet aren't short on effort. They're short on time, on straight answers, and on marketing that actually brings work in. Shine your torch around the map and see which of these sound familiar.</p>
-  <div class="seek reveal" id="seek" aria-live="polite"><span class="seek-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span id="seekText">Move your torch to find <b>6 things</b> holding businesses back</span></div>
-  <a class="pill reveal" href="#services">See how we fix them</a>
-  <ol class="hk-notes" id="hkNotes">
-    <li class="hk-note" style="--fx:.55;--fy:.18;--c:#f2b84b"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>Spent $2,000 on ads last month. Got clicks, not calls.</q><a class="hk-fix" href="#svc-3"><span>How we fix it:</span> Paid ads management <span aria-hidden="true">&rarr;</span></a></div></li>
-    <li class="hk-note" data-side="l" style="--fx:.84;--fy:.32;--c:#7fe0c8"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>The competitor down the road always shows up first on Google.</q><a class="hk-fix" href="#svc-2"><span>How we fix it:</span> SEO and content strategy <span aria-hidden="true">&rarr;</span></a></div></li>
-    <li class="hk-note" style="--fx:.55;--fy:.46;--c:#5b9be6"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>Our website looks fine. It just doesn't bring in any work.</q><a class="hk-fix" href="#svc-1"><span>How we fix it:</span> Website design and development <span aria-hidden="true">&rarr;</span></a></div></li>
-    <li class="hk-note" data-side="l" style="--fx:.84;--fy:.60;--c:#9ccc65"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>An enquiry came in Friday night. Nobody replied until Tuesday.</q><a class="hk-fix" href="#svc-7"><span>How we fix it:</span> Automation <span aria-hidden="true">&rarr;</span></a></div></li>
-    <li class="hk-note" style="--fx:.55;--fy:.74;--c:#ee6c4d"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>We're paying to reach suburbs our customers don't even live in.</q><a class="hk-fix" href="#svc-8"><span>How we fix it:</span> Location strategy <span aria-hidden="true">&rarr;</span></a></div></li>
-    <li class="hk-note" data-side="l" style="--fx:.84;--fy:.88;--c:#8fd3f4"><span class="hk-pin" aria-hidden="true"></span><div class="hk-card"><q>The last agency sent a 20-page report I couldn't understand.</q><a class="hk-fix" href="#about"><span>How we fix it:</span> Plain-English updates, every week <span aria-hidden="true">&rarr;</span></a></div></li>
-  </ol>
+<!-- ================= WHO WE ARE: a short brief on the company. The headline on the left, what we do on the right ================= -->
+<section class="block who" id="who">
+  <div class="about-intro">
+    <p class="eyebrow reveal">Who we are</p>
+    <h2 class="reveal">One team, one plan, <span class="grad">results you can measure.</span></h2>
+  </div>
+  <div class="about-intro who-copy">
+    <p class="reveal">Envision Digital Solutions is a Melbourne team of strategists, developers and creative thinkers. We help local businesses get found, earn trust and turn interest into real enquiries.</p>
+    <p class="reveal">Instead of a website from one place and ads from another, we plan your website, search, ads, social media and follow-up as one connected system, built around your goals and your budget.</p>
+    <p class="reveal">Every decision is backed by numbers you can see: calls, forms and bookings traced back to where they came from, and reported in plain English. So you always know what's working, and what we're doing next.</p>
+    <a class="who-more" href="#about">More about us <span aria-hidden="true">&rarr;</span></a>
+  </div>
 </section>
 
 <section class="block panel tone-ink" id="services">
@@ -3432,193 +3371,6 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   })();
 </script>
 
-
-<!-- ================= HERO TORCHLIGHT (JS half) =================
-     Three canvases:
-       map     the hidden city, drawn once (and again on resize)
-       reveal  a small "how lit is each spot" layer: the beam paints white into it, and every frame it fades a little,
-               which is what leaves the afterglow trail
-       scene   what you see: the map shown through the reveal layer, then the beam, the dust in it, pulses and finds. -->
-<script>
-  (function () {
-    const hero = document.getElementById('explore'), cv = document.getElementById('exploreScene'); if (!cv) return;
-    const ctx = cv.getContext('2d'), torch = document.getElementById('torch');
-    const seek = document.getElementById('seek'), seekText = document.getElementById('seekText'), dots = [...seek.querySelectorAll('i')];
-    const marks = [];
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, touch = matchMedia('(hover: none)').matches;
-    const map = document.createElement('canvas'), mctx = map.getContext('2d');
-    const rev = document.createElement('canvas'), rctx = rev.getContext('2d');
-    const RS = 4;                                          // the reveal layer is a quarter size: soft edges for free, and cheap
-    let W = 0, H = 0, DPR = 1, R = 220;
-
-    // a seeded random, so the city looks the same on every visit
-    let seed = 7; const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
-
-    // the six things to find: the notes in the page. On wide screens CSS places them on the map; on narrower ones they
-    // are a list under the copy, and the torch goes to each one as it scrolls into the middle of the screen.
-    const SPOTS = [...hero.querySelectorAll('.hk-note')].map(el => ({ el, pin: el.querySelector('.hk-pin'), card: el.querySelector('.hk-card'), x: 0, y: 0, dwell: 0, found: false, at: 0 }));
-    const listed = matchMedia('(max-width: 999px)');
-    const SUBURBS = ['Richmond', 'Fitzroy', 'St Kilda', 'Brunswick', 'Hawthorn', 'Box Hill', 'Footscray', 'Carlton', 'Prahran', 'Dandenong', 'Glen Waverley', 'Northcote', 'Doncaster', 'Moorabbin', 'Werribee', 'Clayton', 'Camberwell', 'Preston'];
-
-    function drawMap() {
-      seed = 7;
-      mctx.setTransform(DPR, 0, 0, DPR, 0, 0); mctx.clearRect(0, 0, W, H);
-      // streets: a tilted grid
-      mctx.save(); mctx.translate(W / 2, H / 2); mctx.rotate(-0.21);
-      const span = Math.hypot(W, H), step = W < 700 ? 34 : 44;
-      mctx.strokeStyle = 'rgba(152,193,217,.30)'; mctx.lineWidth = 1; mctx.beginPath();
-      for (let x = -span; x <= span; x += step) { mctx.moveTo(x, -span); mctx.lineTo(x, span); }
-      for (let y = -span; y <= span; y += step * 1.3) { mctx.moveTo(-span, y); mctx.lineTo(span, y); }
-      mctx.stroke(); mctx.restore();
-      // the river, winding across
-      mctx.strokeStyle = 'rgba(21,97,173,.75)'; mctx.lineWidth = W < 700 ? 9 : 14; mctx.lineCap = 'round'; mctx.beginPath();
-      mctx.moveTo(-20, H * .62);
-      mctx.bezierCurveTo(W * .2, H * .48, W * .3, H * .78, W * .5, H * .58);
-      mctx.bezierCurveTo(W * .68, H * .42, W * .8, H * .66, W + 20, H * .44); mctx.stroke();
-      // main roads
-      mctx.strokeStyle = 'rgba(152,193,217,.6)'; mctx.lineWidth = 2.2;
-      for (let k = 0; k < 6; k++) {
-        mctx.beginPath(); const a = rnd() * Math.PI, cx = W * (.15 + rnd() * .7), cy = H * (.15 + rnd() * .7);
-        mctx.moveTo(cx - Math.cos(a) * span, cy - Math.sin(a) * span); mctx.quadraticCurveTo(cx + (rnd() - .5) * 200, cy + (rnd() - .5) * 200, cx + Math.cos(a) * span, cy + Math.sin(a) * span); mctx.stroke();
-      }
-      // businesses: dots, and a few with a ring (busy ones)
-      for (let k = 0; k < Math.round(W * H / 4200); k++) {
-        const x = rnd() * W, y = rnd() * H, big = rnd() < .08;
-        mctx.fillStyle = big ? 'rgba(224,251,252,.95)' : 'rgba(224,251,252,.7)';
-        mctx.beginPath(); mctx.arc(x, y, big ? 2.6 : 1.5, 0, 7); mctx.fill();
-        if (big) { mctx.strokeStyle = 'rgba(152,193,217,.6)'; mctx.lineWidth = 1; mctx.beginPath(); mctx.arc(x, y, 8, 0, 7); mctx.stroke(); }
-      }
-      // suburb names
-      mctx.font = '600 11px Sora, sans-serif'; mctx.fillStyle = W < 700 ? 'rgba(224,251,252,.45)' : 'rgba(224,251,252,.8)';
-      (W < 700 ? SUBURBS.slice(0, 7) : SUBURBS).forEach(n => { const x = 30 + rnd() * (W - 140), y = 40 + rnd() * (H - 80); mctx.fillText(n.toUpperCase().split('').join(String.fromCharCode(8202)), x, y); });
-      // the five hidden spots: a coral target, only visible in the beam
-      SPOTS.forEach(s => {
-        mctx.strokeStyle = 'rgba(238,108,77,.95)'; mctx.lineWidth = 1.5;
-        [6, 14, 24].forEach(r => { mctx.beginPath(); mctx.arc(s.x, s.y, r, 0, 7); mctx.stroke(); });
-        mctx.fillStyle = '#ee6c4d'; mctx.beginPath(); mctx.arc(s.x, s.y, 3, 0, 7); mctx.fill();
-      });
-    }
-    function size() {
-      const r = hero.getBoundingClientRect();
-      W = Math.round(r.width); H = Math.round(r.height); DPR = Math.min(2, devicePixelRatio || 1); R = W < 700 ? 150 : 220;
-      cv.width = map.width = W * DPR; cv.height = map.height = H * DPR;
-      rev.width = Math.ceil(W / RS); rev.height = Math.ceil(H / RS);
-      SPOTS.forEach(s => { const p = s.pin.getBoundingClientRect(); s.x = p.left - r.left; s.y = p.top - r.top; });
-      drawMap();
-    }
-
-    // the beam: follows the pointer with a little lag; before anyone moves it, it sweeps on its own
-    const beam = { x: 0, y: 0, tx: 0, ty: 0, k: 0, tk: 1 };
-    let user = false, lastMove = 0, inside = false, pulses = [], pings = [];
-    const motes = Array.from({ length: reduce ? 0 : 90 }, () => ({ x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .00012, vy: -.00004 - Math.random() * .0001, r: .6 + Math.random() * 1.4 }));
-    const local = e => { const r = hero.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top, r }; };
-    addEventListener('pointermove', e => {
-      const p = local(e); inside = p.x >= 0 && p.y >= 0 && p.x <= p.r.width && p.y <= p.r.height;
-      if (torch) { torch.dataset.explore = inside && !touch ? '1' : ''; torch.classList.toggle('off', inside && !touch); }
-      if (!inside || (e.pointerType === 'touch' && !e.isPrimary)) { beam.tk = user ? .35 : 1; return; }
-      if (!user) { user = true; seek.classList.add('on'); }
-      beam.tx = p.x; beam.ty = p.y; beam.tk = 1; lastMove = performance.now();
-    }, { passive: true });
-    document.addEventListener('pointerleave', () => { inside = false; beam.tk = .35; if (torch) torch.classList.remove('off'); });
-    let down = null;
-    hero.addEventListener('pointerdown', e => { down = { x: e.clientX, y: e.clientY }; if (e.pointerType === 'touch') { const p = local(e); beam.tx = p.x; beam.ty = p.y; beam.tk = 1; user = true; lastMove = performance.now(); seek.classList.add('on'); } });
-    hero.addEventListener('pointerup', e => {
-      if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8 || e.target.closest('a, button')) return;
-      const p = local(e); pulses.push({ x: p.x, y: p.y, t: performance.now() });
-    });
-
-    function found(s, now) {
-      s.found = true; s.at = now; pings.push({ x: s.x, y: s.y, t: now }); s.el.classList.add('found');
-      const n = SPOTS.filter(q => q.found).length;
-      dots.forEach((d, i) => d.classList.toggle('got', i < n));
-      if (n < SPOTS.length) seekText.innerHTML = `<b>${n} of ${SPOTS.length}</b> found. Keep looking.`;
-      else { seekText.innerHTML = `<b>All ${SPOTS.length} found.</b> If even one sounds like you, we can help.`; hero.classList.add('all'); }
-    }
-
-    let last = performance.now(), running = true;
-    function frame(now) {
-      if (!running) return;
-      const dt = Math.min(50, now - last); last = now;
-      // where the beam wants to be
-      if (!user || (touch && now - lastMove > 3500)) {
-        const t = now / 1000;
-        beam.tx = W * (.5 + .38 * Math.sin(t * .37)); beam.ty = H * (.5 + .32 * Math.sin(t * .53 + 1.2));
-      }
-      const ease = user ? .2 : .05;
-      beam.x += (beam.tx - beam.x) * ease; beam.y += (beam.ty - beam.y) * ease; beam.k += (beam.tk - beam.k) * .08;
-
-      // 1. reveal layer: fade what was lit, then paint the beam (and any pulse rings) in
-      rctx.globalCompositeOperation = 'destination-out'; rctx.fillStyle = `rgba(0,0,0,${reduce ? 1 : .022 * dt / 16})`; rctx.fillRect(0, 0, rev.width, rev.height);
-      rctx.globalCompositeOperation = 'source-over';
-      const bx = beam.x / RS, by = beam.y / RS, br = R / RS;
-      let g = rctx.createRadialGradient(bx, by, 0, bx, by, br);
-      g.addColorStop(0, `rgba(255,255,255,${.9 * beam.k})`); g.addColorStop(.55, `rgba(255,255,255,${.35 * beam.k})`); g.addColorStop(1, 'rgba(255,255,255,0)');
-      rctx.fillStyle = g; rctx.beginPath(); rctx.arc(bx, by, br, 0, 7); rctx.fill();
-      pulses = pulses.filter(p => (now - p.t) < 1600);
-      pulses.forEach(p => { const age = Math.max(0, (now - p.t) / 1600), rad = age * Math.hypot(W, H) / RS; rctx.strokeStyle = `rgba(255,255,255,${.85 * (1 - age)})`; rctx.lineWidth = 70 / RS; rctx.beginPath(); rctx.arc(p.x / RS, p.y / RS, rad, 0, 7); rctx.stroke(); });
-      // found spots stay softly lit
-      SPOTS.forEach(s => { if (!s.found) return; const gg = rctx.createRadialGradient(s.x / RS, s.y / RS, 0, s.x / RS, s.y / RS, 70 / RS); gg.addColorStop(0, 'rgba(255,255,255,.7)'); gg.addColorStop(1, 'rgba(255,255,255,0)'); rctx.fillStyle = gg; rctx.fillRect(s.x / RS - 20, s.y / RS - 20, 40, 40); });
-
-      // 2. the scene: the map, seen only through the reveal layer
-      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
-      ctx.globalCompositeOperation = 'source-over'; ctx.imageSmoothingEnabled = true;
-      ctx.drawImage(rev, 0, 0, cv.width, cv.height);
-      ctx.globalCompositeOperation = 'source-in'; ctx.drawImage(map, 0, 0);
-      ctx.globalCompositeOperation = 'lighter'; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      // the light itself: a wide soft wash and a brighter core
-      g = ctx.createRadialGradient(beam.x, beam.y, 0, beam.x, beam.y, R * 1.35);
-      g.addColorStop(0, `rgba(170,215,240,${.16 * beam.k})`); g.addColorStop(.4, `rgba(120,180,225,${.07 * beam.k})`); g.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = g; ctx.fillRect(beam.x - R * 1.4, beam.y - R * 1.4, R * 2.8, R * 2.8);
-      // dust drifting through the beam: only the motes inside it catch the light
-      motes.forEach(m => {
-        m.x = (m.x + m.vx * dt + 1) % 1; m.y = (m.y + m.vy * dt + 1) % 1;
-        const x = m.x * W, y = m.y * H, d = Math.hypot(x - beam.x, y - beam.y); if (d > R) return;
-        const a = Math.pow(1 - d / R, 1.6) * .9 * beam.k; ctx.fillStyle = `rgba(224,251,252,${a})`; ctx.beginPath(); ctx.arc(x, y, m.r, 0, 7); ctx.fill();
-      });
-      // pulse rings and "found" pings
-      ctx.globalCompositeOperation = 'source-over';
-      pulses.forEach(p => { const age = Math.max(0, (now - p.t) / 1600); ctx.strokeStyle = `rgba(152,193,217,${.6 * (1 - age)})`; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(p.x, p.y, age * Math.hypot(W, H), 0, 7); ctx.stroke(); });
-      pings = pings.filter(p => now - p.t < 1400);
-      pings.forEach(p => { const age = Math.max(0, (now - p.t) / 1400); [0, .25].forEach(o => { const a = Math.max(0, age - o) / (1 - o); if (a <= 0) return; ctx.strokeStyle = `rgba(238,108,77,${1 - a})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(p.x, p.y, 10 + a * 90, 0, 7); ctx.stroke(); }); });
-      // the dwell ring while you hold the beam on a spot; a note not yet found shows as a faint blur near the beam
-      SPOTS.forEach(s => {
-        if (s.found) return;
-        const d = Math.hypot(s.x - beam.x, s.y - beam.y);
-        if (d < 60 && beam.k > .6 && (user || reduce)) { s.dwell += dt; if (s.dwell > 650) { found(s, now); s.card.style.opacity = ''; return; } }
-        else s.dwell = Math.max(0, s.dwell - dt * 2);
-        if (s.dwell > 0) { ctx.strokeStyle = 'rgba(238,108,77,.9)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(s.x, s.y, 32, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.min(1, s.dwell / 650)); ctx.stroke(); }
-        s.card.style.opacity = Math.max(listed.matches ? .3 : 0, Math.max(0, 1 - d / (R * 1.2)) * .6 * beam.k).toFixed(3);   // in the list, a faint blur from the start so there's no empty gap
-      });
-      // the cursor: a small lens ring at the centre of the beam (desktop only)
-      if (!touch && inside) { ctx.strokeStyle = 'rgba(224,251,252,.85)'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(beam.tx, beam.ty, 12, 0, 7); ctx.stroke(); ctx.fillStyle = '#e0fbfc'; ctx.beginPath(); ctx.arc(beam.tx, beam.ty, 1.8, 0, 7); ctx.fill(); }
-      // the logo mark on the right brightens where the beam falls on it
-      const hr = hero.getBoundingClientRect();
-      marks.forEach(m => { const b = m.getBoundingClientRect(), d = Math.hypot(b.left + b.width / 2 - hr.left - beam.x, b.top + b.height / 2 - hr.top - beam.y); const k = Math.max(0, 1 - d / (R * 1.3)) * beam.k; m.style.opacity = (.45 + .55 * k).toFixed(3); m.style.filter = k > .05 ? `drop-shadow(0 0 ${(14 * k).toFixed(1)}px rgba(152,193,217,${k.toFixed(2)}))` : ''; });
-      requestAnimationFrame(frame);
-    }
-
-    size(); beam.x = beam.tx = W * .5; beam.y = beam.ty = H * .5;
-    addEventListener('resize', () => { size(); });
-    if (document.fonts) document.fonts.ready.then(size);
-    // the list layout: the torch moves to whichever note reaches the middle of the screen, and holds there to find it
-    if ('IntersectionObserver' in window) {
-      const mid = new IntersectionObserver(es => es.forEach(en => {
-        if (!en.isIntersecting || !listed.matches) return;
-        const s = SPOTS.find(q => q.el === en.target); if (!s) return;
-        user = true; beam.tx = s.x; beam.ty = s.y; beam.tk = 1; lastMove = performance.now(); seek.classList.add('on');
-      }), { rootMargin: '-42% 0px -42% 0px' });
-      SPOTS.forEach(s => mid.observe(s.el));
-    }
-    // only animate while the hero is on screen
-    new IntersectionObserver(([en]) => { const was = running; running = en.isIntersecting; if (running && !was) { last = performance.now(); requestAnimationFrame(frame); } if (!running && torch) torch.classList.remove('off'); }).observe(hero);
-    requestAnimationFrame(frame);
-    (window.introDone || Promise.resolve()).then(() => setTimeout(() => {
-      seek.classList.add('on');
-      if (listed.matches) seekText.innerHTML = `Scroll down to find <b>${SPOTS.length} things</b> holding businesses back`;
-      else if (touch) seekText.innerHTML = `Tap around to find <b>${SPOTS.length} things</b> holding businesses back`;
-    }, 1200));
-  })();
-</script>
 
 <!-- ================= HERO LENS (JS half) =================
      Thin rings and a ring of tick marks, like an iris or a camera aperture. Each frame they are drawn twice: once
