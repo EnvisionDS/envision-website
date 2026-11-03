@@ -2198,6 +2198,22 @@ section.block.who h2 { font-size: clamp(2.1rem, 3.3vw, 3.4rem); line-height: 1.0
 section.block.who .who-copy { padding-top: 2.1rem; }
 section.block.who .who-copy p { font-size: 1.08rem; line-height: 1.7; color: var(--text); opacity: .9; max-width: 54ch; }
 section.block.who .who-copy p + p { margin-top: 1.1rem; }
+/* under the heading: its three promises as linked points, with a soft light travelling down the line between them */
+.who-pillars { position: relative; list-style: none; margin: 2.8rem 0 0; padding: 0; display: grid; gap: .6rem; max-width: 470px; }
+.who-pillars::before { content: ""; position: absolute; left: 24px; top: 26px; bottom: 26px; width: 1px; background: linear-gradient(#5b9be6, #8fd3f4, #7fe0c8); opacity: .35; }
+.who-pillars::after { content: ""; position: absolute; left: 22px; top: 26px; width: 5px; height: 5px; border-radius: 50%; background: #e0fbfc; box-shadow: 0 0 10px #8fd3f4, 0 0 22px #5b9be6;
+                      animation: wpTravel 4.5s ease-in-out infinite; }
+@keyframes wpTravel { 0% { top: 26px; opacity: 0; } 12%, 88% { opacity: 1; } 100% { top: calc(100% - 31px); opacity: 0; } }
+.who-pillars li { display: flex; align-items: center; gap: 1.1rem; padding: .75rem 0; }
+.wp-ico { position: relative; z-index: 1; flex: none; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; color: var(--c); background: #0d1118;
+          border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); transition: box-shadow .3s, border-color .3s; }
+.wp-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.who-pillars li:hover .wp-ico { border-color: var(--c); box-shadow: 0 0 28px color-mix(in srgb, var(--c) 40%, transparent); }
+.who-pillars b { display: block; font: 500 1.08rem/1.3 "Sora", sans-serif; letter-spacing: -.01em; color: var(--text); }
+.who-pillars li div span { display: block; margin-top: .15rem; font-size: .93rem; color: var(--muted); }
+html[data-theme="light"] .wp-ico { background: #fff; color: color-mix(in srgb, var(--c) 60%, #0b1520); }
+html[data-theme="light"] .who-pillars::after { background: #1561ad; box-shadow: 0 0 10px rgba(21,97,173,.5); }
+@media (prefers-reduced-motion: reduce) { .who-pillars::after { display: none; } }
 .who-more { display: inline-flex; gap: .5rem; margin-top: 1.6rem; color: var(--accent-2); font-weight: 500; text-decoration: none; }
 .who-more span { transition: transform .25s; } .who-more:hover span { transform: translateX(4px); }
 @media (max-width: 860px) { section.block.who { grid-template-columns: minmax(0, 1fr); } section.block.who .who-copy { padding-top: 0; } }
@@ -2273,6 +2289,11 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
   <div class="about-intro">
     <p class="eyebrow reveal">Who we are</p>
     <h2 class="reveal">One team,<br>one plan,<br><span class="grad">results you can measure.</span></h2>
+    <ul class="who-pillars reveal" aria-label="What that means for you">
+      <li style="--c:#5b9be6"><span class="wp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2a4.5 4.5 0 0 1 5 4.8"/></svg></span><div><b>One team</b><span>Strategy, design, build and marketing under one roof.</span></div></li>
+      <li style="--c:#8fd3f4"><span class="wp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg></span><div><b>One plan</b><span>Website, search, ads and follow-up, planned together.</span></div></li>
+      <li style="--c:#7fe0c8"><span class="wp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg></span><div><b>Results you can measure</b><span>Every call, form and booking traced to where it came from.</span></div></li>
+    </ul>
   </div>
   <div class="about-intro who-copy">
     <p class="reveal">Envision Digital Solutions is a Melbourne team of strategists, developers and creative thinkers. We help local businesses get found, earn trust and turn interest into real enquiries.</p>
