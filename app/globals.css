@@ -1,0 +1,10 @@
+/* Tailwind CSS v4, as on the live site. Its base reset ("preflight") is left out on purpose: the site's own stylesheets
+   (styles/) set the look of every element, and the reset would change spacing and type across the pages. Tailwind's
+   utility classes are there for new work; where a utility and a stylesheet set the same thing, the stylesheet wins. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* "block" and "visible" are the site's own class names (homepage sections, and the reveal on scroll), so Tailwind
+   doesn't make utilities of them */
+@source not inline("block visible");

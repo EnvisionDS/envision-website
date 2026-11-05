@@ -1,0 +1,77 @@
+/* Envision: the Services mega menu, shared by the homepage and the service pages.
+   Three columns, one per group of services (Websites, Digital marketing, Automation and CRM), each with its own colour (--c).
+   It opens on hover or keyboard focus of the Services link (mega.js). On tablets and phones the menu button takes over,
+   and on the homepage that menu shows the same three groups as tap-to-open lists (the .mm-* rules at the bottom). */
+
+.nav-drop.mega { position: absolute; z-index: 30; top: calc(100% - 12px); left: 50%; width: min(1080px, calc(100% - 12vw)); transform: translate(-50%, 8px);
+  display: block; padding: 1.8rem 2.2rem 1.3rem; text-align: left; font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: linear-gradient(180deg, #0e1724, #0b121c); border: 1px solid var(--rule); box-shadow: 0 30px 60px rgba(0,0,0,.45);
+  opacity: 0; visibility: hidden; transition: opacity .25s, transform .25s, visibility 0s .25s; }
+.drop-open .nav-drop.mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition: opacity .25s, transform .25s; }
+.mg-ey { margin: 0 0 1.3rem; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #7fe0c8; }
+.mg-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.6rem; }
+.mg-h { display: flex; align-items: center; gap: .75rem; margin: 0 0 .7rem; padding-bottom: .95rem; border-bottom: 1px solid var(--rule);
+        font: 500 1.1rem/1.2 "Sora", sans-serif; letter-spacing: -.01em; color: var(--text); }
+.mg-col svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.mg-h svg { width: 26px; height: 26px; color: var(--c); }
+.mg-col ul { list-style: none; margin: 0; padding: 0; }
+.mg-col li a { display: flex; align-items: center; gap: .75rem; margin: 0 -.6rem; padding: .48rem .6rem; border-radius: 8px; text-decoration: none;
+               font-size: .94rem; line-height: 1.3; color: color-mix(in srgb, var(--text) 86%, transparent); transition: background .2s, color .2s; }
+.mg-col li a svg { width: 17px; height: 17px; color: var(--muted); opacity: .75; transition: color .2s, opacity .2s; }
+.mg-col li a:hover, .mg-col li a:focus-visible { background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--text); }
+.mg-col li a:hover svg, .mg-col li a:focus-visible svg { color: var(--c); opacity: 1; }
+.mg-ex { display: inline-flex; gap: .45rem; margin-top: 1rem; font-size: .94rem; font-weight: 500; color: var(--c); text-decoration: none; }
+.mg-ex span, .mg-foot a span { transition: transform .2s; }
+.mg-ex:hover span, .mg-foot a:hover span { transform: translateX(3px); }
+.mg-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+           font-size: .88rem; color: var(--muted); }
+.mg-foot a { display: inline-flex; gap: .45rem; color: var(--text); text-decoration: none; font-weight: 500; white-space: nowrap; }
+.mg-foot a:hover { color: #98c1d9; }
+
+/* the Services link carries a small chevron that flips while the menu is open (service pages; the homepage has its own) */
+.nav-links a[href="/#services"]::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: .45rem; vertical-align: .2em;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); transition: transform .25s; }
+.drop-open .nav-links a[href="/#services"]::after { transform: rotate(225deg) translate(-2px, -2px); }
+
+/* the nav links: a thin line draws in under a link on hover, and stays under the link for the section you're in */
+nav .links a, .nav-links a { text-decoration: none; padding-block: 4px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .35s cubic-bezier(.2,.8,.2,1), color .2s, opacity .2s; }
+nav .links a:hover, nav .links a:focus-visible, nav .links a.on, .nav-links a:hover, .nav-links a:focus-visible,
+.nav-links a[aria-current="page"], .drop-open .links a[href="#services"], .drop-open .nav-links a[href="/#services"] { background-size: 100% 1px; }
+nav .links a.on { text-decoration: none; }
+@media (prefers-reduced-motion: reduce) { nav .links a, .nav-links a { transition: none; } }
+
+/* light mode */
+html[data-theme="light"] .nav-drop.mega { background: #ffffff; box-shadow: 0 30px 60px rgba(19,32,46,.14); }
+html[data-theme="light"] .mg-ey { color: #17806a; }
+html[data-theme="light"] .mg-h svg, html[data-theme="light"] .mg-ex, html[data-theme="light"] .mg-col li a:hover svg { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
+html[data-theme="light"] .mg-foot a:hover { color: #1561ad; }
+
+/* below the width where the nav links fit, the panel is hidden (the menu button takes over) */
+@media (max-width: 1080px) { nav > .nav-drop.mega { display: none; } }
+@media (max-width: 900px)  { .nav-drop.mega { display: none; } }
+
+/* ---------- the homepage's phone and tablet menu: Services opens the three groups, each a tap-to-open list ---------- */
+@media (max-width: 1080px) {
+  .mobile-menu { max-height: calc(100svh - 90px); overflow-y: auto; overscroll-behavior: contain; }
+  .mobile-menu .mm-svc { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: .8rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.12);
+    background: none; color: var(--text); font: 400 1.2rem "Sora", sans-serif; text-align: left; cursor: pointer; }
+  .mobile-menu .mm-svc::after, .mm-groups summary::after { content: ""; width: 7px; height: 7px; margin-right: 4px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translate(-2px, -2px); transition: transform .25s; }
+  .mobile-menu .mm-svc[aria-expanded="true"]::after, .mm-groups details[open] summary::after { transform: rotate(225deg); }
+  .mm-groups { padding: .3rem 0 .5rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .mm-groups[hidden] { display: none; }
+  .mm-groups summary { display: flex; align-items: center; gap: .7rem; padding: .7rem 0; list-style: none; cursor: pointer; font: 500 1rem "Sora", sans-serif; color: var(--text); }
+  .mm-groups summary::-webkit-details-marker { display: none; }
+  .mm-groups summary::after { margin-left: auto; }
+  .mm-groups svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .mm-groups summary svg { width: 22px; height: 22px; color: var(--c); }
+  .mm-groups ul { list-style: none; margin: 0; padding: 0 0 .3rem 2.1rem; }
+  .mobile-menu .mm-groups a { display: flex; align-items: center; gap: .65rem; padding: .45rem 0; border: 0; font: 400 .98rem "IBM Plex Sans", sans-serif; color: var(--muted); }
+  .mm-groups li a svg { width: 16px; height: 16px; opacity: .8; }
+  .mobile-menu .mm-groups .mg-ex { margin: 0 0 .5rem 2.1rem; color: var(--c); font-weight: 500; }
+  .mobile-menu .mm-groups .mm-find { margin-top: .3rem; color: #98c1d9; font-weight: 500; }
+  html[data-theme="light"] .mm-groups summary svg, html[data-theme="light"] .mobile-menu .mm-groups .mg-ex { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
+  html[data-theme="light"] .mobile-menu .mm-groups .mm-find { color: #1561ad; }
+  html[data-theme="light"] .mobile-menu .mm-svc, html[data-theme="light"] .mm-groups { border-bottom-color: rgba(19,32,46,.12); }
+}
