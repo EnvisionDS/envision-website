@@ -1,0 +1,27 @@
+/* Envision: the Privacy Policy and Terms & Conditions pages, on top of service.css. A numbered contents list sits beside
+   the sections on wide screens (and stays in view while you read); on phones it sits above them. */
+.legal-hero h1 { max-width: 16ch; }
+.legal { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.legal-toc { position: sticky; top: 112px; }
+.legal-toc ol { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .1rem; counter-reset: toc; }
+.legal-toc a { display: flex; gap: .75rem; padding: .38rem 0; font-size: .92rem; line-height: 1.4; color: var(--muted); text-decoration: none; transition: color .2s; }
+.legal-toc a::before { counter-increment: toc; content: counter(toc, decimal-leading-zero); flex: none; width: 1.4rem; font: 500 .72rem/1.95 var(--body); letter-spacing: .08em; color: var(--faint); transition: color .2s; }
+.legal-toc a:hover { color: var(--text); }
+.legal-toc a:hover::before { color: var(--ink); }
+.legal-body { display: grid; gap: clamp(2.4rem, 4vw, 3.2rem); max-width: 70ch; }
+.legal-sec { scroll-margin-top: 112px; }
+.legal-sec h2 { display: flex; align-items: baseline; gap: .9rem; margin-bottom: 1rem; font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
+.legal-sec h2 .n { flex: none; font: 500 .78rem/1 var(--body); letter-spacing: .12em; color: var(--ink); }
+.legal-sec p, .legal-sec li { font-size: 1.02rem; line-height: 1.7; color: var(--muted); }
+.legal-sec p + p, .legal-sec ul + p, .legal-sec p + ul { margin-top: .9rem; }
+.legal-sec ul { margin-bottom: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+.legal-sec li { position: relative; padding-left: 1.4rem; }
+.legal-sec li::before { content: ""; position: absolute; left: .1rem; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+.legal-sec a { color: var(--ink); text-underline-offset: 3px; }
+.legal-card { margin-top: 1.1rem; padding: 1.2rem 1.4rem; display: grid; gap: .2rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.legal-card b { font-weight: 500; color: var(--text); }
+.legal-card p { margin: 0 !important; }
+@media (max-width: 860px) {
+  .legal { grid-template-columns: minmax(0, 1fr); }
+  .legal-toc { position: static; padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+}

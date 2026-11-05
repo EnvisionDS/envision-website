@@ -57,10 +57,10 @@ export default function HomeFooter() {
           <h4 style={{ marginTop: "1.2rem" }}>Legal</h4>
           <ul>
             <li>
-              <a href="#">Privacy Policy</a>
+              <a href="/privacy-policy">Privacy Policy</a>
             </li>
             <li>
-              <a href="#">{"Terms & Conditions"}</a>
+              <a href="/terms-and-conditions">{"Terms & Conditions"}</a>
             </li>
           </ul>
         </div>

@@ -46,12 +46,14 @@ export default function Services() {
                 </a>
               </li>
               <li>
-                <a href="/services/landing-pages">
+                <a href="/services/ux-ui-design">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6 3h9l4 4v14H6z" />
-                    <path d="M14 3v5h5M9 13h7M9 17h5" />
+                    <path d="M12 19l7-7 3 3-7 7z" />
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z" />
+                    <path d="M2 2l7.6 7.6" />
+                    <circle cx="11" cy="11" r="2" />
                   </svg>
-                  Landing pages
+                  UX/UI design
                 </a>
               </li>
               <li>
@@ -141,12 +143,12 @@ export default function Services() {
                 </a>
               </li>
               <li>
-                <a href="/services/content-strategy">
+                <a href="/services/content-creation">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M4 20h4L19 9l-4-4L4 16z" />
                     <path d="M13 7l4 4" />
                   </svg>
-                  Content strategy
+                  Content creation
                 </a>
               </li>
               <li>

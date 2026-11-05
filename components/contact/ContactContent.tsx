@@ -67,7 +67,7 @@ export default function ContactContent() {
                 <optgroup label="Websites">
                   <option data-slug="website-design">Website design</option>
                   <option data-slug="website-development">Website development</option>
-                  <option data-slug="landing-pages">Landing pages</option>
+                  <option data-slug="ux-ui-design">UX/UI design</option>
                   <option data-slug="conversion">Conversion optimisation</option>
                   <option data-slug="speed-technical-fixes">Speed and technical fixes</option>
                   <option data-slug="call-form-tracking">Call and form tracking</option>
@@ -75,7 +75,7 @@ export default function ContactContent() {
                 </optgroup>
                 <optgroup label="Digital marketing">
                   <option data-slug="seo">SEO and local search</option>
-                  <option data-slug="content-strategy">Content strategy</option>
+                  <option data-slug="content-creation">Content creation</option>
                   <option data-slug="google-business-profile">Google Business Profile</option>
                   <option data-slug="paid-ads">Google Ads and Meta Ads</option>
                   <option data-slug="social-media">Social media management</option>

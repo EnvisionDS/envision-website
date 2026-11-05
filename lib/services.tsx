@@ -206,75 +206,78 @@ export const SERVICES: Service[] = [
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through your website build and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "website-design",
-    next: "landing-pages",
+    next: "ux-ui-design",
   },
   {
-    key: "landing-pages",
-    href: "/services/landing-pages",
+    key: "ux-ui-design",
+    href: "/services/ux-ui-design",
     group: "web",
     color: "#5b9be6",
-    name: "Landing pages",
-    metaTitle: "Landing pages | Envision",
+    name: "UX/UI design",
+    metaTitle: "UX/UI design | Envision",
     description:
-      "Focused pages built for one offer and one action, so your ads and campaigns turn clicks into enquiries.",
+      "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
     kicker: "Websites · 03 of 07",
-    title: "Landing pages",
-    lede: "Focused pages built for one offer and one action, so your ads and campaigns turn clicks into enquiries.",
+    title: "UX/UI design",
+    lede: "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
     photos: ["/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg"],
     icon: (
       <>
-        <path d="M6 3h9l4 4v14H6z" />
-        <path d="M14 3v5h5M9 13h7M9 17h5" />
+        <path d="M12 19l7-7 3 3-7 7z" />
+        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z" />
+        <path d="M2 2l7.6 7.6" />
+        <circle cx="11" cy="11" r="2" />
       </>
     ),
     overview: [
-      "When someone clicks an ad or a campaign link, the page they land on decides whether they get in touch. A landing page focuses on a single offer, speaks to that visitor's situation, and makes the next step obvious.",
-      "We plan, write, design and build landing pages that match the ad or search that brought people there, then track and improve them so you can see what's working.",
+      "People decide in seconds whether something feels easy. UX (user experience) is how a visitor moves through your site or app: what they look for, where they get stuck, what makes them act. UI (user interface) is what they see and tap along the way.",
+      "We research how your customers think, map the journeys that matter, and design clear, on-brand screens that make the next step obvious, then hand them over ready to build.",
     ],
-    includedHeading: "What you get",
+    includedHeading: "What you get with UX/UI design",
     included: [
-      "One clear message and offer for each audience",
-      "Copy written around what your customers are weighing up",
-      "Design built for phones first",
-      "Forms, click-to-call and booking prompts",
-      "Matched to your ads, keywords or suburbs",
-      "Tracking, testing and ongoing improvements",
+      "Research into who your customers are and what they're trying to do",
+      "User journeys and site structure planned around the actions that matter",
+      "Wireframes that settle the layout before any visual design",
+      "Interface design in your brand, built for phones first",
+      "Clickable prototypes you can try before anything is built",
+      "A simple design system and a developer-ready handover",
     ],
-    bestFor: "Businesses running ads or campaigns, launching a new offer, or targeting specific suburbs.",
-    stepsHeading: "How we build a landing page",
+    bestFor:
+      "Businesses planning a new website or app, or whose current one gets visitors who leave without getting in touch.",
+    stepsHeading: "How we design your experience",
     steps: [
       {
-        title: "Brief",
-        text: "We pin down the offer, the audience and where the traffic will come from.",
-        get: "a one-page brief",
+        title: "Understand",
+        text: "We talk to you, look at your data and, where we can, your customers, to learn what they need and where they drop off.",
+        get: "a short findings summary",
       },
       {
-        title: "Write and design",
-        text: "We write the page around the questions your customers ask, then design it to read clearly on a phone.",
-        get: "a page draft to review",
+        title: "Map and wireframe",
+        text: "We map the key journeys and sketch each screen's layout, so the structure is right before it looks finished.",
+        get: "user journeys and wireframes",
       },
       {
-        title: "Build and connect",
-        text: "We build the page and connect forms, call tracking and your ad accounts.",
-        get: "a live page, tracked from day one",
+        title: "Design and prototype",
+        text: "We design the screens in your brand and link them into a clickable prototype you can test on your phone.",
+        get: "a prototype to review",
       },
       {
-        title: "Test and improve",
-        text: "We watch how visitors behave and test changes to headlines, offers and forms, keeping what works.",
-        get: "regular results and next changes",
+        title: "Test and hand over",
+        text: "We test the prototype with real people, refine what trips them up, and hand over everything the build needs.",
+        get: "final designs and a handover pack",
       },
     ],
     pairs: [
       {
-        key: "paid-ads",
+        key: "website-design",
         icon: (
           <>
-            <path d="M9 9l10 4-4 1.5L13.5 19z" />
-            <path d="M5 5l2 2M9 3v2M3 9h2" />
+            <rect x="3" y="4.5" width="18" height="15" rx="2" />
+            <path d="M3 9h18M6.5 6.8h.01M9 6.8h.01" />
           </>
         ),
-        title: "Google Ads and Meta Ads",
-        text: "Google Ads and Meta Ads campaigns that target the right people with the right message. No wasted clicks on low-fit audiences.",
+        title: "Website design and development",
+        text: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
         cta: "Find out more",
       },
       {
@@ -292,7 +295,7 @@ export const SERVICES: Service[] = [
       },
     ],
     ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through landing pages and the best next step. We reply Monday to Friday, usually within one business day.",
+      "Tell us about your business and what you need help with, and we'll talk through UX/UI design and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "website-development",
     next: "conversion",
   },
@@ -378,7 +381,7 @@ export const SERVICES: Service[] = [
     ],
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through converting more of your visitors and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "landing-pages",
+    prev: "ux-ui-design",
     next: "speed-technical-fixes",
   },
   {
@@ -718,19 +721,19 @@ export const SERVICES: Service[] = [
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through SEO and local search and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "website-maintenance",
-    next: "content-strategy",
+    next: "content-creation",
   },
   {
-    key: "content-strategy",
-    href: "/services/content-strategy",
+    key: "content-creation",
+    href: "/services/content-creation",
     group: "mkt",
     color: "#7fe0c8",
-    name: "Content strategy",
-    metaTitle: "Content strategy | Envision",
-    description: "Content that answers your customers' questions and helps them choose you.",
+    name: "Content creation",
+    metaTitle: "Content creation | Envision",
+    description: "Words, photos and videos that answer your customers' questions and help them choose you.",
     kicker: "Digital marketing · 02 of 06",
-    title: "Content strategy",
-    lede: "Content that answers your customers' questions and helps them choose you.",
+    title: "Content creation",
+    lede: "Words, photos and videos that answer your customers' questions and help them choose you.",
     photos: ["/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg"],
     icon: (
       <>
@@ -739,41 +742,41 @@ export const SERVICES: Service[] = [
       </>
     ),
     overview: [
-      "Good content does two jobs: it helps people find you in search, and it helps them decide you're the right business to call.",
-      "We plan content around the questions your customers actually ask, from service pages and guides to FAQs and case studies, and set a publishing rhythm you can keep up with. Every piece has a purpose, whether that's ranking for a search, answering a common concern, or supporting your ads and emails.",
+      "Good content does two jobs: it helps people find you, and it helps them decide you're the right business to call.",
+      "We create content around the questions your customers actually ask, from service pages, guides and FAQs to photos, short videos and social posts, all in your voice. Every piece has a purpose, whether that's ranking for a search, answering a common concern, or giving your ads and emails something worth sharing.",
     ],
     includedHeading: "What you get",
     included: [
       "Research into the questions your customers ask",
-      "A content plan tied to your services and suburbs",
-      "Service pages, guides, FAQs and case studies",
-      "Writing in your voice, edited for search",
+      "Service pages, guides, FAQs and case studies, written in your voice",
+      "Photos, short videos and graphics for your site and social media",
+      "Content edited for search and tied to your services and suburbs",
       "A realistic publishing calendar",
       "Reporting on which content brings in enquiries",
     ],
     bestFor:
-      "Businesses whose customers research before they buy, or who want their website to keep bringing in work over time.",
-    stepsHeading: "How we plan your content",
+      "Businesses whose customers research before they buy, or who know they should post more but never have the time.",
+    stepsHeading: "How we create your content",
     steps: [
       {
         title: "Research",
         text: "We gather the questions your customers ask, what they search for, and what competitors already cover.",
-        get: "a list of content opportunities",
+        get: "a list of content ideas",
       },
       {
         title: "Plan",
-        text: "We turn those into a content plan, ranked by what is most likely to bring in enquiries.",
-        get: "a content plan and calendar",
+        text: "We turn those into a content calendar, ranked by what is most likely to bring in enquiries.",
+        get: "a content calendar",
       },
       {
         title: "Create",
-        text: "We write and publish the content in your voice, ready for search.",
-        get: "new content, live on your site",
+        text: "We write, shoot and design the content in your voice, and publish it ready for search and social.",
+        get: "new content, live where your customers look",
       },
       {
         title: "Measure",
-        text: "We track which pieces bring in traffic and enquiries, and plan the next round around them.",
-        get: "regular results and plan updates",
+        text: "We track which pieces bring in traffic and enquiries, and create the next round around them.",
+        get: "regular results and next ideas",
       },
     ],
     pairs: [
@@ -888,7 +891,7 @@ export const SERVICES: Service[] = [
     ],
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through your Google Business Profile and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "content-strategy",
+    prev: "content-creation",
     next: "paid-ads",
   },
   {

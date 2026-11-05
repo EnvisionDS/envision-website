@@ -36,7 +36,7 @@ export const GROUPS: MenuGroup[] = [
     items: [
       "website-design",
       "website-development",
-      "landing-pages",
+      "ux-ui-design",
       "conversion",
       "speed-technical-fixes",
       "call-form-tracking",
@@ -55,7 +55,7 @@ export const GROUPS: MenuGroup[] = [
     ),
     anchor: "svc-2",
     explore: "Explore digital marketing",
-    items: ["seo", "content-strategy", "google-business-profile", "paid-ads", "social-media", "location-strategy"],
+    items: ["seo", "content-creation", "google-business-profile", "paid-ads", "social-media", "location-strategy"],
   },
   {
     id: "auto",
