@@ -47,19 +47,16 @@ a { color: inherit; }
 .nav-cta:hover { background: var(--ink); color: var(--bg); }
 .nav-cta .nc-txt { font-weight: inherit; } .nav-cta .nc-long { font-style: normal; }
 /* past the hero the bar turns white, with the logo's blue (#1561ad) for the words, the lines and the Discovery call
-   button, as on the home page (service.js adds .scrolled). Scrolling down tucks the bar away and scrolling up brings it
-   back (.tucked); it comes back for keyboard focus too. */
-.top { transition: background .45s ease, box-shadow .45s ease, transform .35s cubic-bezier(.2,.8,.2,1); }
+   button, as on the home page (service.js adds .scrolled) */
+.top { transition: background .45s ease, box-shadow .45s ease; }
 .top .nav { transition: border-color .45s; }
 .top .logo, .top .nav-links a, .top .nav-cta, .top .theme-btn { transition: color .2s, background .2s, background-size .35s cubic-bezier(.2,.8,.2,1), opacity .2s; }
-.top.tucked:not(:focus-within) { transform: translateY(calc(-100% - 40px)); }
 .top.scrolled { background: #fff; box-shadow: 0 10px 30px rgba(10,26,47,.14); --rule: rgba(21,97,173,.35); }
 .top.scrolled .logo, .top.scrolled .nav-links a, .top.scrolled .theme-btn { color: #1561ad; opacity: 1; }
 .top.scrolled .nav-links a:hover, .top.scrolled .nav-links a[aria-current="page"] { color: #0c3f75; }
 .top.scrolled .theme-btn:hover { background: rgba(21,97,173,.08); }
 .top.scrolled .nav-cta { background: #1561ad; color: #fff; }
 .top.scrolled .nav-cta:hover { background: #0c3f75; color: #fff; }
-@media (prefers-reduced-motion: reduce) { .top { transition: background .45s ease, box-shadow .45s ease; } }
 
 /* hero */
 .hero { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 4rem); }
