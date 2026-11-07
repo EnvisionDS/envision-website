@@ -7,9 +7,13 @@ the root layout.
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm run build   # production build (every page is static)
+npm run build   # production build (every page is static); clears .next/cache first, see below
 npm start       # serve the production build
 ```
+
+A saved build cache can make Turbopack fail with "next/font/google queries have exactly one entry", including on Vercel,
+which restores `.next/cache` from the last deployment. That's why the build clears it first. If `npm run dev` shows the
+same error after a build, delete `.next` and start it again.
 
 ## Pages
 
