@@ -31,7 +31,7 @@ export default function HomeFooter() {
           <h4>Core services</h4>
           <ul>
             <li>
-              <a href="/services/website-design-and-development">{"Website Design & Development"}</a>
+              <a href="/services/website-design-and-development">Website Design</a>
             </li>
             <li>
               <a href="/services/seo-and-content-strategy">{"SEO & Content Strategy"}</a>

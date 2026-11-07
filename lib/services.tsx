@@ -39,12 +39,12 @@ export const SERVICES: Service[] = [
     href: "/services/website-design-and-development",
     group: "web",
     color: "#5b9be6",
-    name: "Website design & development",
-    metaTitle: "Website design & development | Envision",
+    name: "Website design",
+    metaTitle: "Website design | Envision",
     description:
       "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
     kicker: "Web Design & Development · 01 of 05",
-    title: "Website design & development",
+    title: "Website design",
     lede: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
     photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
     icon: (
@@ -187,7 +187,7 @@ export const SERVICES: Service[] = [
             <path d="M3 9h18M9 9v11" />
           </>
         ),
-        title: "Website design & development",
+        title: "Website design",
         text: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
         cta: "Find out more",
       },
@@ -367,7 +367,7 @@ export const SERVICES: Service[] = [
             <path d="M3 9h18M6.5 6.8h.01M9 6.8h.01" />
           </>
         ),
-        title: "Website design & development",
+        title: "Website design",
         text: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
         cta: "Find out more",
       },
@@ -453,7 +453,7 @@ export const SERVICES: Service[] = [
             <path d="M3 9h18M6.5 6.8h.01M9 6.8h.01" />
           </>
         ),
-        title: "Website design & development",
+        title: "Website design",
         text: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
         cta: "Read about website design",
       },
@@ -624,7 +624,7 @@ export const SERVICES: Service[] = [
             <path d="M3 9h18M6.5 6.8h.01M9 6.8h.01" />
           </>
         ),
-        title: "Website design & development",
+        title: "Website design",
         text: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
         cta: "Read about website design",
       },
