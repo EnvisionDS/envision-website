@@ -2,6 +2,8 @@ import Icon from "@/components/site/Icon";
 import { GROUPS, type GroupId } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
+const groupName = (group: GroupId) => GROUPS.find((x) => x.id === group)!.name;
+
 // a card's list of services, straight from the Services menu (lib/menu.tsx)
 function Links({ group }: { group: GroupId }) {
   const g = GROUPS.find((x) => x.id === group)!;
@@ -42,11 +44,7 @@ export default function Services() {
             <i></i>
           </div>
           <div className="st-txt">
-            {" "}
-            <span className="st-num" aria-hidden="true">
-              01
-            </span>{" "}
-            <p className="st-tag">Web Design &amp; Development</p>
+            <p className="st-cat">{groupName("web")}</p>
             <h3>Websites that turn visitors into enquiries</h3>
             <p className="st-sum">
               We design, build and look after websites that read clearly, load fast and make it easy for people to get
@@ -85,11 +83,7 @@ export default function Services() {
             <i></i>
           </div>
           <div className="st-txt">
-            {" "}
-            <span className="st-num" aria-hidden="true">
-              02
-            </span>{" "}
-            <p className="st-tag">Digital Marketing</p>
+            <p className="st-cat">{groupName("mkt")}</p>
             <h3>Be found by the people ready to buy</h3>
             <p className="st-sum">
               Search, ads, social media and local strategy that put you in front of the right people, in the suburbs
@@ -131,11 +125,7 @@ export default function Services() {
             <i></i>
           </div>
           <div className="st-txt">
-            {" "}
-            <span className="st-num" aria-hidden="true">
-              03
-            </span>{" "}
-            <p className="st-tag">Automation &amp; CRM</p>
+            <p className="st-cat">{groupName("auto")}</p>
             <h3>Every enquiry captured and followed up</h3>
             <p className="st-sum">
               Systems that capture every lead, follow up automatically and give your team back their time, even after
@@ -175,11 +165,7 @@ export default function Services() {
             <i className="on"></i>
           </div>
           <div className="st-txt">
-            {" "}
-            <span className="st-num" aria-hidden="true">
-              04
-            </span>{" "}
-            <p className="st-tag">Strategy &amp; Consulting</p>
+            <p className="st-cat">{groupName("consult")}</p>
             <h3>Know where to focus before you spend</h3>
             <p className="st-sum">
               Clear advice on your strategy, systems and locations, so every decision rests on evidence, not guesswork.
