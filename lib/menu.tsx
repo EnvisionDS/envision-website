@@ -23,7 +23,7 @@ export const MENU_FOOT = {
 export const GROUPS: MenuGroup[] = [
   {
     id: "web",
-    name: "Websites",
+    name: "Web Design & Development",
     color: "#5b9be6",
     icon: (
       <>
@@ -32,18 +32,12 @@ export const GROUPS: MenuGroup[] = [
       </>
     ),
     anchor: "svc-1",
-    explore: "Explore websites",
-    items: [
-      "website-design",
-      "website-development",
-      "ux-ui-design",
-      "conversion",
-      "website-maintenance",
-    ],
+    explore: "Explore web design & development",
+    items: ["website-design", "ecommerce", "ux-ui-design", "conversion", "website-maintenance"],
   },
   {
     id: "mkt",
-    name: "Digital marketing",
+    name: "Digital Marketing",
     color: "#7fe0c8",
     icon: (
       <>
@@ -53,11 +47,11 @@ export const GROUPS: MenuGroup[] = [
     ),
     anchor: "svc-2",
     explore: "Explore digital marketing",
-    items: ["seo", "content-creation", "google-business-profile", "paid-ads", "social-media"],
+    items: ["seo", "paid-ads", "content-creation", "social-media", "call-form-tracking"],
   },
   {
     id: "auto",
-    name: "Automation and CRM",
+    name: "Automation & CRM",
     color: "#9ccc65",
     icon: (
       <>
@@ -68,20 +62,12 @@ export const GROUPS: MenuGroup[] = [
       </>
     ),
     anchor: "svc-3",
-    explore: "Explore automation and CRM",
-    items: [
-      "crm-setup",
-      "email-crm",
-      "lead-capture",
-      "call-form-tracking",
-      "booking-reminders",
-      "review-requests",
-      "connecting-tools",
-    ],
+    explore: "Explore automation & CRM",
+    items: ["crm-setup", "lead-capture", "booking-reminders", "automation", "connecting-tools"],
   },
   {
     id: "consult",
-    name: "Consulting",
+    name: "Strategy & Consulting",
     color: "#ee6c4d",
     icon: (
       <>
@@ -90,7 +76,7 @@ export const GROUPS: MenuGroup[] = [
       </>
     ),
     anchor: "svc-4",
-    explore: "Explore consulting",
-    items: ["location-strategy"],
+    explore: "Explore strategy & consulting",
+    items: ["digital-strategy", "audits", "software-selection", "process-reviews", "location-strategy"],
   },
 ];

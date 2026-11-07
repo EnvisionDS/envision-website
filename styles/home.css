@@ -1466,7 +1466,7 @@
     86% { opacity: 1; transform: scale(1); } 96%, 100% { opacity: 0; } }
 
   /* SEO: someone types a search and your business climbs to the top */
-  /* consulting: three areas compared, the strongest one picked out */
+  /* strategy and consulting: three areas compared, the priority picked out */
   .sp-loc { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 0 10%; }
   .sp-loc-r { display: grid; grid-template-columns: 4.8em minmax(0, 1fr); align-items: center; gap: 10px; color: rgba(224,251,252,.65); }
   .sp-loc-r i { display: block; height: 8px; width: var(--w); border-radius: 4px; background: rgba(224,251,252,.18); transform-origin: left; animation: spLoc 6s ease-in-out calc(var(--i) * .25s) infinite; }

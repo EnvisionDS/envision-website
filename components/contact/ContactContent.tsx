@@ -1,3 +1,6 @@
+import { GROUPS } from "@/lib/menu";
+import { SERVICE_BY_KEY } from "@/lib/services";
+
 // The contact page: the enquiry form in a frame over a dim backdrop, like the homepage pop-up (styles/contact.css,
 // lib/client/contact-form.js). The homepage pop-up loads this page and takes its frame.
 export default function ContactContent() {
@@ -64,33 +67,15 @@ export default function ContactContent() {
               <span>Service of interest</span>{" "}
               <select name="service">
                 <option value="">Select a service (optional)</option>
-                <optgroup label="Websites">
-                  <option data-slug="website-design">Website design</option>
-                  <option data-slug="website-development">Website development</option>
-                  <option data-slug="ux-ui-design">UX/UI design</option>
-                  <option data-slug="conversion">Conversion optimisation</option>
-                  <option data-slug="website-maintenance">Website maintenance</option>
-                </optgroup>
-                <optgroup label="Digital marketing">
-                  <option data-slug="seo">SEO and local search</option>
-                  <option data-slug="content-creation">Content creation</option>
-                  <option data-slug="google-business-profile">Google Business Profile</option>
-                  <option data-slug="paid-ads">Google Ads and Meta Ads</option>
-                  <option data-slug="social-media">Social media management</option>
-                </optgroup>
-                <optgroup label="Automation and CRM">
-                  <option data-slug="crm-setup">CRM setup and clean-up</option>
-                  <option data-slug="email-crm">Email follow-up sequences</option>
-                  <option data-slug="lead-capture">Lead capture into your CRM</option>
-                  <option data-slug="call-form-tracking">Call and form tracking</option>
-                  <option data-slug="booking-reminders">Booking confirmations and reminders</option>
-                  <option data-slug="review-requests">Review requests</option>
-                  <option data-slug="connecting-tools">Connecting your tools</option>
-                  <option data-slug="automation">Automation (general)</option>
-                </optgroup>
-                <optgroup label="Consulting">
-                  <option data-slug="location-strategy">Location strategy</option>
-                </optgroup>
+                {GROUPS.map((g) => (
+                  <optgroup label={g.name} key={g.id}>
+                    {g.items.map((key) => (
+                      <option data-slug={key} key={key}>
+                        {SERVICE_BY_KEY[key].name}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
                 <option data-slug="not-sure">Not sure yet</option>
               </select>{" "}
             </label>{" "}

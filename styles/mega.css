@@ -9,7 +9,8 @@
   opacity: 0; visibility: hidden; transition: opacity .25s, transform .25s, visibility 0s .25s; }
 .drop-open .nav-drop.mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition: opacity .25s, transform .25s; }
 .mg-ey { margin: 0 0 1.3rem; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #7fe0c8; }
-.mg-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+.mg-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto 1fr auto; column-gap: 2rem; }
+.mg-col { display: grid; grid-row: span 3; grid-template-rows: subgrid; }   /* so the headings, their lines and the Explore links line up across the columns */
 .mg-h { display: flex; align-items: center; gap: .75rem; margin: 0 0 .7rem; padding-bottom: .95rem; border-bottom: 1px solid var(--rule);
         font: 500 1.1rem/1.2 "Sora", sans-serif; letter-spacing: -.01em; color: var(--text); }
 .mg-col svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
@@ -20,7 +21,7 @@
 .mg-col li a svg { width: 17px; height: 17px; color: var(--muted); opacity: .75; transition: color .2s, opacity .2s; }
 .mg-col li a:hover, .mg-col li a:focus-visible { background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--text); }
 .mg-col li a:hover svg, .mg-col li a:focus-visible svg { color: var(--c); opacity: 1; }
-.mg-ex { display: inline-flex; gap: .45rem; margin-top: 1rem; font-size: .94rem; font-weight: 500; color: var(--c); text-decoration: none; }
+.mg-ex { display: inline-flex; justify-self: start; gap: .45rem; margin-top: 1rem; font-size: .94rem; font-weight: 500; color: var(--c); text-decoration: none; }
 .mg-ex span, .mg-foot a span { transition: transform .2s; }
 .mg-ex:hover span, .mg-foot a:hover span { transform: translateX(3px); }
 .mg-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule);
