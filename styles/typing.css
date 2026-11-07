@@ -1,0 +1,18 @@
+/* TYPING (lib/client/typing.js): the untyped part of a paragraph stays in place, unseen, and a cursor leads the words.
+   html.ty is set before the page paints, unless the visitor asks for less motion. */
+@media screen {
+  .ty-r { opacity: 0; }
+  /* until the script has readied the page, so text doesn't show and then vanish; the heroes keep their own animation */
+  html.ty:not(.ty-ready) :is(main, section.block) :is(p, li):not(.hero *, #hero *) { opacity: 0; }
+}
+.ty-c { position: relative; }
+.ty-c::after { content: ""; position: absolute; left: 1px; top: .05em; width: 2px; height: 1.1em; border-radius: 1px; background: #8fd3f4; box-shadow: 0 0 10px rgba(143,211,244,.7); }
+html[data-theme="light"] .ty-c::after { background: #1561ad; box-shadow: 0 0 8px rgba(21,97,173,.45); }
+
+/* WHO WE ARE: each heading and note rises as one pack while the words beside it type; then the next pair follows,
+   the line reaching down to meet it (home.js runs the order) */
+.wl-row { transition: opacity .8s ease, translate .9s cubic-bezier(.2,.75,.15,1); }
+html.ty .wl-row:not(.on) { opacity: 0; translate: 0 30px; }
+html.ty .wl-line { --p: 0; }
+.who-more { transition: opacity .6s ease, translate .6s cubic-bezier(.2,.75,.15,1); }
+html.ty .who-more:not(.on) { opacity: 0; translate: 0 10px; }

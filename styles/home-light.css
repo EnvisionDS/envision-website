@@ -653,22 +653,6 @@ html[data-theme="light"] .hp-side { border-color: #e6edf7; box-shadow: 0 20px 40
 .st-vis::before { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 12%, transparent), transparent 40%, rgba(5,6,8,.7)) !important; }
 @media (min-width: 861px) { .st-card .st-glass { top: auto; bottom: 7%; transform: none; height: min(200px, 44%); left: 12%; right: 12%; } }
 
-/* NAV, PAST THE HERO: once the hero has scrolled by, the bar turns white, with the logo's blue (#1561ad) for the words,
-   the lines and the Discovery call button (the script further down adds .scrolled) */
-nav { transition: background .45s ease, box-shadow .45s ease; }
-nav::after { transition: border-color .45s; }
-#logoText span, nav .links a { transition: color .3s, background-size .35s cubic-bezier(.2,.8,.2,1), opacity .2s; }
-nav .theme-btn { transition: color .3s, background .2s; }
-nav.scrolled { background: #fff; box-shadow: 0 10px 30px rgba(10,26,47,.14); --rule: rgba(21,97,173,.35); }
-html[data-theme="light"] nav.scrolled { --rule: rgba(21,97,173,.35); }
-nav.scrolled #logoText span, nav.scrolled .links a, nav.scrolled .theme-btn { color: #1561ad; opacity: 1; }
-nav.scrolled .links a:hover, nav.scrolled .links a.on { color: #0c3f75; }
-nav.scrolled .theme-btn:hover { background: rgba(21,97,173,.08); }
-nav.scrolled .menu-btn span { background: #1561ad; }
-nav.scrolled .nav-cta { background: #1561ad; color: #fff; }
-nav.scrolled .nav-cta::before { background: #0c3f75; }
-nav.scrolled .nav-cta:hover { color: #fff; }
-
 /* WHO WE ARE: three rows. On the left each line of the heading with its icon and a short note; on the right, the
    paragraph that goes with it, so each pair lines up. A thin line (placed by the script) joins the icons, and a soft
    light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */

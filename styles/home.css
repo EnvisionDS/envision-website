@@ -1609,10 +1609,6 @@
   }
   @media (prefers-reduced-motion: reduce) { .gp-pin { transition: none; } }
 
-  /* ---------- MOTION, SMALLER TEXT (v133) ---------- */
-  html.mo .mo-split.mo-small .mo-w { translate: 0 105%; rotate: none; }
-  html.mo .mo-split.mo-small.mo-in .mo-w { translate: none; opacity: 1; transition: translate .9s cubic-bezier(.2,.8,.2,1), opacity .6s ease;
-                                           transition-delay: calc(min(var(--wi) * 14ms, 700ms) + var(--mb, 160ms)); }
 
 /* ================= JUMP LINKS: the section a link lands on fades up briefly so the jump doesn't feel like a cut ================= */
 .arrive { animation: arrive .4s ease-out; }

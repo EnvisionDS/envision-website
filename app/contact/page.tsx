@@ -20,7 +20,7 @@ export default function Page() {
     <>
       <script dangerouslySetInnerHTML={{ __html: CX }} />
       {/* the site nav, shown in its "past the hero" state (grown and blue) since this page has no hero */}
-      <SiteHeader scrolled />
+      <SiteHeader />
       <ContactContent />
       <ServiceScripts page="contact" />
     </>

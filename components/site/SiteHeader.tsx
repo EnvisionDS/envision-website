@@ -1,11 +1,10 @@
 import MegaMenu from "./MegaMenu";
 import ThemeButton from "./ThemeButton";
 
-// The nav bar on every page but the homepage. It grows and turns deep blue once the hero has scrolled past
-// (lib/client/service.js adds .scrolled); the contact page has no hero, so it starts that way.
-export default function SiteHeader({ current, scrolled = false }: { current?: "about"; scrolled?: boolean }) {
+// The nav bar on every page but the homepage.
+export default function SiteHeader({ current }: { current?: "about" }) {
   return (
-    <header className={scrolled ? "top scrolled" : "top"}>
+    <header className="top">
       <div className="wrap nav">
         <a className="logo" href="/#hero" data-home="">
           envision
