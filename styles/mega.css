@@ -1,15 +1,15 @@
 /* Envision: the Services mega menu, shared by the homepage and the service pages.
-   Three columns, one per group of services (Websites, Digital marketing, Automation and CRM), each with its own colour (--c).
+   Four columns, one per group of services (Websites, Digital marketing, Automation and CRM, Consulting), each with its own colour (--c).
    It opens on hover or keyboard focus of the Services link (mega.js). On tablets and phones the menu button takes over,
-   and on the homepage that menu shows the same three groups as tap-to-open lists (the .mm-* rules at the bottom). */
+   and on the homepage that menu shows the same four groups as tap-to-open lists (the .mm-* rules at the bottom). */
 
-.nav-drop.mega { position: absolute; z-index: 30; top: calc(100% - 12px); left: 50%; width: min(1080px, calc(100% - 12vw)); transform: translate(-50%, 8px);
+.nav-drop.mega { position: absolute; z-index: 30; top: calc(100% - 12px); left: 50%; width: min(1240px, calc(100% - 12vw)); transform: translate(-50%, 8px);
   display: block; padding: 1.8rem 2.2rem 1.3rem; text-align: left; font-family: "IBM Plex Sans", system-ui, sans-serif;
   background: linear-gradient(180deg, #0e1724, #0b121c); border: 1px solid var(--rule); box-shadow: 0 30px 60px rgba(0,0,0,.45);
   opacity: 0; visibility: hidden; transition: opacity .25s, transform .25s, visibility 0s .25s; }
 .drop-open .nav-drop.mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition: opacity .25s, transform .25s; }
 .mg-ey { margin: 0 0 1.3rem; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #7fe0c8; }
-.mg-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.6rem; }
+.mg-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
 .mg-h { display: flex; align-items: center; gap: .75rem; margin: 0 0 .7rem; padding-bottom: .95rem; border-bottom: 1px solid var(--rule);
         font: 500 1.1rem/1.2 "Sora", sans-serif; letter-spacing: -.01em; color: var(--text); }
 .mg-col svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
@@ -51,7 +51,7 @@ html[data-theme="light"] .mg-foot a:hover { color: #1561ad; }
 @media (max-width: 1080px) { nav > .nav-drop.mega { display: none; } }
 @media (max-width: 900px)  { .nav-drop.mega { display: none; } }
 
-/* ---------- the homepage's phone and tablet menu: Services opens the three groups, each a tap-to-open list ---------- */
+/* ---------- the homepage's phone and tablet menu: Services opens the four groups, each a tap-to-open list ---------- */
 @media (max-width: 1080px) {
   .mobile-menu { max-height: calc(100svh - 90px); overflow-y: auto; overscroll-behavior: contain; }
   .mobile-menu .mm-svc { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: .8rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.12);

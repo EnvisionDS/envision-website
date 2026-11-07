@@ -1466,6 +1466,13 @@
     86% { opacity: 1; transform: scale(1); } 96%, 100% { opacity: 0; } }
 
   /* SEO: someone types a search and your business climbs to the top */
+  /* consulting: three areas compared, the strongest one picked out */
+  .sp-loc { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 0 10%; }
+  .sp-loc-r { display: grid; grid-template-columns: 4.8em minmax(0, 1fr); align-items: center; gap: 10px; color: rgba(224,251,252,.65); }
+  .sp-loc-r i { display: block; height: 8px; width: var(--w); border-radius: 4px; background: rgba(224,251,252,.18); transform-origin: left; animation: spLoc 6s ease-in-out calc(var(--i) * .25s) infinite; }
+  .sp-loc-r.best { color: #eef9fa; font-weight: 500; } .sp-loc-r.best i { background: linear-gradient(90deg, var(--c), #f2b84b); box-shadow: 0 0 12px color-mix(in srgb, var(--c) 55%, transparent); }
+  @keyframes spLoc { 0% { transform: scaleX(0); } 22%, 86% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+  @media (prefers-reduced-motion: reduce) { .sp-loc-r i { animation: none; } }
   .sp-seo { display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 0 10%; }
   .sp-ms-q { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); background: #0d1117; font-size: .8rem; }
   .sp-ms-q svg { width: 16px; height: 16px; fill: none; stroke: var(--c); stroke-width: 2; stroke-linecap: round; flex: none; }

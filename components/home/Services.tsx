@@ -6,13 +6,14 @@ export default function Services() {
         Everything you need to <span className="grad">grow smarter</span>.
       </h2>
       <p className="reveal">
-        Websites, digital marketing, and automation and CRM: three connected areas, planned as one system so each part
-        makes the next one work harder. Start with one, or let us bring them together.
+        Websites, digital marketing, automation and CRM, and consulting: four connected areas, planned as one system so
+        each part makes the next one work harder. Start with one, or let us bring them together.
       </p>
       <div className="st" id="svcStack">
         <article className="st-card" id="svc-1" style={{ "--c": "#5b9be6", "--i": "0" }}>
           <div className="st-count" aria-hidden="true">
             <i className="on"></i>
+            <i></i>
             <i></i>
             <i></i>
           </div>
@@ -67,22 +68,6 @@ export default function Services() {
                 </a>
               </li>
               <li>
-                <a href="/services/speed-technical-fixes">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M13 3L5 14h6l-1 7 8-11h-6z" />
-                  </svg>
-                  Speed and technical fixes
-                </a>
-              </li>
-              <li>
-                <a href="/services/call-form-tracking">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 20V11M10 20V5M16 20v-6M21 20H3" />
-                  </svg>
-                  Call and form tracking
-                </a>
-              </li>
-              <li>
                 <a href="/services/website-maintenance">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z" />
@@ -119,6 +104,7 @@ export default function Services() {
           <div className="st-count" aria-hidden="true">
             <i></i>
             <i className="on"></i>
+            <i></i>
             <i></i>
           </div>
           <div className="st-txt">
@@ -177,15 +163,6 @@ export default function Services() {
                   Social media management
                 </a>
               </li>
-              <li>
-                <a href="/location-strategy">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" />
-                    <path d="M9 4v14M15 6v14" />
-                  </svg>
-                  Location strategy
-                </a>
-              </li>
             </ul>
           </div>
           <div className="st-vis" aria-hidden="true">
@@ -219,6 +196,7 @@ export default function Services() {
             <i></i>
             <i></i>
             <i className="on"></i>
+            <i></i>
           </div>
           <div className="st-txt">
             {" "}
@@ -258,6 +236,14 @@ export default function Services() {
                     <path d="M4 13h4l1.5 2.5h5L16 13h4" />
                   </svg>
                   Lead capture into your CRM
+                </a>
+              </li>
+              <li>
+                <a href="/services/call-form-tracking">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 20V11M10 20V5M16 20v-6M21 20H3" />
+                  </svg>
+                  Call and form tracking
                 </a>
               </li>
               <li>
@@ -308,6 +294,59 @@ export default function Services() {
                 <span className="sp-mu-n" style={{ "--i": "2" }}>
                   Text sent ✓
                 </span>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article className="st-card" id="svc-4" style={{ "--c": "#ee6c4d", "--i": "3" }}>
+          <div className="st-count" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i className="on"></i>
+          </div>
+          <div className="st-txt">
+            {" "}
+            <span className="st-num" aria-hidden="true">
+              04
+            </span>{" "}
+            <p className="st-tag">Consulting</p>
+            <h3>Clear answers before you commit</h3>
+            <p className="st-sum">
+              Know where your best opportunities are before you spend, with local data and clear recommendations.
+            </p>
+            <ul className="st-links" aria-label="Consulting services">
+              <li>
+                <a href="/location-strategy">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" />
+                    <path d="M9 4v14M15 6v14" />
+                  </svg>
+                  Location strategy
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="st-vis" aria-hidden="true">
+            <div className="st-slides" aria-hidden="true">
+              <img src="/img/ph-planning.jpg" alt="" />
+              <img src="/img/ph-team-table.jpg" alt="" loading="lazy" />
+              <img src="/img/ph-shop-counter.jpg" alt="" loading="lazy" />
+            </div>
+            <div className="st-glass">
+              <div className="sp sp-loc" aria-hidden="true">
+                <div className="sp-loc-r" style={{ "--w": "46%", "--i": "0" }}>
+                  <span>Suburb A</span>
+                  <i></i>
+                </div>
+                <div className="sp-loc-r best" style={{ "--w": "92%", "--i": "1" }}>
+                  <span>Suburb B</span>
+                  <i></i>
+                </div>
+                <div className="sp-loc-r" style={{ "--w": "64%", "--i": "2" }}>
+                  <span>Suburb C</span>
+                  <i></i>
+                </div>
               </div>
             </div>
           </div>

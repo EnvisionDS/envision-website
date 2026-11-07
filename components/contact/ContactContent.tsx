@@ -69,8 +69,6 @@ export default function ContactContent() {
                   <option data-slug="website-development">Website development</option>
                   <option data-slug="ux-ui-design">UX/UI design</option>
                   <option data-slug="conversion">Conversion optimisation</option>
-                  <option data-slug="speed-technical-fixes">Speed and technical fixes</option>
-                  <option data-slug="call-form-tracking">Call and form tracking</option>
                   <option data-slug="website-maintenance">Website maintenance</option>
                 </optgroup>
                 <optgroup label="Digital marketing">
@@ -79,16 +77,19 @@ export default function ContactContent() {
                   <option data-slug="google-business-profile">Google Business Profile</option>
                   <option data-slug="paid-ads">Google Ads and Meta Ads</option>
                   <option data-slug="social-media">Social media management</option>
-                  <option data-slug="location-strategy">Location strategy</option>
                 </optgroup>
                 <optgroup label="Automation and CRM">
                   <option data-slug="crm-setup">CRM setup and clean-up</option>
                   <option data-slug="email-crm">Email follow-up sequences</option>
                   <option data-slug="lead-capture">Lead capture into your CRM</option>
+                  <option data-slug="call-form-tracking">Call and form tracking</option>
                   <option data-slug="booking-reminders">Booking confirmations and reminders</option>
                   <option data-slug="review-requests">Review requests</option>
                   <option data-slug="connecting-tools">Connecting your tools</option>
                   <option data-slug="automation">Automation (general)</option>
+                </optgroup>
+                <optgroup label="Consulting">
+                  <option data-slug="location-strategy">Location strategy</option>
                 </optgroup>
                 <option data-slug="not-sure">Not sure yet</option>
               </select>{" "}

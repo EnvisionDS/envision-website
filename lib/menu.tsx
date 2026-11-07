@@ -1,8 +1,8 @@
-// The Services menu: three groups, each with its own colour, and the services in each (in menu order).
+// The Services menu: four groups, each with its own colour, and the services in each (in menu order).
 // The mega menu, the page labels and the homepage's mobile menu all read from here.
 import type { ReactNode } from "react";
 
-export type GroupId = "web" | "mkt" | "auto";
+export type GroupId = "web" | "mkt" | "auto" | "consult";
 export type MenuGroup = {
   id: GroupId;
   name: string;
@@ -38,8 +38,6 @@ export const GROUPS: MenuGroup[] = [
       "website-development",
       "ux-ui-design",
       "conversion",
-      "speed-technical-fixes",
-      "call-form-tracking",
       "website-maintenance",
     ],
   },
@@ -55,7 +53,7 @@ export const GROUPS: MenuGroup[] = [
     ),
     anchor: "svc-2",
     explore: "Explore digital marketing",
-    items: ["seo", "content-creation", "google-business-profile", "paid-ads", "social-media", "location-strategy"],
+    items: ["seo", "content-creation", "google-business-profile", "paid-ads", "social-media"],
   },
   {
     id: "auto",
@@ -71,6 +69,28 @@ export const GROUPS: MenuGroup[] = [
     ),
     anchor: "svc-3",
     explore: "Explore automation and CRM",
-    items: ["crm-setup", "email-crm", "lead-capture", "booking-reminders", "review-requests", "connecting-tools"],
+    items: [
+      "crm-setup",
+      "email-crm",
+      "lead-capture",
+      "call-form-tracking",
+      "booking-reminders",
+      "review-requests",
+      "connecting-tools",
+    ],
+  },
+  {
+    id: "consult",
+    name: "Consulting",
+    color: "#ee6c4d",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M15.5 8.5l-2 5-5 2 2-5z" />
+      </>
+    ),
+    anchor: "svc-4",
+    explore: "Explore consulting",
+    items: ["location-strategy"],
   },
 ];

@@ -2,7 +2,7 @@ import Icon from "./Icon";
 import { GROUPS, MENU_FOOT, MENU_TITLE } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
-// The Services mega menu: three columns, one per group, each in its own colour (mega.css). It opens on hover or keyboard
+// The Services mega menu: four columns, one per group, each in its own colour (mega.css). It opens on hover or keyboard
 // focus of the Services link (lib/client/mega.js). On the homepage its group links jump within the page.
 export default function MegaMenu({ onHome = false }: { onHome?: boolean }) {
   const home = onHome ? "" : "/";

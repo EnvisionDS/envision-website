@@ -27,7 +27,7 @@ npm start       # serve the production build
 
 - `lib/services.tsx`: every service page's content (copy, photos, steps, the services it pairs with). Edit a service here;
   `components/services/ServicePage.tsx` lays it out.
-- `lib/menu.tsx`: the three groups in the Services menu and the services in each. The mega menu
+- `lib/menu.tsx`: the four groups in the Services menu and the services in each. The mega menu
   (`components/site/MegaMenu.tsx`) reads from it.
 - `styles/`: the site's stylesheets, imported by the pages that use them. Tailwind's base reset is switched off
   (`app/globals.css`) so these keep their look; Tailwind utilities are available for new work.

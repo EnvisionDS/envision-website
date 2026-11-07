@@ -43,7 +43,7 @@ export const SERVICES: Service[] = [
     metaTitle: "Website design and development | Envision",
     description:
       "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
-    kicker: "Websites · 01 of 07",
+    kicker: "Websites · 01 of 05",
     title: "Website design and development",
     lede: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
     photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
@@ -121,7 +121,7 @@ export const SERVICES: Service[] = [
     ],
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through your website design and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "connecting-tools",
+    prev: "location-strategy",
     next: "website-development",
   },
   {
@@ -132,7 +132,7 @@ export const SERVICES: Service[] = [
     name: "Website development",
     metaTitle: "Website development | Envision",
     description: "A fast, secure website built properly, so it's easy to manage and ready to grow with you.",
-    kicker: "Websites · 02 of 07",
+    kicker: "Websites · 02 of 05",
     title: "Website development",
     lede: "A fast, secure website built properly, so it's easy to manage and ready to grow with you.",
     photos: ["/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg"],
@@ -192,15 +192,17 @@ export const SERVICES: Service[] = [
         cta: "Find out more",
       },
       {
-        key: "speed-technical-fixes",
+        key: "conversion",
         icon: (
           <>
-            <path d="M13 3L5 14h6l-1 7 8-11h-6z" />
+            <circle cx="12" cy="12" r="8" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="12" cy="12" r=".6" />
           </>
         ),
-        title: "Speed and technical fixes",
-        text: "A slow or broken website costs you enquiries. We find what's wrong and fix it.",
-        cta: "Find out more",
+        title: "Conversion optimisation",
+        text: "Traffic that does not convert is wasted opportunity.",
+        cta: "Read about conversion",
       },
     ],
     ctaText:
@@ -217,7 +219,7 @@ export const SERVICES: Service[] = [
     metaTitle: "UX/UI design | Envision",
     description:
       "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
-    kicker: "Websites · 03 of 07",
+    kicker: "Websites · 03 of 05",
     title: "UX/UI design",
     lede: "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
     photos: ["/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg"],
@@ -307,7 +309,7 @@ export const SERVICES: Service[] = [
     name: "Conversion optimisation",
     metaTitle: "Conversion optimisation | Envision",
     description: "Traffic that does not convert is wasted opportunity.",
-    kicker: "Websites · 04 of 07",
+    kicker: "Websites · 04 of 05",
     title: "Conversion optimisation",
     lede: "Traffic that does not convert is wasted opportunity.",
     photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
@@ -382,176 +384,6 @@ export const SERVICES: Service[] = [
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through converting more of your visitors and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "ux-ui-design",
-    next: "speed-technical-fixes",
-  },
-  {
-    key: "speed-technical-fixes",
-    href: "/services/speed-technical-fixes",
-    group: "web",
-    color: "#5b9be6",
-    name: "Speed and technical fixes",
-    metaTitle: "Speed and technical fixes | Envision",
-    description: "A slow or broken website costs you enquiries. We find what's wrong and fix it.",
-    kicker: "Websites · 05 of 07",
-    title: "Speed and technical fixes",
-    lede: "A slow or broken website costs you enquiries. We find what's wrong and fix it.",
-    photos: ["/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg"],
-    icon: (
-      <>
-        <path d="M13 3L5 14h6l-1 7 8-11h-6z" />
-      </>
-    ),
-    overview: [
-      "Visitors leave slow sites, and search engines notice when pages are broken or hard to use. We audit your website for speed, mobile issues, broken links, errors and technical search problems, then fix them in order of impact.",
-      "You get a faster, more reliable site, and a clear explanation of what we changed and why.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "A speed and technical health audit",
-      "Image, code and hosting improvements for faster loading",
-      "Mobile layout and usability fixes",
-      "Broken links, errors and redirects cleaned up",
-      "Technical search fixes, like indexing and site structure",
-      "Before-and-after results in plain English",
-    ],
-    bestFor: "Sites that feel slow, look broken on phones, or have dropped in search without an obvious reason.",
-    stepsHeading: "How we fix your website",
-    steps: [
-      {
-        title: "Audit",
-        text: "We test your site's speed, mobile experience and technical health, page by page.",
-        get: "an audit with every issue listed",
-      },
-      {
-        title: "Prioritise",
-        text: "We sort the issues by how much they affect visitors, search and enquiries.",
-        get: "a fix list in order of impact",
-      },
-      {
-        title: "Fix",
-        text: "We make the fixes, from image compression and code clean-up to redirects and indexing.",
-        get: "a faster, cleaner site",
-      },
-      {
-        title: "Re-test",
-        text: "We measure again and show you the before and after.",
-        get: "a before-and-after report",
-      },
-    ],
-    pairs: [
-      {
-        key: "website-maintenance",
-        icon: (
-          <>
-            <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z" />
-          </>
-        ),
-        title: "Website maintenance",
-        text: "Ongoing care that keeps your website fast, secure and up to date, so you can focus on your business.",
-        cta: "Find out more",
-      },
-      {
-        key: "seo",
-        icon: (
-          <>
-            <circle cx="11" cy="11" r="6" />
-            <path d="M20 20l-4.5-4.5" />
-          </>
-        ),
-        title: "SEO and local search",
-        text: "If your ideal customers are searching online and not finding you, we fix that.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through speeding up and fixing your website and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "conversion",
-    next: "call-form-tracking",
-  },
-  {
-    key: "call-form-tracking",
-    href: "/services/call-form-tracking",
-    group: "web",
-    color: "#5b9be6",
-    name: "Call and form tracking",
-    metaTitle: "Call and form tracking | Envision",
-    description: "Know exactly which ads, pages and searches are bringing in calls and enquiries.",
-    kicker: "Websites · 06 of 07",
-    title: "Call and form tracking",
-    lede: "Know exactly which ads, pages and searches are bringing in calls and enquiries.",
-    photos: ["/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg"],
-    icon: (
-      <>
-        <path d="M4 20V11M10 20V5M16 20v-6M21 20H3" />
-      </>
-    ),
-    overview: [
-      "Most businesses can see their website visits, but not which visits turned into phone calls or form enquiries. We set up tracking for calls, forms and bookings, connected to Google Analytics and your ad accounts, so every enquiry links back to where it came from.",
-      "That means you can put your budget into what works, and stop paying for what doesn't.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "Call tracking numbers for your website and ads",
-      "Form and booking tracking",
-      "Google Analytics and Google Tag Manager setup",
-      "Conversion tracking for Google Ads and Meta Ads",
-      "A simple dashboard of enquiries by source",
-      "Regular checks to keep tracking accurate",
-    ],
-    bestFor: "Businesses spending on ads or SEO who can't say for sure which channel brings in their customers.",
-    stepsHeading: "How we set up your tracking",
-    steps: [
-      {
-        title: "Map",
-        text: "We list every way a customer can get in touch, and every channel sending you traffic.",
-        get: "a tracking plan",
-      },
-      {
-        title: "Set up",
-        text: "We install call, form and booking tracking, and connect it to analytics and your ad accounts.",
-        get: "tracking live across your site",
-      },
-      {
-        title: "Verify",
-        text: "We test every call, form and booking path to make sure each one is recorded correctly.",
-        get: "numbers you can trust",
-      },
-      {
-        title: "Report",
-        text: "We give you a simple view of enquiries by source, and go through it with you.",
-        get: "a dashboard and regular check-ins",
-      },
-    ],
-    pairs: [
-      {
-        key: "conversion",
-        icon: (
-          <>
-            <circle cx="12" cy="12" r="8" />
-            <circle cx="12" cy="12" r="4" />
-            <circle cx="12" cy="12" r=".6" />
-          </>
-        ),
-        title: "Conversion optimisation",
-        text: "Traffic that does not convert is wasted opportunity.",
-        cta: "Find out more",
-      },
-      {
-        key: "paid-ads",
-        icon: (
-          <>
-            <path d="M9 9l10 4-4 1.5L13.5 19z" />
-            <path d="M5 5l2 2M9 3v2M3 9h2" />
-          </>
-        ),
-        title: "Google Ads and Meta Ads",
-        text: "Google Ads and Meta Ads campaigns that target the right people with the right message. No wasted clicks on low-fit audiences.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through tracking your calls and enquiries and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "speed-technical-fixes",
     next: "website-maintenance",
   },
   {
@@ -562,7 +394,7 @@ export const SERVICES: Service[] = [
     name: "Website maintenance",
     metaTitle: "Website maintenance | Envision",
     description: "Ongoing care that keeps your website fast, secure and up to date, so you can focus on your business.",
-    kicker: "Websites · 07 of 07",
+    kicker: "Websites · 05 of 05",
     title: "Website maintenance",
     lede: "Ongoing care that keeps your website fast, secure and up to date, so you can focus on your business.",
     photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
@@ -610,15 +442,17 @@ export const SERVICES: Service[] = [
     ],
     pairs: [
       {
-        key: "speed-technical-fixes",
+        key: "conversion",
         icon: (
           <>
-            <path d="M13 3L5 14h6l-1 7 8-11h-6z" />
+            <circle cx="12" cy="12" r="8" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="12" cy="12" r=".6" />
           </>
         ),
-        title: "Speed and technical fixes",
-        text: "A slow or broken website costs you enquiries. We find what's wrong and fix it.",
-        cta: "Find out more",
+        title: "Conversion optimisation",
+        text: "Traffic that does not convert is wasted opportunity.",
+        cta: "Read about conversion",
       },
       {
         key: "website-development",
@@ -634,7 +468,7 @@ export const SERVICES: Service[] = [
     ],
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through looking after your website and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "call-form-tracking",
+    prev: "conversion",
     next: "seo",
   },
   {
@@ -645,7 +479,7 @@ export const SERVICES: Service[] = [
     name: "SEO and local search",
     metaTitle: "SEO and content strategy | Envision",
     description: "If your ideal customers are searching online and not finding you, we fix that.",
-    kicker: "Digital marketing · 01 of 06",
+    kicker: "Digital marketing · 01 of 05",
     title: "SEO and content strategy",
     lede: "If your ideal customers are searching online and not finding you, we fix that.",
     photos: ["/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg"],
@@ -731,7 +565,7 @@ export const SERVICES: Service[] = [
     name: "Content creation",
     metaTitle: "Content creation | Envision",
     description: "Words, photos and videos that answer your customers' questions and help them choose you.",
-    kicker: "Digital marketing · 02 of 06",
+    kicker: "Digital marketing · 02 of 05",
     title: "Content creation",
     lede: "Words, photos and videos that answer your customers' questions and help them choose you.",
     photos: ["/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg"],
@@ -817,7 +651,7 @@ export const SERVICES: Service[] = [
     name: "Google Business Profile",
     metaTitle: "Google Business Profile | Envision",
     description: "Show up in Google Maps and local searches, with a profile that makes people want to call.",
-    kicker: "Digital marketing · 03 of 06",
+    kicker: "Digital marketing · 03 of 05",
     title: "Google Business Profile",
     lede: "Show up in Google Maps and local searches, with a profile that makes people want to call.",
     photos: ["/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg"],
@@ -903,7 +737,7 @@ export const SERVICES: Service[] = [
     metaTitle: "Paid ads management | Envision",
     description:
       "Google Ads and Meta Ads campaigns that target the right people with the right message. No wasted clicks on low-fit audiences.",
-    kicker: "Digital marketing · 04 of 06",
+    kicker: "Digital marketing · 04 of 05",
     title: "Paid ads management",
     lede: "Google Ads and Meta Ads campaigns that target the right people with the right message. No wasted clicks on low-fit audiences.",
     photos: ["/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg"],
@@ -990,7 +824,7 @@ export const SERVICES: Service[] = [
     name: "Social media management",
     metaTitle: "Social media marketing | Envision",
     description: "Social media works when it is consistent, clear, and built around your audience.",
-    kicker: "Digital marketing · 05 of 06",
+    kicker: "Digital marketing · 05 of 05",
     title: "Social media marketing",
     lede: "Social media works when it is consistent, clear, and built around your audience.",
     photos: ["/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg"],
@@ -1063,17 +897,707 @@ export const SERVICES: Service[] = [
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through your social media and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "paid-ads",
+    next: "crm-setup",
+  },
+  {
+    key: "crm-setup",
+    href: "/services/crm-setup",
+    group: "auto",
+    color: "#9ccc65",
+    name: "CRM setup and clean-up",
+    metaTitle: "CRM setup and clean-up | Envision",
+    description: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
+    kicker: "Automation and CRM · 01 of 07",
+    title: "CRM setup and clean-up",
+    lede: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
+    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
+    icon: (
+      <>
+        <rect x="5" y="3" width="14" height="18" rx="2" />
+        <circle cx="12" cy="10" r="2.5" />
+        <path d="M8.5 17a3.5 3.5 0 0 1 7 0" />
+      </>
+    ),
+    overview: [
+      "Leads come in by phone, email, web forms and social messages, and without a proper system some are bound to be missed.",
+      "We set up a CRM that suits the size of your business, or clean up the one you already have, so every enquiry is captured, assigned and followed up. You get a clear view of your pipeline, and a system your team will actually use.",
+    ],
+    includedHeading: "What you get",
+    included: [
+      "Choosing a CRM that fits your business and budget",
+      "Setup, or a clean-up of your existing CRM",
+      "Importing and tidying your contacts",
+      "Pipelines and stages that match how you sell",
+      "Your website forms and other lead sources connected",
+      "Training so your team uses it confidently",
+    ],
+    bestFor: "Businesses tracking leads in inboxes, spreadsheets or memory, or with a CRM nobody uses properly.",
+    stepsHeading: "How we set up your CRM",
+    steps: [
+      {
+        title: "Review",
+        text: "We look at how enquiries come in now, who handles them, and where they get lost.",
+        get: "a map of your enquiry process",
+      },
+      {
+        title: "Set up",
+        text: "We set up or restructure your CRM with pipelines, stages and fields that match how you work.",
+        get: "a CRM built around your business",
+      },
+      {
+        title: "Connect and import",
+        text: "We bring in your existing contacts and connect your forms and lead sources.",
+        get: "every enquiry landing in one place",
+      },
+      {
+        title: "Train",
+        text: "We show your team how to use it day to day, and refine it after the first few weeks.",
+        get: "a team using it confidently",
+      },
+    ],
+    pairs: [
+      {
+        key: "email-crm",
+        icon: (
+          <>
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </>
+        ),
+        title: "Email follow-up sequences",
+        text: "Most leads do not buy immediately.",
+        cta: "Find out more",
+      },
+      {
+        key: "lead-capture",
+        icon: (
+          <>
+            <path d="M4 13l2.5-8h11L20 13v6H4z" />
+            <path d="M4 13h4l1.5 2.5h5L16 13h4" />
+          </>
+        ),
+        title: "Lead capture into your CRM",
+        text: "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
+        cta: "Find out more",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through your CRM and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "social-media",
+    next: "email-crm",
+  },
+  {
+    key: "email-crm",
+    href: "/services/email-crm",
+    group: "auto",
+    color: "#4fc3f7",
+    name: "Email follow-up sequences",
+    metaTitle: "Email and CRM nurture | Envision",
+    description: "Most leads do not buy immediately.",
+    kicker: "Automation and CRM · 02 of 07",
+    title: "Email and CRM nurture",
+    lede: "Most leads do not buy immediately.",
+    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg", "/img/ph-auto-counter.jpg"],
+    icon: (
+      <>
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </>
+    ),
+    overview: [
+      "We build practical email nurture sequences and CRM workflows that keep warm leads engaged, answer their concerns, and guide them back to a decision when they are ready. This is where many good opportunities quietly die without it.",
+    ],
+    includedHeading: "What you get with email and CRM",
+    included: [
+      "CRM setup or clean-up, so every enquiry is captured",
+      "Welcome and follow-up sequences written in your voice",
+      "Segmenting by service, area or stage",
+      "Re-engagement flows for leads that went quiet",
+      "Reporting on replies, bookings and revenue, not open rates",
+    ],
+    bestFor:
+      "Services with a longer decision cycle, quotes that need chasing, or a list of past customers that never hears from you.",
+    stepsHeading: "How we set up your email follow-up",
+    steps: [
+      {
+        title: "Map",
+        text: "We map how a lead becomes a customer, and where follow-up usually stops.",
+        get: "a follow-up plan",
+      },
+      {
+        title: "Write",
+        text: "We write welcome, follow-up and re-engagement emails in your voice.",
+        get: "email sequences ready to review",
+      },
+      {
+        title: "Build",
+        text: "We set up the sequences in your CRM or email platform, segmented by service, area or stage.",
+        get: "automated follow-up, live",
+      },
+      {
+        title: "Refine",
+        text: "We track replies, bookings and revenue, and rework the emails that underperform.",
+        get: "regular results and improvements",
+      },
+    ],
+    pairs: [
+      {
+        key: "automation",
+        icon: (
+          <>
+            <path d="M13 3L5 13h6l-1 8 8-10h-6z" />
+          </>
+        ),
+        title: "Automation",
+        text: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
+        cta: "Read about automation",
+      },
+      {
+        key: "conversion",
+        icon: (
+          <>
+            <circle cx="12" cy="12" r="8" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="12" cy="12" r=".6" />
+          </>
+        ),
+        title: "Conversion optimisation",
+        text: "Traffic that does not convert is wasted opportunity.",
+        cta: "Read about conversion",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through your email follow-up and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "crm-setup",
+    next: "lead-capture",
+  },
+  {
+    key: "lead-capture",
+    href: "/services/lead-capture",
+    group: "auto",
+    color: "#9ccc65",
+    name: "Lead capture into your CRM",
+    metaTitle: "Lead capture into your CRM | Envision",
+    description:
+      "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
+    kicker: "Automation and CRM · 03 of 07",
+    title: "Lead capture into your CRM",
+    lede: "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
+    photos: ["/img/ph-salon.jpg", "/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg"],
+    icon: (
+      <>
+        <path d="M4 13l2.5-8h11L20 13v6H4z" />
+        <path d="M4 13h4l1.5 2.5h5L16 13h4" />
+      </>
+    ),
+    overview: [
+      "Every time someone fills in a form, messages you on social media or responds to an ad, that lead should land in one place straight away.",
+      "We connect your lead sources to your CRM, so each enquiry is recorded with where it came from, the right person is notified, and follow-up can start immediately. No more leads sitting in an inbox or getting lost between systems.",
+    ],
+    includedHeading: "What you get",
+    included: [
+      "Website forms connected to your CRM",
+      "Leads from Google Ads and Meta lead forms",
+      "Social media and messaging enquiries",
+      "The source recorded on every lead",
+      "Instant alerts to the right person",
+      "Duplicate checks and clean data",
+    ],
+    bestFor: "Businesses getting enquiries from several places and losing track of some of them.",
+    stepsHeading: "How we set up lead capture",
+    steps: [
+      {
+        title: "Audit your sources",
+        text: "We list every place enquiries come from, and how they're handled now.",
+        get: "a full list of lead sources",
+      },
+      {
+        title: "Connect",
+        text: "We connect each source to your CRM, with the details and source recorded.",
+        get: "every lead flowing into one place",
+      },
+      {
+        title: "Alert",
+        text: "We set up notifications so the right person knows the moment a lead arrives.",
+        get: "faster responses to new leads",
+      },
+      {
+        title: "Test and monitor",
+        text: "We test each path end to end, and keep an eye on it after launch.",
+        get: "a system you can rely on",
+      },
+    ],
+    pairs: [
+      {
+        key: "crm-setup",
+        icon: (
+          <>
+            <rect x="5" y="3" width="14" height="18" rx="2" />
+            <circle cx="12" cy="10" r="2.5" />
+            <path d="M8.5 17a3.5 3.5 0 0 1 7 0" />
+          </>
+        ),
+        title: "CRM setup and clean-up",
+        text: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
+        cta: "Find out more",
+      },
+      {
+        key: "booking-reminders",
+        icon: (
+          <>
+            <rect x="4" y="5" width="16" height="16" rx="2" />
+            <path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4" />
+          </>
+        ),
+        title: "Booking confirmations and reminders",
+        text: "Automatic confirmations and reminders that cut no-shows and save your team time.",
+        cta: "Find out more",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through capturing your leads and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "email-crm",
+    next: "call-form-tracking",
+  },
+  {
+    key: "call-form-tracking",
+    href: "/services/call-form-tracking",
+    group: "auto",
+    color: "#9ccc65",
+    name: "Call and form tracking",
+    metaTitle: "Call and form tracking | Envision",
+    description: "Know exactly which ads, pages and searches are bringing in calls and enquiries.",
+    kicker: "Automation and CRM · 04 of 07",
+    title: "Call and form tracking",
+    lede: "Know exactly which ads, pages and searches are bringing in calls and enquiries.",
+    photos: ["/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg"],
+    icon: (
+      <>
+        <path d="M4 20V11M10 20V5M16 20v-6M21 20H3" />
+      </>
+    ),
+    overview: [
+      "Most businesses can see their website visits, but not which visits turned into phone calls or form enquiries. We set up tracking for calls, forms and bookings, connected to Google Analytics and your ad accounts, so every enquiry links back to where it came from.",
+      "That means you can put your budget into what works, and stop paying for what doesn't.",
+    ],
+    includedHeading: "What you get",
+    included: [
+      "Call tracking numbers for your website and ads",
+      "Form and booking tracking",
+      "Google Analytics and Google Tag Manager setup",
+      "Conversion tracking for Google Ads and Meta Ads",
+      "A simple dashboard of enquiries by source",
+      "Regular checks to keep tracking accurate",
+    ],
+    bestFor: "Businesses spending on ads or SEO who can't say for sure which channel brings in their customers.",
+    stepsHeading: "How we set up your tracking",
+    steps: [
+      {
+        title: "Map",
+        text: "We list every way a customer can get in touch, and every channel sending you traffic.",
+        get: "a tracking plan",
+      },
+      {
+        title: "Set up",
+        text: "We install call, form and booking tracking, and connect it to analytics and your ad accounts.",
+        get: "tracking live across your site",
+      },
+      {
+        title: "Verify",
+        text: "We test every call, form and booking path to make sure each one is recorded correctly.",
+        get: "numbers you can trust",
+      },
+      {
+        title: "Report",
+        text: "We give you a simple view of enquiries by source, and go through it with you.",
+        get: "a dashboard and regular check-ins",
+      },
+    ],
+    pairs: [
+      {
+        key: "conversion",
+        icon: (
+          <>
+            <circle cx="12" cy="12" r="8" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="12" cy="12" r=".6" />
+          </>
+        ),
+        title: "Conversion optimisation",
+        text: "Traffic that does not convert is wasted opportunity.",
+        cta: "Find out more",
+      },
+      {
+        key: "paid-ads",
+        icon: (
+          <>
+            <path d="M9 9l10 4-4 1.5L13.5 19z" />
+            <path d="M5 5l2 2M9 3v2M3 9h2" />
+          </>
+        ),
+        title: "Google Ads and Meta Ads",
+        text: "Google Ads and Meta Ads campaigns that target the right people with the right message. No wasted clicks on low-fit audiences.",
+        cta: "Find out more",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through tracking your calls and enquiries and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "lead-capture",
+    next: "booking-reminders",
+  },
+  {
+    key: "booking-reminders",
+    href: "/services/booking-reminders",
+    group: "auto",
+    color: "#9ccc65",
+    name: "Booking confirmations and reminders",
+    metaTitle: "Booking confirmations and reminders | Envision",
+    description: "Automatic confirmations and reminders that cut no-shows and save your team time.",
+    kicker: "Automation and CRM · 05 of 07",
+    title: "Booking confirmations and reminders",
+    lede: "Automatic confirmations and reminders that cut no-shows and save your team time.",
+    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
+    icon: (
+      <>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4" />
+      </>
+    ),
+    overview: [
+      "Every booking should get a quick confirmation, and a reminder before the appointment. Doing that by hand takes time and is easy to forget.",
+      "We automate booking confirmations, reminders and follow-ups by email or SMS, connected to your booking system or calendar, so customers turn up prepared and your team spends less time chasing.",
+    ],
+    includedHeading: "What you get",
+    included: [
+      "Instant booking confirmations",
+      "Reminders by email or SMS before appointments",
+      "Easy rescheduling and cancellation links",
+      "Follow-up messages after appointments",
+      "Connections to your booking system or calendar",
+      "Messages written in your voice",
+    ],
+    bestFor: "Clinics, studios, trades and service businesses that run on appointments.",
+    stepsHeading: "How we automate your bookings",
+    steps: [
+      {
+        title: "Review",
+        text: "We look at how bookings are made now, and where no-shows or double handling happen.",
+        get: "a clear picture of the gaps",
+      },
+      {
+        title: "Write",
+        text: "We write confirmations, reminders and follow-ups that sound like you.",
+        get: "messages ready to review",
+      },
+      {
+        title: "Automate",
+        text: "We connect the messages to your booking system or calendar and set the timing.",
+        get: "automatic confirmations and reminders",
+      },
+      {
+        title: "Fine-tune",
+        text: "We check the results, like no-shows and reschedules, and adjust the timing and wording.",
+        get: "a smoother booking process",
+      },
+    ],
+    pairs: [
+      {
+        key: "review-requests",
+        icon: (
+          <>
+            <path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z" />
+          </>
+        ),
+        title: "Review requests",
+        text: "More reviews from happy customers, asked at the right moment, without you having to remember.",
+        cta: "Find out more",
+      },
+      {
+        key: "connecting-tools",
+        icon: (
+          <>
+            <path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z" />
+            <path d="M12 16v5" />
+          </>
+        ),
+        title: "Connecting your tools",
+        text: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
+        cta: "Find out more",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through automating your bookings and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "call-form-tracking",
+    next: "review-requests",
+  },
+  {
+    key: "review-requests",
+    href: "/services/review-requests",
+    group: "auto",
+    color: "#9ccc65",
+    name: "Review requests",
+    metaTitle: "Review requests | Envision",
+    description: "More reviews from happy customers, asked at the right moment, without you having to remember.",
+    kicker: "Automation and CRM · 06 of 07",
+    title: "Review requests",
+    lede: "More reviews from happy customers, asked at the right moment, without you having to remember.",
+    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg", "/img/ph-auto-counter.jpg"],
+    icon: (
+      <>
+        <path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z" />
+      </>
+    ),
+    overview: [
+      "Reviews are one of the first things people check before choosing a local business, and they help you show up in Google Maps. Most happy customers will leave one if they are asked at the right time and it is easy to do.",
+      "We automate review requests after a job or appointment, with a simple link to your Google profile, and help you respond to the reviews that come in.",
+    ],
+    includedHeading: "What you get",
+    included: [
+      "Automatic review requests after each job or appointment",
+      "Email or SMS messages with a one-tap review link",
+      "A gentle follow-up if there's no response",
+      "Alerts when new reviews come in",
+      "Help writing replies to reviews",
+      "Reporting on your review count and rating",
+    ],
+    bestFor: "Local businesses with happy customers, but not enough reviews to show for it.",
+    stepsHeading: "How we automate review requests",
+    steps: [
+      {
+        title: "Pick the moment",
+        text: "We work out the best point to ask, usually right after a job or appointment.",
+        get: "the right timing for your business",
+      },
+      {
+        title: "Write",
+        text: "We write short, friendly requests with a direct link to leave a review.",
+        get: "messages ready to go",
+      },
+      {
+        title: "Automate",
+        text: "We connect the requests to your CRM, booking system or job software.",
+        get: "requests sent automatically",
+      },
+      {
+        title: "Respond and track",
+        text: "We help you reply to new reviews, and track how your rating and review count grow.",
+        get: "regular review reports",
+      },
+    ],
+    pairs: [
+      {
+        key: "google-business-profile",
+        icon: (
+          <>
+            <path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z" />
+            <circle cx="12" cy="10" r="2" />
+          </>
+        ),
+        title: "Google Business Profile",
+        text: "Show up in Google Maps and local searches, with a profile that makes people want to call.",
+        cta: "Find out more",
+      },
+      {
+        key: "booking-reminders",
+        icon: (
+          <>
+            <rect x="4" y="5" width="16" height="16" rx="2" />
+            <path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4" />
+          </>
+        ),
+        title: "Booking confirmations and reminders",
+        text: "Automatic confirmations and reminders that cut no-shows and save your team time.",
+        cta: "Find out more",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through getting more reviews and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "booking-reminders",
+    next: "connecting-tools",
+  },
+  {
+    key: "connecting-tools",
+    href: "/services/connecting-tools",
+    group: "auto",
+    color: "#9ccc65",
+    name: "Connecting your tools",
+    metaTitle: "Connecting your tools | Envision",
+    description: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
+    kicker: "Automation and CRM · 07 of 07",
+    title: "Connecting your tools",
+    lede: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
+    photos: ["/img/ph-salon.jpg", "/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg"],
+    icon: (
+      <>
+        <path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z" />
+        <path d="M12 16v5" />
+      </>
+    ),
+    overview: [
+      "Most small businesses use several tools that don't talk to each other, so information gets typed in twice, updates get missed and jobs fall through the cracks.",
+      "We connect the tools you already use, so details flow between them automatically: a new enquiry creates a contact, a booking updates your calendar, a won job triggers the next step. Less admin for you, fewer mistakes, and faster replies for your customers.",
+    ],
+    includedHeading: "What you get",
+    included: [
+      "A review of the tools you use and how they connect",
+      "Your website, CRM, calendar, phone and email connected",
+      "Automations that remove double handling",
+      "Handoffs and alerts so the right person follows up",
+      "Testing and monitoring of every connection",
+      "Simple documentation of how it all works",
+    ],
+    bestFor: "Busy owners and small teams who spend too much time copying information between systems.",
+    stepsHeading: "How we connect your tools",
+    steps: [
+      {
+        title: "Map",
+        text: "We map the tools you use, and how information moves between them today.",
+        get: "a map of your systems",
+      },
+      {
+        title: "Plan",
+        text: "We work out which connections and automations will save the most time.",
+        get: "a prioritised automation plan",
+      },
+      {
+        title: "Connect",
+        text: "We build and test the connections, starting with the biggest time savers.",
+        get: "tools working together",
+      },
+      {
+        title: "Support",
+        text: "We monitor the connections and adjust them as your business changes.",
+        get: "documentation and ongoing support",
+      },
+    ],
+    pairs: [
+      {
+        key: "crm-setup",
+        icon: (
+          <>
+            <rect x="5" y="3" width="14" height="18" rx="2" />
+            <circle cx="12" cy="10" r="2.5" />
+            <path d="M8.5 17a3.5 3.5 0 0 1 7 0" />
+          </>
+        ),
+        title: "CRM setup and clean-up",
+        text: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
+        cta: "Find out more",
+      },
+      {
+        key: "lead-capture",
+        icon: (
+          <>
+            <path d="M4 13l2.5-8h11L20 13v6H4z" />
+            <path d="M4 13h4l1.5 2.5h5L16 13h4" />
+          </>
+        ),
+        title: "Lead capture into your CRM",
+        text: "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
+        cta: "Find out more",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through connecting your tools and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "review-requests",
     next: "location-strategy",
+  },
+  {
+    key: "automation",
+    href: "/services/automation",
+    group: "auto",
+    color: "#9ccc65",
+    name: "Automation",
+    metaTitle: "Automation | Envision",
+    description: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
+    kicker: "Automation and CRM · Overview",
+    title: "Automation",
+    lede: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
+    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
+    icon: (
+      <>
+        <rect x="3" y="3" width="6" height="6" rx="1.5" />
+        <rect x="15" y="15" width="6" height="6" rx="1.5" />
+        <path d="M9 6h6a3 3 0 0 1 3 3v6" />
+        <path d="M15.5 12.5L18 15l2.5-2.5" />
+      </>
+    ),
+    overview: [
+      "From lead capture to booking confirmations to re-engagement flows, automation helps you do more without adding more to your plate. We connect the tools you already use so nothing falls through the cracks between them.",
+    ],
+    includedHeading: "What you get with automation",
+    included: [
+      "Lead capture from website, ads and social straight into your CRM",
+      "Instant acknowledgements, booking confirmations and reminders",
+      "Handoffs and alerts so the right person follows up fast",
+      "Review requests and re-engagement flows",
+      "Connecting your website, CRM, calendar, phone and email tools",
+    ],
+    bestFor: "Busy owners and small teams who lose enquiries to slow replies, double handling or missed follow-ups.",
+    stepsHeading: "How we automate your follow-up",
+    steps: [
+      {
+        title: "Map",
+        text: "We map how enquiries come in, and where follow-up slows down or stops.",
+        get: "a map of your enquiry process",
+      },
+      {
+        title: "Plan",
+        text: "We choose the automations that will save the most time and catch the most leads.",
+        get: "a prioritised automation plan",
+      },
+      {
+        title: "Build",
+        text: "We set up lead capture, alerts, confirmations and follow-ups across your tools.",
+        get: "automations live and tested",
+      },
+      {
+        title: "Improve",
+        text: "We review response times and results, and refine what's running.",
+        get: "regular results and improvements",
+      },
+    ],
+    pairs: [
+      {
+        key: "email-crm",
+        icon: (
+          <>
+            <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+            <path d="M4 7l8 6 8-6" />
+          </>
+        ),
+        title: "Email and CRM nurture",
+        text: "Most leads do not buy immediately.",
+        cta: "Read about email and CRM",
+      },
+      {
+        key: "conversion",
+        icon: (
+          <>
+            <circle cx="12" cy="12" r="8" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="12" cy="12" r=".6" />
+          </>
+        ),
+        title: "Conversion optimisation",
+        text: "Traffic that does not convert is wasted opportunity.",
+        cta: "Read about conversion",
+      },
+    ],
+    ctaText:
+      "Tell us about your business and what you need help with, and we'll talk through automating your follow-up and the best next step. We reply Monday to Friday, usually within one business day.",
+    prev: "email-crm",
+    next: "lead-capture",
   },
   {
     key: "location-strategy",
     href: "/location-strategy",
-    group: "mkt",
+    group: "consult",
     color: "#ee6c4d",
     name: "Location strategy",
     metaTitle: "Location strategy | Envision",
     description: "Before spending on marketing, it pays to understand where your best opportunities actually are.",
-    kicker: "Digital marketing · 06 of 06",
+    kicker: "Consulting",
     title: "Location strategy",
     lede: "Before spending on marketing, it pays to understand where your best opportunities actually are.",
     photos: ["/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg"],
@@ -1233,612 +1757,8 @@ export const SERVICES: Service[] = [
     ],
     ctaText:
       "Tell us about your business and what you need help with, and we'll talk through your location strategy and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "social-media",
-    next: "crm-setup",
-  },
-  {
-    key: "crm-setup",
-    href: "/services/crm-setup",
-    group: "auto",
-    color: "#9ccc65",
-    name: "CRM setup and clean-up",
-    metaTitle: "CRM setup and clean-up | Envision",
-    description: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
-    kicker: "Automation and CRM · 01 of 06",
-    title: "CRM setup and clean-up",
-    lede: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
-    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
-    icon: (
-      <>
-        <rect x="5" y="3" width="14" height="18" rx="2" />
-        <circle cx="12" cy="10" r="2.5" />
-        <path d="M8.5 17a3.5 3.5 0 0 1 7 0" />
-      </>
-    ),
-    overview: [
-      "Leads come in by phone, email, web forms and social messages, and without a proper system some are bound to be missed.",
-      "We set up a CRM that suits the size of your business, or clean up the one you already have, so every enquiry is captured, assigned and followed up. You get a clear view of your pipeline, and a system your team will actually use.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "Choosing a CRM that fits your business and budget",
-      "Setup, or a clean-up of your existing CRM",
-      "Importing and tidying your contacts",
-      "Pipelines and stages that match how you sell",
-      "Your website forms and other lead sources connected",
-      "Training so your team uses it confidently",
-    ],
-    bestFor: "Businesses tracking leads in inboxes, spreadsheets or memory, or with a CRM nobody uses properly.",
-    stepsHeading: "How we set up your CRM",
-    steps: [
-      {
-        title: "Review",
-        text: "We look at how enquiries come in now, who handles them, and where they get lost.",
-        get: "a map of your enquiry process",
-      },
-      {
-        title: "Set up",
-        text: "We set up or restructure your CRM with pipelines, stages and fields that match how you work.",
-        get: "a CRM built around your business",
-      },
-      {
-        title: "Connect and import",
-        text: "We bring in your existing contacts and connect your forms and lead sources.",
-        get: "every enquiry landing in one place",
-      },
-      {
-        title: "Train",
-        text: "We show your team how to use it day to day, and refine it after the first few weeks.",
-        get: "a team using it confidently",
-      },
-    ],
-    pairs: [
-      {
-        key: "email-crm",
-        icon: (
-          <>
-            <rect x="3" y="5" width="18" height="14" rx="2" />
-            <path d="M3 7l9 6 9-6" />
-          </>
-        ),
-        title: "Email follow-up sequences",
-        text: "Most leads do not buy immediately.",
-        cta: "Find out more",
-      },
-      {
-        key: "lead-capture",
-        icon: (
-          <>
-            <path d="M4 13l2.5-8h11L20 13v6H4z" />
-            <path d="M4 13h4l1.5 2.5h5L16 13h4" />
-          </>
-        ),
-        title: "Lead capture into your CRM",
-        text: "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through your CRM and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "location-strategy",
-    next: "email-crm",
-  },
-  {
-    key: "email-crm",
-    href: "/services/email-crm",
-    group: "auto",
-    color: "#4fc3f7",
-    name: "Email follow-up sequences",
-    metaTitle: "Email and CRM nurture | Envision",
-    description: "Most leads do not buy immediately.",
-    kicker: "Automation and CRM · 02 of 06",
-    title: "Email and CRM nurture",
-    lede: "Most leads do not buy immediately.",
-    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg", "/img/ph-auto-counter.jpg"],
-    icon: (
-      <>
-        <rect x="3" y="5" width="18" height="14" rx="2" />
-        <path d="M3 7l9 6 9-6" />
-      </>
-    ),
-    overview: [
-      "We build practical email nurture sequences and CRM workflows that keep warm leads engaged, answer their concerns, and guide them back to a decision when they are ready. This is where many good opportunities quietly die without it.",
-    ],
-    includedHeading: "What you get with email and CRM",
-    included: [
-      "CRM setup or clean-up, so every enquiry is captured",
-      "Welcome and follow-up sequences written in your voice",
-      "Segmenting by service, area or stage",
-      "Re-engagement flows for leads that went quiet",
-      "Reporting on replies, bookings and revenue, not open rates",
-    ],
-    bestFor:
-      "Services with a longer decision cycle, quotes that need chasing, or a list of past customers that never hears from you.",
-    stepsHeading: "How we set up your email follow-up",
-    steps: [
-      {
-        title: "Map",
-        text: "We map how a lead becomes a customer, and where follow-up usually stops.",
-        get: "a follow-up plan",
-      },
-      {
-        title: "Write",
-        text: "We write welcome, follow-up and re-engagement emails in your voice.",
-        get: "email sequences ready to review",
-      },
-      {
-        title: "Build",
-        text: "We set up the sequences in your CRM or email platform, segmented by service, area or stage.",
-        get: "automated follow-up, live",
-      },
-      {
-        title: "Refine",
-        text: "We track replies, bookings and revenue, and rework the emails that underperform.",
-        get: "regular results and improvements",
-      },
-    ],
-    pairs: [
-      {
-        key: "automation",
-        icon: (
-          <>
-            <path d="M13 3L5 13h6l-1 8 8-10h-6z" />
-          </>
-        ),
-        title: "Automation",
-        text: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
-        cta: "Read about automation",
-      },
-      {
-        key: "conversion",
-        icon: (
-          <>
-            <circle cx="12" cy="12" r="8" />
-            <circle cx="12" cy="12" r="4" />
-            <circle cx="12" cy="12" r=".6" />
-          </>
-        ),
-        title: "Conversion optimisation",
-        text: "Traffic that does not convert is wasted opportunity.",
-        cta: "Read about conversion",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through your email follow-up and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "crm-setup",
-    next: "lead-capture",
-  },
-  {
-    key: "lead-capture",
-    href: "/services/lead-capture",
-    group: "auto",
-    color: "#9ccc65",
-    name: "Lead capture into your CRM",
-    metaTitle: "Lead capture into your CRM | Envision",
-    description:
-      "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
-    kicker: "Automation and CRM · 03 of 06",
-    title: "Lead capture into your CRM",
-    lede: "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
-    photos: ["/img/ph-salon.jpg", "/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg"],
-    icon: (
-      <>
-        <path d="M4 13l2.5-8h11L20 13v6H4z" />
-        <path d="M4 13h4l1.5 2.5h5L16 13h4" />
-      </>
-    ),
-    overview: [
-      "Every time someone fills in a form, messages you on social media or responds to an ad, that lead should land in one place straight away.",
-      "We connect your lead sources to your CRM, so each enquiry is recorded with where it came from, the right person is notified, and follow-up can start immediately. No more leads sitting in an inbox or getting lost between systems.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "Website forms connected to your CRM",
-      "Leads from Google Ads and Meta lead forms",
-      "Social media and messaging enquiries",
-      "The source recorded on every lead",
-      "Instant alerts to the right person",
-      "Duplicate checks and clean data",
-    ],
-    bestFor: "Businesses getting enquiries from several places and losing track of some of them.",
-    stepsHeading: "How we set up lead capture",
-    steps: [
-      {
-        title: "Audit your sources",
-        text: "We list every place enquiries come from, and how they're handled now.",
-        get: "a full list of lead sources",
-      },
-      {
-        title: "Connect",
-        text: "We connect each source to your CRM, with the details and source recorded.",
-        get: "every lead flowing into one place",
-      },
-      {
-        title: "Alert",
-        text: "We set up notifications so the right person knows the moment a lead arrives.",
-        get: "faster responses to new leads",
-      },
-      {
-        title: "Test and monitor",
-        text: "We test each path end to end, and keep an eye on it after launch.",
-        get: "a system you can rely on",
-      },
-    ],
-    pairs: [
-      {
-        key: "crm-setup",
-        icon: (
-          <>
-            <rect x="5" y="3" width="14" height="18" rx="2" />
-            <circle cx="12" cy="10" r="2.5" />
-            <path d="M8.5 17a3.5 3.5 0 0 1 7 0" />
-          </>
-        ),
-        title: "CRM setup and clean-up",
-        text: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
-        cta: "Find out more",
-      },
-      {
-        key: "booking-reminders",
-        icon: (
-          <>
-            <rect x="4" y="5" width="16" height="16" rx="2" />
-            <path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4" />
-          </>
-        ),
-        title: "Booking confirmations and reminders",
-        text: "Automatic confirmations and reminders that cut no-shows and save your team time.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through capturing your leads and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "email-crm",
-    next: "booking-reminders",
-  },
-  {
-    key: "booking-reminders",
-    href: "/services/booking-reminders",
-    group: "auto",
-    color: "#9ccc65",
-    name: "Booking confirmations and reminders",
-    metaTitle: "Booking confirmations and reminders | Envision",
-    description: "Automatic confirmations and reminders that cut no-shows and save your team time.",
-    kicker: "Automation and CRM · 04 of 06",
-    title: "Booking confirmations and reminders",
-    lede: "Automatic confirmations and reminders that cut no-shows and save your team time.",
-    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
-    icon: (
-      <>
-        <rect x="4" y="5" width="16" height="16" rx="2" />
-        <path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4" />
-      </>
-    ),
-    overview: [
-      "Every booking should get a quick confirmation, and a reminder before the appointment. Doing that by hand takes time and is easy to forget.",
-      "We automate booking confirmations, reminders and follow-ups by email or SMS, connected to your booking system or calendar, so customers turn up prepared and your team spends less time chasing.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "Instant booking confirmations",
-      "Reminders by email or SMS before appointments",
-      "Easy rescheduling and cancellation links",
-      "Follow-up messages after appointments",
-      "Connections to your booking system or calendar",
-      "Messages written in your voice",
-    ],
-    bestFor: "Clinics, studios, trades and service businesses that run on appointments.",
-    stepsHeading: "How we automate your bookings",
-    steps: [
-      {
-        title: "Review",
-        text: "We look at how bookings are made now, and where no-shows or double handling happen.",
-        get: "a clear picture of the gaps",
-      },
-      {
-        title: "Write",
-        text: "We write confirmations, reminders and follow-ups that sound like you.",
-        get: "messages ready to review",
-      },
-      {
-        title: "Automate",
-        text: "We connect the messages to your booking system or calendar and set the timing.",
-        get: "automatic confirmations and reminders",
-      },
-      {
-        title: "Fine-tune",
-        text: "We check the results, like no-shows and reschedules, and adjust the timing and wording.",
-        get: "a smoother booking process",
-      },
-    ],
-    pairs: [
-      {
-        key: "review-requests",
-        icon: (
-          <>
-            <path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z" />
-          </>
-        ),
-        title: "Review requests",
-        text: "More reviews from happy customers, asked at the right moment, without you having to remember.",
-        cta: "Find out more",
-      },
-      {
-        key: "connecting-tools",
-        icon: (
-          <>
-            <path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z" />
-            <path d="M12 16v5" />
-          </>
-        ),
-        title: "Connecting your tools",
-        text: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through automating your bookings and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "lead-capture",
-    next: "review-requests",
-  },
-  {
-    key: "review-requests",
-    href: "/services/review-requests",
-    group: "auto",
-    color: "#9ccc65",
-    name: "Review requests",
-    metaTitle: "Review requests | Envision",
-    description: "More reviews from happy customers, asked at the right moment, without you having to remember.",
-    kicker: "Automation and CRM · 05 of 06",
-    title: "Review requests",
-    lede: "More reviews from happy customers, asked at the right moment, without you having to remember.",
-    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg", "/img/ph-auto-counter.jpg"],
-    icon: (
-      <>
-        <path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z" />
-      </>
-    ),
-    overview: [
-      "Reviews are one of the first things people check before choosing a local business, and they help you show up in Google Maps. Most happy customers will leave one if they are asked at the right time and it is easy to do.",
-      "We automate review requests after a job or appointment, with a simple link to your Google profile, and help you respond to the reviews that come in.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "Automatic review requests after each job or appointment",
-      "Email or SMS messages with a one-tap review link",
-      "A gentle follow-up if there's no response",
-      "Alerts when new reviews come in",
-      "Help writing replies to reviews",
-      "Reporting on your review count and rating",
-    ],
-    bestFor: "Local businesses with happy customers, but not enough reviews to show for it.",
-    stepsHeading: "How we automate review requests",
-    steps: [
-      {
-        title: "Pick the moment",
-        text: "We work out the best point to ask, usually right after a job or appointment.",
-        get: "the right timing for your business",
-      },
-      {
-        title: "Write",
-        text: "We write short, friendly requests with a direct link to leave a review.",
-        get: "messages ready to go",
-      },
-      {
-        title: "Automate",
-        text: "We connect the requests to your CRM, booking system or job software.",
-        get: "requests sent automatically",
-      },
-      {
-        title: "Respond and track",
-        text: "We help you reply to new reviews, and track how your rating and review count grow.",
-        get: "regular review reports",
-      },
-    ],
-    pairs: [
-      {
-        key: "google-business-profile",
-        icon: (
-          <>
-            <path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z" />
-            <circle cx="12" cy="10" r="2" />
-          </>
-        ),
-        title: "Google Business Profile",
-        text: "Show up in Google Maps and local searches, with a profile that makes people want to call.",
-        cta: "Find out more",
-      },
-      {
-        key: "booking-reminders",
-        icon: (
-          <>
-            <rect x="4" y="5" width="16" height="16" rx="2" />
-            <path d="M4 10h16M9 3v4M15 3v4M9.5 15.5l2 2 3.5-4" />
-          </>
-        ),
-        title: "Booking confirmations and reminders",
-        text: "Automatic confirmations and reminders that cut no-shows and save your team time.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through getting more reviews and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "booking-reminders",
-    next: "connecting-tools",
-  },
-  {
-    key: "connecting-tools",
-    href: "/services/connecting-tools",
-    group: "auto",
-    color: "#9ccc65",
-    name: "Connecting your tools",
-    metaTitle: "Connecting your tools | Envision",
-    description: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
-    kicker: "Automation and CRM · 06 of 06",
-    title: "Connecting your tools",
-    lede: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
-    photos: ["/img/ph-salon.jpg", "/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg"],
-    icon: (
-      <>
-        <path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z" />
-        <path d="M12 16v5" />
-      </>
-    ),
-    overview: [
-      "Most small businesses use several tools that don't talk to each other, so information gets typed in twice, updates get missed and jobs fall through the cracks.",
-      "We connect the tools you already use, so details flow between them automatically: a new enquiry creates a contact, a booking updates your calendar, a won job triggers the next step. Less admin for you, fewer mistakes, and faster replies for your customers.",
-    ],
-    includedHeading: "What you get",
-    included: [
-      "A review of the tools you use and how they connect",
-      "Your website, CRM, calendar, phone and email connected",
-      "Automations that remove double handling",
-      "Handoffs and alerts so the right person follows up",
-      "Testing and monitoring of every connection",
-      "Simple documentation of how it all works",
-    ],
-    bestFor: "Busy owners and small teams who spend too much time copying information between systems.",
-    stepsHeading: "How we connect your tools",
-    steps: [
-      {
-        title: "Map",
-        text: "We map the tools you use, and how information moves between them today.",
-        get: "a map of your systems",
-      },
-      {
-        title: "Plan",
-        text: "We work out which connections and automations will save the most time.",
-        get: "a prioritised automation plan",
-      },
-      {
-        title: "Connect",
-        text: "We build and test the connections, starting with the biggest time savers.",
-        get: "tools working together",
-      },
-      {
-        title: "Support",
-        text: "We monitor the connections and adjust them as your business changes.",
-        get: "documentation and ongoing support",
-      },
-    ],
-    pairs: [
-      {
-        key: "crm-setup",
-        icon: (
-          <>
-            <rect x="5" y="3" width="14" height="18" rx="2" />
-            <circle cx="12" cy="10" r="2.5" />
-            <path d="M8.5 17a3.5 3.5 0 0 1 7 0" />
-          </>
-        ),
-        title: "CRM setup and clean-up",
-        text: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
-        cta: "Find out more",
-      },
-      {
-        key: "lead-capture",
-        icon: (
-          <>
-            <path d="M4 13l2.5-8h11L20 13v6H4z" />
-            <path d="M4 13h4l1.5 2.5h5L16 13h4" />
-          </>
-        ),
-        title: "Lead capture into your CRM",
-        text: "Enquiries from your website, ads and social media go straight into your CRM, with no copying and pasting.",
-        cta: "Find out more",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through connecting your tools and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "review-requests",
+    prev: "connecting-tools",
     next: "website-design",
-  },
-  {
-    key: "automation",
-    href: "/services/automation",
-    group: "auto",
-    color: "#9ccc65",
-    name: "Automation",
-    metaTitle: "Automation | Envision",
-    description: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
-    kicker: "Automation and CRM · Overview",
-    title: "Automation",
-    lede: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
-    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
-    icon: (
-      <>
-        <rect x="3" y="3" width="6" height="6" rx="1.5" />
-        <rect x="15" y="15" width="6" height="6" rx="1.5" />
-        <path d="M9 6h6a3 3 0 0 1 3 3v6" />
-        <path d="M15.5 12.5L18 15l2.5-2.5" />
-      </>
-    ),
-    overview: [
-      "From lead capture to booking confirmations to re-engagement flows, automation helps you do more without adding more to your plate. We connect the tools you already use so nothing falls through the cracks between them.",
-    ],
-    includedHeading: "What you get with automation",
-    included: [
-      "Lead capture from website, ads and social straight into your CRM",
-      "Instant acknowledgements, booking confirmations and reminders",
-      "Handoffs and alerts so the right person follows up fast",
-      "Review requests and re-engagement flows",
-      "Connecting your website, CRM, calendar, phone and email tools",
-    ],
-    bestFor: "Busy owners and small teams who lose enquiries to slow replies, double handling or missed follow-ups.",
-    stepsHeading: "How we automate your follow-up",
-    steps: [
-      {
-        title: "Map",
-        text: "We map how enquiries come in, and where follow-up slows down or stops.",
-        get: "a map of your enquiry process",
-      },
-      {
-        title: "Plan",
-        text: "We choose the automations that will save the most time and catch the most leads.",
-        get: "a prioritised automation plan",
-      },
-      {
-        title: "Build",
-        text: "We set up lead capture, alerts, confirmations and follow-ups across your tools.",
-        get: "automations live and tested",
-      },
-      {
-        title: "Improve",
-        text: "We review response times and results, and refine what's running.",
-        get: "regular results and improvements",
-      },
-    ],
-    pairs: [
-      {
-        key: "email-crm",
-        icon: (
-          <>
-            <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
-            <path d="M4 7l8 6 8-6" />
-          </>
-        ),
-        title: "Email and CRM nurture",
-        text: "Most leads do not buy immediately.",
-        cta: "Read about email and CRM",
-      },
-      {
-        key: "conversion",
-        icon: (
-          <>
-            <circle cx="12" cy="12" r="8" />
-            <circle cx="12" cy="12" r="4" />
-            <circle cx="12" cy="12" r=".6" />
-          </>
-        ),
-        title: "Conversion optimisation",
-        text: "Traffic that does not convert is wasted opportunity.",
-        cta: "Read about conversion",
-      },
-    ],
-    ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through automating your follow-up and the best next step. We reply Monday to Friday, usually within one business day.",
-    prev: "email-crm",
-    next: "lead-capture",
   },
 ];
 
