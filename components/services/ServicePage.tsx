@@ -7,10 +7,10 @@ import { SERVICE_BY_KEY, type Service } from "@/lib/services";
 
 const TICK = <path d="M5 12.5l4.5 4.5L19 7.5" />;
 
-function Ctas({ s }: { s: Service }) {
+export function Ctas({ href }: { href: string }) {
   return (
     <div className="ctas">
-      <a className="btn" href={`/contact?service=${s.key}`}>
+      <a className="btn" href={href}>
         Book a discovery call <span aria-hidden="true">&rarr;</span>
       </a>
       <a className="btn ghost" href="tel:+61399693883">
@@ -43,9 +43,7 @@ export default function ServicePage({ s }: { s: Service }) {
                   Services
                 </a>
                 <span aria-hidden="true">/</span>
-                <a href={`/#${group.anchor}`} data-home="">
-                  {group.name}
-                </a>
+                <a href={group.href}>{group.name}</a>
                 <span aria-hidden="true">/</span>
                 <span>{s.name}</span>
               </p>
@@ -57,7 +55,7 @@ export default function ServicePage({ s }: { s: Service }) {
               </p>
               <h1>{s.title}</h1>
               <p className="lede">{s.lede}</p>
-              <Ctas s={s} />
+              <Ctas href={`/contact?service=${s.key}`} />
             </div>
             {/* three photos cross-fade, with progress bars and a card naming the service */}
             <div className="ph-hero" aria-hidden="true">
@@ -176,7 +174,7 @@ export default function ServicePage({ s }: { s: Service }) {
             <p className="label">Next step</p>
             <h2 id="cta-h">Book a discovery call</h2>
             <p>{s.ctaText}</p>
-            <Ctas s={s} />
+            <Ctas href={`/contact?service=${s.key}`} />
             <p className="contact-line">
               Email <span className="sel">hello@envisionds.com.au</span> · Phone <span className="sel">03 9969 3883</span>
             </p>

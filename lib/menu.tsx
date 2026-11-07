@@ -1,5 +1,5 @@
-// The Services menu: four groups, each with its own colour, and the services in each (in menu order).
-// The mega menu, the page labels and the homepage's mobile menu all read from here.
+// The Services menu: four groups, each with its own colour and page, and the services in each (in menu order).
+// The mega menu, the page labels, the category pages, the homepage's cards and mobile menu and the contact form read from here.
 import type { ReactNode } from "react";
 
 export type GroupId = "web" | "mkt" | "auto" | "consult";
@@ -8,7 +8,7 @@ export type MenuGroup = {
   name: string;
   color: string;
   icon: ReactNode;
-  anchor: string;
+  href: string;
   explore: string;
   items: string[];
 };
@@ -31,7 +31,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M8 20h8M12 16v4" />
       </>
     ),
-    anchor: "svc-1",
+    href: "/services/web-design-and-development",
     explore: "Explore web design & development",
     items: ["website-design", "ecommerce", "ux-ui-design", "conversion", "website-maintenance"],
   },
@@ -45,7 +45,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a7.5 7.5 0 0 1 0 11" />
       </>
     ),
-    anchor: "svc-2",
+    href: "/services/digital-marketing",
     explore: "Explore digital marketing",
     items: ["seo", "paid-ads", "content-creation", "social-media", "call-form-tracking"],
   },
@@ -61,7 +61,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M15.5 12.5L18 15l2.5-2.5" />
       </>
     ),
-    anchor: "svc-3",
+    href: "/services/automation-and-crm",
     explore: "Explore automation & CRM",
     items: ["crm-setup", "lead-capture", "booking-reminders", "automation", "connecting-tools"],
   },
@@ -75,7 +75,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M15.5 8.5l-2 5-5 2 2-5z" />
       </>
     ),
-    anchor: "svc-4",
+    href: "/services/strategy-and-consulting",
     explore: "Explore strategy & consulting",
     items: ["digital-strategy", "audits", "software-selection", "process-reviews", "location-strategy"],
   },

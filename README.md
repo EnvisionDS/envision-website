@@ -19,6 +19,7 @@ npm start       # serve the production build
 | `/about` | `app/about/page.tsx`, `components/about/AboutContent.tsx` |
 | `/contact` | `app/contact/page.tsx`, `components/contact/ContactContent.tsx` (the homepage pop-up loads this page's form) |
 | `/services/<name>` | `app/services/[slug]/page.tsx`, one page per entry in `lib/services.tsx` |
+| `/services/<category>` | The same route, one page per group in `lib/menu.tsx`, with its wording in `lib/categories.tsx` (`components/services/CategoryPage.tsx`) |
 | `/location-strategy` | `app/location-strategy/page.tsx`, the `location-strategy` entry in `lib/services.tsx` |
 
 `/services` and `/examples` (live-site addresses) redirect to the matching part of the homepage (`next.config.ts`).

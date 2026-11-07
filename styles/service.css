@@ -152,6 +152,9 @@ a { color: inherit; }
 .steps .get { font-size: .86rem; color: var(--ink); font-weight: 500; }
 
 .pairs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.pairs-wide { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.pairs-wide .pair { grid-template-rows: auto auto 1fr auto; }   /* the links line up along the bottom of a row */
+.pair-ask { border-style: dashed; background: transparent; }
 .pair { display: grid; gap: .6rem; padding: 1.6rem; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); text-decoration: none; transition: border-color .3s, transform .3s; }
 .pair:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); transform: translateY(-3px); }
 .pair .ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); }

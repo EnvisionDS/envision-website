@@ -2,25 +2,39 @@ import Icon from "@/components/site/Icon";
 import { GROUPS, type GroupId } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
-const groupName = (group: GroupId) => GROUPS.find((x) => x.id === group)!.name;
+// a card's title, linking to its category page
+function Title({ group }: { group: GroupId }) {
+  const g = GROUPS.find((x) => x.id === group)!;
+  return (
+    <p className="st-cat">
+      <a href={g.href}>{g.name}</a>
+    </p>
+  );
+}
 
 // a card's list of services, straight from the Services menu (lib/menu.tsx)
 function Links({ group }: { group: GroupId }) {
   const g = GROUPS.find((x) => x.id === group)!;
   return (
-    <ul className="st-links" aria-label={`${g.name} services`}>
-      {g.items.map((key) => {
-        const s = SERVICE_BY_KEY[key];
-        return (
-          <li key={key}>
-            <a href={s.href}>
-              <Icon>{s.icon}</Icon>
-              {s.name}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <ul className="st-links" aria-label={`${g.name} services`}>
+        {g.items.map((key) => {
+          const s = SERVICE_BY_KEY[key];
+          return (
+            <li key={key}>
+              <a href={s.href}>
+                <Icon>{s.icon}</Icon>
+                {s.name}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      <a className="st-read" href={g.href}>
+        {`${g.explore} `}
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </>
   );
 }
 
@@ -32,11 +46,16 @@ export default function Services() {
         Everything you need to <span className="grad">grow smarter</span>.
       </h2>
       <p className="reveal">
-        Web design, digital marketing, automation and strategy: four connected areas, planned as one system so each part
-        makes the next one work harder. Start with one, or let us bring them together.
+        Web design, digital marketing, automation and strategy: four connected
+        areas, planned as one system so each part makes the next one work
+        harder. Start with one, or let us bring them together.
       </p>
       <div className="st" id="svcStack">
-        <article className="st-card" id="svc-1" style={{ "--c": "#5b9be6", "--i": "0" }}>
+        <article
+          className="st-card"
+          id="svc-1"
+          style={{ "--c": "#5b9be6", "--i": "0" }}
+        >
           <div className="st-count" aria-hidden="true">
             <i className="on"></i>
             <i></i>
@@ -44,11 +63,11 @@ export default function Services() {
             <i></i>
           </div>
           <div className="st-txt">
-            <p className="st-cat">{groupName("web")}</p>
+            <Title group="web" />
             <h3>Websites that turn visitors into enquiries</h3>
             <p className="st-sum">
-              We design, build and look after websites that read clearly, load fast and make it easy for people to get
-              in touch.
+              We design, build and look after websites that read clearly, load
+              fast and make it easy for people to get in touch.
             </p>
             <Links group="web" />
           </div>
@@ -66,16 +85,29 @@ export default function Services() {
                     <i></i>
                     <i></i>
                   </div>{" "}
-                  <i className="sp-mw-l" style={{ "--w": "42%", "--i": "0" }}></i>
-                  <i className="sp-mw-l sp-mw-hero" style={{ "--w": "82%", "--i": "1" }}></i>
-                  <i className="sp-mw-l" style={{ "--w": "64%", "--i": "2" }}></i>
+                  <i
+                    className="sp-mw-l"
+                    style={{ "--w": "42%", "--i": "0" }}
+                  ></i>
+                  <i
+                    className="sp-mw-l sp-mw-hero"
+                    style={{ "--w": "82%", "--i": "1" }}
+                  ></i>
+                  <i
+                    className="sp-mw-l"
+                    style={{ "--w": "64%", "--i": "2" }}
+                  ></i>
                   <b className="sp-mw-btn">Get a quote</b>
                 </div>
               </div>
             </div>
           </div>
         </article>
-        <article className="st-card" id="svc-2" style={{ "--c": "#7fe0c8", "--i": "1" }}>
+        <article
+          className="st-card"
+          id="svc-2"
+          style={{ "--c": "#7fe0c8", "--i": "1" }}
+        >
           <div className="st-count" aria-hidden="true">
             <i></i>
             <i className="on"></i>
@@ -83,11 +115,11 @@ export default function Services() {
             <i></i>
           </div>
           <div className="st-txt">
-            <p className="st-cat">{groupName("mkt")}</p>
+            <Title group="mkt" />
             <h3>Be found by the people ready to buy</h3>
             <p className="st-sum">
-              Search, ads, social media and local strategy that put you in front of the right people, in the suburbs
-              that matter.
+              Search, ads, social media and local strategy that put you in front
+              of the right people, in the suburbs that matter.
             </p>
             <Links group="mkt" />
           </div>
@@ -117,7 +149,11 @@ export default function Services() {
             </div>
           </div>
         </article>
-        <article className="st-card" id="svc-3" style={{ "--c": "#9ccc65", "--i": "2" }}>
+        <article
+          className="st-card"
+          id="svc-3"
+          style={{ "--c": "#9ccc65", "--i": "2" }}
+        >
           <div className="st-count" aria-hidden="true">
             <i></i>
             <i></i>
@@ -125,11 +161,11 @@ export default function Services() {
             <i></i>
           </div>
           <div className="st-txt">
-            <p className="st-cat">{groupName("auto")}</p>
+            <Title group="auto" />
             <h3>Every enquiry captured and followed up</h3>
             <p className="st-sum">
-              Systems that capture every lead, follow up automatically and give your team back their time, even after
-              hours.
+              Systems that capture every lead, follow up automatically and give
+              your team back their time, even after hours.
             </p>
             <Links group="auto" />
           </div>
@@ -157,7 +193,11 @@ export default function Services() {
             </div>
           </div>
         </article>
-        <article className="st-card" id="svc-4" style={{ "--c": "#ee6c4d", "--i": "3" }}>
+        <article
+          className="st-card"
+          id="svc-4"
+          style={{ "--c": "#ee6c4d", "--i": "3" }}
+        >
           <div className="st-count" aria-hidden="true">
             <i></i>
             <i></i>
@@ -165,10 +205,11 @@ export default function Services() {
             <i className="on"></i>
           </div>
           <div className="st-txt">
-            <p className="st-cat">{groupName("consult")}</p>
+            <Title group="consult" />
             <h3>Know where to focus before you spend</h3>
             <p className="st-sum">
-              Clear advice on your strategy, systems and locations, so every decision rests on evidence, not guesswork.
+              Clear advice on your strategy, systems and locations, so every
+              decision rests on evidence, not guesswork.
             </p>
             <Links group="consult" />
           </div>
@@ -184,7 +225,10 @@ export default function Services() {
                   <span>Website</span>
                   <i></i>
                 </div>
-                <div className="sp-loc-r best" style={{ "--w": "92%", "--i": "1" }}>
+                <div
+                  className="sp-loc-r best"
+                  style={{ "--w": "92%", "--i": "1" }}
+                >
                   <span>Marketing</span>
                   <i></i>
                 </div>

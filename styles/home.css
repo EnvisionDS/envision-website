@@ -1395,6 +1395,7 @@
   .st-keys { list-style: none; display: grid; gap: .5rem; margin: .2rem 0 .6rem; padding: 0; }
   .st-keys li { display: flex; gap: .55rem; font-size: .9rem; color: var(--muted); line-height: 1.4; }
   .st-keys svg, .vw-pts svg { width: 16px; height: 16px; flex: none; margin-top: .15em; fill: none; stroke: var(--c); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .st-cat a { color: inherit; text-decoration: none; } .st-cat a:hover { text-decoration: underline; text-underline-offset: .14em; text-decoration-thickness: 1px; }
   .st-read { display: inline-flex; align-items: center; gap: .45rem; color: var(--c); text-decoration: none; font-weight: 500; font-size: .95rem; align-self: flex-start; }
   .st-read svg, .st-go svg, .vw-nav svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
   .st-read:hover svg { transform: translateX(4px); }
