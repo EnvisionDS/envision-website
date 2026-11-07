@@ -6,7 +6,7 @@ export default function WhoWeAre() {
         <p className="eyebrow reveal">Who we are</p>
         <h2 className="st-vh">One Team. One Plan. One Goal.</h2>
       </div>
-      <div className="wl-row" style={{ "--c": "#5b9be6" }}>
+      <div className="wl-row reveal" style={{ "--c": "#5b9be6" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <circle cx="9" cy="8" r="3" />
@@ -22,11 +22,11 @@ export default function WhoWeAre() {
           <p className="wl-d">Strategy, design, build and marketing under one roof.</p>
         </div>
       </div>
-      <p className="who-p">
+      <p className="who-p reveal">
         We're a Melbourne team of strategists, designers, developers and marketers. One team from first call to launch,
         so nothing gets lost between agencies.
       </p>
-      <div className="wl-row" style={{ "--c": "#8fd3f4" }}>
+      <div className="wl-row reveal" style={{ "--c": "#8fd3f4" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <circle cx="6" cy="18" r="2.2" />
@@ -41,11 +41,11 @@ export default function WhoWeAre() {
           <p className="wl-d">Website, search, ads and follow-up, planned together.</p>
         </div>
       </div>
-      <p className="who-p">
+      <p className="who-p reveal">
         Your website, search, ads, social media and follow-up in one connected plan, built around your goals and budget
         so every channel pulls the same way.
       </p>
-      <div className="wl-row" style={{ "--c": "#7fe0c8" }}>
+      <div className="wl-row reveal" style={{ "--c": "#7fe0c8" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M3 17l6-6 4 4 8-8" />
@@ -59,7 +59,7 @@ export default function WhoWeAre() {
           <p className="wl-d">Real, measurable growth for your business.</p>
         </div>
       </div>
-      <div className="who-cell">
+      <div className="who-cell reveal">
         <p className="who-p">
           Your growth is our measure: every call, form and booking tracked and reported in plain English.
         </p>{" "}

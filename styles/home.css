@@ -563,7 +563,7 @@
 
   /* ---------- LAYER 2: reveal-on-scroll (CSS half) ---------- */
   .reveal:not(.visible) { opacity: 0; }
-  .reveal.visible { animation: moRise 1.1s cubic-bezier(.2,.75,.15,1) var(--rd, 0s) backwards; }
+  .reveal.visible { animation: moRise 1.7s cubic-bezier(.3,.1,.2,1) var(--rd, 0s) backwards; }
   .eyebrow.reveal.visible { animation-name: moLabel; }
   @keyframes moRise { from { opacity: 0; translate: 0 48px; filter: blur(var(--rb, 6px)); } }
   @keyframes moLabel { from { opacity: 0; translate: 0 18px; letter-spacing: .6em; filter: blur(4px); } }
@@ -1372,8 +1372,8 @@
   .mo-split .mo-w.g { background-image: var(--grad); background-repeat: no-repeat; background-size: var(--gw, 100%) 100%; background-position: var(--gx, 0px) 0;
                    -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
   html.mo .mo-split .mo-w { translate: 0 112%; rotate: 5deg; opacity: 0; transform-origin: 0 100%; }
-  html.mo .mo-split.mo-in .mo-w { translate: none; rotate: none; opacity: 1; transition: translate 1s cubic-bezier(.2,.8,.2,1), rotate 1s cubic-bezier(.2,.8,.2,1), opacity .7s ease;
-                            transition-delay: calc(var(--wi) * 55ms + 60ms); }
+  html.mo .mo-split.mo-in .mo-w { translate: none; rotate: none; opacity: 1; transition: translate 1.3s cubic-bezier(.3,.1,.2,1), rotate 1.3s cubic-bezier(.3,.1,.2,1), opacity 1.1s ease;
+                            transition-delay: calc(var(--wi) * 85ms + var(--hb, 0ms) + 60ms); }
   html.mo .mo-split.mo-drift { transform: translate3d(0, var(--pl, 0px), 0); }
   html.mo #hero .hero-wrap { translate: 0 calc(var(--hs, 0) * -120px); opacity: calc(1 - var(--hs, 0) * 1.2); }
   @media (prefers-reduced-motion: reduce) { html.mo .mo-split .mo-w { translate: none; rotate: none; opacity: 1; transition: none; } html.mo .mo-split.mo-drift { transform: none; } html.mo #hero .hero-wrap { translate: none; opacity: 1; } }
@@ -1616,6 +1616,11 @@
   }
   @media (prefers-reduced-motion: reduce) { .gp-pin { transition: none; } }
 
+
+  /* ---------- MOTION, SMALLER TEXT (v133) ---------- */
+  html.mo .mo-split.mo-small .mo-w { translate: 0 105%; rotate: none; }
+  html.mo .mo-split.mo-small.mo-in .mo-w { translate: none; opacity: 1; transition: translate 1.2s cubic-bezier(.3,.1,.2,1), opacity 1s ease;
+                                           transition-delay: calc(min(var(--wi) * 32ms, 1400ms) + var(--mb, 160ms)); }
 
 /* ================= JUMP LINKS: the section a link lands on fades up briefly so the jump doesn't feel like a cut ================= */
 .arrive { animation: arrive .4s ease-out; }
