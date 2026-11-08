@@ -513,7 +513,6 @@ html[data-theme="light"] .gp-hint2 { color: var(--muted); }
   html[data-theme="light"] .bo-step::after { opacity: .6; }
   html[data-theme="light"] .bo-step:hover .bo-t b, html[data-theme="light"] .bo-step.lit .bo-t b { color: color-mix(in srgb, var(--c) 80%, #13202e); }
 /* services (v134): the stacking cards stay dark in light mode; only their shadow softens */
-html[data-theme="light"] .st-card { box-shadow: 0 -10px 40px rgba(19,32,46,.22); }
 /* what we stand for (v134): a light panel, with the accent colours deepened so they read on white */
 /* sound familiar? (v135): light note cards, with the link colours deepened */
 
@@ -641,18 +640,6 @@ html[data-theme="light"] .pr-dots i, html[data-theme="light"] .pr-track { backgr
 html[data-theme="light"] .hp-side { border-color: #e6edf7; box-shadow: 0 20px 40px rgba(19,32,46,.18); }
 @media (prefers-reduced-motion: reduce) { .ph-chip { animation: none; } }
 
-/* PHOTO SLIDESHOW (shared shape with service.css): three photos cross-fade every 5s, each slowly drifting in */
-.st-slides, .st-slides img { position: absolute; inset: 0; }
-.st-slides img { width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: phFade 15s linear infinite, phZoom 15s linear infinite; }
-.st-slides img:nth-child(1) { animation-delay: -1s, -1s; } .st-slides img:nth-child(2) { animation-delay: 4s, 4s; } .st-slides img:nth-child(3) { animation-delay: 9s, 9s; }
-@keyframes phFade { 0% { opacity: 0; } 6%, 33.3% { opacity: 1; } 40%, 100% { opacity: 0; } }
-@keyframes phZoom { 0% { transform: scale(1.14) translate(1.5%, 1%); } 40%, 100% { transform: scale(1.02); } }
-.st-card:not(.st-run) .st-slides img { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .st-slides img { animation: none; } .st-slides img:first-child { opacity: 1; } }
-/* the cards show the people now: a lighter wash, and the glass panel moves down so faces stay clear */
-.st-vis::before { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 12%, transparent), transparent 40%, rgba(5,6,8,.7)) !important; }
-@media (min-width: 861px) { .st-card .st-glass { top: auto; bottom: 7%; transform: none; height: min(200px, 44%); left: 12%; right: 12%; } }
-
 /* WHO WE ARE: three rows. On the left each line of the heading with its icon and a short note; on the right, the
    paragraph that goes with it, so each pair lines up. A thin line (placed by the script) joins the icons, and a soft
    light travels down it. On narrow screens the pairs stack, with the paragraphs indented under their line. */
@@ -696,7 +683,6 @@ html[data-theme="light"] body section.block.panel.tone-ink { background: radial-
 html[data-theme="light"] body section.block.panel.navy { background: linear-gradient(180deg, #e8eef8, #e1e9f5); }
 html[data-theme="light"] body section.block.panel.warm { background: linear-gradient(180deg, #fbf4f1, #f7eeea); }
 html[data-theme="light"] body section.block + section.block.panel { border-top-color: rgba(19,32,46,.1); }
-
-/* the Services card titles: the cards stay dark in light mode, so the title keeps its look (the general paragraph colour above would fill it in) */
-html[data-theme="light"] .st-cat { color: #0e1015; }
-@media (max-width: 860px) { html[data-theme="light"] .st-cat { color: var(--c); } }
+/* the Services cards stay dark in light mode */
+html[data-theme="light"] .sv-card { box-shadow: 0 16px 44px -22px rgba(19,32,46,.45); }
+html[data-theme="light"] .sv-card:hover { box-shadow: 0 26px 60px -24px color-mix(in srgb, var(--c) 55%, rgba(19,32,46,.5)); }
