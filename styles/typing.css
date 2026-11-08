@@ -2,6 +2,7 @@
    the words. html.ty is set before the page paints, unless the visitor asks for less motion. */
 @media screen {
   .ty-r { opacity: 0; }
+  .grad .ty-r { visibility: hidden; }   /* a gradient is painted through the letters, and shows them even at no opacity */
   /* until the script takes over (the same parts as lib/client/typing.js) */
   html.ty:not(.ty-ready) :is(#promise > h2, #promise > p:not(.eyebrow), .pm-head > h3, #services > h2, #services > p:not(.eyebrow),
     .st-txt > h3, .st-txt > .st-sum, #finder > h2, #finder > p:not(.eyebrow), #how .about-intro > h2, #how .about-intro > p:not(.eyebrow),
