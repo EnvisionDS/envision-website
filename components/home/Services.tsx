@@ -16,25 +16,19 @@ function Title({ group }: { group: GroupId }) {
 function Links({ group }: { group: GroupId }) {
   const g = GROUPS.find((x) => x.id === group)!;
   return (
-    <>
-      <ul className="st-links" aria-label={`${g.name} services`}>
-        {g.items.map((key) => {
-          const s = SERVICE_BY_KEY[key];
-          return (
-            <li key={key}>
-              <a href={s.href}>
-                <Icon>{s.icon}</Icon>
-                {s.name}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-      <a className="st-read" href={g.href}>
-        {`${g.explore} `}
-        <span aria-hidden="true">&rarr;</span>
-      </a>
-    </>
+    <ul className="st-links" aria-label={`${g.name} services`}>
+      {g.items.map((key) => {
+        const s = SERVICE_BY_KEY[key];
+        return (
+          <li key={key}>
+            <a href={s.href}>
+              <Icon>{s.icon}</Icon>
+              {s.name}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -64,7 +58,6 @@ export default function Services() {
           </div>
           <div className="st-txt">
             <Title group="web" />
-            <h3>Websites that turn visitors into enquiries</h3>
             <p className="st-sum">
               We design, build and look after websites that read clearly, load
               fast and make it easy for people to get in touch.
@@ -116,7 +109,6 @@ export default function Services() {
           </div>
           <div className="st-txt">
             <Title group="mkt" />
-            <h3>Be found by the people ready to buy</h3>
             <p className="st-sum">
               Search, ads, social media and local strategy that put you in front
               of the right people, in the suburbs that matter.
@@ -162,7 +154,6 @@ export default function Services() {
           </div>
           <div className="st-txt">
             <Title group="auto" />
-            <h3>Every enquiry captured and followed up</h3>
             <p className="st-sum">
               Systems that capture every lead, follow up automatically and give
               your team back their time, even after hours.
@@ -206,7 +197,6 @@ export default function Services() {
           </div>
           <div className="st-txt">
             <Title group="consult" />
-            <h3>Know where to focus before you spend</h3>
             <p className="st-sum">
               Clear advice on your strategy, systems and locations, so every
               decision rests on evidence, not guesswork.

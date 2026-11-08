@@ -29,7 +29,7 @@ export const CATEGORIES: Record<GroupId, Category> = {
       "We look after the whole job, from planning and design through to build, launch and ongoing care. Whether you need a new website, an online store or a better result from the site you already have, it's one team working towards more enquiries and sales.",
     ],
     servicesHeading: "Everything your website needs",
-    benefitsHeading: "What a good website does for you",
+    benefitsHeading: "Websites that turn visitors into enquiries",
     benefits: [
       "Explains what you do in seconds",
       "Works properly on every phone and screen",
@@ -57,7 +57,7 @@ export const CATEGORIES: Record<GroupId, Category> = {
       "We plan these channels together rather than one at a time, then track what each one brings in. You can see where your enquiries come from, and your budget goes to what's working.",
     ],
     servicesHeading: "Every channel, planned as one",
-    benefitsHeading: "What good marketing does for you",
+    benefitsHeading: "Be found by the people ready to buy",
     benefits: [
       "More of the right people finding you",
       "Ads aimed at people ready to buy",
@@ -85,7 +85,7 @@ export const CATEGORIES: Record<GroupId, Category> = {
       "We set up the systems that handle this for you. Every lead lands in one place, follow-up happens automatically, and the tools you already use work together, so your team spends less time on admin and more time with customers.",
     ],
     servicesHeading: "From first enquiry to happy customer",
-    benefitsHeading: "What good systems do for you",
+    benefitsHeading: "Every enquiry captured and followed up",
     benefits: [
       "Every enquiry captured in one place",
       "Faster replies, even after hours",
@@ -113,7 +113,7 @@ export const CATEGORIES: Record<GroupId, Category> = {
       "We work with you on the decisions behind your digital work: what to do first, which tools to choose, how your processes should run and where to focus. You get clear advice and a plan you can act on, whether or not we do the work that follows.",
     ],
     servicesHeading: "Advice for the decisions that matter",
-    benefitsHeading: "What good advice does for you",
+    benefitsHeading: "Know where to focus before you spend",
     benefits: [
       "A clear view of where you stand",
       "Priorities ranked, so you know what comes first",
