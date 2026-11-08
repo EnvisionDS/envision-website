@@ -43,12 +43,6 @@ export default function CategoryPage({ g }: { g: MenuGroup }) {
                 <span aria-hidden="true">/</span>
                 <span>{g.name}</span>
               </p>
-              <p className="vf">
-                <span className="vf-ret" aria-hidden="true">
-                  <i></i>
-                </span>
-                <span>{`Service category · ${String(at + 1).padStart(2, "0")} of ${String(GROUPS.length).padStart(2, "0")}`}</span>
-              </p>
               <h1>{g.name}</h1>
               <p className="lede">{c.lede}</p>
               <Ctas href="/contact" />
