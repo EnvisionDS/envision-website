@@ -696,3 +696,7 @@ html[data-theme="light"] body section.block.panel.tone-ink { background: radial-
 html[data-theme="light"] body section.block.panel.navy { background: linear-gradient(180deg, #e8eef8, #e1e9f5); }
 html[data-theme="light"] body section.block.panel.warm { background: linear-gradient(180deg, #fbf4f1, #f7eeea); }
 html[data-theme="light"] body section.block + section.block.panel { border-top-color: rgba(19,32,46,.1); }
+
+/* the Services card titles: the cards stay dark in light mode, so the title keeps its look (the general paragraph colour above would fill it in) */
+html[data-theme="light"] .st-cat { color: #0e1015; }
+@media (max-width: 860px) { html[data-theme="light"] .st-cat { color: var(--c); } }
