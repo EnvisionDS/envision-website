@@ -15,13 +15,7 @@ export default function Services() {
   return (
     <section className="block panel tone-ink" id="services">
       <p className="eyebrow reveal">Services</p>
-      <h2 className="reveal">
-        Everything you need to <span className="grad">grow smarter</span>.
-      </h2>
-      <p className="reveal">
-        Web design, digital marketing, automation and strategy: four connected areas, planned as one system so each part
-        makes the next one work harder. Start with one, or let us bring them together.
-      </p>
+      <h2 className="st-vh">Our services</h2>
       <div className="sv-grid">
         {GROUPS.map((g) => (
           <article className="sv-card reveal" style={{ "--c": g.color }} key={g.id}>

@@ -4,7 +4,7 @@
   .ty-r { opacity: 0; }
   .grad .ty-r { visibility: hidden; }   /* a gradient is painted through the letters, and shows them even at no opacity */
   /* until the script takes over (the same parts as lib/client/typing.js) */
-  html.ty:not(.ty-ready) :is(#promise > h2, #promise > p:not(.eyebrow), .pm-head > h3, #services > h2, #services > p:not(.eyebrow),
+  html.ty:not(.ty-ready) :is(#promise > h2, #promise > p:not(.eyebrow), .pm-head > h3, 
     .sv-card > .sv-sum, #finder > h2, #finder > p:not(.eyebrow), #how .about-intro > h2, #how .about-intro > p:not(.eyebrow),
     #work > h2, #work > p:not(.eyebrow)) { opacity: 0; }
 }
