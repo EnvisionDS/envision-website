@@ -1,19 +1,15 @@
 # Envision Digital Solutions website
 
 Next.js 16 (App Router, Turbopack) with React, TypeScript and Tailwind CSS v4, the same stack as the live site at
-envisiondigitalsolutions.com.au. Fonts (Sora, IBM Plex Sans) are self-hosted through `next/font`; Vercel Analytics is in
+envisiondigitalsolutions.com.au. Fonts (Sora, IBM Plex Sans) are stored with the site through Fontsource (`lib/fonts/`), so the build fetches nothing from Google; Vercel Analytics is in
 the root layout.
 
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm run build   # production build (every page is static); clears .next/cache first, see below
+npm run build   # production build (every page is static)
 npm start       # serve the production build
 ```
-
-A saved build cache can make Turbopack fail with "next/font/google queries have exactly one entry", including on Vercel,
-which restores `.next/cache` from the last deployment. That's why the build clears it first. If `npm run dev` shows the
-same error after a build, delete `.next` and start it again.
 
 ## Pages
 
