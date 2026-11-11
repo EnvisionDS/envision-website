@@ -10,10 +10,11 @@ const SUMMARY: Record<GroupId, string> = {
   consult: "Clear advice on your strategy, systems and locations, so every decision rests on evidence, not guesswork.",
 };
 
-// SERVICES: four cards, two by two, one per category
+// SERVICES: four cards, two by two, one per category. It sits on the page itself (not a raised panel), so the panels keep
+// alternating with plain sections: Our promise above is a panel.
 export default function Services() {
   return (
-    <section className="block panel tone-ink" id="services">
+    <section className="block" id="services">
       <p className="eyebrow reveal">Services</p>
       <h2 className="st-vh">Our services</h2>
       <div className="sv-grid">
