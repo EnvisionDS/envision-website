@@ -15,6 +15,7 @@
 import type { Metadata } from "next";
 import Intro from "@/components/home/Intro";
 import HomeNav from "@/components/home/HomeNav";
+import CaseWindow from "@/components/home/CaseWindow";
 import ContactModal from "@/components/home/ContactModal";
 import Hero from "@/components/home/Hero";
 import WhoWeAre from "@/components/home/WhoWeAre";
@@ -36,6 +37,7 @@ import "@/styles/contact.css";
 import "@/styles/mega.css";
 import "@/styles/home.css";
 import "@/styles/home-light.css";
+import "@/styles/work.css";
 
 export const metadata: Metadata = {
   title: "Envision Digital",
@@ -61,6 +63,7 @@ export default function Home() {
       </a>
       <HomeNav />
       <ContactModal />
+      <CaseWindow />
       <Hero />
       <WhoWeAre />
       <OurPromise />

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="122 139 132 97" role="img" aria-label="EdenCare">
+<defs>
+<mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="375" height="375"><rect width="375" height="375" fill="#fff"/><circle cx="214.17" cy="177.38" r="36.45"/></mask>
+<clipPath id="ml"><rect width="161.73" height="375"/></clipPath>
+<clipPath id="mr"><rect width="212.77" height="375"/></clipPath>
+</defs>
+<g fill="none" stroke-width="3.73" stroke-linecap="round" stroke-linejoin="round">
+<g stroke="#7ed957"><path d="M147.12 208.38A20.89 18.62 0 0 1 135.61 174.23A27.99 24.95 0 1 1 189.59 174.22A20.89 18.62 0 0 1 178.09 208.38Z" mask="url(#mk)"/><circle cx="214.17" cy="177.38" r="34.59"/></g>
+<g stroke="#008037"><g clip-path="url(#ml)"><path d="M147.12 208.38A20.89 18.62 0 0 1 135.61 174.23A27.99 24.95 0 1 1 189.59 174.22A20.89 18.62 0 0 1 178.09 208.38Z" mask="url(#mk)"/></g><g clip-path="url(#mr)"><circle cx="214.17" cy="177.38" r="34.59"/></g></g>
+<path stroke="#7ed957" d="M163.6 162.52V232.25M214.64 185.14V232.25M155.75 184.7H171.45"/>
+</g>
+<g fill="#7ed957"><circle cx="163.6" cy="162.52" r="6.08"/><circle cx="214.64" cy="185.14" r="7.68"/></g>
+</svg>

@@ -1,3 +1,5 @@
+import { CASES } from "@/lib/work";
+
 export default function OurWork() {
   return (
     <section className="block" id="work">
@@ -5,73 +7,37 @@ export default function OurWork() {
       <h2 className="reveal">
         Businesses we have <span className="grad">helped grow</span>
       </h2>
-      <p className="reveal">A look at websites we have built for local businesses. Click through to see them live.</p>
+      <p className="reveal">A look at websites we have built for local businesses, and how each one helps.</p>
       <div className="work">
-        {" "}
-        <a className="proj reveal" href="https://www.edencaredisability.org/" target="_blank" rel="noopener">
-          {" "}
-          <div className="win">
-            <div className="bar">
-              <i></i>
-              <i></i>
-              <i></i>
-              <span>edencaredisability.org</span>
+        {CASES.map((c) => (
+          <article className="proj reveal" style={{ "--c": c.color }} key={c.id}>
+            <div className="win">
+              <div className="bar">
+                <i></i>
+                <i></i>
+                <i></i>
+                <span>{c.domain}</span>
+              </div>
+              <div className="shot">
+                <img src={c.shot} alt={c.shotAlt} loading="lazy" width="1460" height="900" />
+              </div>
             </div>
-            <div className="shot">
-              <em>EdenCare · Melbourne</em>
-              <b>We are a Trusted NDIS, Aged Care and Allied Health Provider</b>
+            <div className="body">
+              <span className="proj-logo">{c.logo}</span>
+              <span className="tag">Website design and development</span>
+              <h3>{c.name}</h3>
+              <p>{c.summary}</p>
+              <ul>
+                {c.tags.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+              <button className="visit" type="button" data-case={c.id} aria-haspopup="dialog">
+                See how we helped <span aria-hidden="true">&rarr;</span>
+              </button>
             </div>
-          </div>
-          <div className="body">
-            {" "}
-            <span className="tag">Website design and development</span> <h3>EdenCare</h3>
-            <p>
-              A Melbourne provider of NDIS disability support, in-home aged care and allied health. The site sets out
-              their services, from daily living support and dementia care to nursing and 24/7 support, and introduces a
-              multilingual team.
-            </p>
-            <ul>
-              <li>NDIS</li>
-              <li>Aged care</li>
-              <li>Allied health</li>
-            </ul>{" "}
-            <span className="visit">
-              Visit the site <span>↗</span>
-            </span>{" "}
-          </div>{" "}
-        </a>{" "}
-        <a className="proj reveal" href="https://greater-health.com.au/" target="_blank" rel="noopener">
-          {" "}
-          <div className="win">
-            <div className="bar">
-              <i></i>
-              <i></i>
-              <i></i>
-              <span>greater-health.com.au</span>
-            </div>
-            <div className="shot">
-              <em>Greater Health · South East Melbourne</em>
-              <b>Exercise Physiology that comes to your home, gym, pool or studio</b>
-            </div>
-          </div>
-          <div className="body">
-            {" "}
-            <span className="tag">Website design and development</span> <h3>Greater Health</h3>
-            <p>
-              A mobile exercise physiology provider covering 64 suburbs across Melbourne's South East, with hydrotherapy
-              and clinical Pilates. The site brings online booking, referrals for GPs and case managers, and seven
-              funding pathways into one clear journey.
-            </p>
-            <ul>
-              <li>Online booking</li>
-              <li>Referrals</li>
-              <li>Local service areas</li>
-            </ul>{" "}
-            <span className="visit">
-              Visit the site <span>↗</span>
-            </span>{" "}
-          </div>{" "}
-        </a>{" "}
+          </article>
+        ))}
       </div>
       <div className="proof-sub reveal" id="reviews">
         <h3>What our clients say about us</h3>
