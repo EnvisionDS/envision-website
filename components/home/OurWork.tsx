@@ -71,6 +71,19 @@ export default function OurWork() {
             </span>
           </figcaption>
         </figure>
+        <figure className="review slot reveal">
+          <div className="stars" aria-hidden="true">
+            ★★★★★
+          </div>
+          <blockquote>Review from Macroplan to be added.</blockquote>
+          <figcaption className="who">
+            <span className="av">MP</span>
+            <span>
+              <b>Macroplan</b>
+              <span>Urban economics and planning</span>
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

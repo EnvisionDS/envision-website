@@ -135,4 +135,53 @@ export const CASES: Case[] = [
       { label: "Accessibility", score: 90 },
     ],
   },
+  {
+    id: "macroplan",
+    name: "Macroplan",
+    domain: "macroplan.com.au",
+    url: "https://macroplan.com.au/",
+    sector: "Urban economics, property research and planning",
+    place: "Melbourne, Sydney and Brisbane",
+    color: "#d4b477",
+    logo: <img className="logo-macro" src="/img/work/macro-logo.png" alt="" width="100" height="26" />,
+    shot: "/img/work/macro-home.jpg",
+    shotAlt: "The Macroplan homepage: Know what a place can become, over a 3D map of Melbourne's CBD",
+    headline: "Know what a place can become",
+    summary:
+      "A national urban economics, property research and planning consultancy, advising developers, investors and government since 1985. The site opens on an interactive 3D map of real places and shows how Macroplan thinks, through its projects, sectors and people.",
+    tags: ["Interactive 3D map", "Project pages", "Sector pages"],
+    brief:
+      "Macroplan has been answering big questions about places for 40 years, for clients such as the Victoria State Government, Mirvac, Lendlease and Coles. The new site needed to show how they think, not just list what they do, and make that work easy to explore for developers, investors and government.",
+    built: [
+      "An interactive 3D map on the homepage: four real places, from the Melbourne CBD to the regions, each with the question Macroplan helps answer",
+      "A page for each of seven projects, set out the same way: the question, what Macroplan did, and the published figures",
+      "Six sector pages, from retail to energy, each starting with the question a client brings and the services that answer it",
+      "A section on Brian Haratsis's new book, AI Cities, with his recent talks and earlier books",
+      "The national team, and the Melbourne, Sydney and Brisbane offices on a map",
+      "An enquiry form that asks which sector the question is about",
+    ],
+    stats: [
+      { value: "4", label: "real places on the interactive map, each with its own question" },
+      { value: "7", label: "projects, each told on its own page" },
+      { value: "6", label: "sectors, each with its own page" },
+      { value: "3", label: "offices: Melbourne, Sydney and Brisbane" },
+    ],
+    gallery: [
+      {
+        src: "/img/work/macro-work.jpg",
+        alt: "Macroplan's work page: We answer the big questions",
+        caption: "Seven projects, each set out the same way: the question, what Macroplan did, and the figures.",
+      },
+      {
+        src: "/img/work/macro-sector.jpg",
+        alt: "Macroplan's retail sector page: Places people choose",
+        caption: "A page for every sector, starting with the question a client brings.",
+      },
+    ],
+    stack: ["Next.js", "Vercel", "WebGL 3D map", "GSAP animation", "Lenis smooth scrolling"],
+    scores: [
+      { label: "SEO", score: 100 },
+      { label: "Accessibility", score: 100 },
+    ],
+  },
 ];
