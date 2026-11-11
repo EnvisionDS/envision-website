@@ -102,51 +102,23 @@ function Study({ c }: { c: Case }) {
   );
 }
 
-// OUR WORK, THE WINDOW: "See how we helped" opens the projects in what looks like a browser window that fills the screen.
-// Each project is a tab: switch between them, close a tab with its ×, bring a closed one back with +, and close the whole
-// window with the red button, Esc or a click outside. Behaviour in lib/client/work.js; look in styles/work.css.
+// OUR WORK, THE WINDOW: "See how we helped" opens that project's case study in what looks like a single browser window
+// that fills the screen. It grows out of the card you clicked and shrinks back into it when you close it with the red
+// button, Esc or a click outside. Behaviour in lib/client/work.js; look in styles/work.css.
 // It sits at the top level of the page (app/page.tsx), outside the sections, so it covers the nav bar too.
 export default function CaseWindow() {
   return (
     <div className="cw" id="caseWin" hidden>
       <div className="cw-backdrop" data-cw-close></div>
-      <div className="cw-win" role="dialog" aria-modal="true" aria-label="Our work">
-        <div className="cw-top">
+      <div className="cw-win" role="dialog" aria-modal="true" aria-labelledby={`cs-h-${CASES[0].id}`}>
+        <div className="cw-bar">
           <div className="cw-lights">
-            <button className="cw-light red" type="button" data-cw-close aria-label="Close window">
+            <button className="cw-light red" type="button" data-cw-close aria-label="Close the case study">
               <span aria-hidden="true">&times;</span>
             </button>
             <span className="cw-light yellow" aria-hidden="true"></span>
             <span className="cw-light green" aria-hidden="true"></span>
           </div>
-          <div className="cw-tabs" role="tablist" aria-label="Projects">
-            {CASES.map((c) => (
-              <div className="cw-tab" data-tab={c.id} data-domain={c.domain} data-url={c.url} style={{ "--c": c.color }} key={c.id}>
-                <button className="cw-tab-go" type="button" role="tab" id={`cw-tab-${c.id}`} aria-controls={`cw-pane-${c.id}`}>
-                  <i aria-hidden="true"></i>
-                  {c.name}
-                </button>
-                <button className="cw-tab-x" type="button" aria-label={`Close the ${c.name} tab`}>
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            ))}
-            <div className="cw-add">
-              <button className="cw-plus" type="button" aria-label="Open a closed project" aria-expanded="false" hidden>
-                <span aria-hidden="true">+</span>
-              </button>
-              <div className="cw-menu" hidden>
-                {CASES.map((c) => (
-                  <button type="button" data-open={c.id} key={c.id} style={{ "--c": c.color }}>
-                    <i aria-hidden="true"></i>
-                    {c.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="cw-bar">
           <span className="cw-nav" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M15 6l-6 6 6 6" />
@@ -169,7 +141,7 @@ export default function CaseWindow() {
         </div>
         <div className="cw-view">
           {CASES.map((c) => (
-            <div className="cw-pane" role="tabpanel" id={`cw-pane-${c.id}`} aria-labelledby={`cw-tab-${c.id}`} data-pane={c.id} style={{ "--c": c.color }} hidden key={c.id}>
+            <div className="cw-pane" data-pane={c.id} data-domain={c.domain} data-url={c.url} style={{ "--c": c.color }} hidden key={c.id}>
               <Study c={c} />
             </div>
           ))}
