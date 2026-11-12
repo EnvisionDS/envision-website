@@ -4,42 +4,56 @@
 
 .sec-intro { color: var(--muted); max-width: 60ch; }
 
-/* ---------- the staircase: one step per stage, each a little taller than the last; the light climbs it once ---------- */
-.stairs { --x: -999px; --y: -999px; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px; align-items: end; }
-.stairs li { height: calc(200px + var(--i) * 34px); }
-.stair { position: relative; height: 100%; display: flex; flex-direction: column; gap: .7rem; padding: 1.05rem .95rem; border-radius: 16px 16px 6px 6px; overflow: hidden; isolation: isolate;
-         background: var(--surface); border: 1px solid var(--line);
-         opacity: 0; transform: translateY(40px); transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s; }
-.stairs.in .stair { opacity: 1; transform: none;
-                    transition: opacity .6s ease calc(var(--i) * 110ms), transform .7s cubic-bezier(.2,.8,.2,1) calc(var(--i) * 110ms), border-color .35s, box-shadow .35s; }
-.stair::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-                 background: radial-gradient(240px circle at var(--lx, -999px) var(--ly, -999px), color-mix(in srgb, var(--c) 20%, transparent), transparent 70%); }
-.stair::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--c); box-shadow: 0 0 14px var(--c);
-                opacity: calc(.25 + var(--i) / var(--n) * .5); transition: opacity .35s; }
-.stair:hover, .stair.lit { border-color: color-mix(in srgb, var(--c) 50%, var(--line)); box-shadow: 0 -8px 30px color-mix(in srgb, var(--c) 16%, transparent); }
-.stairs.in .stair:hover, .stairs.in .stair.lit { transform: translateY(-6px); }
-.stair:hover::after, .stair.lit::after { opacity: 1; }
-.stair-n { font: 600 .74rem/1 var(--display); letter-spacing: .14em; color: var(--ink); }
-.stair-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none; color: var(--ink);
-             border: 1px solid color-mix(in srgb, var(--c) 38%, transparent); background: color-mix(in srgb, var(--c) 7%, transparent); transition: box-shadow .35s; }
-.stair:hover .stair-ico, .stair.lit .stair-ico { box-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
-.stair-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.stair-t { margin-top: auto; display: grid; gap: .35rem; }
-.stair-t b { font: 500 1rem/1.25 var(--display); text-wrap: balance; transition: color .3s; }
-.stair:hover .stair-t b, .stair.lit .stair-t b { color: var(--ink); }
-.stair-t small { font-size: .8rem; line-height: 1.45; color: var(--muted); }
-/* the last step stays lit: it's where all of it leads */
-.stairs li:last-child .stair { border-color: color-mix(in srgb, var(--c) 40%, var(--line)); }
-.stairs li:last-child .stair::after { opacity: 1; }
+/* ---------- the staircase: one line draws the treads and risers, rising left to right; each step's icon sits on its
+   tread with the words just under it, and a soft fill below each tread makes the stairs read as solid ---------- */
+.stairs { --rise: 44px; --beat: .3s; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); }
+.stairs li { --top: calc((var(--n) - 1 - var(--i)) * var(--rise)); position: relative; display: flex; flex-direction: column; padding-top: var(--top); }
+/* the tread (across the step) and the riser (up to the next step), drawn one after the other */
+.stairs li::before, .stairs li::after { content: ""; position: absolute; z-index: 1; background: var(--c); box-shadow: 0 0 10px color-mix(in srgb, var(--c) 55%, transparent); transition: transform .3s cubic-bezier(.5,0,.5,1), opacity .3s; }
+.stairs li::before { left: 0; right: 0; top: var(--top); height: 2px; transform-origin: left; transform: scaleX(0); }
+.stairs li::after { right: 0; width: 2px; top: calc(var(--top) - var(--rise)); height: calc(var(--rise) + 2px); transform-origin: bottom; transform: scaleY(0); transition-duration: .12s; }
+.stairs li:last-child::after { display: none; }
+.stairs.in li::before { transform: none; transition-delay: calc(var(--i) * var(--beat)); }
+.stairs.in li::after { transform: none; transition-delay: calc(var(--i) * var(--beat) + .22s); }
+/* the step: icon on the tread, then the words; the fill fades away below */
+.stair { position: relative; flex: 1; display: grid; align-content: start; gap: .45rem; padding: 2.2rem 1.4rem 2rem .9rem;
+         background: linear-gradient(to bottom, color-mix(in srgb, var(--c) 9%, transparent), transparent 75%); transition: background .35s; }
+.stair::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+                 background: radial-gradient(220px circle at var(--lx, -999px) var(--ly, -999px), color-mix(in srgb, var(--c) 14%, transparent), transparent 70%); }
+.stair-ico { position: absolute; left: .9rem; top: 0; z-index: 2; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--ink);
+             background: var(--bg, #0a0b0c); border: 1.5px solid var(--c); box-shadow: 0 0 0 5px var(--bg, #0a0b0c);
+             transform: translateY(-50%) scale(0); transition: transform .45s cubic-bezier(.3,1.5,.5,1), box-shadow .35s; }
+.stair-ico svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.stair b, .stair small { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.stair b { margin-top: .35rem; font: 500 1.05rem/1.25 var(--display); text-wrap: balance; }
+.stair small { font-size: .86rem; line-height: 1.5; color: var(--muted); max-width: 30ch; }
+.stair-n { position: absolute; z-index: 2; left: calc(.9rem + 54px); top: calc(var(--top) - 1.35rem); font: 600 .72rem/1 var(--display); letter-spacing: .14em; color: var(--c);
+           opacity: 0; transition: opacity .4s; }
+.stairs.in .stair-ico { transform: translateY(-50%) scale(1); transition-delay: calc(var(--i) * var(--beat) + .05s), 0s; }
+.stairs.in .stair b, .stairs.in .stair small, .stairs.in .stair-n { opacity: 1; transform: none; }
+.stairs.in .stair b, .stairs.in .stair-n { transition-delay: calc(var(--i) * var(--beat) + .15s); }
+.stairs.in .stair small { transition-delay: calc(var(--i) * var(--beat) + .25s); }
+/* pointing at a step (or the light climbing on touch screens) brightens it */
+.stairs li:hover .stair, .stairs li.lit .stair { background: linear-gradient(to bottom, color-mix(in srgb, var(--c) 16%, transparent), transparent 80%); }
+.stairs li:hover .stair-ico, .stairs li.lit .stair-ico { box-shadow: 0 0 0 5px var(--bg, #0a0b0c), 0 0 22px color-mix(in srgb, var(--c) 60%, transparent); }
+/* the top step is where it all leads: its icon is filled */
+.stairs li:last-child .stair-ico { background: color-mix(in srgb, var(--c) 22%, var(--bg, #0a0b0c)); box-shadow: 0 0 0 5px var(--bg, #0a0b0c), 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+/* narrower screens: the steps run down the page along one line, a little further in each time */
 @media (max-width: 960px) {
-  .stairs { grid-template-columns: 1fr; gap: 8px; }
-  .stairs li { height: auto; width: calc(64% + var(--i) / max(var(--n) - 1, 1) * 36%); }
-  .stair { flex-direction: row; align-items: center; gap: .85rem; padding: .8rem .95rem; border-radius: 6px 14px 14px 6px; transform: translateX(-30px); }
-  .stair::after { left: auto; right: 0; top: 0; bottom: 0; width: 2px; height: auto; }
-  .stair-t { margin: 0; } .stair-t b { font-size: .95rem; }
-  .stair-n { order: 3; margin-left: auto; align-self: flex-start; }
+  .stairs { grid-template-columns: 1fr; }
+  .stairs li { --top: 0px; padding: 0 0 0 calc(var(--i) * 10px); }
+  .stairs li::before { left: calc(var(--i) * 10px + 20px); right: auto; top: 0; bottom: 0; width: 2px; height: auto; transform-origin: top; transform: scaleY(0); }
+  .stairs li:last-child::before { bottom: auto; height: 22px; }
+  .stairs li::after { display: none; }
+  .stairs.in li::before { transform: none; }
+  .stair { padding: .5rem 0 1.6rem 62px; background: none; }
+  .stairs li:hover .stair, .stairs li.lit .stair { background: none; }
+  .stair-ico { left: 0; top: 0; transform: scale(0); }
+  .stairs.in .stair-ico { transform: none; }
+  .stair b { margin-top: .55rem; }
+  .stair small { max-width: 46ch; }
+  .stair-n { left: auto; right: 0; top: .9rem; }
 }
-@media (max-width: 560px) { .stairs li { width: calc(82% + var(--i) / max(var(--n) - 1, 1) * 18%); } .stair-ico { width: 34px; height: 34px; } }
 
 /* ---------- cards: three or four numbered points ---------- */
 .mcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 1rem; }
@@ -93,7 +107,13 @@
   .faq-grid .sec-head, .chk-grid .sec-head { position: static; }
 }
 @media (max-width: 560px) { .chk { grid-template-columns: 1fr; } }
-@media (prefers-reduced-motion: reduce) { .stair, .stairs.in .stair { opacity: 1; transform: none; transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .stairs li::before, .stairs li::after, .stair-ico, .stair b, .stair small, .stair-n { transition: none !important; }
+  .stairs li::before, .stairs li::after { transform: none; }
+  .stair-ico { transform: translateY(-50%); }
+  .stair b, .stair small, .stair-n { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 960px) { .stair-ico { transform: none; } }
 
 /* two fair options: both columns alike, plain bullets in the service colour */
 .cmp.even .cmp-col { border-color: color-mix(in srgb, var(--c) 30%, var(--line)); background: color-mix(in srgb, var(--c) 4%, var(--surface)); }

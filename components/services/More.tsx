@@ -39,7 +39,8 @@ const svg = (d: ReactNode) => (
   </svg>
 );
 
-// the steps, as a staircase that rises left to right; the light climbs it as it comes into view
+// the steps, as a staircase that rises left to right: one line draws the treads and risers as it comes into view, each
+// step's icon sits on its tread with the words just under it, and a soft fill below makes the stairs solid
 export function Stairs({ m }: { m: ServiceMore }) {
   return (
     <section className="band" aria-labelledby="st-h">
@@ -52,13 +53,11 @@ export function Stairs({ m }: { m: ServiceMore }) {
         <ol className="stairs" style={{ "--n": m.stairs.length }}>
           {m.stairs.map((st, i) => (
             <li style={{ "--i": i }} key={st.title}>
+              <span className="stair-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <div className="stair">
-                <span className="stair-n">{String(i + 1).padStart(2, "0")}</span>
                 <span className="stair-ico">{svg(ICONS[st.icon] ?? ICONS.check)}</span>
-                <span className="stair-t">
-                  <b>{st.title}</b>
-                  <small>{st.text}</small>
-                </span>
+                <b>{st.title}</b>
+                <small>{st.text}</small>
               </div>
             </li>
           ))}
