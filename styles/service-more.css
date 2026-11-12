@@ -119,3 +119,191 @@
 .cmp.even .cmp-col { border-color: color-mix(in srgb, var(--c) 30%, var(--line)); background: color-mix(in srgb, var(--c) 4%, var(--surface)); }
 .cmp.even .cmp-col h3, .cmp.even .cmp-col li { color: var(--text); }
 .cmp.even svg { stroke: none; fill: var(--ink); }
+
+/* ======================================================================================================================
+   More layouts, so the pages don't all look alike (which page gets which: lib/service-more/index.ts)
+   ====================================================================================================================== */
+.sec-head.center { justify-items: center; text-align: center; margin-inline: auto; }
+.sec-head.center h2 { max-width: 22ch; }
+.sec-head.center .sec-intro { margin-inline: auto; }
+
+/* ---------- cards, "bento": the first point as one large card beside the smaller ones ---------- */
+.mcards.bento { grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(200px, auto); }
+.mcards.bento.n3 { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.mcards.bento .mcard:first-child { grid-row: span 2; grid-template-rows: 1fr auto auto; align-content: stretch; padding: 2.2rem 2rem;
+  border-color: color-mix(in srgb, var(--c) 35%, var(--line));
+  background: radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 60%), var(--surface); }
+.mcards.bento .mcard:first-child .mcard-n { align-self: start; font-size: clamp(5rem, 9vw, 8rem); -webkit-text-stroke-width: 1.5px; }
+.mcards.bento .mcard:first-child h3 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
+.mcards.bento .mcard:first-child p { font-size: 1.05rem; max-width: 40ch; }
+.mcards.bento.n4 .mcard:last-child { grid-column: 2 / span 2; }
+@media (max-width: 960px) { .mcards.bento.n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mcards.bento.n4 .mcard:first-child { grid-row: auto; grid-column: 1 / -1; } }
+@media (max-width: 640px) { .mcards.bento, .mcards.bento.n3 { grid-template-columns: 1fr; } .mcards.bento .mcard { grid-row: auto !important; grid-column: auto !important; } }
+
+/* ---------- cards, "stack": each card slides up over the one before as you scroll ---------- */
+.mstack { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; }
+.mstack li { position: sticky; top: calc(100px + var(--i) * 22px); }
+.mstack-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: clamp(1.2rem, 4vw, 3rem); align-items: start; min-height: 210px;
+  padding: clamp(1.5rem, 3.5vw, 2.6rem); border-radius: 26px; border: 1px solid color-mix(in srgb, var(--c) 30%, var(--line));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c) calc(5% + var(--i) * 4%), var(--surface)), var(--surface) 70%);
+  box-shadow: 0 -20px 50px -10px rgba(0, 0, 0, .45); }
+:root[data-theme="light"] .mstack-card { box-shadow: 0 -16px 40px -12px rgba(19, 32, 46, .18); }
+.mstack-n { font: 300 clamp(3rem, 7vw, 5.5rem)/.9 var(--display); letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--c) 85%, transparent); }
+.mstack-card h3 { font-size: clamp(1.3rem, 2.4vw, 1.75rem); margin-bottom: .7rem; }
+.mstack-card p { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 52ch; }
+.mstack-of { font: 500 .72rem/1 var(--display); letter-spacing: .16em; color: var(--faint); padding-top: .4rem; }
+@media (max-width: 640px) { .mstack li { top: calc(84px + var(--i) * 14px); } .mstack-card { grid-template-columns: auto minmax(0, 1fr); min-height: 0; } .mstack-of { display: none; } }
+
+/* ---------- questions, "chat": the customer asks, we answer ---------- */
+.chat { max-width: 780px; margin: 0 auto; display: grid; gap: 1.5rem; }
+.chat-pair { display: grid; gap: .55rem; }
+.bub { margin: 0; max-width: min(80%, 560px); padding: .95rem 1.2rem; border-radius: 22px; line-height: 1.55; }
+.bub.q { justify-self: end; border-bottom-right-radius: 6px; font: 500 1.02rem/1.4 var(--display); color: var(--text);
+  background: color-mix(in srgb, var(--c) 16%, var(--surface)); border: 1px solid color-mix(in srgb, var(--c) 35%, transparent); transform-origin: 100% 100%; }
+.bub.a { justify-self: start; display: flex; gap: .85rem; align-items: flex-start; border-bottom-left-radius: 6px; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--line); transform-origin: 0 100%; }
+.chat-av { flex: none; width: 30px; height: 30px; margin-top: -.1rem; border-radius: 50%; display: grid; place-items: center; font: 700 .78rem/1 var(--display); color: var(--bg); background: var(--ink); }
+.chat .bub { opacity: 0; transform: translateY(14px) scale(.96); transition: opacity .45s ease, transform .55s cubic-bezier(.2,.9,.3,1.2); }
+.chat.play .bub { opacity: 1; transform: none; }
+.chat.play .bub.q { transition-delay: calc(var(--i) * .55s); }
+.chat.play .bub.a { transition-delay: calc(var(--i) * .55s + .3s); }
+@media (max-width: 640px) { .bub { max-width: 92%; } }
+
+/* ---------- questions, "tabs": pick a question, its answer shows large beside it ---------- */
+.qtabs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.4rem; align-items: stretch; }
+.qt-list { display: grid; gap: .35rem; align-content: start; }
+.qt-list button { position: relative; display: flex; gap: .9rem; align-items: baseline; width: 100%; text-align: left; padding: 1rem 1.15rem; border-radius: 14px;
+  border: 1px solid transparent; background: none; color: var(--muted); font: 500 1rem/1.4 var(--display); cursor: pointer; transition: color .25s, background .25s, border-color .25s; }
+.qt-list button:hover { color: var(--text); background: color-mix(in srgb, var(--text) 4%, transparent); }
+.qt-list button[aria-selected="true"] { color: var(--text); background: var(--surface); border-color: color-mix(in srgb, var(--c) 40%, var(--line)); }
+.qt-list button[aria-selected="true"]::before { content: ""; position: absolute; left: -1px; top: 22%; bottom: 22%; width: 3px; border-radius: 3px; background: var(--ink); box-shadow: 0 0 12px var(--c); }
+.qt-list button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.qt-n { flex: none; font: 600 .7rem/1 var(--display); letter-spacing: .14em; color: var(--ink); }
+.qt-panels { position: relative; overflow: hidden; min-height: 320px; padding: clamp(1.6rem, 4vw, 2.8rem); border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--c) 30%, var(--line));
+  background: radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--c) 14%, transparent), transparent 65%), var(--surface); }
+.qt-panel:not([hidden]) { animation: qtIn .45s cubic-bezier(.2,.8,.2,1); }
+.qt-mark { position: absolute; right: 1rem; bottom: -2rem; font: 300 clamp(7rem, 14vw, 11rem)/1 var(--display); letter-spacing: -.05em; color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--c) 30%, transparent); pointer-events: none; }
+.qt-q { position: relative; margin: 0 0 1rem; font: 500 clamp(1.25rem, 2.2vw, 1.6rem)/1.3 var(--display); color: var(--text); max-width: 26ch; }
+.qt-a { position: relative; margin: 0; color: var(--muted); font-size: 1.08rem; max-width: 46ch; }
+@keyframes qtIn { from { opacity: 0; transform: translateY(12px); } }
+/* on smaller screens the questions become a row of numbered chips, with the question and its answer in the panel below */
+@media (max-width: 900px) {
+  .qtabs { grid-template-columns: 1fr; gap: 1rem; }
+  .qt-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .qt-list button { width: auto; padding: .7rem 1rem; border-radius: 999px; border-color: var(--line); }
+  .qt-list button > span:not(.qt-n) { display: none; }
+  .qt-list .qt-n { font-size: .85rem; color: inherit; }
+  .qt-list button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .qt-list button[aria-selected="true"]::before { display: none; }
+  .qt-panels { min-height: 0; } .qt-mark { font-size: 6rem; bottom: -1.2rem; }
+}
+
+/* ---------- compare, "toggle": a switch between the two sides ---------- */
+.flip { max-width: 780px; margin: 0 auto; display: grid; justify-items: center; gap: 1.5rem; }
+.flip-sw { position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 5px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); max-width: 100%; }
+.flip-sw button { position: relative; z-index: 1; border: 0; background: none; padding: .8rem 1.5rem; border-radius: 999px; font: 500 .95rem/1.25 var(--display); color: var(--muted); cursor: pointer; transition: color .35s; }
+.flip-sw button[aria-selected="true"] { color: var(--bg); }
+.flip-sw button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.flip-knob { position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: var(--ink);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--c) 45%, transparent); transition: transform .5s cubic-bezier(.6,0,.2,1); }
+.flip.r .flip-knob { transform: translateX(100%); }
+.flip-p { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; gap: .65rem; }
+.flip-p[hidden], .qt-panel[hidden] { display: none; }
+.flip-p li { display: flex; gap: .9rem; align-items: flex-start; padding: 1.1rem 1.3rem; border-radius: 16px; border: 1px solid var(--line); background: var(--surface);
+  font-size: 1.05rem; line-height: 1.5; animation: flipIn .5s cubic-bezier(.2,.8,.2,1) backwards calc(var(--k) * 70ms); }
+.flip-p svg { flex: none; width: 20px; height: 20px; margin-top: .15rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.flip-p.was li { color: var(--muted); } .flip-p.was svg { stroke: var(--faint); }
+.flip-p.now li, .flip.even .flip-p li { color: var(--text); border-color: color-mix(in srgb, var(--c) 35%, var(--line)); background: color-mix(in srgb, var(--c) 6%, var(--surface)); }
+.flip-p.now svg { stroke: var(--ink); }
+.flip.even .flip-p svg { stroke: none; fill: var(--ink); }
+.flip-hint { margin: 0; font-size: .85rem; color: var(--faint); display: flex; align-items: center; gap: .5rem; transition: opacity .4s; }
+.flip-hint::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); animation: hintPulse 1.6s ease-in-out infinite; }
+.flip.used .flip-hint { opacity: 0; }
+@media (max-width: 560px) { .flip-sw { width: 100%; } .flip-sw button { padding: .7rem .9rem; font-size: .86rem; } .flip-p li { padding: .95rem 1.05rem; font-size: 1rem; } }
+@keyframes flipIn { from { opacity: 0; transform: translateY(10px); } }
+@keyframes hintPulse { 50% { opacity: .3; transform: scale(.7); } }
+
+/* ---------- compare, "table": each point set against its partner, row by row ---------- */
+.vs { width: 100%; border-collapse: separate; border-spacing: 0 .6rem; }
+.vs thead th { text-align: left; padding: 0 1.3rem .3rem; font: 500 1.1rem/1.3 var(--display); }
+.vs thead th:first-child { color: var(--muted); } .vs thead th:last-child { color: var(--ink); }
+.vs td.was, .vs td.now { position: relative; width: 47%; padding: 1.1rem 1.3rem 1.1rem 3.1rem; vertical-align: top; line-height: 1.5; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.vs td.was { color: var(--muted); }
+.vs td.now { color: var(--text); border-color: color-mix(in srgb, var(--c) 35%, var(--line)); background: color-mix(in srgb, var(--c) 6%, var(--surface)); }
+.vs td svg { position: absolute; left: 1.15rem; top: 1.25rem; width: 19px; height: 19px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.vs td.was svg { stroke: var(--faint); } .vs td.now svg { stroke: var(--ink); }
+.vs.even td.was { color: var(--text); border-color: color-mix(in srgb, var(--c) 35%, var(--line)); background: color-mix(in srgb, var(--c) 6%, var(--surface)); }
+.vs.even thead th:first-child { color: var(--ink); }
+.vs.even td svg { stroke: none; fill: var(--ink); }
+.vs-mid { width: 6%; text-align: center; vertical-align: middle; }
+.vs-mid span { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font: 500 .85rem/1 var(--display); color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); background: var(--bg); }
+@media (max-width: 720px) {
+  .vs, .vs tbody, .vs tr, .vs td { display: block; width: auto !important; }
+  .vs thead { display: none; }
+  .vs tr { margin-bottom: 1.2rem; }
+  .vs td.was, .vs td.now { padding-top: 2.4rem; }
+  .vs td.was::before, .vs td.now::before { content: attr(data-h); position: absolute; left: 1.3rem; top: .95rem; font: 600 .68rem/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+  .vs td.now::before { color: var(--ink); }
+  .vs td svg { top: 2.55rem; }
+  .vs-mid { padding: .35rem 0; } .vs-mid span { transform: rotate(90deg); }
+  .vs.even .vs-mid span { transform: none; }
+}
+
+/* ---------- checklist, "rows": a large numbered list ---------- */
+.mrows { list-style: none; margin: 0 auto; padding: 0; max-width: 920px; border-top: 1px solid var(--line); }
+.mrows li { position: relative; isolation: isolate; display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: 1.35rem .6rem; border-bottom: 1px solid var(--line); }
+.mrows li::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 13%, transparent), transparent 80%);
+  transform: scaleX(0); transform-origin: left; transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+.mrows li:hover::before { transform: none; }
+.mrows-n { font: 600 .78rem/1 var(--display); letter-spacing: .14em; color: var(--ink); }
+.mrows-t { font: 400 clamp(1.08rem, 2vw, 1.4rem)/1.35 var(--display); color: var(--text); }
+.mrows-tick { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); opacity: .4; transition: opacity .35s, background .35s; }
+.mrows-tick svg { width: 16px; height: 16px; fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.mrows li:hover .mrows-tick { opacity: 1; background: color-mix(in srgb, var(--c) 14%, transparent); }
+@media (max-width: 560px) { .mrows li { grid-template-columns: 2.4rem minmax(0, 1fr); } .mrows-tick { display: none; } }
+
+/* ---------- checklist, "clipboard": a card whose boxes tick themselves, one by one, as it comes into view ---------- */
+.clip { --t: .38s; position: relative; padding: clamp(1.6rem, 4vw, 3rem); border-radius: 28px; border: 1px solid color-mix(in srgb, var(--c) 28%, var(--line));
+  background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 60%), var(--surface); }
+.clip::after { content: ""; position: absolute; top: -1px; left: 50%; width: 120px; height: 12px; transform: translateX(-50%); border-radius: 0 0 12px 12px; background: color-mix(in srgb, var(--c) 45%, var(--line)); }
+.clip-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+.clip-count { margin: 0; display: flex; align-items: flex-start; font: 300 clamp(2.4rem, 5vw, 3.6rem)/1 var(--display); color: var(--faint); white-space: pre; }
+.clip-count b { display: block; height: 1em; overflow: hidden; font-weight: 400; color: var(--ink); }
+.clip-count b span { display: block; height: 1em; text-align: right; }
+.clip.play .clip-count b span { animation: clipRoll calc(var(--n) * var(--t)) steps(var(--n)) .5s forwards; }
+@keyframes clipRoll { to { transform: translateY(calc(var(--n) * -100%)); } }
+.clip-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.2rem; }
+.clip-list li { --d: calc(.5s + var(--i) * var(--t) + .2s); display: flex; gap: .9rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px dashed color-mix(in srgb, var(--c) 22%, var(--line));
+  color: var(--muted); line-height: 1.5; transition: color .4s var(--d); }
+.clip-box { flex: none; width: 24px; height: 24px; margin-top: .05rem; border-radius: 7px; display: grid; place-items: center; border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent);
+  transition: background .3s var(--d), border-color .3s var(--d); }
+.clip-box svg { width: 15px; height: 15px; fill: none; stroke: var(--bg); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 24; stroke-dashoffset: 24; transition: stroke-dashoffset .35s ease var(--d); }
+.clip.play .clip-list li { color: var(--text); }
+.clip.play .clip-box { background: var(--ink); border-color: var(--ink); }
+.clip.play .clip-box svg { stroke-dashoffset: 0; }
+@media (max-width: 760px) { .clip-top { flex-direction: column; gap: 0; } .clip-count { margin-bottom: 1.2rem; font-size: 2.2rem; } .clip-list { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .chat .bub, .clip-list li, .clip-box, .clip-box svg { transition: none !important; }
+  .clip.play .clip-count b span { animation-duration: 1ms; animation-delay: 0s; }
+  .flip-p li, .qt-panel:not([hidden]) { animation: none; }
+  .flip-hint::before { animation: none; }
+}
+
+/* ---------- the overview beside its particle sculpture (three.js, lib/client/sculpture.js) ---------- */
+.ov-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.ov-copy { display: grid; gap: 1.3rem; align-content: center; }
+.sculpt { position: relative; width: 100%; aspect-ratio: 1; max-height: 460px; justify-self: center; cursor: crosshair; touch-action: pan-y; }
+.sculpt::before { content: ""; position: absolute; inset: 18%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%); filter: blur(10px); }
+.sculpt canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; opacity: 0; transition: opacity .8s ease; }
+.sculpt.ready canvas { opacity: 1; }
+.sculpt-hint { position: absolute; left: 50%; bottom: .2rem; transform: translateX(-50%); white-space: nowrap; font-size: .78rem; color: var(--faint); opacity: 0; transition: opacity .6s .8s; pointer-events: none; }
+.sculpt.ready .sculpt-hint { opacity: 1; }
+.sculpt.off { display: none; }
+.ov-grid:has(.sculpt.off) { grid-template-columns: 1fr; }
+@media (max-width: 900px) { .ov-grid { grid-template-columns: 1fr; } .sculpt { max-width: 440px; aspect-ratio: 1.1; } }
+@media (hover: none) { .sculpt-hint { display: none; } }

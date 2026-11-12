@@ -5,6 +5,7 @@ import ServiceScripts from "@/components/scripts/ServiceScripts";
 import { GROUPS } from "@/lib/menu";
 import { SERVICE_BY_KEY, type Service } from "@/lib/services";
 import { MORE } from "@/lib/service-more";
+import { SHAPE } from "@/lib/sculpt";
 import { MoreBlock, Stairs } from "./More";
 import "@/styles/service-more.css";
 
@@ -90,15 +91,21 @@ export default function ServicePage({ s }: { s: Service }) {
           </div>
         </section>
 
+        {/* the overview, beside a particle sculpture in the service's shape (lib/sculpt.ts, lib/client/sculpture.js) */}
         <section className="band" aria-labelledby="ov-h">
-          <div className="wrap two rv">
-            <p className="label" id="ov-h">
-              Overview
-            </p>
-            <div className="prose">
-              {s.overview.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+          <div className="wrap ov-grid">
+            <div className="ov-copy rv">
+              <p className="label" id="ov-h">
+                Overview
+              </p>
+              <div className="prose">
+                {s.overview.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            </div>
+            <div className="sculpt" data-shape={SHAPE[s.key] ?? "globe"} aria-hidden="true">
+              <span className="sculpt-hint">Move through it, or click to scatter it</span>
             </div>
           </div>
         </section>

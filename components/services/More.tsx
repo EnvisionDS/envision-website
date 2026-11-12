@@ -67,9 +67,9 @@ export function Stairs({ m }: { m: ServiceMore }) {
   );
 }
 
-function Head({ s, id }: { s: MoreSection; id: string }) {
+function Head({ s, id, center }: { s: MoreSection; id: string; center?: boolean }) {
   return (
-    <div className="sec-head rv">
+    <div className={`sec-head rv${center ? " center" : ""}`}>
       <p className="label">{s.label}</p>
       <h2 id={id}>{s.heading}</h2>
       {"intro" in s && s.intro ? <p className="sec-intro">{s.intro}</p> : null}
@@ -77,89 +77,254 @@ function Head({ s, id }: { s: MoreSection; id: string }) {
   );
 }
 
+const nn = (i: number) => String(i + 1).padStart(2, "0");
+const band = (id: string, kind: string, layout: string | undefined, body: ReactNode) => (
+  <section className={`band more more-${kind}-${layout}`} aria-labelledby={id}>
+    {body}
+  </section>
+);
+
+// One information section. Each kind has three layouts (see lib/service-more/types.ts); the look of each is in
+// styles/service-more.css, and the moving parts (tabs, the switch, the boxes ticking) in lib/client/service.js.
 export function MoreBlock({ s, n }: { s: MoreSection; n: number }) {
   const id = `more-${n}`;
-  if (s.kind === "cards")
-    return (
-      <section className="band" aria-labelledby={id}>
+
+  if (s.kind === "cards") {
+    // cards that stack on top of one another as you scroll down
+    if (s.layout === "stack")
+      return band(id, s.kind, s.layout,
         <div className="wrap">
           <Head s={s} id={id} />
-          <div className={`mcards rv n${s.items.length}`}>
+          <ol className="mstack" style={{ "--n": s.items.length }}>
             {s.items.map((it, i) => (
-              <div className="mcard beam" key={it.title}>
-                <span className="mcard-n">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{it.title}</h3>
-                <p>{it.text}</p>
+              <li style={{ "--i": i }} key={it.title}>
+                <div className="mstack-card beam">
+                  <span className="mstack-n">{nn(i)}</span>
+                  <div>
+                    <h3>{it.title}</h3>
+                    <p>{it.text}</p>
+                  </div>
+                  <span className="mstack-of" aria-hidden="true">{`${nn(i)} / ${nn(s.items.length - 1)}`}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>);
+    // one large card (the first point) beside the smaller ones; the plain grid otherwise
+    return band(id, s.kind, s.layout,
+      <div className="wrap">
+        <Head s={s} id={id} />
+        <div className={`mcards rv n${s.items.length}${s.layout === "bento" ? " bento" : ""}`}>
+          {s.items.map((it, i) => (
+            <div className="mcard beam" key={it.title}>
+              <span className="mcard-n">{nn(i)}</span>
+              <h3>{it.title}</h3>
+              <p>{it.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>);
+  }
+
+  if (s.kind === "faq") {
+    // a conversation: the customer asks, we answer
+    if (s.layout === "chat")
+      return band(id, s.kind, s.layout,
+        <div className="wrap">
+          <Head s={s} id={id} center />
+          <dl className="chat" data-play="">
+            {s.items.map((it, i) => (
+              <div className="chat-pair" style={{ "--i": i }} key={it.q}>
+                <dt className="bub q">{it.q}</dt>
+                <dd className="bub a">
+                  <span className="chat-av" aria-hidden="true">E</span>
+                  <span>{it.a}</span>
+                </dd>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-    );
-  if (s.kind === "faq")
-    return (
-      <section className="band" aria-labelledby={id}>
-        <div className="wrap faq-grid">
-          <Head s={s} id={id} />
-          <div className="faq rv">
-            {s.items.map((it, i) => (
-              <details key={it.q} open={i === 0}>
-                <summary>
-                  <span>{it.q}</span>
-                  <i aria-hidden="true"></i>
-                </summary>
-                <p>{it.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  if (s.kind === "compare")
-    return (
-      <section className="band" aria-labelledby={id}>
+          </dl>
+        </div>);
+    // the questions as tabs, with one answer showing at a time
+    if (s.layout === "tabs")
+      return band(id, s.kind, s.layout,
         <div className="wrap">
           <Head s={s} id={id} />
-          <div className={`cmp rv${s.tone === "options" ? " even" : ""}`}>
-            <div className="cmp-col was beam">
-              <h3>{s.left.title}</h3>
-              <ul>
-                {s.left.items.map((t) => (
-                  <li key={t}>
-                    {svg(s.tone === "options" ? DOT : CROSS)}
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="qtabs rv" data-tabs="">
+            <div className="qt-list" role="tablist" aria-orientation="vertical" aria-labelledby={id}>
+              {s.items.map((it, i) => (
+                <button type="button" role="tab" id={`${id}-t${i}`} aria-controls={`${id}-p${i}`} aria-selected={i === 0} tabIndex={i === 0 ? 0 : -1} aria-label={it.q} key={it.q}>
+                  <span className="qt-n">{nn(i)}</span>
+                  <span>{it.q}</span>
+                </button>
+              ))}
             </div>
-            <div className="cmp-col now beam">
-              <h3>{s.right.title}</h3>
-              <ul>
-                {s.right.items.map((t) => (
-                  <li key={t}>
-                    {svg(s.tone === "options" ? DOT : TICK)}
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="qt-panels beam">
+              {s.items.map((it, i) => (
+                <div role="tabpanel" id={`${id}-p${i}`} aria-labelledby={`${id}-t${i}`} hidden={i !== 0} className="qt-panel" key={it.q}>
+                  <span className="qt-mark" aria-hidden="true">{nn(i)}</span>
+                  <p className="qt-q">{it.q}</p>
+                  <p className="qt-a">{it.a}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-    );
-  return (
-    <section className="band" aria-labelledby={id}>
-      <div className="wrap chk-grid">
+        </div>);
+    return band(id, s.kind, s.layout,
+      <div className="wrap faq-grid">
         <Head s={s} id={id} />
-        <ul className="chk rv">
-          {s.items.map((t) => (
+        <div className="faq rv">
+          {s.items.map((it, i) => (
+            <details key={it.q} open={i === 0}>
+              <summary>
+                <span>{it.q}</span>
+                <i aria-hidden="true"></i>
+              </summary>
+              <p>{it.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>);
+  }
+
+  if (s.kind === "compare") {
+    const opt = s.tone === "options";
+    const mark = (side: "l" | "r") => svg(opt ? DOT : side === "l" ? CROSS : TICK);
+    // a switch between the two sides, one showing at a time
+    if (s.layout === "toggle")
+      return band(id, s.kind, s.layout,
+        <div className="wrap">
+          <Head s={s} id={id} center />
+          <div className={`flip rv${opt ? " even" : ""}`} data-flip="">
+            <div className="flip-sw" role="tablist" aria-labelledby={id}>
+              <span className="flip-knob" aria-hidden="true"></span>
+              {[s.left, s.right].map((side, i) => (
+                <button type="button" role="tab" id={`${id}-t${i}`} aria-controls={`${id}-p${i}`} aria-selected={i === 0} tabIndex={i === 0 ? 0 : -1} key={side.title}>
+                  {side.title}
+                </button>
+              ))}
+            </div>
+            {[s.left, s.right].map((side, i) => (
+              <ul role="tabpanel" id={`${id}-p${i}`} aria-labelledby={`${id}-t${i}`} hidden={i !== 0} className={`flip-p ${i ? "now" : "was"}`} key={side.title}>
+                {side.items.map((t, k) => (
+                  <li style={{ "--k": k }} key={t}>
+                    {mark(i ? "r" : "l")}
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            ))}
+            <p className="flip-hint" aria-hidden="true">{`Switch to see ${opt ? "the other option" : "the difference"}`}</p>
+          </div>
+        </div>);
+    // matched rows: each point on the left set against its partner on the right
+    if (s.layout === "table") {
+      const rows = Math.max(s.left.items.length, s.right.items.length);
+      return band(id, s.kind, s.layout,
+        <div className="wrap">
+          <Head s={s} id={id} />
+          <table className={`vs rv${opt ? " even" : ""}`}>
+            <thead>
+              <tr>
+                <th scope="col">{s.left.title}</th>
+                <td aria-hidden="true"></td>
+                <th scope="col">{s.right.title}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: rows }, (_, i) => (
+                <tr style={{ "--i": i }} key={i}>
+                  <td className="was" data-h={s.left.title}>{s.left.items[i] ? <>{mark("l")}<span>{s.left.items[i]}</span></> : null}</td>
+                  <td className="vs-mid" aria-hidden="true"><span>{opt ? "or" : "\u2192"}</span></td>
+                  <td className="now" data-h={s.right.title}>{s.right.items[i] ? <>{mark("r")}<span>{s.right.items[i]}</span></> : null}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>);
+    }
+    return band(id, s.kind, s.layout,
+      <div className="wrap">
+        <Head s={s} id={id} />
+        <div className={`cmp rv${opt ? " even" : ""}`}>
+          <div className="cmp-col was beam">
+            <h3>{s.left.title}</h3>
+            <ul>
+              {s.left.items.map((t) => (
+                <li key={t}>
+                  {mark("l")}
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="cmp-col now beam">
+            <h3>{s.right.title}</h3>
+            <ul>
+              {s.right.items.map((t) => (
+                <li key={t}>
+                  {mark("r")}
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>);
+  }
+
+  // checklist: a large numbered list
+  if (s.layout === "rows")
+    return band(id, s.kind, s.layout,
+      <div className="wrap">
+        <Head s={s} id={id} center />
+        <ol className="mrows rv">
+          {s.items.map((t, i) => (
             <li key={t}>
-              {svg(TICK)}
-              <span>{t}</span>
+              <span className="mrows-n">{nn(i)}</span>
+              <span className="mrows-t">{t}</span>
+              <span className="mrows-tick" aria-hidden="true">{svg(TICK)}</span>
             </li>
           ))}
-        </ul>
-      </div>
-    </section>
-  );
+        </ol>
+      </div>);
+  // a card whose boxes tick themselves one by one as it comes into view
+  if (s.layout === "clipboard")
+    return band(id, s.kind, s.layout,
+      <div className="wrap">
+        <div className="clip beam" data-play="" style={{ "--n": s.items.length }}>
+          <div className="clip-top">
+            <Head s={s} id={id} />
+            <p className="clip-count" aria-hidden="true">
+              <b>
+                {[0, ...s.items].map((_, i) => (
+                  <span key={i}>{i}</span>
+                ))}
+              </b>
+              {` / ${s.items.length}`}
+            </p>
+          </div>
+          <ul className="clip-list">
+            {s.items.map((t, i) => (
+              <li style={{ "--i": i }} key={t}>
+                <span className="clip-box" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">{TICK}</svg>
+                </span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>);
+  return band(id, s.kind, s.layout,
+    <div className="wrap chk-grid">
+      <Head s={s} id={id} />
+      <ul className="chk rv">
+        {s.items.map((t) => (
+          <li key={t}>
+            {svg(TICK)}
+            <span>{t}</span>
+          </li>
+        ))}
+      </ul>
+    </div>);
 }
