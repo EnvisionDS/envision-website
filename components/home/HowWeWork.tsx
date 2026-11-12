@@ -31,9 +31,9 @@ export default function HowWeWork() {
           </span>{" "}
         </div>
       </div>{" "}
-      {/* ================= GROWTH PLANNER (v130): pick one service or several. The curve shows enquiries over the first year,
-       the lanes underneath show how each service is set up and when its results build, and services that work together
-       lift the curve further. A light plays along the timeline when it first appears. Illustrative only. ================= */}{" "}
+      {/* ================= GROWTH PLANNER: pick one service or several. The chart shows enquiries each month over the first
+       year, one coloured band per service stacked on the others, with three milestones marked. A light plays along the
+       year when it first appears. Illustrative only. ================= */}{" "}
       <div className="gp reveal" id="growth" aria-labelledby="gpTitle">
         <div className="gp-side">
           {" "}
@@ -174,21 +174,24 @@ export default function HowWeWork() {
           <div className="gp-sum">
             <div className="gp-stat s1">
               <span>
-                <i>1</i>First results
+                <i>1</i>First enquiries
               </span>
               <b id="gpFirst">—</b>
+              <small>The first calls and forms come in</small>
             </div>
             <div className="gp-stat s2">
               <span>
-                <i>2</i>Steady enquiries
+                <i>2</i>A steady flow
               </span>
               <b id="gpCons">—</b>
+              <small>Enquiries arrive week after week</small>
             </div>
             <div className="gp-stat s3">
               <span>
-                <i>3</i>Always growing
+                <i>3</i>Keeps climbing
               </span>
               <b id="gpGrow">—</b>
+              <small>A few more each month than the last</small>
             </div>{" "}
             <button className="gp-tip" id="gpTip" type="button" hidden></button>{" "}
           </div>
@@ -199,52 +202,26 @@ export default function HowWeWork() {
                   <svg viewBox="0 0 24 24">
                     <path d="M12 19V5M6 11l6-6 6 6" />
                   </svg>
-                  More enquiries
+                  Enquiries each month
                 </span>
-                <span className="gp-yl0">Today</span>
+                <span className="gp-yl0">None yet</span>
               </div>
               <div className="gp-plot" id="gpPlot">
                 {" "}
                 <svg className="gp-svg" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true">
                   <defs>
-                    <linearGradient id="gpLineG" x1="0" x2="1" y1="0" y2="0">
-                      <stop offset="0" stopColor="#1561ad" />
-                      <stop offset=".5" stopColor="#5b9be6" />
-                      <stop offset="1" stopColor="#7fe0c8" />
-                    </linearGradient>
-                    <linearGradient id="gpFillG" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0" stopColor="#5b9be6" stopOpacity=".22" />
-                      <stop offset="1" stopColor="#5b9be6" stopOpacity="0" />
-                    </linearGradient>
-                    <pattern
-                      id="gpHatch"
-                      width="9"
-                      height="9"
-                      patternUnits="userSpaceOnUse"
-                      patternTransform="rotate(45)"
-                    >
-                      <rect width="9" height="9" fill="#7fe0c8" fillOpacity=".08" />
-                      <line x1="0" y1="0" x2="0" y2="9" stroke="#7fe0c8" strokeOpacity=".45" strokeWidth="3" />
-                    </pattern>
-                    <linearGradient id="gpBoostG" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0" stopColor="#7fe0c8" stopOpacity=".34" />
-                      <stop offset="1" stopColor="#7fe0c8" stopOpacity=".1" />
-                    </linearGradient>
                     <clipPath id="gpClip">
                       <rect id="gpClipR" x="-10" y="-10" width="1020" height="420" />
                     </clipPath>
                   </defs>
                   <g className="gp-grid">
-                    <line x1="250" x2="250" y1="0" y2="400" />
-                    <line x1="500" x2="500" y1="0" y2="400" />
-                    <line x1="750" x2="750" y1="0" y2="400" />
+                    <line x1="250" x2="250" y1="0" y2="370" />
+                    <line x1="500" x2="500" y1="0" y2="370" />
+                    <line x1="750" x2="750" y1="0" y2="370" />
                   </g>
                   <line className="gp-base" x1="0" x2="1000" y1="370" y2="370" />
                   <g clipPath="url(#gpClip)">
-                    <path className="gp-area" />
-                    <path className="gp-bonus" />
-                    <g className="gp-solos" />
-                    <path className="gp-sum0" />
+                    <g className="gp-layers" />
                     <path className="gp-line" />
                   </g>
                   <g className="gp-stems">
@@ -258,35 +235,23 @@ export default function HowWeWork() {
                 <div className="gp-pins" aria-hidden="true">
                   <i className="gp-pin k1" data-k="f">
                     <b>1</b>
-                    <span>First results</span>
+                    <span>First enquiries</span>
                   </i>
                   <i className="gp-pin k2" data-k="co">
                     <b>2</b>
-                    <span>Steady enquiries</span>
+                    <span>A steady flow</span>
                   </i>
                   <i className="gp-pin k3" data-k="gr">
                     <b>3</b>
-                    <span>Always growing</span>
+                    <span>Keeps climbing</span>
                   </i>
                 </div>{" "}
                 <button className="gp-play" id="gpPlay" type="button">
-                  <span aria-hidden="true">▶</span> Play the timeline
+                  <span aria-hidden="true">▶</span> Play the year
                 </button>{" "}
-                <div className="gp-legend" aria-hidden="true">
-                  <span className="l1">Your plan</span>
-                  <span className="l3">Boost from working together</span>
-                </div>
+                <div className="gp-legend" id="gpKey" aria-hidden="true"></div>
               </div>
             </div>
-            <div className="gp-box" id="gpBox" aria-hidden="true"></div>
-            <div className="gp-lh" aria-hidden="true">
-              <span className="gp-lt">Each service</span>
-              <span className="ph1">Setting up</span>
-              <span className="ph2">Building</span>
-              <span className="ph3">Running</span>
-              <span className="ph4">Keeps growing</span>
-            </div>
-            <div className="gp-lanes" id="gpLanes"></div>
             <div className="gp-x" aria-hidden="true">
               <span>Start</span>
               <span>
@@ -302,11 +267,13 @@ export default function HowWeWork() {
                 <i>Month </i>12<em> months</em>
               </span>
             </div>
+            <div className="gp-box" id="gpBox" aria-hidden="true"></div>
           </div>
           <p className="gp-note">
-            <span className="gp-hint">Drag along the graph to see each step. </span>
-            <span className="gp-hint2">Point at a service to see its own line. </span>Illustrative only, based on
-            typical timings. Every business grows at its own pace.
+            Each colour is one of the services you picked: the taller it is, the more enquiries it brings in. Services also
+            help each other, so a mix grows faster than any one on its own.{" "}
+            <span className="gp-hint">Press play, or drag across the graph, to see what happens each month. </span>
+            Illustrative only, based on typical timings. Every business grows at its own pace.
           </p>
           <p className="gp-sr" id="gpSr" aria-live="polite"></p>
         </div>

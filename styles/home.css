@@ -1483,6 +1483,26 @@
   }
   @media (prefers-reduced-motion: reduce) { .gp-pin { transition: none; } }
 
+  /* ---------- GROWTH PLANNER, CLEARER: one coloured band per service, stacked, under a light line for the total; months
+     straight under the chart; each milestone says what it means. ---------- */
+  .gp-layers path { --c: var(--c0); fill: color-mix(in srgb, var(--c) 34%, transparent); stroke: color-mix(in srgb, var(--c) 80%, transparent); stroke-width: 1;
+                    vector-effect: non-scaling-stroke; transition: opacity .3s, fill .3s; }
+  .gp-plot.focus .gp-layers path:not(.on) { opacity: .28; }
+  .gp-plot.focus .gp-layers path.on { fill: color-mix(in srgb, var(--c) 55%, transparent); }
+  .gp-line { stroke: #e0fbfc; stroke-width: 2.2; filter: drop-shadow(0 0 6px rgba(224,251,252,.35)); }
+  .gp-grid line { stroke: rgba(152,193,217,.1); }
+  .gp-stat small { font-size: .74rem; line-height: 1.35; color: var(--muted); }
+  .gp-x { margin-top: .5rem; }
+  .gp-x span { color: #8a9bab; }
+  .gp-legend { pointer-events: auto; flex-wrap: wrap; max-width: 55%; gap: .35rem .9rem; font-size: .74rem; color: var(--text); }
+  .gp-legend span { cursor: default; transition: opacity .3s; }
+  .gp-legend span::before { content: none; }
+  .gp-legend i { width: 12px; height: 12px; border-radius: 3px; background: color-mix(in srgb, var(--c0) 45%, transparent); border: 1px solid var(--c0); }
+  .gp-plot.focus .gp-legend span:not(.on) { opacity: .45; }
+  .gp-hint { display: inline; color: var(--muted); }
+  @media (max-width: 960px) { .gp-stat small { font-size: .66rem; } .gp-legend { font-size: .66rem; max-width: 60%; } }
+  @media (max-width: 560px) { .gp-stat small { display: none; } .gp-legend { flex-direction: row; max-width: 62%; } }
+
 
   /* ---------- MOTION, SMALLER TEXT (v133) ---------- */
   html.mo .mo-split.mo-small .mo-w { translate: 0 105%; rotate: none; }

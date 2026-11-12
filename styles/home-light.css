@@ -686,3 +686,7 @@ html[data-theme="light"] body section.block + section.block.panel { border-top-c
 /* the Services cards stay dark in light mode */
 html[data-theme="light"] .sv-card { box-shadow: 0 16px 44px -22px rgba(19,32,46,.45); }
 html[data-theme="light"] .sv-card:hover { box-shadow: 0 26px 60px -24px color-mix(in srgb, var(--c) 55%, rgba(19,32,46,.5)); }
+/* growth planner: the total line and the service key, readable on the light card */
+html[data-theme="light"] .gp-line { stroke: #13202e; filter: none; }
+html[data-theme="light"] .gp-layers path { --c: color-mix(in srgb, var(--c0) 80%, #13202e); }
+html[data-theme="light"] .gp-x span { color: #5d7083; }
