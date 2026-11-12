@@ -1034,7 +1034,7 @@
   .sm-card .sm-body { margin-top: .4rem; }
 
   /* ---------- shared bits (tag, call to action) ---------- */
-  .gp-pick, .gp-lane, .gp-box li, .gp-solos path, .bo-stairs li { --c: var(--c0); }
+  .gp-pick, .gp-lane, .gp-box li, .gp-solos path { --c: var(--c0); }
   .gp-tip { --tc: var(--tc0, #7fe0c8); }
   .gv-tag { display: inline-flex; align-items: center; gap: .5rem; padding: .4rem .75rem; border-radius: 8px; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
             color: #7fe0c8; background: rgba(127,224,200,.08); border: 1px solid rgba(127,224,200,.22); }
@@ -1211,46 +1211,6 @@
     .gp-x span { font-size: .58rem; letter-spacing: .08em; } .gp-x i { display: none; } .gp-x em { display: inline; }
   }
   @media (prefers-reduced-motion: reduce) { .gp-solos path, .gp-lane, .gp-stat b.flash { animation: none; } .gp-seg.s3.comp::after { animation: none; display: none; } }
-
-  /* ---------- BUILD ORDER (v130): a staircase of the seven stages ---------- */
-  .bo { margin-top: 5rem; }
-  .bo-top { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; align-items: end; }
-  .bo-h { font-size: clamp(1.5rem, 2.6vw, 2.3rem); font-weight: 500; line-height: 1.1; letter-spacing: -.025em; margin: .9rem 0 0; text-wrap: balance; }
-  .bo-side { display: grid; gap: 1rem; justify-items: start; }
-  .bo-side p { color: var(--muted); margin: 0; max-width: 46ch; }
-  .bo-stairs { list-style: none; margin: 2.4rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; align-items: end; position: relative; --x: -999px; --y: -999px; }
-  .bo-stairs li { height: calc(170px + var(--i) * 30px); }
-  .bo-step { position: relative; height: 100%; display: flex; flex-direction: column; gap: .7rem; padding: 1rem .9rem; border-radius: 16px 16px 6px 6px; text-decoration: none; color: var(--text);
-             background: #0d0f13; border: 1px solid #1d2128; overflow: hidden; isolation: isolate;
-             transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s;
-             opacity: 0; transform: translateY(40px); }
-  .bo-stairs.in .bo-step { opacity: 1; transform: none; transition: opacity .6s ease calc(var(--i) * 110ms), transform .7s cubic-bezier(.2,.8,.2,1) calc(var(--i) * 110ms), border-color .35s, box-shadow .35s; }
-  .bo-step::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-                     background: radial-gradient(240px circle at var(--lx, -999px) var(--ly, -999px), color-mix(in srgb, var(--c) 22%, transparent), transparent 70%); }
-  .bo-step::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--c); box-shadow: 0 0 14px var(--c); opacity: .35; transition: opacity .35s; }
-  .bo-step:hover, .bo-step.lit, .bo-step:focus-visible { border-color: color-mix(in srgb, var(--c) 50%, #1d2128); box-shadow: 0 -8px 30px color-mix(in srgb, var(--c) 18%, transparent); }
-  .bo-stairs.in .bo-step:hover, .bo-stairs.in .bo-step.lit { transform: translateY(-6px); }
-  .bo-step:hover::after, .bo-step.lit::after { opacity: 1; }
-  .bo-n { font: 600 .74rem/1 "Sora", sans-serif; letter-spacing: .14em; color: var(--c); }
-  .bo-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
-            background: color-mix(in srgb, var(--c) 7%, transparent); transition: box-shadow .35s; }
-  .bo-step:hover .bo-ico, .bo-step.lit .bo-ico { box-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
-  .bo-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-  .bo-t { margin-top: auto; display: grid; gap: .25rem; }
-  .bo-t b { font: 500 1rem/1.25 "Sora", sans-serif; text-wrap: balance; transition: color .3s; }
-  .bo-step:hover .bo-t b, .bo-step.lit .bo-t b { color: var(--c); }
-  .bo-t small { font-size: .76rem; color: var(--muted); }
-  @media (max-width: 960px) {
-    .bo-top { grid-template-columns: 1fr; gap: 1rem; }
-    .bo-stairs { grid-template-columns: 1fr; gap: 8px; }
-    .bo-stairs li { height: auto; width: calc(62% + var(--i) * 6.33%); }
-    .bo-step { flex-direction: row; align-items: center; gap: .8rem; padding: .7rem .9rem; border-radius: 6px 14px 14px 6px; transform: translateX(-30px); }
-    .bo-step::after { left: auto; right: 0; top: 0; bottom: 0; width: 2px; height: auto; }
-    .bo-t { margin: 0; } .bo-t b { font-size: .92rem; }
-    .bo-n { order: 3; margin-left: auto; }
-  }
-  @media (max-width: 560px) { .bo-stairs li { width: calc(72% + var(--i) * 4.66%); } .bo-ico { width: 34px; height: 34px; } }
-  @media (prefers-reduced-motion: reduce) { .bo-step, .bo-stairs.in .bo-step { opacity: 1; transform: none; transition: none; } }
 
   /* ---------- SERVICES (v127): cards start closed, showing only the service. A click opens the essentials and a
      link to the service's own page. The wall keeps each card in its column, so opening one only pushes down the

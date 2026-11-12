@@ -4,6 +4,9 @@ import SiteHeader from "@/components/site/SiteHeader";
 import ServiceScripts from "@/components/scripts/ServiceScripts";
 import { GROUPS } from "@/lib/menu";
 import { SERVICE_BY_KEY, type Service } from "@/lib/services";
+import { MORE } from "@/lib/service-more";
+import { MoreBlock, Stairs } from "./More";
+import "@/styles/service-more.css";
 
 const TICK = <path d="M5 12.5l4.5 4.5L19 7.5" />;
 
@@ -22,9 +25,12 @@ export function Ctas({ href }: { href: string }) {
 
 // One service's page: the hero with its photos, an overview, what's included, the steps, services that pair with it,
 // a call to book, and the previous / next service. The content is in lib/services.tsx; the look in styles/service.css.
+// Services in the Services menu also have lib/service-more/: their steps become a staircase, with two or three
+// information sections around it (the first before the staircase, the rest after).
 export default function ServicePage({ s }: { s: Service }) {
   const group = GROUPS.find((g) => g.id === s.group)!;
   const prev = SERVICE_BY_KEY[s.prev], next = SERVICE_BY_KEY[s.next];
+  const more = MORE[s.key];
   return (
     <>
       {/* the service's colour, which every accent on the page picks up */}
@@ -123,24 +129,36 @@ export default function ServicePage({ s }: { s: Service }) {
 
         {s.extra}
 
-        <section className="band" aria-labelledby="st-h">
-          <div className="wrap">
-            <div className="sec-head rv">
-              <p className="label">Our process, step by step</p>
-              <h2 id="st-h">{s.stepsHeading}</h2>
+        {more ? (
+          <>
+            {more.sections.slice(0, 1).map((x, i) => (
+              <MoreBlock s={x} n={i} key={i} />
+            ))}
+            <Stairs m={more} />
+            {more.sections.slice(1).map((x, i) => (
+              <MoreBlock s={x} n={i + 1} key={i} />
+            ))}
+          </>
+        ) : (
+          <section className="band" aria-labelledby="st-h">
+            <div className="wrap">
+              <div className="sec-head rv">
+                <p className="label">Our process, step by step</p>
+                <h2 id="st-h">{s.stepsHeading}</h2>
+              </div>
+              <ol className="steps">
+                {s.steps.map((st, i) => (
+                  <li className="rv" key={i}>
+                    <span className="n">{String(i + 1).padStart(2, "0")}</span>
+                    <h3>{st.title}</h3>
+                    <p>{st.text}</p>
+                    <span className="get">{`You get: ${st.get}`}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
-            <ol className="steps">
-              {s.steps.map((st, i) => (
-                <li className="rv" key={i}>
-                  <span className="n">{String(i + 1).padStart(2, "0")}</span>
-                  <h3>{st.title}</h3>
-                  <p>{st.text}</p>
-                  <span className="get">{`You get: ${st.get}`}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section className="band" aria-labelledby="pr-h">
           <div className="wrap">

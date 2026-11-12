@@ -1,0 +1,101 @@
+/* Service pages, the extra parts (components/services/More.tsx): the staircase of steps, and the information sections
+   (cards, questions, a side-by-side comparison, a checklist). Everything takes the service's colour (--c) and works in
+   both themes through service.css's colours. */
+
+.sec-intro { color: var(--muted); max-width: 60ch; }
+
+/* ---------- the staircase: one step per stage, each a little taller than the last; the light climbs it once ---------- */
+.stairs { --x: -999px; --y: -999px; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px; align-items: end; }
+.stairs li { height: calc(200px + var(--i) * 34px); }
+.stair { position: relative; height: 100%; display: flex; flex-direction: column; gap: .7rem; padding: 1.05rem .95rem; border-radius: 16px 16px 6px 6px; overflow: hidden; isolation: isolate;
+         background: var(--surface); border: 1px solid var(--line);
+         opacity: 0; transform: translateY(40px); transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s; }
+.stairs.in .stair { opacity: 1; transform: none;
+                    transition: opacity .6s ease calc(var(--i) * 110ms), transform .7s cubic-bezier(.2,.8,.2,1) calc(var(--i) * 110ms), border-color .35s, box-shadow .35s; }
+.stair::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+                 background: radial-gradient(240px circle at var(--lx, -999px) var(--ly, -999px), color-mix(in srgb, var(--c) 20%, transparent), transparent 70%); }
+.stair::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--c); box-shadow: 0 0 14px var(--c);
+                opacity: calc(.25 + var(--i) / var(--n) * .5); transition: opacity .35s; }
+.stair:hover, .stair.lit { border-color: color-mix(in srgb, var(--c) 50%, var(--line)); box-shadow: 0 -8px 30px color-mix(in srgb, var(--c) 16%, transparent); }
+.stairs.in .stair:hover, .stairs.in .stair.lit { transform: translateY(-6px); }
+.stair:hover::after, .stair.lit::after { opacity: 1; }
+.stair-n { font: 600 .74rem/1 var(--display); letter-spacing: .14em; color: var(--ink); }
+.stair-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none; color: var(--ink);
+             border: 1px solid color-mix(in srgb, var(--c) 38%, transparent); background: color-mix(in srgb, var(--c) 7%, transparent); transition: box-shadow .35s; }
+.stair:hover .stair-ico, .stair.lit .stair-ico { box-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+.stair-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.stair-t { margin-top: auto; display: grid; gap: .35rem; }
+.stair-t b { font: 500 1rem/1.25 var(--display); text-wrap: balance; transition: color .3s; }
+.stair:hover .stair-t b, .stair.lit .stair-t b { color: var(--ink); }
+.stair-t small { font-size: .8rem; line-height: 1.45; color: var(--muted); }
+/* the last step stays lit: it's where all of it leads */
+.stairs li:last-child .stair { border-color: color-mix(in srgb, var(--c) 40%, var(--line)); }
+.stairs li:last-child .stair::after { opacity: 1; }
+@media (max-width: 960px) {
+  .stairs { grid-template-columns: 1fr; gap: 8px; }
+  .stairs li { height: auto; width: calc(64% + var(--i) / max(var(--n) - 1, 1) * 36%); }
+  .stair { flex-direction: row; align-items: center; gap: .85rem; padding: .8rem .95rem; border-radius: 6px 14px 14px 6px; transform: translateX(-30px); }
+  .stair::after { left: auto; right: 0; top: 0; bottom: 0; width: 2px; height: auto; }
+  .stair-t { margin: 0; } .stair-t b { font-size: .95rem; }
+  .stair-n { order: 3; margin-left: auto; align-self: flex-start; }
+}
+@media (max-width: 560px) { .stairs li { width: calc(82% + var(--i) / max(var(--n) - 1, 1) * 18%); } .stair-ico { width: 34px; height: 34px; } }
+
+/* ---------- cards: three or four numbered points ---------- */
+.mcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 1rem; }
+.mcards.n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mcard { display: grid; align-content: start; gap: .7rem; padding: 1.5rem 1.4rem; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); transition: border-color .3s, transform .3s; }
+.mcard:hover { border-color: color-mix(in srgb, var(--c) 50%, transparent); transform: translateY(-3px); }
+.mcard-n { font: 300 2.2rem/1 var(--display); letter-spacing: -.04em; color: var(--surface); -webkit-text-stroke: 2px color-mix(in srgb, var(--c) 85%, transparent); paint-order: stroke fill; }
+.mcard h3 { font-size: 1.15rem; }
+.mcard p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 960px) { .mcards.n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .mcards.n4 { grid-template-columns: 1fr; } }
+
+/* ---------- questions: the heading on the left, the answers opening on the right ---------- */
+.faq-grid, .chk-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 2rem 3rem; align-items: start; }
+.faq-grid .sec-head, .chk-grid .sec-head { margin-bottom: 0; position: sticky; top: 110px; }
+.faq { display: grid; gap: .6rem; }
+.faq details { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: border-color .3s; }
+.faq details[open] { border-color: color-mix(in srgb, var(--c) 45%, var(--line)); }
+.faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.05rem 1.2rem; font: 500 1.02rem/1.35 var(--display); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; border-radius: 14px; }
+.faq summary i { position: relative; flex: none; width: 26px; height: 26px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); transition: transform .35s, background .3s; }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -.75px 0 0 -5px; background: var(--ink); border-radius: 2px; }
+.faq summary i::after { transform: rotate(90deg); transition: transform .35s; }
+.faq details[open] summary i { background: color-mix(in srgb, var(--c) 14%, transparent); }
+.faq details[open] summary i::after { transform: rotate(0deg); }
+.faq details p { padding: 0 1.2rem 1.15rem; color: var(--muted); max-width: 62ch; }
+
+/* ---------- compare: the usual way (muted, crosses) beside ours (in colour, ticks) ---------- */
+.cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.cmp-col { padding: 1.6rem 1.5rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); }
+.cmp-col.now { border-color: color-mix(in srgb, var(--c) 40%, var(--line)); background: color-mix(in srgb, var(--c) 6%, var(--surface)); }
+.cmp-col h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+.cmp-col.was h3 { color: var(--muted); }
+.cmp-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.cmp-col li { display: flex; gap: .7rem; align-items: flex-start; line-height: 1.5; }
+.cmp-col.was li { color: var(--muted); }
+.cmp-col svg { flex: none; width: 18px; height: 18px; margin-top: .2rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cmp-col.was svg { stroke: var(--faint); }
+.cmp-col.now svg { stroke: var(--ink); }
+@media (max-width: 760px) { .cmp { grid-template-columns: 1fr; } }
+
+/* ---------- checklist: the heading on the left, ticked points on the right ---------- */
+.chk { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+.chk li { display: flex; gap: .75rem; align-items: flex-start; padding: 1rem 1.1rem; border-radius: 14px; border: 1px dashed color-mix(in srgb, var(--c) 35%, var(--line)); line-height: 1.5; }
+.chk svg { flex: none; width: 20px; height: 20px; margin-top: .1rem; padding: 3px; border-radius: 50%; background: color-mix(in srgb, var(--c) 16%, transparent);
+           fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 900px) {
+  .faq-grid, .chk-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .faq-grid .sec-head, .chk-grid .sec-head { position: static; }
+}
+@media (max-width: 560px) { .chk { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .stair, .stairs.in .stair { opacity: 1; transform: none; transition: none; } }
+
+/* two fair options: both columns alike, plain bullets in the service colour */
+.cmp.even .cmp-col { border-color: color-mix(in srgb, var(--c) 30%, var(--line)); background: color-mix(in srgb, var(--c) 4%, var(--surface)); }
+.cmp.even .cmp-col h3, .cmp.even .cmp-col li { color: var(--text); }
+.cmp.even svg { stroke: none; fill: var(--ink); }

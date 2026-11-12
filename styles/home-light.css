@@ -388,17 +388,6 @@ html[data-theme="light"] .gp-pick { border-top-color: rgb(215, 219, 226); border
 @media (max-width: 560px) {
 html[data-theme="light"] .gp-box { box-shadow: none; }
 }
-html[data-theme="light"] .bo-side p { color: var(--muted); }
-html[data-theme="light"] .bo-step { text-decoration-color: initial; color: var(--text); background-image: initial; background-color: rgb(240, 242, 245); border-top-color: rgb(215, 219, 226); border-right-color: rgb(215, 219, 226); border-bottom-color: rgb(215, 219, 226); border-left-color: rgb(215, 219, 226); }
-html[data-theme="light"] .bo-step::before { background: radial-gradient(240px circle at var(--lx, -999px) var(--ly, -999px), color-mix(in srgb, var(--c) 22%, transparent), transparent 70%); }
-html[data-theme="light"] .bo-step::after { box-shadow: 0 0 14px var(--c); }
-html[data-theme="light"] .bo-step:hover, html[data-theme="light"] .bo-step.lit, html[data-theme="light"] .bo-step:focus-visible { box-shadow: 0 -8px 30px color-mix(in srgb, var(--c) 18%, transparent); border-color: color-mix(in srgb, var(--c) 50%, rgb(215, 219, 226)); }
-html[data-theme="light"] .bo-n { color: var(--c); }
-html[data-theme="light"] .bo-ico { color: var(--c); background: color-mix(in srgb, var(--c) 7%, transparent); border: 1px solid color-mix(in srgb, var(--c) 38%, transparent); }
-html[data-theme="light"] .bo-step:hover .bo-ico, html[data-theme="light"] .bo-step.lit .bo-ico { box-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
-html[data-theme="light"] .bo-ico svg { fill: none; stroke: currentcolor; }
-html[data-theme="light"] .bo-step:hover .bo-t b, html[data-theme="light"] .bo-step.lit .bo-t b { color: var(--c); }
-html[data-theme="light"] .bo-t small { color: var(--muted); }
 html[data-theme="light"] .sm-head { color: var(--text); }
 html[data-theme="light"] .sm-ico { color: var(--c); background: color-mix(in srgb, var(--c) 8%, transparent); border: 1px solid color-mix(in srgb, var(--c) 38%, transparent); }
 html[data-theme="light"] .sm-ico svg { fill: none; stroke: currentcolor; }
@@ -501,7 +490,7 @@ html[data-theme="light"] .gp-hint2 { color: var(--muted); }
   html[data-theme="light"] .sm-plus { border-color: color-mix(in srgb, var(--c) 55%, #13202e); }
   html[data-theme="light"] .sm-card:not(.open) .sm-plus::before, html[data-theme="light"] .sm-card:not(.open) .sm-plus::after { background: color-mix(in srgb, var(--c) 70%, #13202e); }
   /* growth planner + build order (v130): service colours darkened so they read on the pale background */
-  html[data-theme="light"] :is(.gp-pick, .gp-lane, .gp-box li, .gp-solos path, .bo-stairs li) { --c: color-mix(in srgb, var(--c0) 64%, #13202e); }
+  html[data-theme="light"] :is(.gp-pick, .gp-lane, .gp-box li, .gp-solos path) { --c: color-mix(in srgb, var(--c0) 64%, #13202e); }
   html[data-theme="light"] .gp-tip { --tc: color-mix(in srgb, var(--tc0, #7fe0c8) 64%, #13202e); }
   html[data-theme="light"] .gp-seg { color: #3d5a80; }
   html[data-theme="light"] .gp-seg.s3 { color: #13202e; background: color-mix(in srgb, var(--c) 30%, transparent); }
@@ -510,8 +499,6 @@ html[data-theme="light"] .gp-hint2 { color: var(--muted); }
   html[data-theme="light"] .gp-zl.z3 { color: #17806a; }
   html[data-theme="light"] .gp-plot.focus .gp-solos path.on { opacity: .9; }
   html[data-theme="light"] .gp-seg.s3.comp::after { background-image: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); }
-  html[data-theme="light"] .bo-step::after { opacity: .6; }
-  html[data-theme="light"] .bo-step:hover .bo-t b, html[data-theme="light"] .bo-step.lit .bo-t b { color: color-mix(in srgb, var(--c) 80%, #13202e); }
 /* services (v134): the stacking cards stay dark in light mode; only their shadow softens */
 /* what we stand for (v134): a light panel, with the accent colours deepened so they read on white */
 /* sound familiar? (v135): light note cards, with the link colours deepened */
