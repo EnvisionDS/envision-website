@@ -20,7 +20,6 @@ import Hero from "@/components/home/Hero";
 import WhoWeAre from "@/components/home/WhoWeAre";
 import OurPromise from "@/components/home/OurPromise";
 import Finder from "@/components/home/Finder";
-import HowWeWork from "@/components/home/HowWeWork";
 import OurWork from "@/components/home/OurWork";
 import Topics from "@/components/home/Topics";
 import Faq from "@/components/home/Faq";
@@ -65,7 +64,6 @@ export default function Home() {
       <WhoWeAre />
       <OurPromise />
       <Finder />
-      <HowWeWork />
       <OurWork />
       <Topics />
       <Faq />

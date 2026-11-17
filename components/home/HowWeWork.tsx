@@ -1,3 +1,7 @@
+// NOT ON THE PAGE (taken off the homepage 2026-11-18, kept so it can go back): "How we work", with the two photos, the
+// growth planner and the four steps from first call to a phone that rings. To put it back, import it in app/page.tsx and
+// place <HowWeWork /> between <Finder /> and <OurWork />. Its styles (home.css, home-light.css) and its script (the growth
+// planner in lib/client/home.js, which does nothing while #growth isn't on the page) are still in place.
 // MERGED: About + Why + single process
 export default function HowWeWork() {
   return (
