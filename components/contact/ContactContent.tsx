@@ -34,27 +34,19 @@ export default function ContactContent() {
           <form className="form" id="enquiry" noValidate>
             {" "}
             <label>
-              <span>
-                Full name <span className="req">*</span>
-              </span>
-              <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" required />
+              <span>Full name</span>
+              <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" />
             </label>{" "}
             <label>
-              <span>
-                Email address <span className="req">*</span>
-              </span>
-              <input name="email" type="email" placeholder="jane@example.com" autoComplete="email" required />
+              <span>Email address</span>
+              <input name="email" type="email" placeholder="jane@example.com" autoComplete="email" />
             </label>{" "}
             <label>
-              <span>
-                Phone <span className="opt">(optional)</span>
-              </span>
+              <span>Phone</span>
               <input name="phone" type="tel" placeholder="04xx xxx xxx" autoComplete="tel" />
             </label>{" "}
             <label>
-              <span>
-                Website <span className="opt">(optional)</span>
-              </span>
+              <span>Website</span>
               <input
                 name="website"
                 type="text"
@@ -66,7 +58,7 @@ export default function ContactContent() {
             <label className="full">
               <span>Service of interest</span>{" "}
               <select name="service">
-                <option value="">Select a service (optional)</option>
+                <option value="">Select a service</option>
                 {GROUPS.map((g) => (
                   <optgroup label={g.name} key={g.id}>
                     {g.items.map((key) => (
@@ -80,15 +72,11 @@ export default function ContactContent() {
               </select>{" "}
             </label>{" "}
             <label className="full">
-              <span>
-                How can we help? <span className="req">*</span>
-              </span>
+              <span>How can we help?</span>
               <textarea
                 name="message"
                 placeholder="Tell us a bit about your business and what you are looking to achieve..."
-                required
               />
-              <span className="err" id="errMsg"></span>
             </label>{" "}
             <button className="send" type="submit">
               Send Enquiry{" "}
