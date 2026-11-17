@@ -1,6 +1,9 @@
 import { GROUPS } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
+// Web3Forms access key for the enquiry form (can be overridden with NEXT_PUBLIC_WEB3FORMS_KEY in Vercel)
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "2d57c18c-5738-4cce-8334-4ca63e5f06e4";
+
 // The contact page: the enquiry form in a frame over a dim backdrop, like the homepage pop-up (styles/contact.css,
 // lib/client/contact-form.js). The homepage pop-up loads this page and takes its frame.
 export default function ContactContent() {
@@ -31,9 +34,10 @@ export default function ContactContent() {
               hello@envisionds.com.au <small>copied</small>
             </button>{" "}
           </div>
-          {/* with a Web3Forms access key (NEXT_PUBLIC_WEB3FORMS_KEY, set in Vercel) the enquiry is emailed straight to
-              hello@envisionds.com.au; without one, Send opens the visitor's own email app instead */}
-          <form className="form" id="enquiry" noValidate data-key={process.env.NEXT_PUBLIC_WEB3FORMS_KEY || undefined}>
+          {/* the enquiry is emailed straight to hello@envisionds.com.au through Web3Forms (the form "Envision Contact Form"
+              on web3forms.com); WEB3FORMS_KEY below is its access key, which is public by design. Without a key, Send
+              would open the visitor's own email app instead */}
+          <form className="form" id="enquiry" noValidate data-key={WEB3FORMS_KEY || undefined}>
             {" "}
             <label>
               <span>
