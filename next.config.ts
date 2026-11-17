@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/examples", destination: "/#work", permanent: false },
+      // the old site's resources page: its questions and answers now live in the homepage FAQ
+      { source: "/resources", destination: "/#faq", permanent: false },
       // the four service categories no longer have pages of their own: each goes to its part of the Services page
       { source: "/services/web-design-and-development", destination: "/services#web", permanent: false },
       { source: "/services/digital-marketing", destination: "/services#mkt", permanent: false },
