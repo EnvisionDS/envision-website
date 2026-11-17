@@ -43,6 +43,10 @@ html.cx[data-theme="light"] .cx-bg { background: radial-gradient(60% 50% at 30% 
 /* the form: name and email, phone and website, then the service and the message across the full width */
 .form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.4rem; align-content: start; }
 .form .full { grid-column: 1 / -1; }
+.form label .req { color: var(--accent-2); }
+.form .err { font-size: .8rem; color: #ee6c4d; }
+.form .err:empty { display: none; }
+.form input.bad, .form textarea.bad { border-color: rgba(238,108,77,.7); }
 .form label { display: grid; gap: .45rem; font-size: .95rem; color: var(--text); }
 .form input, .form select, .form textarea { font: inherit; font-size: .98rem; color: var(--text); background: #0c1119; border: 1px solid #26282c; border-radius: 14px; padding: .95rem 1.1rem; width: 100%; transition: border-color .2s, box-shadow .2s; }
 .form input::placeholder, .form textarea::placeholder { color: #5b6068; }

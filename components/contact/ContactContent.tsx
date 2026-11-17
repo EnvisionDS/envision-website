@@ -34,16 +34,22 @@ export default function ContactContent() {
           <form className="form" id="enquiry" noValidate>
             {" "}
             <label>
-              <span>Full name</span>
-              <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" />
+              <span>
+                Full name <span className="req">*</span>
+              </span>
+              <input name="name" type="text" placeholder="Jane Smith" autoComplete="name" required />
             </label>{" "}
             <label>
-              <span>Email address</span>
-              <input name="email" type="email" placeholder="jane@example.com" autoComplete="email" />
+              <span>
+                Email address <span className="req">*</span>
+              </span>
+              <input name="email" type="email" placeholder="jane@example.com" autoComplete="email" required />
             </label>{" "}
             <label>
-              <span>Phone</span>
-              <input name="phone" type="tel" placeholder="04xx xxx xxx" autoComplete="tel" />
+              <span>
+                Phone <span className="req">*</span>
+              </span>
+              <input name="phone" type="tel" placeholder="04xx xxx xxx" autoComplete="tel" required />
             </label>{" "}
             <label>
               <span>Website</span>
@@ -77,6 +83,7 @@ export default function ContactContent() {
                 name="message"
                 placeholder="Tell us a bit about your business and what you are looking to achieve..."
               />
+              <span className="err" id="errMsg" role="alert"></span>
             </label>{" "}
             <button className="send" type="submit">
               Send Enquiry{" "}
