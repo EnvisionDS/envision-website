@@ -18,7 +18,6 @@ export type Service = {
   kicker: string;
   title: string;
   lede: string;
-  photos: string[];
   icon: ReactNode;
   overview: ReactNode[];
   includedHeading: string;
@@ -46,7 +45,6 @@ export const SERVICES: Service[] = [
     kicker: "Web Design & Development",
     title: "Website design",
     lede: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
-    photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
     icon: (
       <>
         <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -135,7 +133,6 @@ export const SERVICES: Service[] = [
     kicker: "Web Design & Development",
     title: "Website development",
     lede: "A fast, secure website built properly, so it's easy to manage and ready to grow with you.",
-    photos: ["/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg"],
     icon: (
       <>
         <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12" />
@@ -221,7 +218,6 @@ export const SERVICES: Service[] = [
     kicker: "Web Design & Development",
     title: "E-commerce websites",
     lede: "Online stores that are easy to browse, simple to buy from and straightforward for you to run.",
-    photos: ["/img/ph-web-dev.jpg", "/img/ph-shop-counter.jpg", "/img/ph-owner-phone.jpg"],
     icon: (
       <>
         <circle cx="9" cy="20" r="1.4" />
@@ -311,7 +307,6 @@ export const SERVICES: Service[] = [
     kicker: "Web Design & Development",
     title: "UX/UI design",
     lede: "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
-    photos: ["/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg"],
     icon: (
       <>
         <path d="M12 19l7-7 3 3-7 7z" />
@@ -401,7 +396,6 @@ export const SERVICES: Service[] = [
     kicker: "Web Design & Development",
     title: "Conversion optimisation",
     lede: "Traffic that does not convert is wasted opportunity.",
-    photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
     icon: (
       <>
         <circle cx="12" cy="12" r="8" />
@@ -486,7 +480,6 @@ export const SERVICES: Service[] = [
     kicker: "Web Design & Development",
     title: "Website maintenance & support",
     lede: "Ongoing care that keeps your website fast, secure and up to date, so you can focus on your business.",
-    photos: ["/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg", "/img/ph-team-laptops.jpg"],
     icon: (
       <>
         <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z" />
@@ -571,7 +564,6 @@ export const SERVICES: Service[] = [
     kicker: "Digital Marketing",
     title: "SEO & local search",
     lede: "If your ideal customers are searching online and not finding you, we fix that.",
-    photos: ["/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg"],
     icon: (
       <>
         <circle cx="11" cy="11" r="6" />
@@ -657,7 +649,6 @@ export const SERVICES: Service[] = [
     kicker: "Digital Marketing",
     title: "Google Business Profile",
     lede: "Show up in Google Maps and local searches, with a profile that makes people want to call.",
-    photos: ["/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg"],
     icon: (
       <>
         <path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z" />
@@ -743,7 +734,6 @@ export const SERVICES: Service[] = [
     kicker: "Digital Marketing",
     title: "Google Ads & Meta Ads",
     lede: "Google Ads and Meta Ads campaigns that target the right people with the right message. No wasted clicks on low-fit audiences.",
-    photos: ["/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg"],
     icon: (
       <>
         <path d="M9 9l10 4-4 1.5L13.5 19z" />
@@ -830,7 +820,6 @@ export const SERVICES: Service[] = [
     kicker: "Digital Marketing",
     title: "Content creation",
     lede: "Words, photos and videos that answer your customers' questions and help them choose you.",
-    photos: ["/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg"],
     icon: (
       <>
         <path d="M4 20h4L19 9l-4-4L4 16z" />
@@ -916,7 +905,6 @@ export const SERVICES: Service[] = [
     kicker: "Digital Marketing",
     title: "Social media management",
     lede: "Social media works when it is consistent, clear, and built around your audience.",
-    photos: ["/img/ph-owner-phone.jpg", "/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg"],
     icon: (
       <>
         <path d="M4 5h16v11H9l-5 4z" />
@@ -999,7 +987,6 @@ export const SERVICES: Service[] = [
     kicker: "Digital Marketing",
     title: "Campaign tracking & reporting",
     lede: "Know exactly which campaigns, pages and searches are bringing in calls and enquiries.",
-    photos: ["/img/ph-team-laptops.jpg", "/img/ph-web-designer.jpg", "/img/ph-web-dev.jpg"],
     icon: (
       <>
         <path d="M4 20V11M10 20V5M16 20v-6M21 20H3" />
@@ -1085,7 +1072,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "CRM setup & optimisation",
     lede: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
-    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
     icon: (
       <>
         <rect x="5" y="3" width="14" height="18" rx="2" />
@@ -1172,7 +1158,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "Email and CRM nurture",
     lede: "Most leads do not buy immediately.",
-    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg", "/img/ph-auto-counter.jpg"],
     icon: (
       <>
         <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -1258,7 +1243,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "Lead capture & follow-ups",
     lede: "Enquiries from your website, ads and social media go straight into your CRM, and follow-up starts automatically.",
-    photos: ["/img/ph-salon.jpg", "/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg"],
     icon: (
       <>
         <path d="M4 13l2.5-8h11L20 13v6H4z" />
@@ -1345,7 +1329,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "Booking reminders & review requests",
     lede: "Automatic confirmations, reminders and review requests that cut no-shows and save your team time.",
-    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
     icon: (
       <>
         <rect x="4" y="5" width="16" height="16" rx="2" />
@@ -1430,7 +1413,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "Review requests",
     lede: "More reviews from happy customers, asked at the right moment, without you having to remember.",
-    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg", "/img/ph-auto-counter.jpg"],
     icon: (
       <>
         <path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.4L12 16l-4.9 2.7 1.1-5.4-4-3.7 5.4-.6z" />
@@ -1515,7 +1497,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "Workflow automation",
     lede: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
-    photos: ["/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-salon.jpg"],
     icon: (
       <>
         <rect x="3" y="3" width="6" height="6" rx="1.5" />
@@ -1602,7 +1583,6 @@ export const SERVICES: Service[] = [
     kicker: "Automation & CRM",
     title: "System integrations",
     lede: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
-    photos: ["/img/ph-salon.jpg", "/img/ph-auto-counter.jpg", "/img/ph-auto-dashboard.jpg"],
     icon: (
       <>
         <path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z" />
@@ -1689,7 +1669,6 @@ export const SERVICES: Service[] = [
     kicker: "Strategy & Consulting",
     title: "Digital strategy & planning",
     lede: "A clear plan for your website, marketing and systems, so your time and budget go to what matters most.",
-    photos: ["/img/ph-planning.jpg", "/img/ph-team-table.jpg", "/img/ph-team-laptops.jpg"],
     icon: (
       <>
         <path d="M5 21V4" />
@@ -1777,7 +1756,6 @@ export const SERVICES: Service[] = [
     kicker: "Strategy & Consulting",
     title: "Website & marketing audits",
     lede: "An honest look at what's working, what isn't and what to fix first across your website and marketing.",
-    photos: ["/img/ph-team-laptops.jpg", "/img/ph-auto-dashboard.jpg", "/img/ph-planning.jpg"],
     icon: (
       <>
         <rect x="5" y="4" width="14" height="17" rx="2" />
@@ -1866,7 +1844,6 @@ export const SERVICES: Service[] = [
     kicker: "Strategy & Consulting",
     title: "Software & platform selection",
     lede: "Help choosing the right CRM, website platform or business tools, so you buy what fits and skip what you won't use.",
-    photos: ["/img/ph-auto-dashboard.jpg", "/img/ph-team-table.jpg", "/img/ph-web-dev.jpg"],
     icon: (
       <>
         <path d="M12 3l9 5-9 5-9-5z" />
@@ -1954,7 +1931,6 @@ export const SERVICES: Service[] = [
     kicker: "Strategy & Consulting",
     title: "Business process reviews",
     lede: "See how work really moves through your business, and where time, money and enquiries are being lost.",
-    photos: ["/img/ph-team-table.jpg", "/img/ph-planning.jpg", "/img/ph-auto-counter.jpg"],
     icon: (
       <>
         <circle cx="6" cy="6" r="2.5" />
@@ -2044,7 +2020,6 @@ export const SERVICES: Service[] = [
     kicker: "Strategy & Consulting",
     title: "Location strategy",
     lede: "Before spending on marketing, it pays to understand where your best opportunities actually are.",
-    photos: ["/img/ph-shop-counter.jpg", "/img/ph-mkt-phone.jpg", "/img/ph-owner-phone.jpg"],
     icon: (
       <>
         <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" />

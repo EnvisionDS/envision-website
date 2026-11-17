@@ -24,7 +24,7 @@ export function Ctas({ href }: { href: string }) {
   );
 }
 
-// One service's page: the hero with its photos, an overview, what's included, the steps, services that pair with it,
+// One service's page: the hero with its icon in 3D, an overview, what's included, the steps, services that pair with it,
 // a call to book, and the previous / next service. The content is in lib/services.tsx; the look in styles/service.css.
 // Services in the Services menu also have lib/service-more/: their steps become a staircase, with two or three
 // information sections around it (the first before the staircase, the rest after).
@@ -62,18 +62,11 @@ export default function ServicePage({ s }: { s: Service }) {
               <p className="lede">{s.lede}</p>
               <Ctas href={`/contact?service=${s.key}`} />
             </div>
-            {/* three photos cross-fade, with progress bars and a card naming the service */}
+            {/* the service's icon in 3D, turning slowly on its own (lib/client/icon3d.js), with a card naming the service */}
             <div className="ph-hero" aria-hidden="true">
-              <div className="ph-frame">
-                <div className="ph-slides" aria-hidden="true">
-                  {s.photos.map((src) => (
-                    <img src={src} alt="" key={src} />
-                  ))}
-                </div>
-                <span className="ph-dots" aria-hidden="true">
-                  <i></i>
-                  <i></i>
-                  <i></i>
+              <div className="ph-frame i3" data-icon3d="">
+                <span className="i3-flat">
+                  <Icon>{s.icon}</Icon>
                 </span>
               </div>
               <span className="ph-chip">
