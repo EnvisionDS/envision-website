@@ -1,5 +1,5 @@
 /* The Services page (components/services/ServicesIndex.tsx): the four groups to jump to, a bar that follows the groups down
-   the page, each group beside its services, ways in by goal, services that work together, and how working with us goes.
+   the page, each group with its services as a bento, ways in by goal, services that work together, and how working with us goes.
    Each group and service brings its own colour (--c); --ink is that colour, made darker in light mode so it reads. */
 
 .ix-jump-a, .ix-ghost, .ix-group, .ix-chip, .ix-bar a { --ink: var(--c); }
@@ -47,34 +47,59 @@
 .ix-jump-a.ixg-card { position: absolute; left: 0; top: 0; transform-origin: 0 0; border-color: transparent; background: none; transition: none; }
 .ixg-link { position: absolute; inset: 0 auto 0 0; display: flex; white-space: nowrap; }
 
-/* ---------- each group: its heading held beside its services ---------- */
+/* ---------- each group: a heading across the page, then its services as a bento ---------- */
 .ix-group { scroll-margin-top: 126px; }
-.ix-group-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr); gap: clamp(1.5rem, 5vw, 4.5rem); align-items: start; }
-.ix-group-head { position: sticky; top: 160px; display: grid; gap: 1rem; justify-items: start; }
-.ix-group-n { font: 600 .74rem/1 var(--display); letter-spacing: .18em; color: var(--ink); }
-.ix-group-ico { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; color: var(--ink);
+.ix-gh { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 36ch); grid-template-rows: auto auto; column-gap: 1.4rem; row-gap: .9rem;
+  align-items: end; padding-bottom: 1.6rem; margin-bottom: 1.6rem; }
+.ix-group-ico { grid-row: 1 / span 2; align-self: end; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; color: var(--ink);
   border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 34px color-mix(in srgb, var(--c) 22%, transparent); }
-.ix-group-ico svg { width: 25px; height: 25px; }
+.ix-group-ico svg { width: 27px; height: 27px; }
+.ix-group-n { grid-column: 2; font: 600 .74rem/1 var(--display); letter-spacing: .18em; color: var(--ink); }
+.ix-group-n span { color: var(--faint); }
 /* the name as an outline in the group's colour: filled with the page's own background over a stroke twice as wide, which
    hides the lines where the font's shapes overlap */
-.ix-group-head h2 { font: 300 clamp(2rem, 3.8vw, 3.1rem)/1.08 var(--display); letter-spacing: -.02em; color: var(--bg); max-width: 12ch;
+.ix-gh h2 { grid-column: 2; margin: 0; font: 300 clamp(2rem, 4.4vw, 3.6rem)/1.04 var(--display); letter-spacing: -.02em; color: var(--bg);
   -webkit-text-stroke: 2.2px color-mix(in srgb, var(--c) 90%, transparent); paint-order: stroke fill; }
-.ix-group-head p { color: var(--muted); max-width: 38ch; }
+.ix-gh p { grid-column: 3; grid-row: 1 / span 2; margin: 0; color: var(--muted); }
+/* the line under the heading draws itself across once the heading arrives */
+.ix-gh-rule { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 25%, var(--line)) 45%, var(--line));
+  transition: transform 1.1s cubic-bezier(.2,.8,.2,1) .25s; }
+.ix-gh.pre .ix-gh-rule { transform: scaleX(0); }
 
-.ix-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
-.ix-svc { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.1rem; align-items: start; padding: 1.35rem 1.4rem; border-radius: 18px; text-decoration: none; color: var(--text);
-  border: 1px solid var(--line); background: var(--surface); transition: border-color .3s, transform .35s cubic-bezier(.2,.8,.2,1); }
-.ix-svc:hover, .ix-svc:focus-visible { border-color: color-mix(in srgb, var(--c) 55%, transparent); transform: translateX(4px); }
-.ix-svc-ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--ink); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); }
+/* the bento: the first service tall beside two rows of two; every other group puts it on the right */
+.ix-bento { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.ix-bento > li { display: grid; }
+.ix-feat { grid-column: 1; grid-row: 1 / span 2; }
+.ix-bento.ix-flip .ix-feat { grid-column: 3; }
+.ix-card { position: relative; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr auto; gap: .55rem; padding: 1.4rem; border-radius: 20px; text-decoration: none; color: var(--text);
+  border: 1px solid var(--line); background: var(--surface); transition: border-color .3s, transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+.ix-card:hover, .ix-card:focus-visible { border-color: color-mix(in srgb, var(--c) 55%, transparent); transform: translateY(-4px);
+  box-shadow: 0 22px 44px -28px color-mix(in srgb, var(--c) 70%, transparent); }
+.ix-card-top { display: flex; justify-content: space-between; align-items: start; margin-bottom: .6rem; }
+.ix-svc-ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--ink); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+  transition: background .3s, color .3s; }
 .ix-svc-ico svg { width: 20px; height: 20px; }
-.ix-svc-t { display: grid; gap: .35rem; }
-.ix-svc-t b { font: 500 1.15rem/1.3 var(--display); }
-.ix-svc-t > span { color: var(--muted); font-size: .96rem; line-height: 1.55; }
-.ix-svc-t small { color: var(--faint); font-size: .86rem; line-height: 1.5; }
-.ix-svc-t em { font-style: normal; font-weight: 600; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin-right: .35rem; }
-.ix-svc-go { align-self: center; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: var(--muted); border: 1px solid var(--line); transition: background .3s, color .3s, border-color .3s; }
-.ix-svc-go svg { width: 17px; height: 17px; }
-.ix-svc:hover .ix-svc-go { background: var(--c); border-color: var(--c); color: var(--bg); }
+.ix-card:hover .ix-svc-ico { background: color-mix(in srgb, var(--c) 16%, transparent); }
+.ix-card b { font: 500 1.15rem/1.3 var(--display); }
+.ix-card-d { color: var(--muted); font-size: .94rem; line-height: 1.55; }
+.ix-card small { margin-top: .5rem; padding-top: .8rem; border-top: 1px dashed var(--line); color: var(--faint); font-size: .84rem; line-height: 1.5; }
+.ix-card em { display: block; margin-bottom: .2rem; font-style: normal; font-weight: 600; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.ix-svc-go { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: var(--muted); border: 1px solid var(--line); transition: background .3s, color .3s, border-color .3s, transform .3s; }
+.ix-svc-go svg { width: 16px; height: 16px; }
+.ix-card:hover .ix-svc-go { background: var(--c); border-color: var(--c); color: var(--bg); transform: rotate(-45deg); }
+
+/* the larger first card: bigger type, a soft wash of the group's colour, and its icon drawn large and faint in the corner */
+.ix-feat .ix-card { padding: 1.9rem; gap: .75rem; background: radial-gradient(110% 70% at 0% 0%, color-mix(in srgb, var(--c) 13%, transparent), transparent 65%), var(--surface); }
+.ix-feat .ix-svc-ico { width: 54px; height: 54px; border-radius: 16px; }
+.ix-feat .ix-svc-ico svg { width: 24px; height: 24px; }
+.ix-feat b { font-size: clamp(1.45rem, 2.2vw, 1.85rem); line-height: 1.15; }
+.ix-feat .ix-card-d { font-size: 1.02rem; max-width: 34ch; }
+.ix-feat small { position: relative; z-index: 1; font-size: .9rem; }
+.ix-card-mark { position: absolute; right: -1.6rem; top: 50%; margin-top: -5.5rem; width: 11rem; height: 11rem; color: var(--c); opacity: .07; pointer-events: none;
+  transition: opacity .4s, transform .6s cubic-bezier(.2,.8,.2,1); }
+.ix-card-mark svg { width: 100%; height: 100%; stroke-width: 1; }
+.ix-feat .ix-card:hover .ix-card-mark { opacity: .13; transform: rotate(-6deg) scale(1.04); }
 
 /* ---------- ways in by goal ---------- */
 .ix-goals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 255px), 1fr)); gap: 1rem; }
@@ -118,16 +143,19 @@
   .ix-how::before { display: none; }
 }
 @media (max-width: 900px) {
-  .ix-hero-grid, .ix-group-grid { grid-template-columns: 1fr; }
-  .ix-group-head { position: static; }
-  .ix-group-head h2 { max-width: none; }
+  .ix-hero-grid { grid-template-columns: 1fr; }
+  .ix-gh { grid-template-columns: auto minmax(0, 1fr); }
+  .ix-gh p { grid-column: 1 / -1; grid-row: auto; max-width: 52ch; }
+  .ix-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ix-feat, .ix-bento.ix-flip .ix-feat { grid-column: 1 / -1; grid-row: auto; }
 }
 @media (max-width: 560px) {
   .ix-jump-a { min-height: 132px; padding: 1.05rem; }
   .ix-jump-a b { font-size: .98rem; }
-  .ix-svc { grid-template-columns: auto minmax(0, 1fr); padding: 1.15rem; gap: .9rem; }
-  .ix-svc-go { display: none; }
+  .ix-group-ico { width: 52px; height: 52px; }
+  .ix-bento { grid-template-columns: 1fr; }
+  .ix-card, .ix-feat .ix-card { padding: 1.25rem; }
   .ix-how { grid-template-columns: 1fr; }
   .ix-bar { top: 66px; }
 }
-@media (prefers-reduced-motion: reduce) { .ix-jump-a, .ix-svc { transition: none; } .ix-jump-a:hover, .ix-svc:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ix-jump-a, .ix-card, .ix-gh-rule { transition: none; } .ix-jump-a:hover, .ix-card:hover { transform: none; } }

@@ -115,45 +115,58 @@ export default function ServicesIndex() {
         </div>
       </div>
 
-      {/* each group: its name and summary held beside its services */}
-      {GROUPS.map((g, gi) => (
-        <section className="band ix-group" id={g.id} style={{ "--c": g.color }} aria-labelledby={`${g.id}-h`} key={g.id}>
-          <div className="wrap ix-group-grid">
-            <div className="ix-group-head rv">
-              <span className="ix-group-n">{String(gi + 1).padStart(2, "0")}</span>
-              <span className="ix-group-ico" aria-hidden="true">
-                <Icon>{g.icon}</Icon>
-              </span>
-              <h2 id={`${g.id}-h`}>{g.name}</h2>
-              <p>{g.summary}</p>
-            </div>
-            <ul className="ix-list">
-              {g.items.map((k) => {
-                const s = SERVICE_BY_KEY[k];
-                return (
-                  <li key={k}>
-                    <a className="ix-svc beam rv" href={s.href}>
-                      <span className="ix-svc-ico">
-                        <Icon>{s.icon}</Icon>
-                      </span>
-                      <span className="ix-svc-t">
+      {/* each group: a heading across the page with a line drawing in under it, then its services as a bento, the first
+          one larger (on the left, then the right, group by group) */}
+      {GROUPS.map((g, gi) => {
+        const [lead, ...rest] = g.items;
+        return (
+          <section className="band ix-group" id={g.id} style={{ "--c": g.color }} aria-labelledby={`${g.id}-h`} key={g.id}>
+            <div className="wrap">
+              <header className="ix-gh rv">
+                <span className="ix-group-ico" aria-hidden="true">
+                  <Icon>{g.icon}</Icon>
+                </span>
+                <span className="ix-group-n">
+                  {String(gi + 1).padStart(2, "0")}
+                  <span aria-hidden="true">{` / ${String(GROUPS.length).padStart(2, "0")}`}</span>
+                </span>
+                <h2 id={`${g.id}-h`}>{g.name}</h2>
+                <p>{g.summary}</p>
+                <span className="ix-gh-rule" aria-hidden="true"></span>
+              </header>
+              <ul className={`ix-bento${gi % 2 ? " ix-flip" : ""}`}>
+                {[lead, ...rest].map((k, i) => {
+                  const s = SERVICE_BY_KEY[k];
+                  return (
+                    <li className={i === 0 ? "ix-feat" : undefined} key={k}>
+                      <a className="ix-card beam rv" href={s.href}>
+                        <span className="ix-card-top">
+                          <span className="ix-svc-ico">
+                            <Icon>{s.icon}</Icon>
+                          </span>
+                          <span className="ix-svc-go" aria-hidden="true">
+                            <Icon>{ARROW}</Icon>
+                          </span>
+                        </span>
                         <b>{s.name}</b>
-                        <span>{s.description}</span>
+                        <span className="ix-card-d">{s.description}</span>
                         <small>
                           <em>Best for</em> {s.bestFor.replace(/ Not sure\?.*$/, "")}
                         </small>
-                      </span>
-                      <span className="ix-svc-go" aria-hidden="true">
-                        <Icon>{ARROW}</Icon>
-                      </span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </section>
-      ))}
+                        {i === 0 ? (
+                          <span className="ix-card-mark" aria-hidden="true">
+                            <Icon>{s.icon}</Icon>
+                          </span>
+                        ) : null}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+        );
+      })}
       </div>
 
       {/* ways in by goal, for anyone who knows the problem but not the service */}
