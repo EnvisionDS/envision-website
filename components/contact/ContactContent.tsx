@@ -31,7 +31,9 @@ export default function ContactContent() {
               hello@envisionds.com.au <small>copied</small>
             </button>{" "}
           </div>
-          <form className="form" id="enquiry" noValidate>
+          {/* with a Web3Forms access key (NEXT_PUBLIC_WEB3FORMS_KEY, set in Vercel) the enquiry is emailed straight to
+              hello@envisionds.com.au; without one, Send opens the visitor's own email app instead */}
+          <form className="form" id="enquiry" noValidate data-key={process.env.NEXT_PUBLIC_WEB3FORMS_KEY || undefined}>
             {" "}
             <label>
               <span>
@@ -75,12 +77,23 @@ export default function ContactContent() {
               />
               <span className="err" id="errMsg" role="alert"></span>
             </label>{" "}
+            {/* left empty by people; a bot that ticks it is quietly ignored */}
+            <input className="hp" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <button className="send" type="submit">
               Send Enquiry{" "}
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </button>{" "}
+            <div className="thanks" role="status">
+              <span className="thanks-tick" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 12.5l4.5 4.5L19 7.5" />
+                </svg>
+              </span>
+              <h3>Thanks, we&apos;ve got your enquiry.</h3>
+              <p>We&apos;ll be in touch soon, using the email address or phone number you gave us.</p>
+            </div>
             <div className="sent">
               <h3>Thanks, your enquiry is ready to send.</h3>
               <p>

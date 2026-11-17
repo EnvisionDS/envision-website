@@ -59,6 +59,16 @@ html.cx[data-theme="light"] .cx-bg { background: radial-gradient(60% 50% at 30% 
 .send:hover { background: #a9cde0; transform: translateY(-1px); }
 .send svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
 /* after sending */
+.form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form .send.busy { opacity: .6; cursor: progress; }
+/* sent straight to us: a thank-you in place of the form */
+.thanks { display: none; grid-column: 1 / -1; gap: .8rem; justify-items: start; padding: 1rem 0; outline: none; }
+.form.ok .thanks { display: grid; }
+.form.ok > :not(.thanks) { display: none; }
+.thanks-tick { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--accent-2); border: 1px solid color-mix(in srgb, var(--accent-2) 50%, transparent); }
+.thanks-tick svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.thanks h3 { font-family: "Sora", sans-serif; font-weight: 500; font-size: 1.3rem; }
+.thanks p { color: var(--muted); margin: 0; }
 .sent { display: none; grid-column: 1 / -1; gap: 1rem; }
 .form.done .sent { display: grid; }
 .form.done > :not(.sent) { display: none; }
