@@ -56,10 +56,9 @@
 .ix-group-ico svg { width: 27px; height: 27px; }
 .ix-group-n { grid-column: 2; font: 600 .74rem/1 var(--display); letter-spacing: .18em; color: var(--ink); }
 .ix-group-n span { color: var(--faint); }
-/* the name as an outline in the group's colour: filled with the page's own background over a stroke twice as wide, which
-   hides the lines where the font's shapes overlap */
-.ix-gh h2 { grid-column: 2; margin: 0; font: 300 clamp(2rem, 4.4vw, 3.6rem)/1.04 var(--display); letter-spacing: -.02em; color: var(--bg);
-  -webkit-text-stroke: 2.2px color-mix(in srgb, var(--c) 90%, transparent); paint-order: stroke fill; }
+/* the name in solid letters that run from the page's text colour into the group's colour */
+.ix-gh h2 { grid-column: 2; justify-self: start; width: fit-content; margin: 0; font: 500 clamp(2rem, 4.4vw, 3.6rem)/1.06 var(--display); letter-spacing: -.025em; color: var(--text);
+  background: linear-gradient(100deg, var(--text) 25%, var(--ink) 95%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .ix-gh p { grid-column: 3; grid-row: 1 / span 2; margin: 0; color: var(--muted); }
 /* the line under the heading draws itself across once the heading arrives */
 .ix-gh-rule { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; transform-origin: 0 50%;
