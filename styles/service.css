@@ -189,6 +189,8 @@ a { color: inherit; }
 .rv.pre { opacity: 0; }
 .rv.in { animation: rvUp 1.7s cubic-bezier(.3,.1,.2,1) var(--rd, 0s) backwards; }
 @keyframes rvUp { from { opacity: 0; translate: 0 44px; filter: blur(6px); } }
+.label.rv.in { animation-name: rvLabel; }   /* a section's label settles in like the home page's: letters drawing together as it rises */
+@keyframes rvLabel { from { opacity: 0; translate: 0 18px; letter-spacing: .6em; filter: blur(4px); } }
 /* headings rise word by word from behind a mask (same as the home page) */
 .mo-split .mo-m { display: inline-block; overflow: hidden; overflow: clip; vertical-align: top; padding: 0 .07em .17em; margin: 0 -.07em -.17em; }
 .mo-split .mo-w { display: inline-block; translate: 0 112%; rotate: 5deg; opacity: 0; transform-origin: 0 100%; }
