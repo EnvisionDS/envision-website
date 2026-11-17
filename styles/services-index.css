@@ -2,9 +2,9 @@
    the page, each group beside its services, ways in by goal, services that work together, and how working with us goes.
    Each group and service brings its own colour (--c); --ink is that colour, made darker in light mode so it reads. */
 
-.ix-jump-a, .ix-group, .ix-chip, .ix-bar a { --ink: var(--c); }
-:root[data-theme="light"] :is(.ix-jump-a, .ix-group, .ix-chip, .ix-bar a) { --ink: color-mix(in srgb, var(--c) 55%, #0b1520); }
-.ix-groups svg, .ix-jump svg, .ix-chip svg, .ix-how svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ix-jump-a, .ix-ghost, .ix-group, .ix-chip, .ix-bar a { --ink: var(--c); }
+:root[data-theme="light"] :is(.ix-jump-a, .ix-ghost, .ix-group, .ix-chip, .ix-bar a) { --ink: color-mix(in srgb, var(--c) 55%, #0b1520); }
+.ix-groups svg, .ix-jump svg, .ix-ghost svg, .ix-chip svg, .ix-how svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- the opening: the four groups as cards to jump to ---------- */
 .ix-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
@@ -25,15 +25,27 @@
 
 /* ---------- the bar that follows the groups down the page ---------- */
 .ix-groups { position: relative; }
-.ix-bar { position: sticky; top: 74px; z-index: 9; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+.ix-bar { position: sticky; top: 74px; z-index: 9; }
+.ix-bar::before { content: ""; position: absolute; inset: 0; z-index: -1; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); opacity: var(--bp, 1);
   background: color-mix(in srgb, var(--bg) 86%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 .ix-bar-in { display: flex; gap: .4rem; overflow-x: auto; padding-block: .55rem; scrollbar-width: none; }
 .ix-bar-in::-webkit-scrollbar { display: none; }
-.ix-bar a { position: relative; flex: none; display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .95rem; border-radius: 999px; text-decoration: none;
+.ix-bar a, .ixg-link { position: relative; flex: none; display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .95rem; border-radius: 999px; text-decoration: none;
   font-size: .9rem; font-weight: 500; color: var(--muted); transition: color .25s, background .25s; }
-.ix-bar a svg { width: 17px; height: 17px; color: var(--ink); }
+.ix-bar a svg, .ixg-link svg { width: 17px; height: 17px; color: var(--ink); }
 .ix-bar a:hover { color: var(--text); background: color-mix(in srgb, var(--text) 5%, transparent); }
 .ix-bar a.on { color: var(--text); background: color-mix(in srgb, var(--c) 14%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent); }
+
+/* as the page scrolls, the four cards in the opening travel down and shrink into the bar's four links (lib/client/services-index.js
+   moves a stand-in for each card); until they arrive the bar keeps its place but shows nothing */
+.ix-morph .ix-bar:not(.merged) a { visibility: hidden; }
+.ix-jump.gone .ix-jump-a { opacity: 0; pointer-events: none; }
+.ix-ghost { position: fixed; z-index: 9; display: none; pointer-events: none; border-radius: 22px; overflow: hidden; }
+.ix-ghost.on { display: block; }
+.ix-ghost::before { content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: var(--fo);
+  border: 1px solid color-mix(in srgb, var(--c) 30%, var(--line)); background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 60%), var(--surface); }
+.ix-jump-a.ixg-card { position: absolute; left: 0; top: 0; transform-origin: 0 0; border-color: transparent; background: none; transition: none; }
+.ixg-link { position: absolute; inset: 0 auto 0 0; display: flex; white-space: nowrap; }
 
 /* ---------- each group: its heading held beside its services ---------- */
 .ix-group { scroll-margin-top: 126px; }
