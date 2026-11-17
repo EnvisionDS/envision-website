@@ -22,7 +22,6 @@ import OurPromise from "@/components/home/OurPromise";
 import Finder from "@/components/home/Finder";
 import HowWeWork from "@/components/home/HowWeWork";
 import OurWork from "@/components/home/OurWork";
-import Offers from "@/components/home/Offers";
 import Topics from "@/components/home/Topics";
 import Faq from "@/components/home/Faq";
 import ContactSection from "@/components/home/ContactSection";
@@ -68,7 +67,6 @@ export default function Home() {
       <Finder />
       <HowWeWork />
       <OurWork />
-      <Offers />
       <Topics />
       <Faq />
       <ContactSection />

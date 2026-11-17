@@ -81,7 +81,6 @@ html[data-theme="light"] section.block.light .pillar { box-shadow: 0 8px 24px rg
 html[data-theme="light"] section.block.light + section.block { border-top-color: initial; }
 html[data-theme="light"] .audlogo path { fill: none; stroke: color-mix(in srgb, rgb(21, 97, 173) calc(var(--t) * 100%), rgb(38, 79, 103)); }
 html[data-theme="light"] section.block.navy { background-image: linear-gradient(rgb(233, 237, 244), rgb(228, 233, 242) 60%, rgb(233, 237, 244)); background-color: initial; }
-html[data-theme="light"] section.block.warm { background-image: linear-gradient(rgb(245, 245, 246), rgb(244, 240, 238) 55%, rgb(245, 245, 246)); background-color: initial; }
 html[data-theme="light"] section.block.finale { background-image: radial-gradient(80% 60% at 50% 100%, rgba(21, 97, 173, 0.28), transparent 70%), initial; background-color: rgb(245, 245, 246); }
 html[data-theme="light"] section.block > .eyebrow::before { color: var(--orange); }
 html[data-theme="light"] .links a.on { color: var(--accent-2); text-decoration-color: initial; }
@@ -150,13 +149,6 @@ html[data-theme="light"] .svc-detail.open .svc-head .plus { color: rgb(245, 245,
 html[data-theme="light"] .svc-detail h4 { color: var(--c); }
 html[data-theme="light"] .svc-detail .fit { background: color-mix(in srgb, var(--c) 8%, transparent); border-color: color-mix(in srgb, var(--c) 30%, transparent); }
 html[data-theme="light"] .svc-detail .more { color: var(--c); }
-html[data-theme="light"] .offer.hot { border-top-color: rgba(238, 108, 77, 0.4); border-right-color: rgba(238, 108, 77, 0.4); border-bottom-color: rgba(238, 108, 77, 0.4); border-left-color: rgba(238, 108, 77, 0.4); background: linear-gradient(160deg, rgba(238, 108, 77, 0.09), var(--bg-2) 60%); }
-html[data-theme="light"] .offer .tag { color: var(--orange); }
-html[data-theme="light"] .offer li { color: var(--muted); }
-html[data-theme="light"] .offer h4 { color: var(--text); }
-html[data-theme="light"] .capture input { color: var(--text); }
-html[data-theme="light"] .capture input:focus { outline-color: initial; }
-html[data-theme="light"] .capture .go { border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; background-image: linear-gradient(90deg, rgb(61, 90, 128), rgb(38, 79, 103)); background-color: initial; color: rgb(0, 0, 0); }
 html[data-theme="light"] .faq summary::after { color: var(--accent-2); }
 html[data-theme="light"] .fact span { color: var(--muted); }
 html[data-theme="light"] .fact a { color: var(--text); text-decoration-color: initial; }
@@ -525,7 +517,6 @@ body section.block + section.block.panel { border-top: 1px solid rgba(152,193,21
 body section.block.panel.tone-slate { background: linear-gradient(180deg, #14171d, #0f1116 70%); }
 body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.16), transparent 70%), linear-gradient(180deg, #0f131a, #0c0f14); }
 body section.block.panel.navy { background: radial-gradient(60% 35% at 80% 0%, rgba(91,155,230,.14), transparent 70%), linear-gradient(180deg, #0a1730, #081226 60%, #071023); }
-body section.block.panel.warm { background: radial-gradient(60% 40% at 15% 0%, rgba(238,108,77,.1), transparent 70%), linear-gradient(180deg, #17110f, #110d0c); }
 /* the sections on the page itself keep the page colour, with a hairline between two of them */
 body section.block:not(.panel) { background: transparent; }
 /* OUR PROMISE: four commitment cards, then a scoreboard of what we count as success and what we don't */
@@ -667,7 +658,6 @@ html[data-theme="light"] body section.block.panel { border-color: rgba(19,32,46,
 html[data-theme="light"] body section.block.panel.tone-slate { background: #fff; }
 html[data-theme="light"] body section.block.panel.tone-ink { background: radial-gradient(70% 30% at 50% 0%, rgba(21,97,173,.07), transparent 70%), #fbfcfe; }
 html[data-theme="light"] body section.block.panel.navy { background: linear-gradient(180deg, #e8eef8, #e1e9f5); }
-html[data-theme="light"] body section.block.panel.warm { background: linear-gradient(180deg, #fbf4f1, #f7eeea); }
 html[data-theme="light"] body section.block + section.block.panel { border-top-color: rgba(19,32,46,.1); }
 /* growth planner: the total line and the service key, readable on the light card */
 html[data-theme="light"] .gp-line { stroke: #13202e; filter: none; }
