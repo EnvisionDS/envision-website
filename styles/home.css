@@ -1369,17 +1369,11 @@
   .sv-links svg { flex: none; width: 17px; height: 17px; fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
   .sv-links a:hover, .sv-links a:focus-visible { background: color-mix(in srgb, var(--c) 14%, transparent); color: #fff; }
 
-  /* the button to the category's page: its colour wipes in from the left */
-  .sv-btn { position: relative; isolation: isolate; overflow: hidden; align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; gap: .7rem; padding: .78rem 1.3rem; border-radius: 999px;
-            border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); color: var(--c); font-size: .94rem; font-weight: 500; text-decoration: none; transition: color .3s, border-color .3s; }
-  .sv-btn::before { content: ""; position: absolute; inset: -1px; z-index: -1; background: var(--c); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
-  .sv-btn:hover, .sv-btn:focus-visible { color: #0a0a0b; border-color: var(--c); } .sv-btn:hover::before, .sv-btn:focus-visible::before { transform: scaleX(1); }
-  .sv-arrow { transition: transform .35s var(--ease); } .sv-card:hover .sv-arrow { transform: translateX(4px); }
 
   @media (max-width: 860px) { .sv-grid { grid-template-columns: minmax(0, 1fr); } .sv-t { min-height: 0; } }
   @media (max-width: 520px) { .sv-links { grid-template-columns: minmax(0, 1fr); } .sv-ico { width: 44px; height: 44px; } }
   @media (hover: none) { .sv-card:hover { translate: none; } }
-  @media (prefers-reduced-motion: reduce) { .sv-card, .sv-card::before, .sv-card::after, .sv-t, .sv-ico, .sv-btn, .sv-btn::before, .sv-arrow { transition: none; } .sv-card:hover { translate: none; } .sv-card:hover .sv-ico { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .sv-card, .sv-card::before, .sv-card::after, .sv-t, .sv-ico { transition: none; } .sv-card:hover { translate: none; } .sv-card:hover .sv-ico { transform: none; } }
 
   /* shared with the rest of the page */
   .vw-pts svg { width: 16px; height: 16px; flex: none; margin-top: .15em; fill: none; stroke: var(--c); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }

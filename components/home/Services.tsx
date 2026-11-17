@@ -2,7 +2,7 @@ import Icon from "@/components/site/Icon";
 import { GROUPS, type GroupId } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
-// what each card says about its category; its title, icon, colour, services and page come from the Services menu (lib/menu.tsx)
+// what each card says about its category; its title, icon, colour and services come from the Services menu (lib/menu.tsx)
 const SUMMARY: Record<GroupId, string> = {
   web: "We design, build and look after websites that read clearly, load fast and make it easy for people to get in touch.",
   mkt: "Search, ads, social media and local strategy that put you in front of the right people, in the suburbs that matter.",
@@ -40,12 +40,6 @@ export default function Services() {
                 );
               })}
             </ul>
-            <a className="sv-btn" href={g.href}>
-              <span>{g.explore}</span>
-              <span className="sv-arrow" aria-hidden="true">
-                &rarr;
-              </span>
-            </a>
           </article>
         ))}
       </div>

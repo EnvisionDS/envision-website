@@ -13,8 +13,6 @@
 .mg-col { display: grid; grid-row: span 3; grid-template-rows: subgrid; }   /* so the headings, their lines and the Explore links line up across the columns */
 .mg-h { display: flex; align-items: center; gap: .75rem; margin: 0 0 .7rem; padding-bottom: .95rem; border-bottom: 1px solid var(--rule);
         font: 500 1.1rem/1.2 "Sora", sans-serif; letter-spacing: -.01em; color: var(--text); }
-.mg-h a { display: flex; align-items: center; gap: .75rem; color: inherit; text-decoration: none; transition: color .2s; }
-.mg-h a:hover, .mg-h a:focus-visible { color: var(--c); }
 .mg-col svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 .mg-h svg { width: 26px; height: 26px; color: var(--c); }
 .mg-col ul { list-style: none; margin: 0; padding: 0; }
@@ -23,9 +21,8 @@
 .mg-col li a svg { width: 17px; height: 17px; color: var(--muted); opacity: .75; transition: color .2s, opacity .2s; }
 .mg-col li a:hover, .mg-col li a:focus-visible { background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--text); }
 .mg-col li a:hover svg, .mg-col li a:focus-visible svg { color: var(--c); opacity: 1; }
-.mg-ex { display: inline-flex; justify-self: start; gap: .45rem; margin-top: 1rem; font-size: .94rem; font-weight: 500; color: var(--c); text-decoration: none; }
-.mg-ex span, .mg-foot a span { transition: transform .2s; }
-.mg-ex:hover span, .mg-foot a:hover span { transform: translateX(3px); }
+.mg-foot a span { transition: transform .2s; }
+.mg-foot a:hover span { transform: translateX(3px); }
 .mg-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule);
            font-size: .88rem; color: var(--muted); }
 .mg-foot a { display: inline-flex; gap: .45rem; color: var(--text); text-decoration: none; font-weight: 500; white-space: nowrap; }
@@ -47,9 +44,8 @@ nav .links a.on { text-decoration: none; }
 /* light mode */
 html[data-theme="light"] .nav-drop.mega { background: #ffffff; box-shadow: 0 30px 60px rgba(19,32,46,.14); }
 html[data-theme="light"] .mg-ey { color: #17806a; }
-html[data-theme="light"] .mg-h svg, html[data-theme="light"] .mg-ex, html[data-theme="light"] .mg-col li a:hover svg { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
+html[data-theme="light"] .mg-h svg, html[data-theme="light"] .mg-col li a:hover svg { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
 html[data-theme="light"] .mg-foot a:hover { color: #1561ad; }
-html[data-theme="light"] .mg-h a:hover, html[data-theme="light"] .mg-h a:focus-visible { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
 
 /* below the width where the nav links fit, the panel is hidden (the menu button takes over) */
 @media (max-width: 1080px) { nav > .nav-drop.mega { display: none; } }
@@ -73,9 +69,8 @@ html[data-theme="light"] .mg-h a:hover, html[data-theme="light"] .mg-h a:focus-v
   .mm-groups ul { list-style: none; margin: 0; padding: 0 0 .3rem 2.1rem; }
   .mobile-menu .mm-groups a { display: flex; align-items: center; gap: .65rem; padding: .45rem 0; border: 0; font: 400 .98rem "IBM Plex Sans", sans-serif; color: var(--muted); }
   .mm-groups li a svg { width: 16px; height: 16px; opacity: .8; }
-  .mobile-menu .mm-groups .mg-ex { margin: 0 0 .5rem 2.1rem; color: var(--c); font-weight: 500; }
   .mobile-menu .mm-groups .mm-find { margin-top: .3rem; color: #98c1d9; font-weight: 500; }
-  html[data-theme="light"] .mm-groups summary svg, html[data-theme="light"] .mobile-menu .mm-groups .mg-ex { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
+  html[data-theme="light"] .mm-groups summary svg { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
   html[data-theme="light"] .mobile-menu .mm-groups .mm-find { color: #1561ad; }
   html[data-theme="light"] .mobile-menu .mm-svc, html[data-theme="light"] .mm-groups { border-bottom-color: rgba(19,32,46,.12); }
 }

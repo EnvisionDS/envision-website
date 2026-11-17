@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/services", destination: "/#services", permanent: false },
       { source: "/examples", destination: "/#work", permanent: false },
+      // the four service categories no longer have pages of their own
+      { source: "/services/:group(web-design-and-development|digital-marketing|automation-and-crm|strategy-and-consulting)", destination: "/#services", permanent: false },
     ];
   },
 };

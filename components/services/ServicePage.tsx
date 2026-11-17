@@ -50,7 +50,7 @@ export default function ServicePage({ s }: { s: Service }) {
                   Services
                 </a>
                 <span aria-hidden="true">/</span>
-                <a href={group.href}>{group.name}</a>
+                <span>{group.name}</span>
                 <span aria-hidden="true">/</span>
                 <span>{s.name}</span>
               </p>

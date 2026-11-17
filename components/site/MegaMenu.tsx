@@ -3,7 +3,7 @@ import { GROUPS, MENU_FOOT, MENU_TITLE } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
 // The Services mega menu: four columns, one per group, each in its own colour (mega.css). It opens on hover or keyboard
-// focus of the Services link (lib/client/mega.js). Each group's heading and Explore link go to its category page.
+// focus of the Services link (lib/client/mega.js). Each group heading is a label over its services.
 export default function MegaMenu({ onHome = false }: { onHome?: boolean }) {
   const home = onHome ? "" : "/";
   return (
@@ -13,10 +13,8 @@ export default function MegaMenu({ onHome = false }: { onHome?: boolean }) {
         {GROUPS.map((g) => (
           <div className="mg-col" style={{ "--c": g.color }} key={g.id}>
             <p className="mg-h">
-              <a href={g.href}>
-                <Icon>{g.icon}</Icon>
-                {g.name}
-              </a>
+              <Icon>{g.icon}</Icon>
+              {g.name}
             </p>
             <ul>
               {g.items.map((key) => {
@@ -31,10 +29,6 @@ export default function MegaMenu({ onHome = false }: { onHome?: boolean }) {
                 );
               })}
             </ul>
-            <a className="mg-ex" href={g.href}>
-              {`${g.explore} `}
-              <span aria-hidden="true">&rarr;</span>
-            </a>
           </div>
         ))}
       </div>
