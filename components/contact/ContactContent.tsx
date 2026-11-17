@@ -52,16 +52,6 @@ export default function ContactContent() {
               <input name="phone" type="tel" placeholder="04xx xxx xxx" autoComplete="tel" required />
             </label>{" "}
             <label>
-              <span>Website</span>
-              <input
-                name="website"
-                type="text"
-                inputMode="url"
-                placeholder="www.yourwebsite.com.au"
-                autoComplete="url"
-              />
-            </label>{" "}
-            <label className="full">
               <span>Service of interest</span>{" "}
               <select name="service">
                 <option value="">Select a service</option>
