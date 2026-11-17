@@ -59,11 +59,11 @@ export default function WhoWeAre() {
           <p className="wl-d">Real, measurable growth for your business.</p>
         </div>
       </div>
-      <div className="who-cell reveal">
+      <div className="who-cell">
         <p className="who-p">
           Your growth is our measure: every call, form and booking tracked and reported in plain English.
         </p>{" "}
-        <a className="who-more" href="/about">
+        <a className="who-more reveal" href="/about">
           More about us <span aria-hidden="true">→</span>
         </a>{" "}
       </div>{" "}
