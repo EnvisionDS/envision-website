@@ -7,7 +7,6 @@
    NAV:     logo (home) · Services / Our work / About / Contact · discovery-call button
    HERO:    big centred headline with gradient words, pill CTA, and the company logo built from
            ~2,000 tiny cubes (three.js) rising from the bottom of the screen.
-   SERVICES: one large card per service; scrolling stacks them into a deck under the nav.
    ABOUT:   includes "What we stand for", the logo as a wheel holding the mission, vision and six values.
    LAYER 2: Reveal-on-scroll for the sections below.
    ================================================================
@@ -20,7 +19,6 @@ import ContactModal from "@/components/home/ContactModal";
 import Hero from "@/components/home/Hero";
 import WhoWeAre from "@/components/home/WhoWeAre";
 import OurPromise from "@/components/home/OurPromise";
-import Services from "@/components/home/Services";
 import Finder from "@/components/home/Finder";
 import HowWeWork from "@/components/home/HowWeWork";
 import OurWork from "@/components/home/OurWork";
@@ -67,7 +65,6 @@ export default function Home() {
       <Hero />
       <WhoWeAre />
       <OurPromise />
-      <Services />
       <Finder />
       <HowWeWork />
       <OurWork />

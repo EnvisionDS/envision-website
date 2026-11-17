@@ -18,7 +18,9 @@ export default function HomeNav() {
         </span>
       </a>{" "}
       <div className="links" id="topLinks">
-        <a href="#services">Services</a>
+        <a href="/services" data-mega="">
+          Services
+        </a>
         <a href="#work">Our work</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>

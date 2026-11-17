@@ -993,9 +993,9 @@
   #logo { display: flex; align-items: center; }
   .links { align-items: center; gap: 2.2rem; }
   .links a { font-size: .95rem; }
-  .links a[href="#services"]::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: .45rem; vertical-align: .2em;
+  .links a[data-mega]::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: .45rem; vertical-align: .2em;
                                       border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); transition: transform .25s; }
-  nav.drop-open .links a[href="#services"]::after { transform: rotate(225deg) translate(-2px, -2px); }
+  nav.drop-open .links a[data-mega]::after { transform: rotate(225deg) translate(-2px, -2px); }
   .nav-end { gap: 0; align-self: stretch; padding-left: 1.1rem; border-left: 1px solid var(--rule); }
   .theme-btn { border: 0; border-radius: 0; width: 46px; height: 48px; }
   .theme-btn:hover { box-shadow: none; background: rgba(152,193,217,.1); }
@@ -1337,43 +1337,6 @@
   html.mo .mo-split.mo-drift { transform: translate3d(0, var(--pl, 0px), 0); }
   html.mo #hero .hero-wrap { translate: 0 calc(var(--hs, 0) * -120px); opacity: calc(1 - var(--hs, 0) * 1.2); }
   @media (prefers-reduced-motion: reduce) { html.mo .mo-split .mo-w { translate: none; rotate: none; opacity: 1; transition: none; } html.mo .mo-split.mo-drift { transform: none; } html.mo #hero .hero-wrap { translate: none; opacity: 1; } }
-
-  /* ---------- SERVICES: four cards, two by two, one per category. They stay dark in both themes. On hover a card lifts, a glow
-       follows the cursor, a line of its colour draws across the top, its title fills in and its icon lights up (as the Our promise
-       rows do). The title is an outline: filled with the card's own background over a stroke twice as wide, which hides the lines
-       where the font's shapes overlap. ---------- */
-  .sv-grid { margin-top: 3rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
-  .sv-card { --x: -999px; --y: -999px; --text: #eef9fa; --muted: rgba(224,251,252,.72); --ease: cubic-bezier(.2,.8,.2,1);
-             position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: 1.15rem; padding: clamp(1.6rem, 3vw, 2.6rem);
-             border-radius: 26px; color: var(--text); background: #0e1015; border: 1px solid color-mix(in srgb, var(--c) 26%, #1d2128);
-             transition: translate .55s var(--ease), border-color .4s, box-shadow .55s; }
-  .sv-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .4s;
-                     background: radial-gradient(circle 340px at var(--x) var(--y), color-mix(in srgb, var(--c) 20%, transparent), transparent 72%); }
-  .sv-card::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; pointer-events: none; transform: scaleX(0); transform-origin: left;
-                    background: linear-gradient(90deg, var(--c), transparent 92%); transition: transform .7s var(--ease); }
-  .sv-card:hover { translate: 0 -6px; border-color: color-mix(in srgb, var(--c) 62%, transparent); box-shadow: 0 26px 60px -24px color-mix(in srgb, var(--c) 55%, transparent); }
-  .sv-card:hover::before { opacity: 1; } .sv-card:hover::after { transform: scaleX(1); }
-
-  .sv-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.2rem; }
-  .sv-t { margin: 0; min-height: 2.2em; font: 300 clamp(1.9rem, 2.9vw, 2.7rem) / 1.1 "Sora", sans-serif; letter-spacing: -0.02em; color: #0e1015;
-          -webkit-text-stroke: 2.2px color-mix(in srgb, var(--c) 90%, transparent); paint-order: stroke fill; transition: color .45s; }
-  .sv-card:hover .sv-t { color: var(--c); }
-  .sv-ico { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
-            transition: background .4s, color .4s, transform .55s var(--ease), box-shadow .5s; }
-  .sv-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-  .sv-card:hover .sv-ico { background: var(--c); color: #0a0a0b; transform: rotate(-10deg) scale(1.06); box-shadow: 0 0 30px color-mix(in srgb, var(--c) 45%, transparent); }
-
-  .sv-sum { margin: 0; max-width: 46ch; color: var(--muted); font-size: 1.02rem; }
-  .sv-links { list-style: none; margin: 0; padding: .9rem 0 0; border-top: 1px solid rgba(255,255,255,.09); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem 1.2rem; }
-  .sv-links a { display: flex; align-items: center; gap: .6rem; margin: 0 -.5rem; padding: .42rem .5rem; border-radius: 8px; color: var(--text); text-decoration: none; font-size: .92rem; line-height: 1.3; transition: background .2s, color .2s; }
-  .sv-links svg { flex: none; width: 17px; height: 17px; fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
-  .sv-links a:hover, .sv-links a:focus-visible { background: color-mix(in srgb, var(--c) 14%, transparent); color: #fff; }
-
-
-  @media (max-width: 860px) { .sv-grid { grid-template-columns: minmax(0, 1fr); } .sv-t { min-height: 0; } }
-  @media (max-width: 520px) { .sv-links { grid-template-columns: minmax(0, 1fr); } .sv-ico { width: 44px; height: 44px; } }
-  @media (hover: none) { .sv-card:hover { translate: none; } }
-  @media (prefers-reduced-motion: reduce) { .sv-card, .sv-card::before, .sv-card::after, .sv-t, .sv-ico { transition: none; } .sv-card:hover { translate: none; } .sv-card:hover .sv-ico { transform: none; } }
 
   /* shared with the rest of the page */
   .vw-pts svg { width: 16px; height: 16px; flex: none; margin-top: .15em; fill: none; stroke: var(--c); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }

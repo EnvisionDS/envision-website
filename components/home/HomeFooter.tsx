@@ -14,7 +14,7 @@ export default function HomeFooter() {
               <a href="#hero">Home</a>
             </li>
             <li>
-              <a href="#services">Services</a>
+              <a href="/services">Services</a>
             </li>
             <li>
               <a href="/location-strategy">Location Strategy</a>

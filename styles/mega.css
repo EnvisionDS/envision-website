@@ -8,7 +8,9 @@
   background: linear-gradient(180deg, #0e1724, #0b121c); border: 1px solid var(--rule); box-shadow: 0 30px 60px rgba(0,0,0,.45);
   opacity: 0; visibility: hidden; transition: opacity .25s, transform .25s, visibility 0s .25s; }
 .drop-open .nav-drop.mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition: opacity .25s, transform .25s; }
-.mg-ey { margin: 0 0 1.3rem; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #7fe0c8; }
+.mg-ey { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin: 0 0 1.3rem; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #7fe0c8; }
+.mg-all { font-size: .9rem; letter-spacing: 0; text-transform: none; font-weight: 500; color: var(--text); text-decoration: none; }
+.mg-all span { display: inline-block; transition: transform .2s; } .mg-all:hover span { transform: translateX(3px); } .mg-all:hover { color: #7fe0c8; }
 .mg-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto 1fr auto; column-gap: 2rem; }
 .mg-col { display: grid; grid-row: span 3; grid-template-rows: subgrid; }   /* so the headings, their lines and the Explore links line up across the columns */
 .mg-h { display: flex; align-items: center; gap: .75rem; margin: 0 0 .7rem; padding-bottom: .95rem; border-bottom: 1px solid var(--rule);
@@ -29,21 +31,21 @@
 .mg-foot a:hover { color: #98c1d9; }
 
 /* the Services link carries a small chevron that flips while the menu is open (service pages; the homepage has its own) */
-.nav-links a[href="/#services"]::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: .45rem; vertical-align: .2em;
+.nav-links a[data-mega]::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: .45rem; vertical-align: .2em;
   border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); transition: transform .25s; }
-.drop-open .nav-links a[href="/#services"]::after { transform: rotate(225deg) translate(-2px, -2px); }
+.drop-open .nav-links a[data-mega]::after { transform: rotate(225deg) translate(-2px, -2px); }
 
 /* the nav links: a thin line draws in under a link on hover, and stays under the link for the section you're in */
 nav .links a, .nav-links a { text-decoration: none; padding-block: 4px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size .35s cubic-bezier(.2,.8,.2,1), color .2s, opacity .2s; }
 nav .links a:hover, nav .links a:focus-visible, nav .links a.on, .nav-links a:hover, .nav-links a:focus-visible,
-.nav-links a[aria-current="page"], .drop-open .links a[href="#services"], .drop-open .nav-links a[href="/#services"] { background-size: 100% 1px; }
+.nav-links a[aria-current="page"], .drop-open .links a[data-mega], .drop-open .nav-links a[data-mega] { background-size: 100% 1px; }
 nav .links a.on { text-decoration: none; }
 @media (prefers-reduced-motion: reduce) { nav .links a, .nav-links a { transition: none; } }
 
 /* light mode */
 html[data-theme="light"] .nav-drop.mega { background: #ffffff; box-shadow: 0 30px 60px rgba(19,32,46,.14); }
-html[data-theme="light"] .mg-ey { color: #17806a; }
+html[data-theme="light"] .mg-ey { color: #17806a; } html[data-theme="light"] .mg-all:hover { color: #17806a; }
 html[data-theme="light"] .mg-h svg, html[data-theme="light"] .mg-col li a:hover svg { color: color-mix(in srgb, var(--c) 62%, #0b1520); }
 html[data-theme="light"] .mg-foot a:hover { color: #1561ad; }
 

@@ -1,0 +1,121 @@
+/* The Services page (components/services/ServicesIndex.tsx): the four groups to jump to, a bar that follows the groups down
+   the page, each group beside its services, ways in by goal, services that work together, and how working with us goes.
+   Each group and service brings its own colour (--c); --ink is that colour, made darker in light mode so it reads. */
+
+.ix-jump-a, .ix-group, .ix-chip, .ix-bar a { --ink: var(--c); }
+:root[data-theme="light"] :is(.ix-jump-a, .ix-group, .ix-chip, .ix-bar a) { --ink: color-mix(in srgb, var(--c) 55%, #0b1520); }
+.ix-groups svg, .ix-jump svg, .ix-chip svg, .ix-how svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- the opening: the four groups as cards to jump to ---------- */
+.ix-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+.ix-hero h1 { max-width: 13ch; }
+.ix-jump { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+.ix-jump-a { display: grid; grid-template-rows: 1fr auto auto; gap: .3rem; min-height: 168px; padding: 1.3rem; border-radius: 22px; text-decoration: none; color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--c) 30%, var(--line)); background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 60%), var(--surface);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .35s; }
+.ix-jump-a:hover, .ix-jump-a:focus-visible { transform: translateY(-4px); border-color: color-mix(in srgb, var(--c) 60%, transparent); box-shadow: 0 20px 44px -24px color-mix(in srgb, var(--c) 60%, transparent); }
+.ix-jump-ico { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: var(--ink); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); transition: background .3s, color .3s; }
+.ix-jump-ico svg { width: 21px; height: 21px; }
+.ix-jump-a:hover .ix-jump-ico { background: var(--c); color: var(--bg); }
+.ix-jump-a b { font: 500 1.08rem/1.25 var(--display); }
+.ix-jump-a small { color: var(--muted); font-size: .86rem; }
+.ix-jump-go { position: absolute; top: 1.3rem; right: 1.3rem; color: var(--faint); transition: transform .3s, color .3s; }
+.ix-jump-go svg { width: 18px; height: 18px; transform: rotate(90deg); }
+.ix-jump-a:hover .ix-jump-go { color: var(--ink); transform: translateY(3px); }
+
+/* ---------- the bar that follows the groups down the page ---------- */
+.ix-groups { position: relative; }
+.ix-bar { position: sticky; top: 74px; z-index: 9; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 86%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.ix-bar-in { display: flex; gap: .4rem; overflow-x: auto; padding-block: .55rem; scrollbar-width: none; }
+.ix-bar-in::-webkit-scrollbar { display: none; }
+.ix-bar a { position: relative; flex: none; display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .95rem; border-radius: 999px; text-decoration: none;
+  font-size: .9rem; font-weight: 500; color: var(--muted); transition: color .25s, background .25s; }
+.ix-bar a svg { width: 17px; height: 17px; color: var(--ink); }
+.ix-bar a:hover { color: var(--text); background: color-mix(in srgb, var(--text) 5%, transparent); }
+.ix-bar a.on { color: var(--text); background: color-mix(in srgb, var(--c) 14%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent); }
+
+/* ---------- each group: its heading held beside its services ---------- */
+.ix-group { scroll-margin-top: 126px; }
+.ix-group-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr); gap: clamp(1.5rem, 5vw, 4.5rem); align-items: start; }
+.ix-group-head { position: sticky; top: 160px; display: grid; gap: 1rem; justify-items: start; }
+.ix-group-n { font: 600 .74rem/1 var(--display); letter-spacing: .18em; color: var(--ink); }
+.ix-group-ico { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); box-shadow: 0 0 34px color-mix(in srgb, var(--c) 22%, transparent); }
+.ix-group-ico svg { width: 25px; height: 25px; }
+/* the name as an outline in the group's colour: filled with the page's own background over a stroke twice as wide, which
+   hides the lines where the font's shapes overlap */
+.ix-group-head h2 { font: 300 clamp(2rem, 3.8vw, 3.1rem)/1.08 var(--display); letter-spacing: -.02em; color: var(--bg); max-width: 12ch;
+  -webkit-text-stroke: 2.2px color-mix(in srgb, var(--c) 90%, transparent); paint-order: stroke fill; }
+.ix-group-head p { color: var(--muted); max-width: 38ch; }
+
+.ix-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.ix-svc { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.1rem; align-items: start; padding: 1.35rem 1.4rem; border-radius: 18px; text-decoration: none; color: var(--text);
+  border: 1px solid var(--line); background: var(--surface); transition: border-color .3s, transform .35s cubic-bezier(.2,.8,.2,1); }
+.ix-svc:hover, .ix-svc:focus-visible { border-color: color-mix(in srgb, var(--c) 55%, transparent); transform: translateX(4px); }
+.ix-svc-ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--ink); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); }
+.ix-svc-ico svg { width: 20px; height: 20px; }
+.ix-svc-t { display: grid; gap: .35rem; }
+.ix-svc-t b { font: 500 1.15rem/1.3 var(--display); }
+.ix-svc-t > span { color: var(--muted); font-size: .96rem; line-height: 1.55; }
+.ix-svc-t small { color: var(--faint); font-size: .86rem; line-height: 1.5; }
+.ix-svc-t em { font-style: normal; font-weight: 600; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin-right: .35rem; }
+.ix-svc-go { align-self: center; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: var(--muted); border: 1px solid var(--line); transition: background .3s, color .3s, border-color .3s; }
+.ix-svc-go svg { width: 17px; height: 17px; }
+.ix-svc:hover .ix-svc-go { background: var(--c); border-color: var(--c); color: var(--bg); }
+
+/* ---------- ways in by goal ---------- */
+.ix-goals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 255px), 1fr)); gap: 1rem; }
+.ix-goal { display: grid; grid-template-rows: auto 1fr auto auto; gap: .55rem; padding: 1.4rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); }
+.ix-goal b { font: 500 1.08rem/1.3 var(--display); }
+.ix-goal p { margin: 0; color: var(--muted); font-size: .93rem; }
+.ix-goal-for { margin-top: .4rem; font-size: .68rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+.ix-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.ix-chip { display: inline-flex; align-items: center; gap: .45rem; padding: .42rem .75rem; border-radius: 999px; text-decoration: none; color: var(--text); font-size: .85rem; line-height: 1.2;
+  border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); background: color-mix(in srgb, var(--c) 6%, transparent); transition: background .25s, border-color .25s; }
+.ix-chip svg { flex: none; width: 15px; height: 15px; color: var(--ink); }
+.ix-chip:hover, .ix-chip:focus-visible { background: color-mix(in srgb, var(--c) 18%, transparent); border-color: var(--c); }
+.ix-finder { margin: 2rem 0 0; text-align: center; color: var(--muted); }
+.ix-finder a { color: var(--ink); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.ix-finder a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- services that work well together ---------- */
+.ix-bundles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.ix-bundle { display: grid; grid-template-rows: auto auto 1fr; gap: .7rem; padding: 1.8rem 1.6rem; border-radius: 22px; border: 1px solid var(--line); background: var(--surface); }
+.ix-bundle h3 { font-size: 1.3rem; }
+.ix-bundle p { margin: 0; color: var(--muted); font-size: .96rem; }
+.ix-stack { display: grid; gap: .45rem; align-content: end; margin-top: .9rem; padding-top: 1.1rem; border-top: 1px dashed var(--line); }
+.ix-stack-row { display: flex; align-items: center; gap: .55rem; }
+.ix-stack-row:first-child { padding-left: 1.45rem; }
+.ix-plus { width: .9rem; text-align: center; font: 400 1.1rem/1 var(--display); color: var(--faint); }
+
+/* ---------- how working with us goes: four steps along one line ---------- */
+.ix-how { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+.ix-how::before { content: ""; position: absolute; top: 22px; left: 22px; right: 12%; height: 1px; background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 10%, transparent)); }
+.ix-how li { position: relative; display: grid; gap: .55rem; justify-items: start; }
+.ix-how-n { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; margin-bottom: .5rem; font: 600 .78rem/1 var(--display); letter-spacing: .08em;
+  color: var(--ink); background: var(--bg); border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); box-shadow: 0 0 0 6px var(--bg); }
+.ix-how li:last-child .ix-how-n { background: var(--c); color: var(--bg); border-color: var(--c); }
+.ix-how b { font: 500 1.12rem/1.3 var(--display); }
+.ix-how p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 30ch; }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1000px) {
+  .ix-bundles { grid-template-columns: 1fr; }
+  .ix-how { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2.2rem; }
+  .ix-how::before { display: none; }
+}
+@media (max-width: 900px) {
+  .ix-hero-grid, .ix-group-grid { grid-template-columns: 1fr; }
+  .ix-group-head { position: static; }
+  .ix-group-head h2 { max-width: none; }
+}
+@media (max-width: 560px) {
+  .ix-jump-a { min-height: 132px; padding: 1.05rem; }
+  .ix-jump-a b { font-size: .98rem; }
+  .ix-svc { grid-template-columns: auto minmax(0, 1fr); padding: 1.15rem; gap: .9rem; }
+  .ix-svc-go { display: none; }
+  .ix-how { grid-template-columns: 1fr; }
+  .ix-bar { top: 66px; }
+}
+@media (prefers-reduced-motion: reduce) { .ix-jump-a, .ix-svc { transition: none; } .ix-jump-a:hover, .ix-svc:hover { transform: none; } }

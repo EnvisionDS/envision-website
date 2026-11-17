@@ -25,7 +25,7 @@ export default function Hero() {
         </p>
         <div className="hero-ctas">
           {" "}
-          <a className="pill solid" href="#services">
+          <a className="pill solid" href="/services">
             Explore services
           </a>{" "}
           <a className="pill call to-work" href="#work">

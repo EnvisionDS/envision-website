@@ -1,5 +1,5 @@
 // The Services menu: four groups, each with its own colour, and the services in each (in menu order). The groups have
-// no pages of their own. The mega menu, the page labels, the homepage's cards and mobile menu and the contact form read from here.
+// no pages of their own. The mega menu, the Services page, the page labels, the mobile menu and the contact form read from here.
 import type { ReactNode } from "react";
 
 export type GroupId = "web" | "mkt" | "auto" | "consult";
@@ -8,6 +8,7 @@ export type MenuGroup = {
   name: string;
   color: string;
   icon: ReactNode;
+  summary: string; // a sentence about the group, on the Services page
   items: string[];
 };
 
@@ -29,6 +30,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M8 20h8M12 16v4" />
       </>
     ),
+    summary: "We design, build and look after websites that read clearly, load fast and make it easy for people to get in touch.",
     items: ["website-design", "ecommerce", "ux-ui-design", "conversion", "website-maintenance"],
   },
   {
@@ -41,6 +43,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a7.5 7.5 0 0 1 0 11" />
       </>
     ),
+    summary: "Search, ads, social media and local strategy that put you in front of the right people, in the suburbs that matter.",
     items: ["seo", "paid-ads", "content-creation", "social-media", "call-form-tracking"],
   },
   {
@@ -55,6 +58,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M15.5 12.5L18 15l2.5-2.5" />
       </>
     ),
+    summary: "Systems that capture every lead, follow up automatically and give your team back their time, even after hours.",
     items: ["crm-setup", "lead-capture", "booking-reminders", "automation", "connecting-tools"],
   },
   {
@@ -67,6 +71,7 @@ export const GROUPS: MenuGroup[] = [
         <path d="M15.5 8.5l-2 5-5 2 2-5z" />
       </>
     ),
+    summary: "Clear advice on your strategy, systems and locations, so every decision rests on evidence, not guesswork.",
     items: ["digital-strategy", "audits", "software-selection", "process-reviews", "location-strategy"],
   },
 ];

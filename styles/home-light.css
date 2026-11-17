@@ -291,7 +291,7 @@ html[data-theme="light"] .sm-body .fit { color: var(--muted); background: color-
 html[data-theme="light"] .sm-body .fit b { color: var(--text); }
 html[data-theme="light"] .sm-body .more { color: var(--c); text-decoration-color: initial; }
 html[data-theme="light"] nav { --rule: rgba(11, 23, 23, 0.28); }
-html[data-theme="light"] .links a[href="#services"]::after { border-right-color: currentcolor; border-bottom-color: currentcolor; }
+html[data-theme="light"] .links a[data-mega]::after { border-right-color: currentcolor; border-bottom-color: currentcolor; }
 html[data-theme="light"] .theme-btn { border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; }
 html[data-theme="light"] .theme-btn:hover { box-shadow: none; background-image: initial; background-color: rgba(38, 79, 103, 0.1); }
 html[data-theme="light"] .nav-cta { text-decoration-color: initial; color: var(--bg); }
@@ -670,9 +670,6 @@ html[data-theme="light"] body section.block.panel.tone-ink { background: radial-
 html[data-theme="light"] body section.block.panel.navy { background: linear-gradient(180deg, #e8eef8, #e1e9f5); }
 html[data-theme="light"] body section.block.panel.warm { background: linear-gradient(180deg, #fbf4f1, #f7eeea); }
 html[data-theme="light"] body section.block + section.block.panel { border-top-color: rgba(19,32,46,.1); }
-/* the Services cards stay dark in light mode */
-html[data-theme="light"] .sv-card { box-shadow: 0 16px 44px -22px rgba(19,32,46,.45); }
-html[data-theme="light"] .sv-card:hover { box-shadow: 0 26px 60px -24px color-mix(in srgb, var(--c) 55%, rgba(19,32,46,.5)); }
 /* growth planner: the total line and the service key, readable on the light card */
 html[data-theme="light"] .gp-line { stroke: #13202e; filter: none; }
 html[data-theme="light"] .gp-layers path { --c: color-mix(in srgb, var(--c0) 80%, #13202e); }

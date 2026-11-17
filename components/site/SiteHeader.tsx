@@ -2,7 +2,7 @@ import MegaMenu from "./MegaMenu";
 import ThemeButton from "./ThemeButton";
 
 // The nav bar on every page but the homepage.
-export default function SiteHeader({ current }: { current?: "about" }) {
+export default function SiteHeader({ current }: { current?: "about" | "services" }) {
   return (
     <header className="top">
       <div className="wrap nav">
@@ -10,7 +10,7 @@ export default function SiteHeader({ current }: { current?: "about" }) {
           envision
         </a>
         <nav className="nav-links" aria-label="Main">
-          <a href="/#services" data-home="">
+          <a href="/services" data-mega="" aria-current={current === "services" ? "page" : undefined}>
             Services
           </a>
           <a href="/#work" data-home="">

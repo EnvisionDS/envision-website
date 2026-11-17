@@ -3,12 +3,19 @@ import { GROUPS, MENU_FOOT, MENU_TITLE } from "@/lib/menu";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
 // The Services mega menu: four columns, one per group, each in its own colour (mega.css). It opens on hover or keyboard
-// focus of the Services link (lib/client/mega.js). Each group heading is a label over its services.
+// focus of the Services link (lib/client/mega.js); clicking that link goes to the Services page. Each group heading is a
+// label over its services.
 export default function MegaMenu({ onHome = false }: { onHome?: boolean }) {
   const home = onHome ? "" : "/";
   return (
     <div className="nav-drop mega" id="navDrop" aria-label="Services">
-      <p className="mg-ey">{MENU_TITLE}</p>
+      <p className="mg-ey">
+        <span>{MENU_TITLE}</span>
+        <a className="mg-all" href="/services">
+          {"View all services "}
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </p>
       <div className="mg-cols">
         {GROUPS.map((g) => (
           <div className="mg-col" style={{ "--c": g.color }} key={g.id}>

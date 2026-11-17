@@ -46,9 +46,7 @@ export default function ServicePage({ s }: { s: Service }) {
           <div className="wrap hero-grid">
             <div className="hero-copy">
               <p className="crumbs">
-                <a href="/#services" data-home="">
-                  Services
-                </a>
+                <a href="/services">Services</a>
                 <span aria-hidden="true">/</span>
                 <span>{group.name}</span>
                 <span aria-hidden="true">/</span>
