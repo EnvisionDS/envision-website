@@ -30,11 +30,6 @@
 .mg-foot a { display: inline-flex; gap: .45rem; color: var(--text); text-decoration: none; font-weight: 500; white-space: nowrap; }
 .mg-foot a:hover { color: #98c1d9; }
 
-/* the Services link carries a small chevron that flips while the menu is open (service pages; the homepage has its own) */
-.nav-links a[data-mega]::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: .45rem; vertical-align: .2em;
-  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); transition: transform .25s; }
-.drop-open .nav-links a[data-mega]::after { transform: rotate(225deg) translate(-2px, -2px); }
-
 /* the nav links: a thin line draws in under a link on hover, and stays under the link for the section you're in */
 nav .links a, .nav-links a { text-decoration: none; padding-block: 4px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size .35s cubic-bezier(.2,.8,.2,1), color .2s, opacity .2s; }
