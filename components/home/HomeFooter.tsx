@@ -20,7 +20,7 @@ export default function HomeFooter() {
               <a href="/location-strategy">Location Strategy</a>
             </li>
             <li>
-              <a href="/about">About</a>
+              <a href="/about">About us</a>
             </li>
             <li>
               <a href="/contact">Contact</a>

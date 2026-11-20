@@ -1,142 +1,257 @@
-// The About page: the team, how we work and the values wheel (styles/about.css, lib/client/about.js).
+// The About page, in a grander key than the rest of the site (styles/about-grand.css, lib/client/about-grand.js): a serif
+// display face, ivory on near-black with a thread of gold, and three three.js scenes: the Envision mark built of light in
+// the opening, a short looping film of how we work, and Melbourne as a field of light with signals going out. Between
+// them: a manifesto that lights word by word, the three disciplines as tall pillars, the three principles, the values
+// wheel (lib/client/about.js), a band of what we do, and the call to book. Everything plays on its own as it arrives.
+
+const LIGHT = <path d="M5 12h14M13 6l6 6-6 6" />;
+
+const PILLARS = [
+  {
+    n: "I",
+    title: "Strategists",
+    text: "We work out where your best opportunities are, who to reach and what to say, using location data and audience insight before any budget moves.",
+    icon: (
+      <>
+        <circle cx="11" cy="11" r="6" />
+        <path d="M20 20l-4.5-4.5" />
+      </>
+    ),
+  },
+  {
+    n: "II",
+    title: "Designers & developers",
+    text: "We build fast, clear websites and connect the tools behind them, so every enquiry is captured and followed up.",
+    icon: <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12" />,
+  },
+  {
+    n: "III",
+    title: "Marketers & creative thinkers",
+    text: "We run your search, ads, social media and content, and keep every channel pulling in the same direction.",
+    icon: (
+      <>
+        <path d="M4 10v4h3l6 4V6l-6 4z" />
+        <path d="M17 9a4 4 0 0 1 0 6" />
+      </>
+    ),
+  },
+];
+
+const PRINCIPLES = [
+  {
+    title: "Strategy before spending",
+    text: "We find where your best opportunities are before recommending what to invest. Location data, audience insight and market context shape the plan before any budget moves.",
+  },
+  {
+    title: "One system, not scattered tactics",
+    text: "SEO, paid ads, website, social and location strategy are planned as one connected system. Every channel reinforces the same message instead of competing for attention.",
+  },
+  {
+    title: "Plain English, every week",
+    text: "Clear, honest updates on what's working, what's not, and what's changing. No jargon, no vanity metrics, just a straight read on where things stand and what happens next.",
+  },
+];
+
+// the film's four chapters (lib/client/about-grand.js plays the scene for each in turn)
+const CHAPTERS = [
+  { t: "Listen", d: "A conversation about your business, your customers and your goals." },
+  { t: "Plan", d: "Your audience, locations and channels, mapped into one plan." },
+  { t: "Build", d: "Website, search, ads and follow-up, built to work together." },
+  { t: "Improve", d: "Weekly check-ins on what's working, and what changes next." },
+];
+
+const MARQUEE = ["Strategy", "Websites", "Search", "Paid ads", "Automation", "Location insight", "Content", "Social media"];
+
 export default function AboutContent() {
   return (
     <>
-      <main id="main">
-        <section className="hero">
-          <div className="wrap">
-            <div className="hero-copy">
-              <p className="crumbs">
-                <a href="/" data-home="">
-                  Home
-                </a>
-                <span aria-hidden="true">/</span>
-                <span>About</span>
-              </p>
-              <p className="vf">
-                <span className="vf-ret" aria-hidden="true">
-                  <i></i>
-                </span>
-                <span>About Envision</span>
-              </p>
-              <h1>Digital marketing meets smarter decision-making.</h1>
-              <p className="lede">
+      <main id="main" className="ag">
+        {/* the opening: the mark built of light, and the page's title */}
+        <section className="ag-hero" aria-labelledby="ag-h">
+          <div className="ag-stage" data-scene="mark" aria-hidden="true"></div>
+          <div className="ag-hero-veil" aria-hidden="true"></div>
+          <div className="ag-wrap ag-hero-in">
+            <p className="ag-crumbs">
+              <a href="/" data-home="">
+                Home
+              </a>
+              <span aria-hidden="true">/</span>
+              <span>About us</span>
+            </p>
+            <p className="ag-kicker ag-rv">Envision Digital Solutions · Melbourne</p>
+            <h1 id="ag-h" className="ag-title" data-split="">
+              Digital marketing meets <em>smarter</em> decision-making.
+            </h1>
+            <div className="ag-hero-foot ag-rv">
+              <p>
                 A Melbourne team of strategists, developers and creative thinkers, helping local businesses get found,
                 earn trust and turn interest into real enquiries.
               </p>
-              <div className="ctas">
-                <a className="btn" href="/contact">
-                  Book a discovery call <span aria-hidden="true">→</span>
+              <div className="ag-ctas">
+                <a className="ag-btn" href="/contact">
+                  Book a discovery call{" "}
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    {LIGHT}
+                  </svg>
                 </a>
-                <a className="btn ghost" href="/#work" data-home="">
+                <a className="ag-btn ghost" href="/#work" data-home="">
                   See our work
                 </a>
               </div>
             </div>
           </div>
+          <a className="ag-scroll" href="#ag-manifesto" aria-label="Scroll to the next section">
+            <span></span>
+          </a>
         </section>
-        <section className="band" aria-labelledby="ov-h">
-          <div className="wrap two rv">
-            <p className="label" id="ov-h">
-              Who we are
+
+        {/* the manifesto: lit word by word as it arrives */}
+        <section className="ag-manifesto" id="ag-manifesto" aria-label="Who we are">
+          <div className="ag-wrap">
+            <p className="ag-eyebrow ag-rv">
+              <span>01</span> Who we are
             </p>
-            <div className="prose">
+            <p className="ag-big" data-words="">
+              Most businesses spend on marketing before they know who they&apos;re targeting, where those people actually
+              are, or what to say to them. <em>We fix that first.</em>
+            </p>
+            <div className="ag-two ag-rv">
               <p>
-                Most businesses spend on marketing before they know who they're targeting, where those people actually
-                are, or what to say to them. We fix that first. Envision combines digital marketing with location
-                insight, so every dollar you spend is aimed at a real customer in a real place, and you can see what it
-                brought back.
+                Envision combines digital marketing with location insight, so every dollar you spend is aimed at a real
+                customer in a real place, and you can see what it brought back.
               </p>
               <p>
-                Whether you're starting from scratch, rebuilding something that isn't working, or expanding into new
-                areas, you get the strategy and the execution from one team.
+                Whether you&apos;re starting from scratch, rebuilding something that isn&apos;t working, or expanding into
+                new areas, you get the strategy and the execution from one team.
               </p>
             </div>
           </div>
         </section>
-        <section className="band" aria-labelledby="tm-h">
-          <div className="wrap">
-            <div className="sec-head rv">
-              <p className="label">The team</p>
-              <h2 id="tm-h">Strategy, build and growth under one roof</h2>
+
+        {/* the film: a looping scene in four chapters, with a player's controls */}
+        <section className="ag-film" aria-labelledby="ag-film-h">
+          <div className="ag-wrap">
+            <div className="ag-head ag-rv">
+              <p className="ag-eyebrow">
+                <span>02</span> How we work
+              </p>
+              <h2 id="ag-film-h">
+                From first call to a phone <em>that rings.</em>
+              </h2>
             </div>
-            <div className="ab-cards">
-              <div className="ab-card beam rv">
-                <span className="ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="6" />
-                    <path d="M20 20l-4.5-4.5" />
+            <figure className="ag-screen ag-rv" data-film="">
+              <div className="ag-stage" data-scene="film" aria-hidden="true"></div>
+              <span className="ag-bars" aria-hidden="true"></span>
+              <figcaption className="ag-caps">
+                {CHAPTERS.map((c, i) => (
+                  <span className="ag-cap" data-i={i} key={c.t}>
+                    <b>
+                      <i>{`0${i + 1}`}</i> {c.t}
+                    </b>
+                    <span>{c.d}</span>
+                  </span>
+                ))}
+              </figcaption>
+              <div className="ag-player">
+                <button className="ag-play" type="button" aria-label="Pause the film" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path className="pa" d="M8 5v14M16 5v14" />
+                    <path className="pl" d="M8 5l11 7-11 7z" />
                   </svg>
+                </button>
+                <ol className="ag-track" aria-hidden="true">
+                  {CHAPTERS.map((c) => (
+                    <li key={c.t}>
+                      <i></i>
+                      <span>{c.t}</span>
+                    </li>
+                  ))}
+                </ol>
+                <span className="ag-tc" aria-hidden="true">
+                  00:00
                 </span>
-                <h3>Strategists</h3>
-                <p>
-                  We work out where your best opportunities are, who to reach and what to say, using location data and
-                  audience insight before any budget moves.
-                </p>
               </div>
-              <div className="ab-card beam rv">
-                <span className="ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12" />
-                  </svg>
-                </span>
-                <h3>Designers and developers</h3>
-                <p>
-                  We build fast, clear websites and connect the tools behind them, so every enquiry is captured and
-                  followed up.
-                </p>
-              </div>
-              <div className="ab-card beam rv">
-                <span className="ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M4 10v4h3l6 4V6l-6 4z" />
-                    <path d="M17 9a4 4 0 0 1 0 6" />
-                  </svg>
-                </span>
-                <h3>Marketers and creative thinkers</h3>
-                <p>
-                  We run your search, ads, social media and content, and keep every channel pulling in the same
-                  direction.
-                </p>
-              </div>
+            </figure>
+          </div>
+        </section>
+
+        {/* the team: three disciplines as tall pillars */}
+        <section className="ag-pillars-band" aria-labelledby="ag-team-h">
+          <div className="ag-wrap">
+            <div className="ag-head ag-rv">
+              <p className="ag-eyebrow">
+                <span>03</span> The team
+              </p>
+              <h2 id="ag-team-h">
+                Strategy, build and growth, <em>under one roof.</em>
+              </h2>
+            </div>
+            <div className="ag-pillars">
+              {PILLARS.map((p, i) => (
+                <article className="ag-pillar ag-rv" style={{ "--i": i }} key={p.title}>
+                  <span className="ag-numeral" aria-hidden="true">
+                    {p.n}
+                  </span>
+                  <span className="ag-pico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">{p.icon}</svg>
+                  </span>
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                  <span className="ag-shine" aria-hidden="true"></span>
+                </article>
+              ))}
             </div>
           </div>
         </section>
-        <section className="band" aria-labelledby="ap-h">
-          <div className="wrap">
-            <div className="sec-head rv">
-              <p className="label">Our approach</p>
-              <h2 id="ap-h">What makes our approach different</h2>
+
+        {/* the approach: three principles, each with a gold line that draws across */}
+        <section className="ag-principles" aria-labelledby="ag-ap-h">
+          <div className="ag-wrap">
+            <div className="ag-head ag-rv">
+              <p className="ag-eyebrow">
+                <span>04</span> Our approach
+              </p>
+              <h2 id="ag-ap-h">
+                What makes our approach <em>different.</em>
+              </h2>
             </div>
-            <div className="ab-cards">
-              <div className="ab-card beam rv">
-                <span className="n">01</span>
-                <h3>Strategy before spending</h3>
-                <p>
-                  We find where your best opportunities are before recommending what to invest. Location data, audience
-                  insight and market context shape the plan before any budget moves.
-                </p>
-              </div>
-              <div className="ab-card beam rv">
-                <span className="n">02</span>
-                <h3>One system, not scattered tactics</h3>
-                <p>
-                  SEO, paid ads, website, social and location strategy are planned as one connected system. Every
-                  channel reinforces the same message instead of competing for attention.
-                </p>
-              </div>
-              <div className="ab-card beam rv">
-                <span className="n">03</span>
-                <h3>Plain English, every week</h3>
-                <p>
-                  Clear, honest updates on what's working, what's not, and what's changing. No jargon, no vanity
-                  metrics, just a straight read on where things stand and what happens next.
-                </p>
-              </div>
-            </div>
+            <ol className="ag-rows">
+              {PRINCIPLES.map((p, i) => (
+                <li className="ag-row ag-rv" key={p.title}>
+                  <span className="ag-row-n" aria-hidden="true">{`0${i + 1}`}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                  <span className="ag-rule" aria-hidden="true"></span>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
-        <section className="band" aria-label="What we stand for">
+
+        {/* Melbourne: the city as a field of light, with signals going out from it */}
+        <section className="ag-place" aria-labelledby="ag-place-h">
+          <div className="ag-stage" data-scene="map" aria-hidden="true"></div>
+          <div className="ag-place-veil" aria-hidden="true"></div>
+          <div className="ag-wrap ag-place-in">
+            <p className="ag-eyebrow ag-rv">
+              <span>05</span> Where we are
+            </p>
+            <h2 id="ag-place-h" className="ag-rv">
+              Melbourne based. Aimed at <em>where your customers are.</em>
+            </h2>
+            <p className="ag-rv">
+              Location insight sits at the heart of how we plan: who your customers are, where they are, and what will
+              reach them there, before any budget moves.
+            </p>
+            <span className="ag-pin ag-rv" aria-hidden="true">
+              <i></i>
+              <b>Melbourne, Victoria</b>
+              <small>37.81° S · 144.96° E</small>
+            </span>
+          </div>
+        </section>
+
+        <section className="band ag-values" aria-label="What we stand for">
           <div className="wrap">
             <div className="vw" id="values">
               <div className="bo-top rv">
@@ -481,26 +596,45 @@ export default function AboutContent() {
             </div>
           </div>
         </section>
-        <section className="cta-band" aria-labelledby="cta-h">
-          <div className="wrap cta rv">
-            <p className="label">Next step</p>
-            <h2 id="cta-h">Book a discovery call</h2>
-            <p>
-              Tell us about your business and where you want to grow, and we'll recommend the best place to start. We
-              reply Monday to Friday, usually within one business day.
+        {/* a band of what we do, drifting by */}
+        <section className="ag-marquee" aria-label="What we do">
+          <div className="ag-mq" aria-hidden="true">
+            {[0, 1].map((k) => (
+              <span className="ag-mq-run" key={k}>
+                {MARQUEE.map((m) => (
+                  <span key={m}>
+                    {m}
+                    <i>✦</i>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+          <p className="ag-sr">{MARQUEE.join(", ")}</p>
+        </section>
+
+        {/* the close */}
+        <section className="ag-close" aria-labelledby="ag-close-h">
+          <div className="ag-close-glow" aria-hidden="true"></div>
+          <div className="ag-wrap">
+            <p className="ag-eyebrow ag-rv">Next step</p>
+            <h2 id="ag-close-h" className="ag-rv">
+              Let&apos;s talk about <em>what&apos;s next.</em>
+            </h2>
+            <p className="ag-rv">
+              Tell us about your business and what you need help with, and we&apos;ll show you where we&apos;d start.
             </p>
-            <div className="ctas">
-              <a className="btn" href="/contact">
-                Book a discovery call <span aria-hidden="true">→</span>
+            <div className="ag-ctas ag-rv">
+              <a className="ag-btn" href="/contact">
+                Book a discovery call{" "}
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  {LIGHT}
+                </svg>
               </a>
-              <a className="btn ghost" href="tel:+61399693883">
+              <a className="ag-btn ghost" href="tel:+61399693883">
                 Call 03 9969 3883
               </a>
             </div>
-            <p className="contact-line">
-              Email <span className="sel">hello@envisionds.com.au</span> · Phone{" "}
-              <span className="sel">03 9969 3883</span>
-            </p>
           </div>
         </section>
       </main>

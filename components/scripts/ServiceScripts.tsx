@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { initMegaMenu } from "@/lib/client/mega";
 import { initServicePage } from "@/lib/client/service";
+import { initAboutGrand } from "@/lib/client/about-grand";
 import { initValuesWheel } from "@/lib/client/about";
 import { initContactPage } from "@/lib/client/contact-page";
 import { initServicesIndex } from "@/lib/client/services-index";
@@ -17,7 +18,7 @@ export default function ServiceScripts({ page }: { page?: "about" | "contact" | 
     started = true;
     initServicePage();
     initMegaMenu();
-    if (page === "about") initValuesWheel();
+    if (page === "about") { initValuesWheel(); initAboutGrand(); }
     if (page === "contact") initContactPage();
     if (page === "services") initServicesIndex();
   }, [page]);

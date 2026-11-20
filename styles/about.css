@@ -1,12 +1,5 @@
 /* Envision about page: the team, the approach, and the values wheel (the wheel's styles moved here from the homepage).
    The page is built on service.css, like the service pages. */
-.ab-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-.ab-card { display: grid; gap: .6rem; align-content: start; padding: 1.6rem; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
-.ab-card .n { font: 600 .78rem/1 var(--display); letter-spacing: .18em; color: var(--ink); }
-.ab-card .ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--ink); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); margin-bottom: .4rem; }
-.ab-card .ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.ab-card h3 { font-size: 1.2rem; } .ab-card p { color: var(--muted); font-size: .95rem; }
-@media (max-width: 900px) { .ab-cards { grid-template-columns: minmax(0, 1fr); } }
 
 
 /* the header above the wheel: a tag and heading on the left, a short note on the right */

@@ -22,7 +22,7 @@ export default function HomeNav() {
           Services
         </a>
         <a href="#work">Our work</a>
-        <a href="/about">About</a>
+        <a href="/about">About us</a>
         <a href="/contact">Contact</a>
       </div>
       <div className="nav-end">

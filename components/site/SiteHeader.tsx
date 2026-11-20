@@ -17,7 +17,7 @@ export default function SiteHeader({ current }: { current?: "about" | "services"
             Our work
           </a>
           <a href="/about" aria-current={current === "about" ? "page" : undefined}>
-            About
+            About us
           </a>
           <a href="/contact">Contact</a>
         </nav>
