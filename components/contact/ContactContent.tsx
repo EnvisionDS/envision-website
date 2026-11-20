@@ -11,7 +11,10 @@ export default function ContactContent() {
     <>
       {/* CONTACT: its own page, laid out like a pop-up (a frame over a dim backdrop, with a × to close). */}
       {/* The homepage loads the frame below (#contactFrame) into its pop-up, so this is the one place to edit the form. */}
-      <div className="cx-bg" aria-hidden="true"></div>
+      <div className="cx-bg" aria-hidden="true">
+        {/* light spiralling in to the form, rings going out (lib/client/grand-scenes.js) */}
+        <div className="g-stage" data-scene="converge"></div>
+      </div>
       <main className="cx-wrap">
         <div className="frame" id="contactFrame">
           {" "}

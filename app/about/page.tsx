@@ -10,6 +10,8 @@ import "@/styles/about.css";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource/instrument-serif/400-italic.css";
 import "@/styles/about-grand.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 
 export const metadata: Metadata = {
   title: "About us | Envision",

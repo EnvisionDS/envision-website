@@ -1,6 +1,9 @@
 export default function Hero() {
   return (
     <section id="hero">
+      {/* a sea of light behind the opening (lib/client/grand-scenes.js) */}
+      <div className="g-stage" data-scene="sea" aria-hidden="true"></div>
+      <div className="g-veil centre" aria-hidden="true"></div>
       <canvas id="heroLens" aria-hidden="true"></canvas>{" "}
       {/* the copy sits in the middle of the dark "room"; the map and the hidden opportunities surround it */}{" "}
       <div className="hero-wrap">

@@ -8,6 +8,8 @@ import "@/styles/service.css";
 import "@/styles/mega.css";
 import "@/styles/service-more.css";
 import "@/styles/services-index.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 
 export const metadata: Metadata = {
   title: "Services | Envision",

@@ -64,6 +64,14 @@ export default function ServicesIndex() {
     <main id="main">
       {/* the opening: what's here, and the four groups to jump to */}
       <section className="hero ix-hero">
+        {/* four rings of light, one per group of services, turning about a core (lib/client/grand-scenes.js) */}
+        <div
+          className="g-stage"
+          data-scene="rings"
+          aria-hidden="true"
+          style={Object.fromEntries(GROUPS.map((g, i) => [`--g${i + 1}`, g.color]))}
+        ></div>
+        <div className="g-veil left" aria-hidden="true"></div>
         <div className="wrap ix-hero-grid">
           <div className="hero-copy">
             <p className="crumbs">
@@ -251,6 +259,7 @@ export default function ServicesIndex() {
       </section>
 
       <section className="cta-band" aria-labelledby="cta-h">
+        <div className="g-stage" data-scene="dust" aria-hidden="true"></div>
         <div className="wrap cta rv">
           <p className="label">Next step</p>
           <h2 id="cta-h">Book a discovery call</h2>

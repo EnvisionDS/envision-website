@@ -1,0 +1,183 @@
+/* The whole site in the About page's key (styles/about-grand.css): ivory on near-black with a thread of gold, a serif
+   display face (Instrument Serif) for the big words, square buttons in small spaced capitals, hairline rules, a fine
+   film grain over everything, and three.js scenes behind the openings (lib/client/grand-scenes.js). On the light
+   theme: ink on warm paper, the gold deepened.
+   Imported last on every page, so it re-keys the homepage's stylesheets (home.css, home-light.css) and the inner pages'
+   (service.css and friends) without rewriting them. The colours themselves were moved onto the warm palette in place. */
+
+:root {
+  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --void: #050506; --ivory: #f3efe6; --gold: #d2b27a; --gold-2: #f1dcae; --hair: rgba(243, 239, 230, .12);
+  --gold-grad: linear-gradient(100deg, var(--gold), var(--gold-2) 55%, var(--gold));
+  --g-ease: cubic-bezier(.2, .8, .2, 1);
+  /* the homepage's tokens */
+  --bg: #050506; --bg-2: #0d0c0a; --text: #f3efe6; --muted: rgba(243, 239, 230, .64); --line: rgba(243, 239, 230, .1);
+  --accent: #a88a55; --accent-2: #d2b27a; --orange: #d2b27a; --grad: var(--gold-grad);
+}
+:root[data-theme="light"] {
+  --void: #f3eee4; --ivory: #17130d; --gold: #8c6a2c; --gold-2: #b38a42; --hair: rgba(23, 19, 13, .14);
+  --bg: #f3eee4; --bg-2: #ece6da; --text: #17130d; --muted: rgba(23, 19, 13, .68); --line: rgba(23, 19, 13, .12);
+  --accent: #6b5a3a; --accent-2: #8c6a2c; --orange: #8c6a2c;
+}
+/* the inner pages' tokens (service.css): the same ground, faint and rule in the warm key */
+:root .top, :root body { --surface: #0b0a08; --rule: rgba(243, 239, 230, .16); --faint: rgba(243, 239, 230, .4); }
+:root[data-theme="light"] .top, :root[data-theme="light"] body { --surface: #faf6ee; --rule: rgba(23, 19, 13, .18); --faint: rgba(23, 19, 13, .45); }
+:root[data-theme="light"] body { --ink: color-mix(in srgb, var(--c) 60%, #17130d); }
+
+body { background: var(--bg); color: var(--text); }
+::selection { background: color-mix(in srgb, var(--gold) 45%, transparent); color: var(--ivory); }
+
+/* film grain over every page, fixed, too faint to notice until it's gone */
+body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; opacity: .05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+:root[data-theme="light"] body::after { opacity: .08; mix-blend-mode: multiply; }
+
+/* ---------------------------------------------------------------- type: the serif for the big words */
+:root h1, :root h2, :root h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -.012em; }
+/* emphasis in a heading: italic, in gold (the homepage's gradient words, and <em> anywhere in a heading) */
+:root .grad, :root h1 em, :root h2 em, :root h3 em { font-family: var(--serif); font-style: italic; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
+:root[data-theme="light"] .grad { background: linear-gradient(100deg, #8c6a2c, #b38a42 55%, #8c6a2c); -webkit-background-clip: text; background-clip: text; }
+:root h1 .grad, :root h2 .grad { font-weight: 400; }
+
+/* the small spaced capitals: eyebrows and labels in the body face, gold */
+:root .eyebrow, :root .label { letter-spacing: .3em; }
+:root section.block > .eyebrow::before, :root section.block > .about-intro > .eyebrow::before { font-family: var(--serif); font-style: italic; font-size: 1.15rem; letter-spacing: 0; color: var(--gold); }
+:root section.block > .eyebrow::after, :root section.block > .about-intro > .eyebrow::after { width: 48px; background: linear-gradient(90deg, var(--gold), transparent); opacity: 1; }
+:root .eyebrow { color: var(--muted); }
+
+/* ---------------------------------------------------------------- buttons: square, small spaced capitals */
+:root .pill { border-radius: 0; letter-spacing: .18em; font-size: .78rem; padding: 1rem 1.5rem; border-color: var(--hair); }
+:root .pill.solid { background: var(--ivory); color: var(--void); border-color: var(--ivory); }
+:root .pill.solid::before { background: var(--gold-2); }
+:root .pill.solid:hover { color: #050506; border-color: var(--gold-2); }
+:root .pill:not(.solid):hover { border-color: var(--gold); }
+:root .pill.call::before { background: conic-gradient(from 0deg, var(--gold) 0deg, var(--gold-2) calc(var(--sw) - 12deg), #fff8e6 var(--sw), transparent var(--sw) 360deg);
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--gold) 80%, transparent)) drop-shadow(0 0 12px color-mix(in srgb, var(--gold) 40%, transparent)); }
+:root[data-theme="light"] .pill.call::before { background: conic-gradient(from 0deg, #8c6a2c 0deg, #b38a42 calc(var(--sw) - 12deg), #17130d var(--sw), transparent var(--sw) 360deg); filter: none; }
+
+:root .btn { border-radius: 0; padding: 1.05rem 1.6rem; font: 500 .8rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase;
+  background: var(--ivory); color: var(--void); border-color: var(--ivory); transition: background .4s, border-color .4s, color .4s; }
+:root .btn:hover { transform: none; box-shadow: none; background: var(--gold-2); border-color: var(--gold-2); color: #050506; }
+:root .btn.ghost { background: transparent; color: var(--ivory); border-color: var(--hair); }
+:root .btn.ghost:hover { border-color: var(--gold); color: var(--gold-2); background: transparent; }
+:root[data-theme="light"] .btn.ghost:hover { color: var(--gold); }
+
+/* the nav's call button: ivory, gold on hover */
+:root .nav-cta { background: var(--ivory); color: var(--void); transition: background .4s; }
+:root .nav-cta:hover { background: var(--gold-2); color: #050506; }
+:root nav .nav-cta { border-radius: 0; }
+
+/* ---------------------------------------------------------------- the homepage */
+/* the bar stays dark glass past the hero, instead of turning blue */
+:root nav.blue { background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 1px 0 var(--hair); }
+:root[data-theme="light"] nav.blue { background: color-mix(in srgb, var(--bg) 82%, transparent); box-shadow: 0 1px 0 var(--hair); }
+:root nav.blue .links a:hover, :root nav.blue .links a.on { color: var(--gold-2); text-decoration-color: var(--gold); }
+:root[data-theme="light"] nav.blue .links a:hover, :root[data-theme="light"] nav.blue .links a.on { color: var(--gold); }
+:root .links a:hover { color: var(--gold-2); }
+:root[data-theme="light"] .links a:hover { color: var(--gold); }
+
+:root #hero h1 { font-size: clamp(2.8rem, 6.2vw, 6rem); line-height: 1; max-width: 17ch; letter-spacing: -.02em; }
+:root #hero .sub { font-size: clamp(1.02rem, 1.25vw, 1.15rem); line-height: 1.7; }
+:root #hero h1, :root #hero .sub { text-shadow: 0 0 30px var(--bg), 0 0 12px var(--bg); }
+:root #slot span.lit { text-shadow: 0 0 .35em color-mix(in srgb, var(--gold-2) 60%, transparent); }
+:root #heroLens { opacity: .35; }
+:root .torch-grid { opacity: .5; }
+
+:root section.block h2 { font-size: clamp(2.4rem, 4.6vw, 4.2rem); line-height: 1.02; letter-spacing: -.015em; max-width: 18ch; }
+:root section.finale h2 { font-size: clamp(2.8rem, 6.4vw, 6.4rem); line-height: .98; }
+:root .wl-t { font-family: var(--serif); font-size: clamp(2.4rem, 3.8vw, 3.8rem); line-height: 1; }
+:root .pm-n { font-family: var(--serif); font-style: italic; font-weight: 400; -webkit-text-stroke: 1px color-mix(in srgb, var(--gold) 60%, transparent); }
+:root .pm-row h3, :root .pm-head h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.08; }
+:root .proj .shot b, :root .review blockquote, :root .faq summary, :root .tl-card h4, :root .flow h3, :root .scard h3, :root .sm-tile-t, :root .q b { font-family: var(--serif); font-weight: 400; }
+:root .faq summary { font-size: 1.35rem; }
+:root .review blockquote { font-size: 1.3rem; line-height: 1.4; }
+:root .sm-big { font-family: var(--serif); font-weight: 400; }
+:root .fd-q, :root .proj h3 { font-family: var(--serif); font-weight: 400; }
+/* the slate panels become near-black rooms with a hairline and a breath of gold at the top */
+:root body section.block.panel { border-radius: 0; border: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); margin: 0; }
+:root body section.block.panel.tone-slate, :root body section.block.panel.tone-ink, :root body section.block.panel.navy {
+  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--gold) 9%, transparent), transparent 70%), #080706; }
+:root[data-theme="light"] body section.block.panel.tone-slate, :root[data-theme="light"] body section.block.panel.tone-ink, :root[data-theme="light"] body section.block.panel.navy {
+  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 70%), #f8f4ec; box-shadow: none; }
+:root section.block.finale { background: radial-gradient(70% 55% at 50% 100%, color-mix(in srgb, var(--gold) 20%, transparent), transparent 70%), var(--bg); }
+
+/* ---------------------------------------------------------------- the inner pages (service.css world) */
+:root .top { background: color-mix(in srgb, var(--bg) 84%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+:root .nav { border-color: var(--hair); }
+:root .nav-links a:hover, :root .nav-links a[aria-current="page"] { color: var(--gold-2); }
+:root[data-theme="light"] .nav-links a:hover, :root[data-theme="light"] .nav-links a[aria-current="page"] { color: var(--gold); }
+:root .crumbs a:hover { color: var(--gold-2); }
+
+/* the opening: room for a scene behind it, and the serif title at a grander size */
+:root main > .hero:first-child { position: relative; isolation: isolate; }
+:root .hero h1 { font-size: clamp(3rem, 7vw, 6.6rem); line-height: .96; letter-spacing: -.02em; max-width: 13ch; }
+:root .hero .lede { line-height: 1.7; }
+:root .sec-head h2, :root .band h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); line-height: 1.04; }
+:root .cta-band h2 { font-size: clamp(2.6rem, 5.6vw, 5rem); line-height: 1; }
+:root .vf { --vc: color-mix(in srgb, var(--gold) 70%, transparent); }
+:root .vf-ret i { background: var(--gold); }
+/* titles of cards and rows across the inner pages */
+:root .ix-gh h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 5.4vw, 4.8rem); line-height: 1; }
+:root .ix-card b, :root .ix-goal b, :root .ix-how b, :root .ix-jump-a b, :root .mrows-t, :root .qt-q, :root .stair b, :root .vs thead th, :root .bub.q,
+:root .mg-col h3, :root .mg-col b { font-family: var(--serif); font-weight: 400; }
+:root .ix-card b, :root .ix-goal b, :root .ix-how b, :root .stair b { font-size: 1.45rem; line-height: 1.12; }
+:root .ix-jump-a b { font-size: 1.4rem; line-height: 1.1; }
+:root .mstack-n, :root .qt-mark, :root .mcard-n, :root .clip-count, :root .lens .big { font-family: var(--serif); font-style: italic; font-weight: 400; }
+:root .qt-q { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+
+/* the legal pages */
+:root .legal-sec h2 { font-size: clamp(1.7rem, 2.6vw, 2.2rem); }
+:root .legal-sec h2 .n { font-family: var(--serif); font-style: italic; color: var(--gold); }
+
+
+/* ---------------------------------------------------------------- surfaces: squared off, like the About page's panels */
+:root :is(.scard, .card, .file, .pillar, .fixable, .snap, .story, .proj, .review, .faq details, .fact, .tl-card, .flow li, .bq, .sm-card, .gp-sum, .gp-plot,
+  .pm-report, .hp-main, .hp-side, .ph-frame, .incl li, .fit, .col, .steps li, .pair, .pager a, .mcard, .cmp-col, .qt-panels, .clip, .ix-jump-a, .ix-card,
+  .ix-goal, .ix-bundle, .ix-ghost, .legal-card, .legal-toc, .cs-stats, .frame) { border-radius: 3px; }
+:root .ph-hero::before { border-radius: 3px; }
+:root :is(.form input, .form select, .form textarea) { border-radius: 0; }
+:root .cta-ghost { border-radius: 0; letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; padding: 1rem 1.5rem; }
+:root .fact b, :root .fact strong { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; letter-spacing: 0; }
+/* the contact frame: a near-black panel with a gold hairline, over the scene */
+:root .frame { background: linear-gradient(160deg, color-mix(in srgb, #15120c 92%, transparent), color-mix(in srgb, #0a0907 94%, transparent));
+  border-color: color-mix(in srgb, var(--gold) 26%, transparent); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+:root[data-theme="light"] .frame { background: color-mix(in srgb, #fbf8f2 92%, transparent); }
+:root .frame h2, :root.cx .frame h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3.4rem); line-height: 1.02; font-weight: 400; letter-spacing: -.012em; }
+:root.cx h3, :root .frame h3 { font-family: var(--serif); font-weight: 400; }
+:root .send { border-radius: 0; background: var(--ivory); color: var(--void); font: 500 .8rem/1 var(--body, "IBM Plex Sans", sans-serif); letter-spacing: .18em; text-transform: uppercase; padding: 1.05rem 1.6rem; transition: background .4s; }
+:root .send:hover { background: var(--gold-2); color: #050506; transform: none; }
+:root[data-theme="light"] .send { color: #f3eee4; }
+:root[data-theme="light"] .send:hover { background: var(--gold); color: #f3eee4; }
+:root .form input:focus, :root .form select:focus, :root .form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 18%, transparent); }
+:root .finale > .g-stage { opacity: .55; }
+
+/* ---------------------------------------------------------------- three.js stages behind the openings (lib/client/grand-scenes.js) */
+.g-stage { position: absolute; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+.g-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.8s ease; }
+.g-stage.ready canvas { opacity: 1; }
+.g-veil { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.g-veil.left { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 34%, transparent 64%), linear-gradient(0deg, var(--bg) 0%, transparent 30%); }
+.g-veil.bottom { background: linear-gradient(0deg, var(--bg) 0%, transparent 40%), linear-gradient(180deg, color-mix(in srgb, var(--bg) 60%, transparent), transparent 30%); }
+.g-veil.centre { background: radial-gradient(60% 55% at 50% 50%, color-mix(in srgb, var(--bg) 75%, transparent), transparent 75%), linear-gradient(0deg, var(--bg) 0%, transparent 25%); }
+@media (max-width: 960px) {
+  .ix-hero > .g-stage, main > .hero > .g-stage { opacity: .55; }
+  .g-veil.left { background: linear-gradient(0deg, var(--bg) 10%, color-mix(in srgb, var(--bg) 60%, transparent) 60%, transparent 90%); }
+}
+
+:root .cta-band, :root section.block.finale { position: relative; isolation: isolate; overflow: hidden; }
+:root .cta-band > .g-stage { opacity: .8; }
+.cx-bg > .g-stage { z-index: 0; }
+.cx-bg > .g-stage canvas { transition-duration: 2.4s; }
+
+/* the homepage's hero scene sits behind the lens and the copy */
+:root #hero { position: relative; isolation: isolate; }
+:root #hero > .g-stage, :root #hero > .g-veil, :root section.block > .g-stage, :root section.block > .g-veil { position: absolute; inset: 0; z-index: 0; }
+:root section.block.finale > .g-stage, :root section.block.finale > .g-veil { z-index: -1; }
+:root #hero > #heroLens, :root #hero > .hero-wrap { position: relative; z-index: 1; }
+:root #hero > #heroLens { position: absolute; }
+
+/* things rising into view, softly focusing (the About page's reveal, for the scenes' companions) */
+@media (prefers-reduced-motion: reduce) {
+  .g-stage canvas { transition: none; }
+}

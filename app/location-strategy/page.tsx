@@ -3,6 +3,8 @@ import ServicePage from "@/components/services/ServicePage";
 import "@/lib/fonts/site";
 import "@/styles/service.css";
 import "@/styles/mega.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 import { SERVICE_BY_KEY } from "@/lib/services";
 
 const s = SERVICE_BY_KEY["location-strategy"];

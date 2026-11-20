@@ -35,4 +35,9 @@ npm start       # serve the production build
 - `lib/client/`: the pages' behaviour (animations, the menu, the theme switch, the forms), run in the browser by the
   small client components in `components/scripts/`. Internal links are plain `<a>` tags, so every page loads fresh and
   its behaviour starts cleanly.
+- `styles/grand-site.css`: the whole site in the About page's key (ivory and gold, Instrument Serif for the big words,
+  square buttons, film grain), imported last on every page. `lib/client/grand-scenes.js`: the three.js scenes behind the
+  openings (the sea on the homepage, the rings on Services, a ribbon on each service, light converging on Contact, dust
+  on the legal pages and the calls to book, the mark and Melbourne on About). A stage is any element with
+  `data-scene="<name>"`.
 - `public/img/`: photos.

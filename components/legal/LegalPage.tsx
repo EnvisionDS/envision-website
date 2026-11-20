@@ -10,7 +10,7 @@ export type LegalSection = { id: string; title: string; body: ReactNode };
 export default function LegalPage({ title, updated, intro, sections }: { title: string; updated: string; intro: string; sections: LegalSection[] }) {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "body{--c:#98c1d9}" }} />
+      <style dangerouslySetInnerHTML={{ __html: "body{--c:#e3cfa4}" }} />
       <a className="skip" href="#main">
         Skip to content
       </a>
@@ -18,6 +18,8 @@ export default function LegalPage({ title, updated, intro, sections }: { title: 
 
       <main id="main">
         <section className="hero legal-hero">
+          <div className="g-stage" data-scene="dust" aria-hidden="true"></div>
+          <div className="g-veil left" aria-hidden="true"></div>
           <div className="wrap">
             <p className="crumbs">
               <a href="/">Home</a>

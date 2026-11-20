@@ -34,6 +34,8 @@ import "@/styles/mega.css";
 import "@/styles/home.css";
 import "@/styles/home-light.css";
 import "@/styles/work.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 
 export const metadata: Metadata = {
   title: "Envision Digital",

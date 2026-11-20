@@ -1,6 +1,9 @@
 export default function ContactSection() {
   return (
     <section className="block finale" id="contact">
+      {/* the Envision mark assembling out of light behind the last call (lib/client/grand-scenes.js) */}
+      <div className="g-stage" data-scene="mark" data-place="centre" aria-hidden="true"></div>
+      <div className="g-veil centre" aria-hidden="true"></div>
       <p className="eyebrow reveal">Final step</p>
       <h2 className="reveal" style={{ marginLeft: "auto", marginRight: "auto" }}>
         If marketing currently feels confusing, <span className="grad">we can make it clear.</span>

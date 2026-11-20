@@ -6,6 +6,8 @@ import "@/lib/fonts/home";
 import "@/styles/service.css";
 import "@/styles/mega.css";
 import "@/styles/contact.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 
 export const metadata: Metadata = {
   title: "Contact Envision Digital Solutions",

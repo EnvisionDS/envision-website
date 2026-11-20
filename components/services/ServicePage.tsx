@@ -43,6 +43,9 @@ export default function ServicePage({ s }: { s: Service }) {
 
       <main id="main">
         <section className="hero">
+          {/* a ribbon of light in the service's colour (lib/client/grand-scenes.js) */}
+          <div className="g-stage" data-scene="ribbon" aria-hidden="true"></div>
+          <div className="g-veil left" aria-hidden="true"></div>
           <div className="wrap hero-grid">
             <div className="hero-copy">
               <p className="crumbs">
@@ -186,6 +189,7 @@ export default function ServicePage({ s }: { s: Service }) {
         </section>
 
         <section className="cta-band" aria-labelledby="cta-h">
+          <div className="g-stage" data-scene="dust" aria-hidden="true"></div>
           <div className="wrap cta rv">
             <p className="label">Next step</p>
             <h2 id="cta-h">Book a discovery call</h2>

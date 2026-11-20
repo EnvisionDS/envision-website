@@ -22,7 +22,7 @@ export default function HowWeWork() {
           <div className="hp-side">
             <img src="/img/ph-planning.jpg" alt="" loading="lazy" />
           </div>{" "}
-          <span className="ph-chip" style={{ "--c": "#8fd3f4" }}>
+          <span className="ph-chip" style={{ "--c": "#f1dcae" }}>
             <i>
               <svg viewBox="0 0 24 24">
                 <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -56,7 +56,7 @@ export default function HowWeWork() {
             each other.
           </p>
           <div className="gp-picks" role="group" aria-label="Services to include in the graph">
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="1" style={{ "--c0": "#5b9be6" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="1" style={{ "--c0": "#d2b27a" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <rect x="3" y="4.5" width="18" height="15" rx="2" />
@@ -69,7 +69,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="2" style={{ "--c0": "#7fe0c8" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="2" style={{ "--c0": "#a9c08e" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <circle cx="11" cy="11" r="6.5" />
@@ -82,7 +82,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="3" style={{ "--c0": "#f2b84b" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="3" style={{ "--c0": "#e39b4f" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M4 10v4h3l7 4V6L7 10H4z" />
@@ -95,7 +95,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="4" style={{ "--c0": "#f48fb1" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="4" style={{ "--c0": "#d99a8a" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M4 5h16v10H10l-6 4z" />
@@ -108,7 +108,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="5" style={{ "--c0": "#b58cf0" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="5" style={{ "--c0": "#b7a3c9" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="8" />
@@ -122,7 +122,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="6" style={{ "--c0": "#4fc3f7" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="6" style={{ "--c0": "#8db2b0" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
@@ -135,7 +135,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="7" style={{ "--c0": "#9ccc65" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="7" style={{ "--c0": "#c9b45a" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M13 3L5 13h6l-1 8 8-10h-6z" />
@@ -147,7 +147,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="8" style={{ "--c0": "#ee6c4d" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="8" style={{ "--c0": "#c8734f" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" />
@@ -286,7 +286,7 @@ export default function HowWeWork() {
         From first call to a phone that rings, <span className="grad">in four steps</span>
       </h3>
       <ol className="flow">
-        <li className="reveal" style={{ "--c": "#1561ad" }}>
+        <li className="reveal" style={{ "--c": "#8c6a2c" }}>
           {" "}
           <span className="ico">
             <svg viewBox="0 0 24 24">
@@ -299,7 +299,7 @@ export default function HowWeWork() {
           <p>A strategy call about your business, your customers and what has or hasn't worked so far.</p>{" "}
           <span className="get">You get: a clear read on where you stand</span>{" "}
         </li>
-        <li className="reveal" style={{ "--c": "#2f80c9" }}>
+        <li className="reveal" style={{ "--c": "#a8843f" }}>
           {" "}
           <span className="ico">
             <svg viewBox="0 0 24 24">
@@ -312,7 +312,7 @@ export default function HowWeWork() {
           <p>We map your audience, locations and channels into one connected 90-day plan, in plain English.</p>{" "}
           <span className="get">You get: a 90-day plan with weekly milestones</span>{" "}
         </li>
-        <li className="reveal" style={{ "--c": "#3aa6a0" }}>
+        <li className="reveal" style={{ "--c": "#8db2b0" }}>
           {" "}
           <span className="ico">
             <svg viewBox="0 0 24 24">
@@ -327,7 +327,7 @@ export default function HowWeWork() {
           </p>{" "}
           <span className="get">You get: everything live and connected</span>{" "}
         </li>
-        <li className="reveal" style={{ "--c": "#ee6c4d" }}>
+        <li className="reveal" style={{ "--c": "#c8734f" }}>
           {" "}
           <span className="ico">
             <svg viewBox="0 0 24 24">

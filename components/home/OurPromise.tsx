@@ -12,7 +12,7 @@ export default function OurPromise() {
         whatever the size of the budget.
       </p>
       <ol className="pm-list">
-        <li className="pm-row reveal" style={{ "--c": "#5b9be6" }}>
+        <li className="pm-row reveal" style={{ "--c": "#d2b27a" }}>
           <span className="pm-n" aria-hidden="true">
             01
           </span>
@@ -29,7 +29,7 @@ export default function OurPromise() {
             </svg>
           </span>
         </li>
-        <li className="pm-row reveal" style={{ "--c": "#8fd3f4" }}>
+        <li className="pm-row reveal" style={{ "--c": "#f1dcae" }}>
           <span className="pm-n" aria-hidden="true">
             02
           </span>
@@ -44,7 +44,7 @@ export default function OurPromise() {
             </svg>
           </span>
         </li>
-        <li className="pm-row reveal" style={{ "--c": "#7fe0c8" }}>
+        <li className="pm-row reveal" style={{ "--c": "#a9c08e" }}>
           <span className="pm-n" aria-hidden="true">
             03
           </span>
@@ -60,7 +60,7 @@ export default function OurPromise() {
             </svg>
           </span>
         </li>
-        <li className="pm-row reveal" style={{ "--c": "#f2b84b" }}>
+        <li className="pm-row reveal" style={{ "--c": "#e39b4f" }}>
           <span className="pm-n" aria-hidden="true">
             04
           </span>

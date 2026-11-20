@@ -23,7 +23,7 @@ export const GROUPS: MenuGroup[] = [
   {
     id: "web",
     name: "Web Design & Development",
-    color: "#5b9be6",
+    color: "#d2b27a",
     icon: (
       <>
         <rect x="3" y="4" width="18" height="12" rx="2" />
@@ -36,7 +36,7 @@ export const GROUPS: MenuGroup[] = [
   {
     id: "mkt",
     name: "Digital Marketing",
-    color: "#7fe0c8",
+    color: "#a9c08e",
     icon: (
       <>
         <path d="M4 10v4h3l6 4V6l-6 4z" />
@@ -49,7 +49,7 @@ export const GROUPS: MenuGroup[] = [
   {
     id: "auto",
     name: "Automation & CRM",
-    color: "#9ccc65",
+    color: "#c9b45a",
     icon: (
       <>
         <rect x="3" y="3" width="6" height="6" rx="1.5" />
@@ -64,7 +64,7 @@ export const GROUPS: MenuGroup[] = [
   {
     id: "consult",
     name: "Strategy & Consulting",
-    color: "#ee6c4d",
+    color: "#c8734f",
     icon: (
       <>
         <circle cx="12" cy="12" r="9" />

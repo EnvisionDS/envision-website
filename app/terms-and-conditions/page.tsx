@@ -5,6 +5,8 @@ import "@/lib/fonts/site";
 import "@/styles/service.css";
 import "@/styles/mega.css";
 import "@/styles/legal.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 
 export const metadata: Metadata = { title: `${TERMS.title} | Envision`, description: TERMS.description };
 

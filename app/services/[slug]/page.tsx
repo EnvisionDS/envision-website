@@ -4,6 +4,8 @@ import ServicePage from "@/components/services/ServicePage";
 import "@/lib/fonts/site";
 import "@/styles/service.css";
 import "@/styles/mega.css";
+import "@/lib/fonts/grand";
+import "@/styles/grand-site.css";
 import { SERVICES } from "@/lib/services";
 
 type Props = { params: Promise<{ slug: string }> };
