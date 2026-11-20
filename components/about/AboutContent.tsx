@@ -78,12 +78,12 @@ export default function AboutContent() {
               <span aria-hidden="true">/</span>
               <span>About us</span>
             </p>
-            <p className="ag-kicker ag-rv">Envision Digital Solutions · Melbourne</p>
-            <h1 id="ag-h" className="ag-title" data-split="">
+            <p className="ag-kicker">Envision Digital Solutions · Melbourne</p>
+            <h1 id="ag-h" className="ag-title">
               Digital marketing meets <em>smarter</em> decision-making.
             </h1>
-            <div className="ag-hero-foot ag-rv">
-              <p>
+            <div className="ag-hero-foot">
+              <p className="wr">
                 A Melbourne team of strategists, developers and creative thinkers, helping local businesses get found,
                 earn trust and turn interest into real enquiries.
               </p>
@@ -108,19 +108,19 @@ export default function AboutContent() {
         {/* the manifesto: lit word by word as it arrives */}
         <section className="ag-manifesto" id="ag-manifesto" aria-label="Who we are">
           <div className="ag-wrap">
-            <p className="ag-eyebrow ag-rv">
+            <p className="ag-eyebrow rv">
               <span>01</span> Who we are
             </p>
-            <p className="ag-big" data-words="">
+            <p className="ag-big wr">
               Most businesses spend on marketing before they know who they&apos;re targeting, where those people actually
               are, or what to say to them. <em>We fix that first.</em>
             </p>
-            <div className="ag-two ag-rv">
-              <p>
+            <div className="ag-two">
+              <p className="wr">
                 Envision combines digital marketing with location insight, so every dollar you spend is aimed at a real
                 customer in a real place, and you can see what it brought back.
               </p>
-              <p>
+              <p className="wr">
                 Whether you&apos;re starting from scratch, rebuilding something that isn&apos;t working, or expanding into
                 new areas, you get the strategy and the execution from one team.
               </p>
@@ -131,15 +131,15 @@ export default function AboutContent() {
         {/* the film: a looping scene in four chapters, with a player's controls */}
         <section className="ag-film" aria-labelledby="ag-film-h">
           <div className="ag-wrap">
-            <div className="ag-head ag-rv">
-              <p className="ag-eyebrow">
+            <div className="ag-head">
+              <p className="ag-eyebrow rv">
                 <span>02</span> How we work
               </p>
-              <h2 id="ag-film-h">
+              <h2 id="ag-film-h" className="rv">
                 From first call to a phone <em>that rings.</em>
               </h2>
             </div>
-            <figure className="ag-screen ag-rv" data-film="">
+            <figure className="ag-screen rv" data-film="">
               <div className="ag-stage" data-scene="film" aria-hidden="true"></div>
               <span className="ag-bars" aria-hidden="true"></span>
               <figcaption className="ag-caps">
@@ -178,17 +178,17 @@ export default function AboutContent() {
         {/* the team: three disciplines as tall pillars */}
         <section className="ag-pillars-band" aria-labelledby="ag-team-h">
           <div className="ag-wrap">
-            <div className="ag-head ag-rv">
-              <p className="ag-eyebrow">
+            <div className="ag-head">
+              <p className="ag-eyebrow rv">
                 <span>03</span> The team
               </p>
-              <h2 id="ag-team-h">
+              <h2 id="ag-team-h" className="rv">
                 Strategy, build and growth, <em>under one roof.</em>
               </h2>
             </div>
             <div className="ag-pillars">
               {PILLARS.map((p, i) => (
-                <article className="ag-pillar ag-rv" style={{ "--i": i }} key={p.title}>
+                <article className="ag-pillar rv" style={{ "--i": i }} key={p.title}>
                   <span className="ag-numeral" aria-hidden="true">
                     {p.n}
                   </span>
@@ -207,17 +207,17 @@ export default function AboutContent() {
         {/* the approach: three principles, each with a gold line that draws across */}
         <section className="ag-principles" aria-labelledby="ag-ap-h">
           <div className="ag-wrap">
-            <div className="ag-head ag-rv">
-              <p className="ag-eyebrow">
+            <div className="ag-head">
+              <p className="ag-eyebrow rv">
                 <span>04</span> Our approach
               </p>
-              <h2 id="ag-ap-h">
+              <h2 id="ag-ap-h" className="rv">
                 What makes our approach <em>different.</em>
               </h2>
             </div>
             <ol className="ag-rows">
               {PRINCIPLES.map((p, i) => (
-                <li className="ag-row ag-rv" key={p.title}>
+                <li className="ag-row rv" key={p.title}>
                   <span className="ag-row-n" aria-hidden="true">{`0${i + 1}`}</span>
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>
@@ -233,17 +233,17 @@ export default function AboutContent() {
           <div className="ag-stage" data-scene="map" aria-hidden="true"></div>
           <div className="ag-place-veil" aria-hidden="true"></div>
           <div className="ag-wrap ag-place-in">
-            <p className="ag-eyebrow ag-rv">
+            <p className="ag-eyebrow rv">
               <span>05</span> Where we are
             </p>
-            <h2 id="ag-place-h" className="ag-rv">
+            <h2 id="ag-place-h" className="rv">
               Melbourne based. Aimed at <em>where your customers are.</em>
             </h2>
-            <p className="ag-rv">
+            <p className="wr">
               Location insight sits at the heart of how we plan: who your customers are, where they are, and what will
               reach them there, before any budget moves.
             </p>
-            <span className="ag-pin ag-rv" aria-hidden="true">
+            <span className="ag-pin rv" aria-hidden="true">
               <i></i>
               <b>Melbourne, Victoria</b>
               <small>37.81° S · 144.96° E</small>
@@ -617,14 +617,14 @@ export default function AboutContent() {
         <section className="ag-close" aria-labelledby="ag-close-h">
           <div className="ag-close-glow" aria-hidden="true"></div>
           <div className="ag-wrap">
-            <p className="ag-eyebrow ag-rv">Next step</p>
-            <h2 id="ag-close-h" className="ag-rv">
+            <p className="ag-eyebrow rv">Next step</p>
+            <h2 id="ag-close-h" className="rv">
               Let&apos;s talk about <em>what&apos;s next.</em>
             </h2>
-            <p className="ag-rv">
+            <p className="wr">
               Tell us about your business and what you need help with, and we&apos;ll show you where we&apos;d start.
             </p>
-            <div className="ag-ctas ag-rv">
+            <div className="ag-ctas rv">
               <a className="ag-btn" href="/contact">
                 Book a discovery call{" "}
                 <svg viewBox="0 0 24 24" aria-hidden="true">

@@ -185,3 +185,50 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 @media (prefers-reduced-motion: reduce) {
   .g-stage canvas { transition: none; }
 }
+
+/* ---------------------------------------------------------------- the ground every page stands on
+   Deep navy, lit from behind by slow pools of the logo's blue (and, low down, a breath of gold) that drift on their own,
+   with a faint field of points fading out towards the edges. It's fixed behind the page, so sections, panels and the
+   header sit on it like glass; the 3D scenes and their veils blend into it. On the light theme: warm paper with soft
+   washes of the blue. */
+html { background-color: var(--bg); }
+:root body, :root body.cx { background: transparent; }
+:root section.block, :root .ag { background-color: transparent; }
+body::before { content: ""; position: fixed; inset: -18vmax; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(42vmax 34vmax at 14% 10%, rgba(21, 97, 173, .34), transparent 70%),
+    radial-gradient(38vmax 30vmax at 90% 26%, rgba(34, 117, 204, .18), transparent 70%),
+    radial-gradient(56vmax 30vmax at 50% 104%, rgba(21, 97, 173, .26), transparent 70%),
+    radial-gradient(26vmax 20vmax at 76% 86%, rgba(210, 178, 122, .08), transparent 70%),
+    radial-gradient(120vmax 90vmax at 50% 40%, #071328, #040914 70%);
+  animation: gAurora 46s ease-in-out infinite alternate; }
+@keyframes gAurora {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4vmax, -3vmax, 0) scale(1.08); }
+  100% { transform: translate3d(-3vmax, 2vmax, 0) scale(1.03); }
+}
+html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+  background-image: radial-gradient(circle at center, rgba(143, 211, 244, .22) 0 1px, transparent 1.4px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(75% 65% at 50% 45%, #000, transparent 85%); mask-image: radial-gradient(75% 65% at 50% 45%, #000, transparent 85%); }
+:root[data-theme="light"] body::before {
+  background:
+    radial-gradient(42vmax 34vmax at 14% 10%, rgba(21, 97, 173, .12), transparent 70%),
+    radial-gradient(38vmax 30vmax at 90% 26%, rgba(91, 155, 230, .10), transparent 70%),
+    radial-gradient(56vmax 30vmax at 50% 104%, rgba(21, 97, 173, .10), transparent 70%),
+    radial-gradient(26vmax 20vmax at 76% 86%, rgba(179, 138, 66, .10), transparent 70%),
+    #f3eee4; }
+:root[data-theme="light"] html::before, html[data-theme="light"]::before { background-image: radial-gradient(circle at center, rgba(21, 97, 173, .2) 0 1px, transparent 1.4px); opacity: .5; }
+
+/* the panels and the header become glass over it */
+:root body section.block.panel.tone-slate, :root body section.block.panel.tone-ink, :root body section.block.panel.navy {
+  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--brand) 24%, transparent), transparent 70%), rgba(7, 16, 32, .58); }
+:root[data-theme="light"] body section.block.panel.tone-slate, :root[data-theme="light"] body section.block.panel.tone-ink, :root[data-theme="light"] body section.block.panel.navy {
+  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 70%), rgba(255, 252, 245, .62); }
+:root .top { background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); }
+:root nav:not(.blue) { background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); }
+/* the veils behind the openings' text fade to clear rather than to a flat colour, so the ground shows through */
+.g-veil.left { background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 85%, transparent) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 34%, transparent 64%); }
+.g-veil.bottom { background: linear-gradient(0deg, color-mix(in srgb, var(--bg) 70%, transparent) 0%, transparent 40%); }
+.g-veil.centre { background: radial-gradient(60% 55% at 50% 50%, color-mix(in srgb, var(--bg) 70%, transparent), transparent 75%); }
+@media (prefers-reduced-motion: reduce) { body::before { animation: none; } }

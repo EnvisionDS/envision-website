@@ -190,7 +190,7 @@ a { color: inherit; }
 /* reveal on scroll (only for things that start below the first screen) */
 .rv.pre { opacity: 0; }
 .rv.in { animation: rvUp 1.7s cubic-bezier(.3,.1,.2,1) var(--rd, 0s) backwards; }
-@keyframes rvUp { from { opacity: 0; translate: 0 44px; filter: blur(6px); } }
+@keyframes rvUp { from { opacity: 0; translate: 0 48px; filter: blur(6px); } }   /* the same rise as the homepage's (moRise) */
 .label.rv.in { animation-name: rvLabel; }   /* a section's label settles in like the home page's: letters drawing together as it rises */
 @keyframes rvLabel { from { opacity: 0; translate: 0 18px; letter-spacing: .6em; filter: blur(4px); } }
 /* headings rise word by word from behind a mask (same as the home page) */
