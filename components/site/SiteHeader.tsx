@@ -2,7 +2,7 @@ import MegaMenu from "./MegaMenu";
 import ThemeButton from "./ThemeButton";
 
 // The nav bar on every page but the homepage.
-export default function SiteHeader({ current }: { current?: "about" | "services" }) {
+export default function SiteHeader({ current }: { current?: "about" | "services" | "blog" }) {
   return (
     <header className="top">
       <div className="wrap nav">
@@ -18,6 +18,9 @@ export default function SiteHeader({ current }: { current?: "about" | "services"
           </a>
           <a href="/about" aria-current={current === "about" ? "page" : undefined}>
             About us
+          </a>
+          <a href="/blog" aria-current={current === "blog" ? "page" : undefined}>
+            Blogs
           </a>
           <a href="/contact">Contact</a>
         </nav>

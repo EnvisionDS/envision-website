@@ -21,6 +21,7 @@ import WhoWeAre from "@/components/home/WhoWeAre";
 import OurPromise from "@/components/home/OurPromise";
 import Finder from "@/components/home/Finder";
 import OurWork from "@/components/home/OurWork";
+import FromTheBlog from "@/components/home/FromTheBlog";
 import Topics from "@/components/home/Topics";
 import Faq from "@/components/home/Faq";
 import ContactSection from "@/components/home/ContactSection";
@@ -34,6 +35,7 @@ import "@/styles/mega.css";
 import "@/styles/home.css";
 import "@/styles/home-light.css";
 import "@/styles/work.css";
+import "@/styles/home-blog.css";
 import "@/lib/fonts/grand";
 import "@/styles/grand-site.css";
 
@@ -67,6 +69,7 @@ export default function Home() {
       <OurPromise />
       <Finder />
       <OurWork />
+      <FromTheBlog />
       <Topics />
       <Faq />
       <ContactSection />

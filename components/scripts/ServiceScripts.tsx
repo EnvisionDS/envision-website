@@ -13,7 +13,7 @@ import { initGrandScenes } from "@/lib/client/grand-scenes";
 // three.js scenes (lib/client/grand-scenes.js) on every page, plus the values wheel on About, the enquiry form on Contact and the sticky bar on Services. Each runs once per page load.
 let started = false;
 
-export default function ServiceScripts({ page }: { page?: "about" | "contact" | "services" }) {
+export default function ServiceScripts({ page }: { page?: "about" | "contact" | "services" | "blog" }) {
   useEffect(() => {
     if (started) return;
     started = true;

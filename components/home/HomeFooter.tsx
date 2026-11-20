@@ -1,3 +1,8 @@
+import { GROUPS } from "@/lib/menu";
+import { SERVICE_BY_KEY } from "@/lib/services";
+
+// The homepage footer: who we are, quick links and how to reach us; then every service, under its four areas; then the
+// copyright line with Instagram and LinkedIn as their logos.
 export default function HomeFooter() {
   return (
     <footer>
@@ -17,30 +22,13 @@ export default function HomeFooter() {
               <a href="/services">Services</a>
             </li>
             <li>
-              <a href="/location-strategy">Location Strategy</a>
-            </li>
-            <li>
               <a href="/about">About us</a>
             </li>
             <li>
+              <a href="/blog">Blogs</a>
+            </li>
+            <li>
               <a href="/contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4>Core services</h4>
-          <ul>
-            <li>
-              <a href="/services/website-design-and-development">Website Design</a>
-            </li>
-            <li>
-              <a href="/services/seo-and-content-strategy">{"SEO & Content Strategy"}</a>
-            </li>
-            <li>
-              <a href="/services/paid-ads-management">Paid Ads Management</a>
-            </li>
-            <li>
-              <a href="/location-strategy">Location Strategy</a>
             </li>
           </ul>
         </div>
@@ -54,7 +42,9 @@ export default function HomeFooter() {
               <a href="tel:+61399693883">03 9969 3883</a>
             </li>
           </ul>
-          <h4 style={{ marginTop: "1.2rem" }}>Legal</h4>
+        </div>
+        <div>
+          <h4>Legal</h4>
           <ul>
             <li>
               <a href="/privacy-policy">Privacy Policy</a>
@@ -65,14 +55,40 @@ export default function HomeFooter() {
           </ul>
         </div>
       </div>
+      {/* every service, under its area */}
+      <div className="fsvc">
+        {GROUPS.map((g) => (
+          <div key={g.id}>
+            <h4>
+              <a href={`/services#${g.id}`}>{g.name}</a>
+            </h4>
+            <ul>
+              {g.items.map((k) => (
+                <li key={k}>
+                  <a href={SERVICE_BY_KEY[k].href}>{SERVICE_BY_KEY[k].name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
       <div className="fline">
         <span>© 2026 Envision Digital Solutions. All rights reserved.</span>
-        <span>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener">
-            Instagram
+        <span className="fsocial">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Envision on Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="17.3" cy="6.7" r="1.1" className="dot" />
+            </svg>
           </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
-            LinkedIn
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="Envision on LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                className="fill"
+                d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9.5 9h3.8v1.7h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21h-4z"
+              />
+            </svg>
           </a>
         </span>
       </div>

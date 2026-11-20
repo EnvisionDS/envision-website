@@ -1,0 +1,29 @@
+/* the homepage's snippet of the blog (components/home/FromTheBlog.tsx): the three newest posts as cards */
+.hb-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2.4rem; }
+.hb-card { display: grid; grid-template-rows: auto auto 1fr auto auto; gap: .7rem; padding: 1.7rem; text-decoration: none; color: var(--text);
+  border: 1px solid var(--line); background: color-mix(in srgb, var(--bg-2) 70%, transparent); transition: border-color .35s, transform .45s cubic-bezier(.2,.8,.2,1); }
+.hb-card:hover, .hb-card:focus-visible { border-color: color-mix(in srgb, var(--brand, #1561ad) 75%, transparent); transform: translateY(-4px); }
+.hb-topic { font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--brand-ink, #5b9be6); }
+:root .hb-card h3 { font-family: var(--serif, Georgia, serif); font-weight: 400; font-size: clamp(1.45rem, 2vw, 1.8rem); line-height: 1.14; }
+.hb-card p { color: var(--muted); font-size: .96rem; line-height: 1.6; }
+.hb-meta { font-size: .82rem; color: color-mix(in srgb, var(--text) 45%, transparent); }
+.hb-go { font-size: .76rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--brand-ink, #5b9be6); }
+.hb-go span { display: inline-block; transition: transform .3s; } .hb-card:hover .hb-go span { transform: translateX(4px); }
+.hb-all { margin-top: 2.2rem; }
+@media (max-width: 960px) { .hb-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .hb-card { transition: none; } .hb-card:hover { transform: none; } }
+
+/* the footer (components/home/HomeFooter.tsx): the services under their four areas, and the social logos */
+.fsvc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; margin-top: 2.6rem; padding-top: 2.2rem; border-top: 1px solid var(--line); }
+.fsvc h4 { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .9rem; }
+.fsvc h4 a { color: var(--brand-ink, #5b9be6); }
+.fsvc h4 a:hover { color: var(--text); }
+.fsvc ul { list-style: none; display: grid; gap: .45rem; }
+.fsocial { display: inline-flex; gap: .6rem; }
+.fline .fsocial a { margin: 0; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); color: var(--muted);
+  transition: color .3s, border-color .3s, background .3s; }
+.fline .fsocial a:hover { color: #fff; background: var(--brand, #1561ad); border-color: var(--brand, #1561ad); }
+.fsocial svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+.fsocial svg .dot, .fsocial svg .fill { fill: currentColor; stroke: none; }
+@media (max-width: 860px) { .fsvc { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .fsvc { grid-template-columns: 1fr; } }

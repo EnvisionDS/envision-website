@@ -1,0 +1,29 @@
+/* The blog (components/blog/Blog.tsx): the posts as cards (the newest one large), and each post set for reading. */
+
+.bl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.bl-card { position: relative; display: grid; grid-template-rows: auto auto 1fr auto auto; gap: .7rem; padding: 1.7rem; text-decoration: none; color: var(--text);
+  border: 1px solid var(--line); background: var(--surface); transition: border-color .35s, transform .45s cubic-bezier(.2,.8,.2,1); }
+.bl-card:hover, .bl-card:focus-visible { border-color: color-mix(in srgb, var(--brand, #1561ad) 70%, transparent); transform: translateY(-4px); }
+.bl-card.big { grid-column: 1 / -1; padding: clamp(2rem, 4vw, 3.2rem); background: radial-gradient(80% 90% at 0% 0%, color-mix(in srgb, var(--brand, #1561ad) 22%, transparent), transparent 65%), var(--surface); }
+.bl-topic { font: 500 .72rem/1 var(--body); letter-spacing: .22em; text-transform: uppercase; color: var(--brand-ink, #5b9be6); }
+:root .bl-card h3 { font-family: var(--serif, Georgia, serif); font-weight: 400; font-size: clamp(1.5rem, 2.1vw, 1.9rem); line-height: 1.12; }
+:root .bl-card.big h3 { font-size: clamp(2.1rem, 4vw, 3.4rem); max-width: 22ch; }
+.bl-card p { color: var(--muted); font-size: .98rem; line-height: 1.6; max-width: 60ch; }
+.bl-meta { font-size: .82rem; color: var(--faint); }
+.bl-go { display: inline-flex; align-items: center; gap: .55rem; margin-top: .5rem; font: 500 .76rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--brand-ink, #5b9be6); }
+.bl-go svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s; }
+.bl-card:hover .bl-go svg { transform: translateX(4px); }
+
+/* a post */
+.bl-head .bl-meta { margin-top: 1.4rem; }
+.bl-body { display: block; max-width: 68ch; margin: 0 auto; }
+:root .bl-body > p { max-width: none; font-size: 1.12rem; line-height: 1.8; color: color-mix(in srgb, var(--text) 86%, transparent); margin: 0 0 1.3rem; }
+:root .bl-body > p:first-child { font-size: 1.28rem; color: var(--text); }
+:root .band .bl-body h2 { font-family: var(--serif, Georgia, serif); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.2rem); line-height: 1.15; margin: 2.6rem 0 .9rem; }
+.bl-back { max-width: 68ch; margin: 3rem auto 0; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.bl-back a { color: var(--brand-ink, #5b9be6); text-decoration: none; font: 500 .8rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; }
+.bl-back a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 960px) { .bl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .bl-grid { grid-template-columns: 1fr; } .bl-card.big { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { .bl-card { transition: none; } .bl-card:hover { transform: none; } }

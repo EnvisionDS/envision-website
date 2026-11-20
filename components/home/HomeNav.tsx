@@ -23,6 +23,7 @@ export default function HomeNav() {
         </a>
         <a href="#work">Our work</a>
         <a href="/about">About us</a>
+        <a href="/blog">Blogs</a>
         <a href="/contact">Contact</a>
       </div>
       <div className="nav-end">
