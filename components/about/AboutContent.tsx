@@ -4,7 +4,7 @@ export default function AboutContent() {
     <>
       <main id="main">
         <section className="hero">
-          <div className="wrap hero-grid">
+          <div className="wrap">
             <div className="hero-copy">
               <p className="crumbs">
                 <a href="/" data-home="">
@@ -32,25 +32,6 @@ export default function AboutContent() {
                   See our work
                 </a>
               </div>
-            </div>
-            <div className="ab-photos" aria-hidden="true">
-              <div className="abp-main">
-                <img src="/img/ph-team-table.jpg" alt="" />
-              </div>
-              <div className="abp-side">
-                <img src="/img/ph-planning.jpg" alt="" />
-              </div>{" "}
-              <span className="abp-chip">
-                <i>
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z" />
-                    <circle cx="12" cy="10" r="2" />
-                  </svg>
-                </i>
-                <span>
-                  <b>Melbourne based</b>Strategy, build and growth in one team
-                </span>
-              </span>{" "}
             </div>
           </div>
         </section>
