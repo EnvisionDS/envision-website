@@ -1,28 +1,31 @@
-/* The whole site in the About page's key (styles/about-grand.css): ivory on near-black with a thread of gold, a serif
-   display face (Instrument Serif) for the big words, square buttons in small spaced capitals, hairline rules, a fine
-   film grain over everything, and three.js scenes behind the openings (lib/client/grand-scenes.js). On the light
-   theme: ink on warm paper, the gold deepened.
+/* The whole site in the About page's key (styles/about-grand.css), in the logo's colours: ivory on a deep navy made from
+   the logo's blue (#1561AD), the logo blue itself for the buttons and the brand, and a thread of gold for the highlights;
+   a serif display face (Instrument Serif) for the big words, square buttons in small spaced capitals, hairline rules, a
+   fine film grain over everything, and three.js scenes behind the openings (lib/client/grand-scenes.js). On the light
+   theme: navy ink on warm paper, the gold deepened.
    Imported last on every page, so it re-keys the homepage's stylesheets (home.css, home-light.css) and the inner pages'
-   (service.css and friends) without rewriting them. The colours themselves were moved onto the warm palette in place. */
+   (service.css and friends) without rewriting them. The colours themselves were moved onto this palette in place. */
 
 :root {
   --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --void: #050506; --ivory: #f3efe6; --gold: #d2b27a; --gold-2: #f1dcae; --hair: rgba(243, 239, 230, .12);
+  --brand: #1561ad; --brand-2: #2275cc; --brand-ink: #5b9be6;   /* the logo's blue; a lift of it for hover; a lighter tint for text on navy */
+  --void: #050b16; --ivory: #f3efe6; --gold: #d2b27a; --gold-2: #f1dcae; --hair: rgba(243, 239, 230, .12);
   --gold-grad: linear-gradient(100deg, var(--gold), var(--gold-2) 55%, var(--gold));
   --g-ease: cubic-bezier(.2, .8, .2, 1);
   /* the homepage's tokens */
-  --bg: #050506; --bg-2: #0d0c0a; --text: #f3efe6; --muted: rgba(243, 239, 230, .64); --line: rgba(243, 239, 230, .1);
-  --accent: #a88a55; --accent-2: #d2b27a; --orange: #d2b27a; --grad: var(--gold-grad);
+  --bg: #050b16; --bg-2: #0a1426; --text: #f3efe6; --muted: rgba(243, 239, 230, .66); --line: rgba(243, 239, 230, .1);
+  --accent: #3d5a80; --accent-2: #d2b27a; --orange: #d2b27a; --grad: var(--gold-grad);
 }
 :root[data-theme="light"] {
-  --void: #f3eee4; --ivory: #17130d; --gold: #8c6a2c; --gold-2: #b38a42; --hair: rgba(23, 19, 13, .14);
-  --bg: #f3eee4; --bg-2: #ece6da; --text: #17130d; --muted: rgba(23, 19, 13, .68); --line: rgba(23, 19, 13, .12);
-  --accent: #6b5a3a; --accent-2: #8c6a2c; --orange: #8c6a2c;
+  --brand-ink: #1561ad;
+  --void: #f3eee4; --ivory: #0f1d30; --gold: #8c6a2c; --gold-2: #b38a42; --hair: rgba(15, 29, 48, .14);
+  --bg: #f3eee4; --bg-2: #ece6da; --text: #0f1d30; --muted: rgba(15, 29, 48, .7); --line: rgba(15, 29, 48, .12);
+  --accent: #3d5a80; --accent-2: #8c6a2c; --orange: #8c6a2c;
 }
 /* the inner pages' tokens (service.css): the same ground, faint and rule in the warm key */
-:root .top, :root body { --surface: #0b0a08; --rule: rgba(243, 239, 230, .16); --faint: rgba(243, 239, 230, .4); }
-:root[data-theme="light"] .top, :root[data-theme="light"] body { --surface: #faf6ee; --rule: rgba(23, 19, 13, .18); --faint: rgba(23, 19, 13, .45); }
-:root[data-theme="light"] body { --ink: color-mix(in srgb, var(--c) 60%, #17130d); }
+:root .top, :root body { --surface: #081224; --rule: rgba(243, 239, 230, .16); --faint: rgba(243, 239, 230, .4); }
+:root[data-theme="light"] .top, :root[data-theme="light"] body { --surface: #faf6ee; --rule: rgba(15, 29, 48, .18); --faint: rgba(15, 29, 48, .46); }
+:root[data-theme="light"] body { --ink: color-mix(in srgb, var(--c) 60%, #0f1d30); }
 
 body { background: var(--bg); color: var(--text); }
 ::selection { background: color-mix(in srgb, var(--gold) 45%, transparent); color: var(--ivory); }
@@ -47,24 +50,25 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 
 /* ---------------------------------------------------------------- buttons: square, small spaced capitals */
 :root .pill { border-radius: 0; letter-spacing: .18em; font-size: .78rem; padding: 1rem 1.5rem; border-color: var(--hair); }
-:root .pill.solid { background: var(--ivory); color: var(--void); border-color: var(--ivory); }
-:root .pill.solid::before { background: var(--gold-2); }
-:root .pill.solid:hover { color: #050506; border-color: var(--gold-2); }
+:root .pill.solid { background: var(--brand); color: #f3efe6; border-color: var(--brand); }
+:root .pill.solid::before { background: var(--brand-2); }
+:root .pill.solid:hover { color: #fff; border-color: var(--brand-2); }
+:root .pill.solid::after { background: var(--gold-2); }
 :root .pill:not(.solid):hover { border-color: var(--gold); }
 :root .pill.call::before { background: conic-gradient(from 0deg, var(--gold) 0deg, var(--gold-2) calc(var(--sw) - 12deg), #fff8e6 var(--sw), transparent var(--sw) 360deg);
   filter: drop-shadow(0 0 4px color-mix(in srgb, var(--gold) 80%, transparent)) drop-shadow(0 0 12px color-mix(in srgb, var(--gold) 40%, transparent)); }
-:root[data-theme="light"] .pill.call::before { background: conic-gradient(from 0deg, #8c6a2c 0deg, #b38a42 calc(var(--sw) - 12deg), #17130d var(--sw), transparent var(--sw) 360deg); filter: none; }
+:root[data-theme="light"] .pill.call::before { background: conic-gradient(from 0deg, #8c6a2c 0deg, #b38a42 calc(var(--sw) - 12deg), #0f1d30 var(--sw), transparent var(--sw) 360deg); filter: none; }
 
 :root .btn { border-radius: 0; padding: 1.05rem 1.6rem; font: 500 .8rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase;
-  background: var(--ivory); color: var(--void); border-color: var(--ivory); transition: background .4s, border-color .4s, color .4s; }
-:root .btn:hover { transform: none; box-shadow: none; background: var(--gold-2); border-color: var(--gold-2); color: #050506; }
+  background: var(--brand); color: #f3efe6; border-color: var(--brand); transition: background .4s, border-color .4s, color .4s, box-shadow .4s; }
+:root .btn:hover { transform: none; background: var(--brand-2); border-color: var(--brand-2); color: #fff; box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--brand) 70%, transparent); }
 :root .btn.ghost { background: transparent; color: var(--ivory); border-color: var(--hair); }
 :root .btn.ghost:hover { border-color: var(--gold); color: var(--gold-2); background: transparent; }
 :root[data-theme="light"] .btn.ghost:hover { color: var(--gold); }
 
 /* the nav's call button: ivory, gold on hover */
-:root .nav-cta { background: var(--ivory); color: var(--void); transition: background .4s; }
-:root .nav-cta:hover { background: var(--gold-2); color: #050506; }
+:root .nav-cta { background: var(--brand); color: #f3efe6; transition: background .4s; }
+:root .nav-cta:hover { background: var(--brand-2); color: #fff; }
 :root nav .nav-cta { border-radius: 0; }
 
 /* ---------------------------------------------------------------- the homepage */
@@ -97,10 +101,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 /* the slate panels become near-black rooms with a hairline and a breath of gold at the top */
 :root body section.block.panel { border-radius: 0; border: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); margin: 0; }
 :root body section.block.panel.tone-slate, :root body section.block.panel.tone-ink, :root body section.block.panel.navy {
-  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--gold) 9%, transparent), transparent 70%), #080706; }
+  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--brand) 22%, transparent), transparent 70%), #07101f; }
 :root[data-theme="light"] body section.block.panel.tone-slate, :root[data-theme="light"] body section.block.panel.tone-ink, :root[data-theme="light"] body section.block.panel.navy {
   background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 70%), #f8f4ec; box-shadow: none; }
-:root section.block.finale { background: radial-gradient(70% 55% at 50% 100%, color-mix(in srgb, var(--gold) 20%, transparent), transparent 70%), var(--bg); }
+:root section.block.finale { background: radial-gradient(70% 55% at 50% 100%, color-mix(in srgb, var(--brand) 30%, transparent), transparent 70%), var(--bg); }
 
 /* ---------------------------------------------------------------- the inner pages (service.css world) */
 :root .top { background: color-mix(in srgb, var(--bg) 84%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
@@ -116,7 +120,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 :root .sec-head h2, :root .band h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); line-height: 1.04; }
 :root .cta-band h2 { font-size: clamp(2.6rem, 5.6vw, 5rem); line-height: 1; }
 :root .vf { --vc: color-mix(in srgb, var(--gold) 70%, transparent); }
-:root .vf-ret i { background: var(--gold); }
+:root .vf-ret i { background: var(--brand-ink); }
 /* titles of cards and rows across the inner pages */
 :root .ix-gh h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 5.4vw, 4.8rem); line-height: 1; }
 :root .ix-card b, :root .ix-goal b, :root .ix-how b, :root .ix-jump-a b, :root .mrows-t, :root .qt-q, :root .stair b, :root .vs thead th, :root .bub.q,
@@ -140,15 +144,15 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 :root .cta-ghost { border-radius: 0; letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; padding: 1rem 1.5rem; }
 :root .fact b, :root .fact strong { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; letter-spacing: 0; }
 /* the contact frame: a near-black panel with a gold hairline, over the scene */
-:root .frame { background: linear-gradient(160deg, color-mix(in srgb, #15120c 92%, transparent), color-mix(in srgb, #0a0907 94%, transparent));
+:root .frame { background: linear-gradient(160deg, color-mix(in srgb, #0f1e36 92%, transparent), color-mix(in srgb, #070f1e 94%, transparent));
   border-color: color-mix(in srgb, var(--gold) 26%, transparent); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
 :root[data-theme="light"] .frame { background: color-mix(in srgb, #fbf8f2 92%, transparent); }
 :root .frame h2, :root.cx .frame h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3.4rem); line-height: 1.02; font-weight: 400; letter-spacing: -.012em; }
 :root.cx h3, :root .frame h3 { font-family: var(--serif); font-weight: 400; }
-:root .send { border-radius: 0; background: var(--ivory); color: var(--void); font: 500 .8rem/1 var(--body, "IBM Plex Sans", sans-serif); letter-spacing: .18em; text-transform: uppercase; padding: 1.05rem 1.6rem; transition: background .4s; }
-:root .send:hover { background: var(--gold-2); color: #050506; transform: none; }
-:root[data-theme="light"] .send { color: #f3eee4; }
-:root[data-theme="light"] .send:hover { background: var(--gold); color: #f3eee4; }
+:root .send { border-radius: 0; background: var(--brand); color: #f3efe6; font: 500 .8rem/1 var(--body, "IBM Plex Sans", sans-serif); letter-spacing: .18em; text-transform: uppercase; padding: 1.05rem 1.6rem; transition: background .4s; }
+:root .send:hover { background: var(--brand-2); color: #fff; transform: none; }
+:root[data-theme="light"] .send { color: #f3efe6; }
+:root[data-theme="light"] .send:hover { background: var(--brand-2); color: #fff; }
 :root .form input:focus, :root .form select:focus, :root .form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 18%, transparent); }
 :root .finale > .g-stage { opacity: .55; }
 

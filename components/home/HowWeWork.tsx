@@ -56,7 +56,7 @@ export default function HowWeWork() {
             each other.
           </p>
           <div className="gp-picks" role="group" aria-label="Services to include in the graph">
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="1" style={{ "--c0": "#d2b27a" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="1" style={{ "--c0": "#5b9be6" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <rect x="3" y="4.5" width="18" height="15" rx="2" />
@@ -69,7 +69,7 @@ export default function HowWeWork() {
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
             </button>
-            <button className="gp-pick" type="button" aria-pressed="false" data-s="2" style={{ "--c0": "#a9c08e" }}>
+            <button className="gp-pick" type="button" aria-pressed="false" data-s="2" style={{ "--c0": "#d2b27a" }}>
               <span className="gp-pi" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <circle cx="11" cy="11" r="6.5" />
@@ -286,7 +286,7 @@ export default function HowWeWork() {
         From first call to a phone that rings, <span className="grad">in four steps</span>
       </h3>
       <ol className="flow">
-        <li className="reveal" style={{ "--c": "#8c6a2c" }}>
+        <li className="reveal" style={{ "--c": "#1561ad" }}>
           {" "}
           <span className="ico">
             <svg viewBox="0 0 24 24">
@@ -299,7 +299,7 @@ export default function HowWeWork() {
           <p>A strategy call about your business, your customers and what has or hasn't worked so far.</p>{" "}
           <span className="get">You get: a clear read on where you stand</span>{" "}
         </li>
-        <li className="reveal" style={{ "--c": "#a8843f" }}>
+        <li className="reveal" style={{ "--c": "#2f80c9" }}>
           {" "}
           <span className="ico">
             <svg viewBox="0 0 24 24">

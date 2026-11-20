@@ -21,7 +21,7 @@
 .stair::before { content: ""; position: absolute; inset: 0; pointer-events: none;
                  background: radial-gradient(220px circle at var(--lx, -999px) var(--ly, -999px), color-mix(in srgb, var(--c) 14%, transparent), transparent 70%); }
 .stair-ico { position: absolute; left: .9rem; top: 0; z-index: 2; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--ink);
-             background: var(--bg, #0c0b0a); border: 1.5px solid var(--c); box-shadow: 0 0 0 5px var(--bg, #0c0b0a);
+             background: var(--bg, #070a0f); border: 1.5px solid var(--c); box-shadow: 0 0 0 5px var(--bg, #070a0f);
              transform: translateY(-50%) scale(0); transition: transform .45s cubic-bezier(.3,1.5,.5,1), box-shadow .35s; }
 .stair-ico svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .stair b, .stair small { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
@@ -35,9 +35,9 @@
 .stairs.in .stair small { transition-delay: calc(var(--i) * var(--beat) + .25s); }
 /* pointing at a step (or the light climbing on touch screens) brightens it */
 .stairs li:hover .stair, .stairs li.lit .stair { background: linear-gradient(to bottom, color-mix(in srgb, var(--c) 16%, transparent), transparent 80%); }
-.stairs li:hover .stair-ico, .stairs li.lit .stair-ico { box-shadow: 0 0 0 5px var(--bg, #0c0b0a), 0 0 22px color-mix(in srgb, var(--c) 60%, transparent); }
+.stairs li:hover .stair-ico, .stairs li.lit .stair-ico { box-shadow: 0 0 0 5px var(--bg, #070a0f), 0 0 22px color-mix(in srgb, var(--c) 60%, transparent); }
 /* the top step is where it all leads: its icon is filled */
-.stairs li:last-child .stair-ico { background: color-mix(in srgb, var(--c) 22%, var(--bg, #0c0b0a)); box-shadow: 0 0 0 5px var(--bg, #0c0b0a), 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+.stairs li:last-child .stair-ico { background: color-mix(in srgb, var(--c) 22%, var(--bg, #070a0f)); box-shadow: 0 0 0 5px var(--bg, #070a0f), 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
 /* narrower screens: the steps run down the page along one line, a little further in each time */
 @media (max-width: 960px) {
   .stairs { grid-template-columns: 1fr; }
@@ -147,7 +147,7 @@
   padding: clamp(1.5rem, 3.5vw, 2.6rem); border-radius: 26px; border: 1px solid color-mix(in srgb, var(--c) 30%, var(--line));
   background: linear-gradient(135deg, color-mix(in srgb, var(--c) calc(5% + var(--i) * 4%), var(--surface)), var(--surface) 70%);
   box-shadow: 0 -20px 50px -10px rgba(0, 0, 0, .45); }
-:root[data-theme="light"] .mstack-card { box-shadow: 0 -16px 40px -12px rgba(23, 19, 13, .18); }
+:root[data-theme="light"] .mstack-card { box-shadow: 0 -16px 40px -12px rgba(19, 32, 46, .18); }
 .mstack-n { font: 300 clamp(3rem, 7vw, 5.5rem)/.9 var(--display); letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--c) 85%, transparent); }
 .mstack-card h3 { font-size: clamp(1.3rem, 2.4vw, 1.75rem); margin-bottom: .7rem; }
 .mstack-card p { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 52ch; }

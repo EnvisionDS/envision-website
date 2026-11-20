@@ -354,7 +354,7 @@ export default function AboutContent() {
                   <article
                     className="vw-item"
                     id="vw-customer"
-                    style={{ "--c": "#d2b27a" }}
+                    style={{ "--c": "#5b9be6" }}
                     data-label="Customer-centric"
                   >
                     {" "}
@@ -391,7 +391,7 @@ export default function AboutContent() {
                       </li>
                     </ul>
                   </article>
-                  <article className="vw-item" id="vw-integrity" style={{ "--c": "#a9c08e" }} data-label="Integrity">
+                  <article className="vw-item" id="vw-integrity" style={{ "--c": "#d2b27a" }} data-label="Integrity">
                     {" "}
                     <span className="vw-ico" aria-hidden="true">
                       <svg viewBox="0 0 24 24">

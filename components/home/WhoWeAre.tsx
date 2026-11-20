@@ -6,7 +6,7 @@ export default function WhoWeAre() {
         <p className="eyebrow reveal">Who we are</p>
         <h2 className="st-vh">One Team. One Plan. One Goal.</h2>
       </div>
-      <div className="wl-row reveal" style={{ "--c": "#d2b27a" }}>
+      <div className="wl-row reveal" style={{ "--c": "#5b9be6" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <circle cx="9" cy="8" r="3" />
@@ -45,7 +45,7 @@ export default function WhoWeAre() {
         Your website, search, ads, social media and follow-up in one connected plan, built around your goals and budget
         so every channel pulls the same way.
       </p>
-      <div className="wl-row reveal" style={{ "--c": "#a9c08e" }}>
+      <div className="wl-row reveal" style={{ "--c": "#d2b27a" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M3 17l6-6 4 4 8-8" />

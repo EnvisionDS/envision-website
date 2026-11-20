@@ -1,21 +1,22 @@
 /* The About page in a grander key (components/about/AboutContent.tsx, lib/client/about-grand.js). A serif display face
-   (Instrument Serif) for the big words, ivory on near-black with a thread of gold; on the light theme, ink on warm paper.
+   (Instrument Serif) for the big words, ivory on a deep navy made from the logo's blue (#1561AD), the logo blue for the
+   buttons, a thread of gold; on the light theme, navy ink on warm paper.
    Three three.js scenes sit behind the opening, inside the film and behind Melbourne. Things below the first screen
    rise into view as they arrive (.pre → .in, set by the script); nothing moves with the scroll itself. */
 
 .ag {
-  --void: #050506; --ivory: #f3efe6; --soft: rgba(243, 239, 230, .64); --faint: rgba(243, 239, 230, .38);
+  --void: #050b16; --ivory: #f3efe6; --soft: rgba(243, 239, 230, .64); --faint: rgba(243, 239, 230, .38);
   --gold: #d2b27a; --gold-2: #f1dcae; --hair: rgba(243, 239, 230, .12); --panel: rgba(255, 255, 255, .025);
   --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --ease: cubic-bezier(.2, .8, .2, 1);
   background: var(--void); color: var(--ivory); overflow: clip;
 }
 :root[data-theme="light"] .ag {
-  --void: #f3eee4; --ivory: #17130d; --soft: rgba(23, 19, 13, .68); --faint: rgba(23, 19, 13, .42);
-  --gold: #8c6a2c; --gold-2: #b38a42; --hair: rgba(23, 19, 13, .14); --panel: rgba(255, 255, 255, .45);
+  --void: #f3eee4; --ivory: #0f1d30; --soft: rgba(15, 29, 48, .7); --faint: rgba(15, 29, 48, .44);
+  --gold: #8c6a2c; --gold-2: #b38a42; --hair: rgba(15, 29, 48, .14); --panel: rgba(255, 255, 255, .45);
 }
 /* the page around it (header, footer) takes the same ground */
-body:has(main.ag) { --bg: #050506; }
+body:has(main.ag) { --bg: #050b16; }
 :root[data-theme="light"] body:has(main.ag) { --bg: #f3eee4; }
 /* split words and letters inside an emphasis each carry the gold themselves */
 .ag em .c, .ag-big em .w { background: linear-gradient(100deg, var(--gold), var(--gold-2) 55%, var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -37,9 +38,9 @@ body:has(main.ag) { --bg: #050506; }
 /* buttons */
 .ag-ctas { display: flex; flex-wrap: wrap; gap: .8rem; }
 .ag-btn { position: relative; display: inline-flex; align-items: center; gap: .7rem; padding: 1.05rem 1.6rem; overflow: hidden; text-decoration: none; font: 500 .82rem/1 var(--body);
-  letter-spacing: .18em; text-transform: uppercase; color: var(--void); background: var(--ivory); border: 1px solid var(--ivory); transition: color .4s, background .4s, border-color .4s; }
+  letter-spacing: .18em; text-transform: uppercase; color: #f3efe6; background: #1561ad; border: 1px solid #1561ad; transition: color .4s, background .4s, border-color .4s; }
 .ag-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .4s var(--ease); }
-.ag-btn:hover { background: var(--gold-2); border-color: var(--gold-2); }
+.ag-btn:hover { background: #2275cc; border-color: #2275cc; color: #fff; }
 .ag-btn:hover svg { transform: translateX(4px); }
 .ag-btn.ghost { color: var(--ivory); background: transparent; border-color: var(--hair); }
 .ag-btn.ghost:hover { border-color: var(--gold); color: var(--gold-2); }
@@ -81,7 +82,7 @@ body:has(main.ag) { --bg: #050506; }
 
 /* ---------- the film ---------- */
 .ag-film { padding: clamp(5rem, 12vh, 8rem) 0; }
-.ag-screen { position: relative; isolation: isolate; margin: 0; aspect-ratio: 21 / 9; overflow: hidden; background: #020203; border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+.ag-screen { position: relative; isolation: isolate; margin: 0; aspect-ratio: 21 / 9; overflow: hidden; background: #020814; border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
   box-shadow: 0 70px 140px -50px rgba(0,0,0,.85), 0 0 0 1px rgba(0,0,0,.4); }
 :root[data-theme="light"] .ag-screen { box-shadow: 0 50px 110px -50px rgba(40,28,10,.55); }
 /* a fine grain and a soft vignette, like film */
