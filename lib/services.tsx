@@ -38,12 +38,12 @@ export const SERVICES: Service[] = [
     href: "/services/website-design-and-development",
     group: "web",
     color: "#5b9be6",
-    name: "Website design",
-    metaTitle: "Website design | Envision",
+    name: "Website Design",
+    metaTitle: "Website Design | Envision",
     description:
       "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
     kicker: "Web Design & Development",
-    title: "Website design",
+    title: "Website Design",
     lede: "A website is only as valuable as the results it creates. We design and build websites that communicate clearly, load fast, and are structured to turn visitors into enquiries.",
     icon: (
       <>
@@ -127,11 +127,11 @@ export const SERVICES: Service[] = [
     href: "/services/website-development",
     group: "web",
     color: "#5b9be6",
-    name: "Website development",
-    metaTitle: "Website development | Envision",
+    name: "Website Development",
+    metaTitle: "Website Development | Envision",
     description: "A fast, secure website built properly, so it's easy to manage and ready to grow with you.",
     kicker: "Web Design & Development",
-    title: "Website development",
+    title: "Website Development",
     lede: "A fast, secure website built properly, so it's easy to manage and ready to grow with you.",
     icon: (
       <>
@@ -212,11 +212,11 @@ export const SERVICES: Service[] = [
     href: "/services/e-commerce-websites",
     group: "web",
     color: "#5b9be6",
-    name: "E-commerce websites",
-    metaTitle: "E-commerce websites | Envision",
+    name: "E-Commerce Websites",
+    metaTitle: "E-Commerce Websites | Envision",
     description: "Online stores that are easy to browse, simple to buy from and straightforward for you to run.",
     kicker: "Web Design & Development",
-    title: "E-commerce websites",
+    title: "E-Commerce Websites",
     lede: "Online stores that are easy to browse, simple to buy from and straightforward for you to run.",
     icon: (
       <>
@@ -300,12 +300,12 @@ export const SERVICES: Service[] = [
     href: "/services/ux-ui-design",
     group: "web",
     color: "#5b9be6",
-    name: "UX/UI design",
-    metaTitle: "UX/UI design | Envision",
+    name: "UX/UI Design",
+    metaTitle: "UX/UI Design | Envision",
     description:
       "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
     kicker: "Web Design & Development",
-    title: "UX/UI design",
+    title: "UX/UI Design",
     lede: "Screens and journeys designed around how your customers think, so your website or app is easy to use and easy to say yes to.",
     icon: (
       <>
@@ -319,7 +319,7 @@ export const SERVICES: Service[] = [
       "People decide in seconds whether something feels easy. UX (user experience) is how a visitor moves through your site or app: what they look for, where they get stuck, what makes them act. UI (user interface) is what they see and tap along the way.",
       "We research how your customers think, map the journeys that matter, and design clear, on-brand screens that make the next step obvious, then hand them over ready to build.",
     ],
-    includedHeading: "What you get with UX/UI design",
+    includedHeading: "What you get with UX/UI Design",
     included: [
       "Research into who your customers are and what they're trying to do",
       "User journeys and site structure planned around the actions that matter",
@@ -381,7 +381,7 @@ export const SERVICES: Service[] = [
       },
     ],
     ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through UX/UI design and the best next step. We reply Monday to Friday, usually within one business day.",
+      "Tell us about your business and what you need help with, and we'll talk through UX/UI Design and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "ecommerce",
     next: "conversion",
   },
@@ -390,11 +390,11 @@ export const SERVICES: Service[] = [
     href: "/services/conversion",
     group: "web",
     color: "#a9c7e8",
-    name: "Conversion optimisation",
-    metaTitle: "Conversion optimisation | Envision",
+    name: "Conversion Optimisation",
+    metaTitle: "Conversion Optimisation | Envision",
     description: "Traffic that does not convert is wasted opportunity.",
     kicker: "Web Design & Development",
-    title: "Conversion optimisation",
+    title: "Conversion Optimisation",
     lede: "Traffic that does not convert is wasted opportunity.",
     icon: (
       <>
@@ -474,11 +474,11 @@ export const SERVICES: Service[] = [
     href: "/services/website-maintenance",
     group: "web",
     color: "#5b9be6",
-    name: "Website maintenance & support",
-    metaTitle: "Website maintenance & support | Envision",
+    name: "Website Maintenance & Support",
+    metaTitle: "Website Maintenance & Support | Envision",
     description: "Ongoing care that keeps your website fast, secure and up to date, so you can focus on your business.",
     kicker: "Web Design & Development",
-    title: "Website maintenance & support",
+    title: "Website Maintenance & Support",
     lede: "Ongoing care that keeps your website fast, secure and up to date, so you can focus on your business.",
     icon: (
       <>
@@ -558,11 +558,11 @@ export const SERVICES: Service[] = [
     href: "/services/seo-and-content-strategy",
     group: "mkt",
     color: "#5b9be6",
-    name: "SEO & local search",
-    metaTitle: "SEO & local search | Envision",
+    name: "SEO & Local Search",
+    metaTitle: "SEO & Local Search | Envision",
     description: "If your ideal customers are searching online and not finding you, we fix that.",
     kicker: "Digital Marketing",
-    title: "SEO & local search",
+    title: "SEO & Local Search",
     lede: "If your ideal customers are searching online and not finding you, we fix that.",
     icon: (
       <>
@@ -634,7 +634,7 @@ export const SERVICES: Service[] = [
       },
     ],
     ctaText:
-      "Tell us about your business and what you need help with, and we'll talk through SEO and local search and the best next step. We reply Monday to Friday, usually within one business day.",
+      "Tell us about your business and what you need help with, and we'll talk through SEO & Local Search and the best next step. We reply Monday to Friday, usually within one business day.",
     prev: "website-maintenance",
     next: "paid-ads",
   },
@@ -814,11 +814,11 @@ export const SERVICES: Service[] = [
     href: "/services/content-creation",
     group: "mkt",
     color: "#5b9be6",
-    name: "Content creation",
-    metaTitle: "Content creation | Envision",
+    name: "Content Creation",
+    metaTitle: "Content Creation | Envision",
     description: "Words, photos and videos that answer your customers' questions and help them choose you.",
     kicker: "Digital Marketing",
-    title: "Content creation",
+    title: "Content Creation",
     lede: "Words, photos and videos that answer your customers' questions and help them choose you.",
     icon: (
       <>
@@ -899,11 +899,11 @@ export const SERVICES: Service[] = [
     href: "/services/social-media",
     group: "mkt",
     color: "#74afec",
-    name: "Social media management",
-    metaTitle: "Social media management | Envision",
+    name: "Social Media Management",
+    metaTitle: "Social Media Management | Envision",
     description: "Social media works when it is consistent, clear, and built around your audience.",
     kicker: "Digital Marketing",
-    title: "Social media management",
+    title: "Social Media Management",
     lede: "Social media works when it is consistent, clear, and built around your audience.",
     icon: (
       <>
@@ -981,11 +981,11 @@ export const SERVICES: Service[] = [
     href: "/services/call-form-tracking",
     group: "mkt",
     color: "#5b9be6",
-    name: "Campaign tracking & reporting",
-    metaTitle: "Campaign tracking & reporting | Envision",
+    name: "Campaign Tracking & Reporting",
+    metaTitle: "Campaign Tracking & Reporting | Envision",
     description: "Know exactly which campaigns, pages and searches are bringing in calls and enquiries.",
     kicker: "Digital Marketing",
-    title: "Campaign tracking & reporting",
+    title: "Campaign Tracking & Reporting",
     lede: "Know exactly which campaigns, pages and searches are bringing in calls and enquiries.",
     icon: (
       <>
@@ -1066,11 +1066,11 @@ export const SERVICES: Service[] = [
     href: "/services/crm-setup",
     group: "auto",
     color: "#2f80c9",
-    name: "CRM setup & optimisation",
-    metaTitle: "CRM setup & optimisation | Envision",
+    name: "CRM Setup & Optimisation",
+    metaTitle: "CRM Setup & Optimisation | Envision",
     description: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
     kicker: "Automation & CRM",
-    title: "CRM setup & optimisation",
+    title: "CRM Setup & Optimisation",
     lede: "Every enquiry in one place, so nothing slips through and your team always knows what's next.",
     icon: (
       <>
@@ -1152,11 +1152,11 @@ export const SERVICES: Service[] = [
     href: "/services/email-crm",
     group: "auto",
     color: "#8fd3f4",
-    name: "Email follow-up sequences",
-    metaTitle: "Email and CRM nurture | Envision",
+    name: "Email Follow-Up Sequences",
+    metaTitle: "Email and CRM Nurture | Envision",
     description: "Most leads do not buy immediately.",
     kicker: "Automation & CRM",
-    title: "Email and CRM nurture",
+    title: "Email and CRM Nurture",
     lede: "Most leads do not buy immediately.",
     icon: (
       <>
@@ -1236,12 +1236,12 @@ export const SERVICES: Service[] = [
     href: "/services/lead-capture",
     group: "auto",
     color: "#2f80c9",
-    name: "Lead capture & follow-ups",
-    metaTitle: "Lead capture & follow-ups | Envision",
+    name: "Lead Capture & Follow-Ups",
+    metaTitle: "Lead Capture & Follow-Ups | Envision",
     description:
       "Enquiries from your website, ads and social media go straight into your CRM, and follow-up starts automatically.",
     kicker: "Automation & CRM",
-    title: "Lead capture & follow-ups",
+    title: "Lead Capture & Follow-Ups",
     lede: "Enquiries from your website, ads and social media go straight into your CRM, and follow-up starts automatically.",
     icon: (
       <>
@@ -1323,11 +1323,11 @@ export const SERVICES: Service[] = [
     href: "/services/booking-reminders",
     group: "auto",
     color: "#2f80c9",
-    name: "Booking reminders & review requests",
-    metaTitle: "Booking reminders & review requests | Envision",
+    name: "Booking Reminders & Review Requests",
+    metaTitle: "Booking Reminders & Review Requests | Envision",
     description: "Automatic confirmations, reminders and review requests that cut no-shows and save your team time.",
     kicker: "Automation & CRM",
-    title: "Booking reminders & review requests",
+    title: "Booking Reminders & Review Requests",
     lede: "Automatic confirmations, reminders and review requests that cut no-shows and save your team time.",
     icon: (
       <>
@@ -1407,11 +1407,11 @@ export const SERVICES: Service[] = [
     href: "/services/review-requests",
     group: "auto",
     color: "#2f80c9",
-    name: "Review requests",
-    metaTitle: "Review requests | Envision",
+    name: "Review Requests",
+    metaTitle: "Review Requests | Envision",
     description: "More reviews from happy customers, asked at the right moment, without you having to remember.",
     kicker: "Automation & CRM",
-    title: "Review requests",
+    title: "Review Requests",
     lede: "More reviews from happy customers, asked at the right moment, without you having to remember.",
     icon: (
       <>
@@ -1491,11 +1491,11 @@ export const SERVICES: Service[] = [
     href: "/services/automation",
     group: "auto",
     color: "#2f80c9",
-    name: "Workflow automation",
-    metaTitle: "Workflow automation | Envision",
+    name: "Workflow Automation",
+    metaTitle: "Workflow Automation | Envision",
     description: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
     kicker: "Automation & CRM",
-    title: "Workflow automation",
+    title: "Workflow Automation",
     lede: "Smart automations that handle the repetitive parts of your marketing and follow-up process.",
     icon: (
       <>
@@ -1577,11 +1577,11 @@ export const SERVICES: Service[] = [
     href: "/services/connecting-tools",
     group: "auto",
     color: "#2f80c9",
-    name: "System integrations",
-    metaTitle: "System integrations | Envision",
+    name: "System Integrations",
+    metaTitle: "System Integrations | Envision",
     description: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
     kicker: "Automation & CRM",
-    title: "System integrations",
+    title: "System Integrations",
     lede: "Your website, CRM, calendar, phone and email working together, instead of in separate boxes.",
     icon: (
       <>
@@ -1663,11 +1663,11 @@ export const SERVICES: Service[] = [
     href: "/services/digital-strategy-and-planning",
     group: "consult",
     color: "#5b9be6",
-    name: "Digital strategy & planning",
-    metaTitle: "Digital strategy & planning | Envision",
+    name: "Digital Strategy & Planning",
+    metaTitle: "Digital Strategy & Planning | Envision",
     description: "A clear plan for your website, marketing and systems, so your time and budget go to what matters most.",
     kicker: "Strategy & Consulting",
-    title: "Digital strategy & planning",
+    title: "Digital Strategy & Planning",
     lede: "A clear plan for your website, marketing and systems, so your time and budget go to what matters most.",
     icon: (
       <>
@@ -1750,11 +1750,11 @@ export const SERVICES: Service[] = [
     href: "/services/website-and-marketing-audits",
     group: "consult",
     color: "#5b9be6",
-    name: "Website & marketing audits",
-    metaTitle: "Website & marketing audits | Envision",
+    name: "Website & Marketing Audits",
+    metaTitle: "Website & Marketing Audits | Envision",
     description: "An honest look at what's working, what isn't and what to fix first across your website and marketing.",
     kicker: "Strategy & Consulting",
-    title: "Website & marketing audits",
+    title: "Website & Marketing Audits",
     lede: "An honest look at what's working, what isn't and what to fix first across your website and marketing.",
     icon: (
       <>
@@ -1838,11 +1838,11 @@ export const SERVICES: Service[] = [
     href: "/services/software-and-platform-selection",
     group: "consult",
     color: "#5b9be6",
-    name: "Software & platform selection",
-    metaTitle: "Software & platform selection | Envision",
+    name: "Software & Platform Selection",
+    metaTitle: "Software & Platform Selection | Envision",
     description: "Help choosing the right CRM, website platform or business tools, so you buy what fits and skip what you won't use.",
     kicker: "Strategy & Consulting",
-    title: "Software & platform selection",
+    title: "Software & Platform Selection",
     lede: "Help choosing the right CRM, website platform or business tools, so you buy what fits and skip what you won't use.",
     icon: (
       <>
@@ -1925,11 +1925,11 @@ export const SERVICES: Service[] = [
     href: "/services/business-process-reviews",
     group: "consult",
     color: "#5b9be6",
-    name: "Business process reviews",
-    metaTitle: "Business process reviews | Envision",
+    name: "Business Process Reviews",
+    metaTitle: "Business Process Reviews | Envision",
     description: "See how work really moves through your business, and where time, money and enquiries are being lost.",
     kicker: "Strategy & Consulting",
-    title: "Business process reviews",
+    title: "Business Process Reviews",
     lede: "See how work really moves through your business, and where time, money and enquiries are being lost.",
     icon: (
       <>
@@ -2014,11 +2014,11 @@ export const SERVICES: Service[] = [
     href: "/location-strategy",
     group: "consult",
     color: "#5b9be6",
-    name: "Location strategy",
-    metaTitle: "Location strategy | Envision",
+    name: "Location Strategy",
+    metaTitle: "Location Strategy | Envision",
     description: "Before spending on marketing, it pays to understand where your best opportunities actually are.",
     kicker: "Strategy & Consulting",
-    title: "Location strategy",
+    title: "Location Strategy",
     lede: "Before spending on marketing, it pays to understand where your best opportunities actually are.",
     icon: (
       <>

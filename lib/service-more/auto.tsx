@@ -53,7 +53,7 @@ export const AUTO: Record<string, ServiceMore> = {
       {
         kind: "faq",
         label: "Questions",
-        heading: "Common questions about CRM setup",
+        heading: "Common questions about CRM Setup",
         items: [
           {
             q: "Do I need a new CRM, or can you fix the one I have?",

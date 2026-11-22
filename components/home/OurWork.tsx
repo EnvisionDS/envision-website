@@ -13,7 +13,7 @@ export default function OurWork() {
           <article className="proj reveal" key={c.id}>
             <div className="body">
               <span className="proj-logo">{c.logo}</span>
-              <span className="tag">Website design and development</span>
+              <span className="tag">Website Design &amp; Development</span>
               <h3>{c.name}</h3>
               <p>{c.summary}</p>
               <button className="visit" type="button" data-case={c.id} aria-haspopup="dialog">

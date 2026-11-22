@@ -60,7 +60,7 @@ const CHAPTERS = [
   { t: "Improve", d: "Weekly check-ins on what's working, and what changes next." },
 ];
 
-const MARQUEE = ["Strategy", "Websites", "Search", "Paid ads", "Automation", "Location insight", "Content", "Social media"];
+const MARQUEE = ["Strategy", "Websites", "Search", "Paid Ads", "Automation", "Location Insight", "Content", "Social Media"];
 
 export default function AboutContent() {
   return (

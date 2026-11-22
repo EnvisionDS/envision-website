@@ -201,7 +201,7 @@ export const WEB: Record<string, ServiceMore> = {
       {
         kind: "compare",
         label: "Myths and facts",
-        heading: "What UX/UI design is, and what it isn't",
+        heading: "What UX/UI Design is, and what it isn't",
         left: {
           title: "Myth",
           items: [
@@ -224,11 +224,11 @@ export const WEB: Record<string, ServiceMore> = {
       {
         kind: "faq",
         label: "Questions",
-        heading: "What people ask before starting UX/UI design",
+        heading: "What people ask before starting UX/UI Design",
         items: [
           {
-            q: "Do I need UX/UI design if I'm already getting a new website?",
-            a: "Our website design work already plans structure and messaging. Dedicated UX/UI design suits apps and more complex sites or journeys, where it pays to go deeper on research and testing.",
+            q: "Do I need UX/UI Design if I'm already getting a new website?",
+            a: "Our website design work already plans structure and messaging. Dedicated UX/UI Design suits apps and more complex sites or journeys, where it pays to go deeper on research and testing.",
           },
           {
             q: "Do you need to speak to our customers?",

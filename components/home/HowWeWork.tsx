@@ -90,7 +90,7 @@ export default function HowWeWork() {
                 </svg>
               </span>
               <span className="gp-pn">
-                <b>Paid ads</b>
+                <b>Paid Ads</b>
                 <small></small>
               </span>
               <span className="gp-pc" aria-hidden="true"></span>
@@ -155,7 +155,7 @@ export default function HowWeWork() {
                 </svg>
               </span>
               <span className="gp-pn">
-                <b>Location strategy</b>
+                <b>Location Strategy</b>
                 <small></small>
               </span>
               <span className="gp-pc" aria-hidden="true"></span>

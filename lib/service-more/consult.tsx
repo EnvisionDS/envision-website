@@ -342,7 +342,7 @@ export const CONSULT: Record<string, ServiceMore> = {
       {
         kind: "faq",
         label: "Questions",
-        heading: "Location strategy questions, answered",
+        heading: "Location Strategy questions, answered",
         items: [
           {
             q: "Is this only for businesses opening new premises?",

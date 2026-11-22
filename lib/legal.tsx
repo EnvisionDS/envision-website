@@ -213,7 +213,7 @@ export const TERMS = {
     },
     {
       id: "location",
-      title: "Location strategy disclaimer",
+      title: "Location Strategy disclaimer",
       body: (
         <p>
           Location Strategy insights, suburb analyses, and market recommendations provided by Envision Digital Solutions are based on
