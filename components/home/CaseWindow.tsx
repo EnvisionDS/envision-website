@@ -1,12 +1,6 @@
 import type { ReactNode } from "react";
 import { CASES, SCORES_MEASURED, type Case, type StatIcon } from "@/lib/work";
 
-const TICK = (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M5 12.5l4.5 4.5L19 7.5" />
-  </svg>
-);
-
 // the animated icon beside each figure: drawn in as its section arrives, then its accent (.ca) keeps moving
 // (styles/work.css)
 const ICONS: Record<StatIcon, ReactNode> = {
@@ -69,19 +63,58 @@ function Study({ c }: { c: Case }) {
         <p className="cs-say">{c.challenge}</p>
       </section>
 
-      <section className="cs-ch" aria-labelledby={`cs-p-${c.id}`}>
-        <Head n="03" id={`cs-p-${c.id}`} t="How we approached it" />
-        <div>
-          <p className="cs-say">{c.approach}</p>
-          <p className="cs-label cs-gap">What we built</p>
-          <ul className="cs-built">
-            {c.built.map((b) => (
-              <li key={b}>
-                {TICK}
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
+      {/* HOW WE APPROACHED IT, as a checklist that plays like a video while you scroll: the chapter holds still inside the
+          window, a cursor works down the list and ticks each item off, the bar fills, and it ends on the site going live
+          (lib/client/work.js; styles/work.css) */}
+      <section className="cs-ch cs-flow" aria-labelledby={`cs-p-${c.id}`} style={{ "--n": c.built.length }}>
+        <div className="cs-flow-pin">
+          <div className="cs-flow-copy">
+            <Head n="03" id={`cs-p-${c.id}`} t="How we approached it" />
+            <p className="cs-say">{c.approach}</p>
+          </div>
+          <div className="ck">
+            <div className="ck-top">
+              <span className="ck-dots" aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+              </span>
+              <span className="ck-title">{`What we built · ${c.name}`}</span>
+              <span className="ck-count" aria-hidden="true">
+                <b>0</b>
+                {` of ${c.built.length}`}
+              </span>
+            </div>
+            <div className="ck-bar" aria-hidden="true">
+              <i></i>
+            </div>
+            <ol className="ck-list">
+              {c.built.map((b) => (
+                <li className="ck-row" key={b}>
+                  <span className="ck-box" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" />
+                    </svg>
+                  </span>
+                  <span className="ck-t">{b}</span>
+                  <span className="ck-tag" aria-hidden="true">
+                    Done
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <div className="ck-live" aria-hidden="true">
+              <span className="ck-pulse"></span>
+              <b>Live</b>
+              <span>{c.domain}</span>
+            </div>
+            <span className="ck-cursor" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 3l14 7.5-6.2 1.6L10 18z" />
+              </svg>
+              <i></i>
+            </span>
+          </div>
         </div>
       </section>
 
