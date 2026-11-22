@@ -228,26 +228,53 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* Melbourne: the city as a field of light, with signals going out from it */}
-        <section className="ag-place" aria-labelledby="ag-place-h">
-          <div className="ag-stage" data-scene="map" aria-hidden="true"></div>
-          <div className="ag-place-veil" aria-hidden="true"></div>
-          <div className="ag-wrap ag-place-in">
-            <p className="ag-eyebrow rv">
-              <span>05</span> Where we are
-            </p>
-            <h2 id="ag-place-h" className="rv">
-              Melbourne based. Aimed at <em>where your customers are.</em>
-            </h2>
-            <p className="wr">
-              Location insight sits at the heart of how we plan: who your customers are, where they are, and what will
-              reach them there, before any budget moves.
-            </p>
-            <span className="ag-pin rv" aria-hidden="true">
+        {/* Where we are: the Earth in points of light, held on screen while the visitor scrolls through it; the scroll turns
+            it to Australia and closes in on Melbourne and Victoria, and the copy follows (lib/client/globe.js) */}
+        <section className="ag-globe" aria-labelledby="ag-place-h">
+          <div className="ag-globe-pin">
+            <div className="ag-stage" data-scene="globe" aria-hidden="true"></div>
+            <div className="ag-globe-veil" aria-hidden="true"></div>
+            <div className="ag-wrap ag-globe-copy">
+              <div className="ag-gstep on">
+                <p className="ag-eyebrow">
+                  <span>05</span> Where we are
+                </p>
+                <h2 id="ag-place-h" className="ag-gh">
+                  Based in <em>Melbourne.</em>
+                </h2>
+                <p>
+                  Location insight sits at the heart of how we plan: who your customers are, where they are, and what will
+                  reach them there, before any budget moves.
+                </p>
+              </div>
+              <div className="ag-gstep">
+                <p className="ag-eyebrow">Where we work</p>
+                <h3 className="ag-gh">
+                  Across <em>Victoria.</em>
+                </h3>
+                <p>We work with businesses in Melbourne and right across Victoria, helping them reach the customers around them.</p>
+              </div>
+              <div className="ag-gstep">
+                <span className="ag-pin" aria-hidden="true">
+                  <i></i>
+                  <b>Melbourne, Victoria</b>
+                  <small>37.81° S · 144.96° E</small>
+                </span>
+                <h3 className="ag-gh">
+                  Local, and <em>easy to reach.</em>
+                </h3>
+                <p>
+                  Email <a href="mailto:hello@envisionds.com.au">hello@envisionds.com.au</a> or call{" "}
+                  <a href="tel:+61399693883">03 9969 3883</a>.
+                </p>
+              </div>
+            </div>
+            <div className="ag-gprog" aria-hidden="true">
               <i></i>
-              <b>Melbourne, Victoria</b>
-              <small>37.81° S · 144.96° E</small>
-            </span>
+            </div>
+            <p className="ag-gscroll" aria-hidden="true">
+              Scroll to travel to Melbourne
+            </p>
           </div>
         </section>
 

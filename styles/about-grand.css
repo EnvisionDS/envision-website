@@ -136,12 +136,6 @@ body:has(main.ag) { --bg: #050b16; }
 .ag-row.in .ag-rule { transition: transform 2s var(--ease) calc(var(--rd, 0ms) + .4s); }
 
 /* ---------- Melbourne ---------- */
-.ag-place { position: relative; isolation: isolate; min-height: min(100svh, 940px); display: grid; align-items: center; padding: 14vh 0; overflow: hidden; }
-.ag-place-veil { position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--void) 82%, transparent) 0%, color-mix(in srgb, var(--void) 75%, transparent) 34%, transparent 66%); }
-.ag-place-in { display: grid; justify-items: start; }
-.ag-place h2 { margin: 0 0 1.6rem; max-width: 13ch; font-size: clamp(2.5rem, 5.4vw, 5rem); line-height: 1.02; }
-.ag-place-in > p:not(.ag-eyebrow) { margin: 0 0 2.6rem; max-width: 40ch; color: var(--soft); font-size: 1.08rem; line-height: 1.7; }
 .ag-pin { display: inline-grid; grid-template-columns: auto 1fr; column-gap: .9rem; align-items: center; padding: .9rem 1.2rem .9rem 1rem; border: 1px solid var(--hair);
   background: color-mix(in srgb, var(--void) 60%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .ag-pin i { grid-row: 1 / span 2; position: relative; width: 12px; height: 12px; border-radius: 50%; background: var(--gold-2); box-shadow: 0 0 18px var(--gold); }
@@ -149,6 +143,38 @@ body:has(main.ag) { --bg: #050b16; }
 @keyframes agPing { from { scale: .4; opacity: 1; } to { scale: 2.6; opacity: 0; } }
 .ag-pin b { font: 400 1.25rem/1.2 var(--serif); }
 .ag-pin small { font-size: .72rem; letter-spacing: .16em; color: var(--faint); }
+
+/* ---------- Where we are: the globe, held on screen while the scroll turns it to Melbourne (lib/client/globe.js) ---------- */
+.ag-globe { position: relative; height: 360vh; }
+.ag-globe-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; background: radial-gradient(80% 70% at 70% 50%, #0a1a33, #030812 70%);
+  --gold: #5b9be6; --gold-2: #8fd3f4; --ivory: #eaf3fa; --soft: rgba(234, 243, 250, .7); --faint: rgba(234, 243, 250, .42); --hair: rgba(234, 243, 250, .14); color: #eaf3fa; }
+.ag-globe-pin .ag-stage { z-index: 0; }
+.ag-globe-veil { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(3, 8, 18, .8) 0%, rgba(3, 8, 18, .35) 34%, transparent 58%), linear-gradient(180deg, rgba(3, 8, 18, .7), transparent 18%, transparent 82%, rgba(3, 8, 18, .8)); }
+.ag-globe-copy { position: relative; z-index: 2; height: 100%; display: grid; align-items: center; }
+.ag-gstep { grid-area: 1 / 1; max-width: 31rem; opacity: 0; translate: 0 34px; filter: blur(8px); pointer-events: none;
+  transition: opacity .8s ease, translate 1s var(--ease), filter .8s ease; }
+.ag-gstep.on { opacity: 1; translate: none; filter: none; pointer-events: auto; transition-delay: .15s; }
+.ag-gh { margin: 0 0 1.4rem; font: 400 clamp(2.8rem, 6vw, 5.6rem)/.98 var(--serif); letter-spacing: -.015em; }
+.ag-gstep > p:not(.ag-eyebrow) { margin: 0; color: var(--soft); font-size: 1.08rem; line-height: 1.7; }
+.ag-gstep a { color: #8fd3f4; text-decoration: none; } .ag-gstep a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ag-gstep .ag-pin { margin-bottom: 1.6rem; }
+.ag-gprog { position: absolute; z-index: 2; left: 50%; bottom: 2.4rem; width: min(220px, 40vw); height: 1px; translate: -50% 0; background: var(--hair); }
+.ag-gprog i { position: absolute; inset: 0; background: linear-gradient(90deg, #1561ad, #8fd3f4); transform-origin: 0 50%; transform: scaleX(0); }
+.ag-gscroll { position: absolute; z-index: 2; left: 50%; bottom: 3.4rem; translate: -50% 0; margin: 0; font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: var(--faint); transition: opacity .6s; }
+.ag-globe-pin:has(.ag-gstep.on:not(:first-child)) .ag-gscroll { opacity: 0; }
+@media (max-width: 960px) {
+  .ag-globe-copy { align-items: end; padding-bottom: 6.5rem; }
+  .ag-globe-veil { background: linear-gradient(0deg, rgba(3, 8, 18, .9) 0%, rgba(3, 8, 18, .5) 38%, transparent 62%), linear-gradient(180deg, rgba(3, 8, 18, .6), transparent 16%); }
+  .ag-gh { font-size: clamp(2.4rem, 10vw, 3.4rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ag-globe { height: auto; }
+  .ag-globe-pin { position: relative; height: auto; min-height: 100svh; }
+  .ag-globe-copy { padding-block: 8rem; align-items: start; gap: 3rem; }
+  .ag-gstep { grid-area: auto; opacity: 1; translate: none; filter: none; pointer-events: auto; }
+  .ag-gscroll, .ag-gprog { display: none; }
+}
 
 /* ---------- the values wheel, set in the page's tone ---------- */
 .ag-values { padding: clamp(5rem, 12vh, 8rem) 0; }
@@ -189,8 +215,6 @@ body:has(main.ag) { --bg: #050b16; }
   .ag-pillar:hover { flex-grow: 1; }
   .ag-row { grid-template-columns: 4rem minmax(0, 1fr); }
   .ag-row p { grid-column: 2; }
-  .ag-place { align-items: end; }
-  .ag-place-veil { background: linear-gradient(0deg, color-mix(in srgb, var(--void) 80%, transparent) 10%, color-mix(in srgb, var(--void) 60%, transparent) 55%, transparent 80%); }
 }
 @media (max-width: 700px) {
   .ag-screen { aspect-ratio: 4 / 5; }
