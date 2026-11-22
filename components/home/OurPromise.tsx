@@ -29,7 +29,7 @@ export default function OurPromise() {
             </svg>
           </span>
         </li>
-        <li className="pm-row reveal" style={{ "--c": "#f1dcae" }}>
+        <li className="pm-row reveal" style={{ "--c": "#8fd3f4" }}>
           <span className="pm-n" aria-hidden="true">
             02
           </span>
@@ -44,7 +44,7 @@ export default function OurPromise() {
             </svg>
           </span>
         </li>
-        <li className="pm-row reveal" style={{ "--c": "#d2b27a" }}>
+        <li className="pm-row reveal" style={{ "--c": "#5b9be6" }}>
           <span className="pm-n" aria-hidden="true">
             03
           </span>
@@ -60,7 +60,7 @@ export default function OurPromise() {
             </svg>
           </span>
         </li>
-        <li className="pm-row reveal" style={{ "--c": "#e39b4f" }}>
+        <li className="pm-row reveal" style={{ "--c": "#3f86dd" }}>
           <span className="pm-n" aria-hidden="true">
             04
           </span>

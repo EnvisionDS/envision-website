@@ -4,10 +4,10 @@
 
 /* ---------- THE STANDALONE PAGE (/contact only: <html class="cx">) ---------- */
 html.cx {
-  --bg: #050b16; --bg-2: #0a1426; --text: #f3efe6; --muted: #b9c0c9; --line: #1b2737; --accent-2: #e3cfa4; --orange: #c8734f;
+  --bg: #050b16; --bg-2: #0a1426; --text: #eaf3fa; --muted: #b9c0c9; --line: #1b2737; --accent-2: #8fd3f4; --orange: #5b9be6;
   color-scheme: dark;
 }
-html.cx[data-theme="light"] { --bg: #f3eee4; --bg-2: #f4f1eb; --text: #13202e; --muted: #4a5d70; --line: #e5e0d7; --accent-2: #264f67; color-scheme: light; }
+html.cx[data-theme="light"] { --bg: #f2f6fa; --bg-2: #f4f1eb; --text: #13202e; --muted: #4a5d70; --line: #e5e0d7; --accent-2: #264f67; color-scheme: light; }
 :where(.cx .cx-wrap) *, :where(.cx .cx-wrap) *::before, :where(.cx .cx-wrap) *::after { box-sizing: border-box; margin: 0; padding: 0; }   /* (not the nav, which keeps its own spacing) */
 .cx body { min-height: 100vh; font-family: "IBM Plex Sans", system-ui, sans-serif; line-height: 1.55; color: var(--text); background: var(--bg); }
 .cx h2, .cx h3 { font-family: "Sora", sans-serif; }
@@ -15,10 +15,10 @@ html.cx[data-theme="light"] { --bg: #f3eee4; --bg-2: #f4f1eb; --text: #13202e; -
 .cx .eyebrow { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-2); margin-bottom: 1rem; }
 /* the backdrop stands in for the page behind a pop-up: a dim, blurred glow with the logo's rings */
 .cx-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none;
-         background: radial-gradient(60% 50% at 30% 20%, rgba(21, 97, 173,.28), transparent 70%), radial-gradient(50% 45% at 80% 85%, rgba(210, 178, 122,.12), transparent 70%), var(--bg); }
+         background: radial-gradient(60% 50% at 30% 20%, rgba(21, 97, 173,.28), transparent 70%), radial-gradient(50% 45% at 80% 85%, rgba(91, 155, 230,.12), transparent 70%), var(--bg); }
 .cx-bg::after { content: ""; position: absolute; left: 50%; top: 50%; width: 140vmax; height: 140vmax; transform: translate(-50%, -50%); border-radius: 50%; opacity: .5;
-                background: repeating-radial-gradient(circle, transparent 0 calc(7vmax - 1px), rgba(227, 207, 164,.07) calc(7vmax - 1px) 7vmax); }
-html.cx[data-theme="light"] .cx-bg { background: radial-gradient(60% 50% at 30% 20%, rgba(21, 97, 173,.12), transparent 70%), radial-gradient(50% 45% at 80% 85%, rgba(23, 151, 122,.08), transparent 70%), var(--bg); }
+                background: repeating-radial-gradient(circle, transparent 0 calc(7vmax - 1px), rgba(143, 211, 244,.07) calc(7vmax - 1px) 7vmax); }
+html.cx[data-theme="light"] .cx-bg { background: radial-gradient(60% 50% at 30% 20%, rgba(21, 97, 173,.12), transparent 70%), radial-gradient(50% 45% at 80% 85%, rgba(21, 97, 173,.08), transparent 70%), var(--bg); }
 .cx-wrap { position: relative; z-index: 1; min-height: calc(100vh - 92px); display: grid; place-items: center; padding: 24px; }   /* 92px: the nav above */
 .cx .frame { max-height: calc(100vh - 140px); }
 .cx .frame { animation: cxIn .55s cubic-bezier(.2,.7,.2,1) both; }
@@ -44,15 +44,15 @@ html.cx[data-theme="light"] .cx-bg { background: radial-gradient(60% 50% at 30% 
 .form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.4rem; align-content: start; }
 .form .full { grid-column: 1 / -1; }
 .form label .req { color: var(--accent-2); }
-.form .err { font-size: .8rem; color: #c8734f; }
+.form .err { font-size: .8rem; color: #5b9be6; }
 .form .err:empty { display: none; }
-.form input.bad, .form textarea.bad { border-color: rgba(200, 115, 79,.7); }
+.form input.bad, .form textarea.bad { border-color: rgba(91, 155, 230,.7); }
 .form label { display: grid; gap: .45rem; font-size: .95rem; color: var(--text); }
 .form input, .form select, .form textarea { font: inherit; font-size: .98rem; color: var(--text); background: #0c1119; border: 1px solid #1b2737; border-radius: 14px; padding: .95rem 1.1rem; width: 100%; transition: border-color .2s, box-shadow .2s; }
 .form input::placeholder, .form textarea::placeholder { color: #5b6068; }
 .form select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
                background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 2.6rem; }
-.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(227, 207, 164,.15); }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(143, 211, 244,.15); }
 .form textarea { min-height: 150px; resize: vertical; }
 .send { grid-column: 1 / -1; justify-self: start; display: inline-flex; align-items: center; gap: .7rem; padding: 1rem 1.6rem; border: 0; border-radius: 999px;
         background: var(--accent-2); color: #061120; font: 600 1rem "IBM Plex Sans", system-ui, sans-serif; cursor: pointer; transition: background .2s, transform .2s; }

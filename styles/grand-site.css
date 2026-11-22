@@ -1,30 +1,31 @@
-/* The whole site in the About page's key (styles/about-grand.css), in the logo's colours: ivory on a deep navy made from
-   the logo's blue (#1561AD), the logo blue itself for the buttons and the brand, and a thread of gold for the highlights;
-   a serif display face (Instrument Serif) for the big words, square buttons in small spaced capitals, hairline rules, a
-   fine film grain over everything, and three.js scenes behind the openings (lib/client/grand-scenes.js). On the light
-   theme: navy ink on warm paper, the gold deepened.
+/* The whole site in the About page's key (styles/about-grand.css), in the logo's own colours (public/favicon.svg and the
+   brand logo): the logo blue #1561AD for the buttons and the brand; its lighter blue #5B9BE6 and ice blue #8FD3F4 for
+   highlights, emphasis and the 3D scenes; cool white on a deep navy made from the logo's blue. (The --gold / --gold-2
+   variables keep their old names but now hold the logo's lighter blue and ice blue.) A serif display face (Instrument
+   Serif) for the big words, square buttons in small spaced capitals, hairline rules, a fine film grain over everything,
+   and three.js scenes behind the openings (lib/client/grand-scenes.js). On the light theme: navy ink on cool white.
    Imported last on every page, so it re-keys the homepage's stylesheets (home.css, home-light.css) and the inner pages'
    (service.css and friends) without rewriting them. The colours themselves were moved onto this palette in place. */
 
 :root {
   --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --brand: #1561ad; --brand-2: #2275cc; --brand-ink: #5b9be6;   /* the logo's blue; a lift of it for hover; a lighter tint for text on navy */
-  --void: #050b16; --ivory: #f3efe6; --gold: #d2b27a; --gold-2: #f1dcae; --hair: rgba(243, 239, 230, .12);
+  --void: #050b16; --ivory: #eaf3fa; --gold: #5b9be6; --gold-2: #8fd3f4; --hair: rgba(234, 243, 250, .12);
   --gold-grad: linear-gradient(100deg, var(--gold), var(--gold-2) 55%, var(--gold));
   --g-ease: cubic-bezier(.2, .8, .2, 1);
   /* the homepage's tokens */
-  --bg: #050b16; --bg-2: #0a1426; --text: #f3efe6; --muted: rgba(243, 239, 230, .66); --line: rgba(243, 239, 230, .1);
-  --accent: #3d5a80; --accent-2: #d2b27a; --orange: #d2b27a; --grad: var(--gold-grad);
+  --bg: #050b16; --bg-2: #0a1426; --text: #eaf3fa; --muted: rgba(234, 243, 250, .66); --line: rgba(234, 243, 250, .1);
+  --accent: #3d5a80; --accent-2: #5b9be6; --orange: #5b9be6; --grad: var(--gold-grad);
 }
 :root[data-theme="light"] {
   --brand-ink: #1561ad;
-  --void: #f3eee4; --ivory: #0f1d30; --gold: #8c6a2c; --gold-2: #b38a42; --hair: rgba(15, 29, 48, .14);
-  --bg: #f3eee4; --bg-2: #ece6da; --text: #0f1d30; --muted: rgba(15, 29, 48, .7); --line: rgba(15, 29, 48, .12);
-  --accent: #3d5a80; --accent-2: #8c6a2c; --orange: #8c6a2c;
+  --void: #f2f6fa; --ivory: #0f1d30; --gold: #1561ad; --gold-2: #2275cc; --hair: rgba(15, 29, 48, .14);
+  --bg: #f2f6fa; --bg-2: #e6edf5; --text: #0f1d30; --muted: rgba(15, 29, 48, .7); --line: rgba(15, 29, 48, .12);
+  --accent: #3d5a80; --accent-2: #1561ad; --orange: #1561ad;
 }
 /* the inner pages' tokens (service.css): the same ground, faint and rule in the warm key */
-:root .top, :root body { --surface: #081224; --rule: rgba(243, 239, 230, .16); --faint: rgba(243, 239, 230, .4); }
-:root[data-theme="light"] .top, :root[data-theme="light"] body { --surface: #faf6ee; --rule: rgba(15, 29, 48, .18); --faint: rgba(15, 29, 48, .46); }
+:root .top, :root body { --surface: #081224; --rule: rgba(234, 243, 250, .16); --faint: rgba(234, 243, 250, .4); }
+:root[data-theme="light"] .top, :root[data-theme="light"] body { --surface: #fafcfe; --rule: rgba(15, 29, 48, .18); --faint: rgba(15, 29, 48, .46); }
 :root[data-theme="light"] body { --ink: color-mix(in srgb, var(--c) 60%, #0f1d30); }
 
 body { background: var(--bg); color: var(--text); }
@@ -39,7 +40,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 :root h1, :root h2, :root h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -.012em; }
 /* emphasis in a heading: italic, in gold (the homepage's gradient words, and <em> anywhere in a heading) */
 :root .grad, :root h1 em, :root h2 em, :root h3 em { font-family: var(--serif); font-style: italic; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
-:root[data-theme="light"] .grad { background: linear-gradient(100deg, #8c6a2c, #b38a42 55%, #8c6a2c); -webkit-background-clip: text; background-clip: text; }
+:root[data-theme="light"] .grad { background: linear-gradient(100deg, #1561ad, #2275cc 55%, #1561ad); -webkit-background-clip: text; background-clip: text; }
 :root h1 .grad, :root h2 .grad { font-weight: 400; }
 
 /* the small spaced capitals: eyebrows and labels in the body face, gold */
@@ -50,24 +51,24 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 
 /* ---------------------------------------------------------------- buttons: square, small spaced capitals */
 :root .pill { border-radius: 0; letter-spacing: .18em; font-size: .78rem; padding: 1rem 1.5rem; border-color: var(--hair); }
-:root .pill.solid { background: var(--brand); color: #f3efe6; border-color: var(--brand); }
+:root .pill.solid { background: var(--brand); color: #eaf3fa; border-color: var(--brand); }
 :root .pill.solid::before { background: var(--brand-2); }
 :root .pill.solid:hover { color: #fff; border-color: var(--brand-2); }
 :root .pill.solid::after { background: var(--gold-2); }
 :root .pill:not(.solid):hover { border-color: var(--gold); }
-:root .pill.call::before { background: conic-gradient(from 0deg, var(--gold) 0deg, var(--gold-2) calc(var(--sw) - 12deg), #fff8e6 var(--sw), transparent var(--sw) 360deg);
+:root .pill.call::before { background: conic-gradient(from 0deg, var(--gold) 0deg, var(--gold-2) calc(var(--sw) - 12deg), #e3f4ff var(--sw), transparent var(--sw) 360deg);
   filter: drop-shadow(0 0 4px color-mix(in srgb, var(--gold) 80%, transparent)) drop-shadow(0 0 12px color-mix(in srgb, var(--gold) 40%, transparent)); }
-:root[data-theme="light"] .pill.call::before { background: conic-gradient(from 0deg, #8c6a2c 0deg, #b38a42 calc(var(--sw) - 12deg), #0f1d30 var(--sw), transparent var(--sw) 360deg); filter: none; }
+:root[data-theme="light"] .pill.call::before { background: conic-gradient(from 0deg, #1561ad 0deg, #2275cc calc(var(--sw) - 12deg), #0f1d30 var(--sw), transparent var(--sw) 360deg); filter: none; }
 
 :root .btn { border-radius: 0; padding: 1.05rem 1.6rem; font: 500 .8rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase;
-  background: var(--brand); color: #f3efe6; border-color: var(--brand); transition: background .4s, border-color .4s, color .4s, box-shadow .4s; }
+  background: var(--brand); color: #eaf3fa; border-color: var(--brand); transition: background .4s, border-color .4s, color .4s, box-shadow .4s; }
 :root .btn:hover { transform: none; background: var(--brand-2); border-color: var(--brand-2); color: #fff; box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--brand) 70%, transparent); }
 :root .btn.ghost { background: transparent; color: var(--ivory); border-color: var(--hair); }
 :root .btn.ghost:hover { border-color: var(--gold); color: var(--gold-2); background: transparent; }
 :root[data-theme="light"] .btn.ghost:hover { color: var(--gold); }
 
 /* the nav's call button: ivory, gold on hover */
-:root .nav-cta { background: var(--brand); color: #f3efe6; transition: background .4s; }
+:root .nav-cta { background: var(--brand); color: #eaf3fa; transition: background .4s; }
 :root .nav-cta:hover { background: var(--brand-2); color: #fff; }
 :root nav .nav-cta { border-radius: 0; }
 
@@ -103,7 +104,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 :root body section.block.panel.tone-slate, :root body section.block.panel.tone-ink, :root body section.block.panel.navy {
   background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--brand) 22%, transparent), transparent 70%), #07101f; }
 :root[data-theme="light"] body section.block.panel.tone-slate, :root[data-theme="light"] body section.block.panel.tone-ink, :root[data-theme="light"] body section.block.panel.navy {
-  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 70%), #f8f4ec; box-shadow: none; }
+  background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 70%), #f6f9fc; box-shadow: none; }
 :root section.block.finale { background: radial-gradient(70% 55% at 50% 100%, color-mix(in srgb, var(--brand) 30%, transparent), transparent 70%), var(--bg); }
 
 /* ---------------------------------------------------------------- the inner pages (service.css world) */
@@ -149,9 +150,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; point
 :root[data-theme="light"] .frame { background: color-mix(in srgb, #fbf8f2 92%, transparent); }
 :root .frame h2, :root.cx .frame h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3.4rem); line-height: 1.02; font-weight: 400; letter-spacing: -.012em; }
 :root.cx h3, :root .frame h3 { font-family: var(--serif); font-weight: 400; }
-:root .send { border-radius: 0; background: var(--brand); color: #f3efe6; font: 500 .8rem/1 var(--body, "IBM Plex Sans", sans-serif); letter-spacing: .18em; text-transform: uppercase; padding: 1.05rem 1.6rem; transition: background .4s; }
+:root .send { border-radius: 0; background: var(--brand); color: #eaf3fa; font: 500 .8rem/1 var(--body, "IBM Plex Sans", sans-serif); letter-spacing: .18em; text-transform: uppercase; padding: 1.05rem 1.6rem; transition: background .4s; }
 :root .send:hover { background: var(--brand-2); color: #fff; transform: none; }
-:root[data-theme="light"] .send { color: #f3efe6; }
+:root[data-theme="light"] .send { color: #eaf3fa; }
 :root[data-theme="light"] .send:hover { background: var(--brand-2); color: #fff; }
 :root .form input:focus, :root .form select:focus, :root .form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 18%, transparent); }
 :root .finale > .g-stage { opacity: .55; }
@@ -199,7 +200,7 @@ body::before { content: ""; position: fixed; inset: -18vmax; z-index: -1; pointe
     radial-gradient(42vmax 34vmax at 14% 10%, rgba(21, 97, 173, .34), transparent 70%),
     radial-gradient(38vmax 30vmax at 90% 26%, rgba(34, 117, 204, .18), transparent 70%),
     radial-gradient(56vmax 30vmax at 50% 104%, rgba(21, 97, 173, .26), transparent 70%),
-    radial-gradient(26vmax 20vmax at 76% 86%, rgba(210, 178, 122, .08), transparent 70%),
+    radial-gradient(26vmax 20vmax at 76% 86%, rgba(91, 155, 230, .08), transparent 70%),
     radial-gradient(120vmax 90vmax at 50% 40%, #071328, #040914 70%);
   animation: gAurora 46s ease-in-out infinite alternate; }
 @keyframes gAurora {
@@ -216,8 +217,8 @@ html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
     radial-gradient(42vmax 34vmax at 14% 10%, rgba(21, 97, 173, .12), transparent 70%),
     radial-gradient(38vmax 30vmax at 90% 26%, rgba(91, 155, 230, .10), transparent 70%),
     radial-gradient(56vmax 30vmax at 50% 104%, rgba(21, 97, 173, .10), transparent 70%),
-    radial-gradient(26vmax 20vmax at 76% 86%, rgba(179, 138, 66, .10), transparent 70%),
-    #f3eee4; }
+    radial-gradient(26vmax 20vmax at 76% 86%, rgba(34, 117, 204, .10), transparent 70%),
+    #f2f6fa; }
 :root[data-theme="light"] html::before, html[data-theme="light"]::before { background-image: radial-gradient(circle at center, rgba(21, 97, 173, .2) 0 1px, transparent 1.4px); opacity: .5; }
 
 /* the panels and the header become glass over it */

@@ -3,7 +3,7 @@
    Each group and service brings its own colour (--c); --ink is that colour, made darker in light mode so it reads. */
 
 .ix-jump-a, .ix-ghost, .ix-group, .ix-chip, .ix-bar a { --ink: var(--c); }
-:root[data-theme="light"] :is(.ix-jump-a, .ix-ghost, .ix-group, .ix-chip, .ix-bar a) { --ink: color-mix(in srgb, var(--c) 55%, #17130d); }
+:root[data-theme="light"] :is(.ix-jump-a, .ix-ghost, .ix-group, .ix-chip, .ix-bar a) { --ink: color-mix(in srgb, var(--c) 55%, #0f1d30); }
 .ix-groups svg, .ix-jump svg, .ix-ghost svg, .ix-chip svg, .ix-how svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- the opening: the four groups as cards to jump to ---------- */

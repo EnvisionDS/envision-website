@@ -26,7 +26,7 @@ export default function WhoWeAre() {
         We're a Melbourne team of strategists, designers, developers and marketers. One team from first call to launch,
         so nothing gets lost between agencies.
       </p>
-      <div className="wl-row reveal" style={{ "--c": "#f1dcae" }}>
+      <div className="wl-row reveal" style={{ "--c": "#8fd3f4" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <circle cx="6" cy="18" r="2.2" />
@@ -45,7 +45,7 @@ export default function WhoWeAre() {
         Your website, search, ads, social media and follow-up in one connected plan, built around your goals and budget
         so every channel pulls the same way.
       </p>
-      <div className="wl-row reveal" style={{ "--c": "#d2b27a" }}>
+      <div className="wl-row reveal" style={{ "--c": "#5b9be6" }}>
         <span className="wl-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M3 17l6-6 4 4 8-8" />

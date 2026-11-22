@@ -124,8 +124,8 @@ export default function Finder() {
           <svg viewBox="0 0 400 400">
             <defs>
               <radialGradient id="fdCore">
-                <stop offset="0" stopColor="#e3cfa4" stopOpacity=".35" />
-                <stop offset="1" stopColor="#e3cfa4" stopOpacity="0" />
+                <stop offset="0" stopColor="#8fd3f4" stopOpacity=".35" />
+                <stop offset="1" stopColor="#8fd3f4" stopOpacity="0" />
               </radialGradient>
             </defs>
             <circle className="fd-ring" cx="200" cy="200" r="120" />

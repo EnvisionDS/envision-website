@@ -18,13 +18,13 @@
 :root .proj .tag { color: var(--brand-ink, #5b9be6); }
 /* the button, in the logo's blue; it covers the whole card, so a click anywhere opens the window */
 .proj .visit { appearance: none; cursor: pointer; text-align: left; align-self: flex-start; display: inline-flex; align-items: center; gap: .6rem; margin-top: auto;
-  padding: 1rem 1.4rem; border: 1px solid var(--brand, #1561ad); background: var(--brand, #1561ad); color: #f3efe6;
+  padding: 1rem 1.4rem; border: 1px solid var(--brand, #1561ad); background: var(--brand, #1561ad); color: #eaf3fa;
   font: 500 .76rem/1 "IBM Plex Sans", sans-serif; letter-spacing: .18em; text-transform: uppercase; transition: background .35s, border-color .35s; }
 .proj:hover .visit { background: var(--brand-2, #2275cc); border-color: var(--brand-2, #2275cc); color: #fff; }
 .proj .visit::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .proj .visit span { transition: transform .25s; } .proj:hover .visit span { transform: translateX(4px); }
 .proj .visit:focus-visible { outline: none; } .proj:has(.visit:focus-visible) { outline: 2px solid var(--brand-ink, #5b9be6); outline-offset: 3px; }
-html[data-theme="light"] .proj .visit { color: #f3efe6; }
+html[data-theme="light"] .proj .visit { color: #eaf3fa; }
 
 /* ---------- the window: fills the screen with a small margin, like a browser window ---------- */
 html.cw-on, html.cw-on body { overflow: hidden; }
@@ -33,7 +33,7 @@ html.cw-on, html.cw-on body { overflow: hidden; }
 .cw-backdrop { position: absolute; inset: 0; background: rgba(4, 6, 9,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; transition: opacity .42s cubic-bezier(.4,0,.2,1); }
 .cw.show .cw-backdrop { opacity: 1; transition: opacity .55s ease; }
 /* it grows out of the card that was clicked (--from, set in lib/client/work.js) and shrinks back into it */
-.cw-win { --ink: #f7f4ef; --mute: rgba(242, 237, 226,.66); --line: rgba(255, 255, 255,.09); --ease: cubic-bezier(.2,.8,.2,1);
+.cw-win { --ink: #f7f4ef; --mute: rgba(242, 246, 250,.66); --line: rgba(255, 255, 255,.09); --ease: cubic-bezier(.2,.8,.2,1);
           position: absolute; inset: clamp(8px, 2.2vw, 28px); display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden;
           border-radius: 16px; background: #090d13; border: 1px solid rgba(255, 255, 255,.12); box-shadow: 0 40px 120px rgba(0, 0, 0,.6);
           color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif;
@@ -51,11 +51,11 @@ html.cw-on, html.cw-on body { overflow: hidden; }
 .cw-light.red span { font-size: 11px; line-height: 1; color: rgba(60, 0, 0,.75); opacity: 0; transition: opacity .15s; }
 .cw-lights:hover .cw-light.red span, .cw-light.red:focus-visible span { opacity: 1; }
 .cw-light.red:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.cw-nav { display: flex; gap: .2rem; color: rgba(242, 237, 226,.35); }
+.cw-nav { display: flex; gap: .2rem; color: rgba(242, 246, 250,.35); }
 .cw-nav svg, .cw-url svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .cw-url { flex: 1; min-width: 0; display: flex; align-items: center; gap: .55rem; height: 34px; padding: 0 .9rem; border-radius: 999px; background: #090d13; color: var(--mute); font-size: .85rem; }
 .cw-url svg { width: 14px; height: 14px; flex: none; }
-.cw-url em { font-style: normal; flex: none; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: #f1dcae; padding: .15rem .5rem; border-radius: 999px; background: rgba(241, 220, 174,.1); }
+.cw-url em { font-style: normal; flex: none; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: #8fd3f4; padding: .15rem .5rem; border-radius: 999px; background: rgba(143, 211, 244,.1); }
 .cw-domain { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cw-live { flex: none; display: inline-flex; align-items: center; gap: .35rem; padding: .45rem .9rem; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); font-size: .84rem; text-decoration: none; transition: background .2s, border-color .2s; }
 .cw-live:hover, .cw-live:focus-visible { background: rgba(255, 255, 255,.07); border-color: rgba(255, 255, 255,.25); outline: none; }
@@ -70,15 +70,15 @@ html.cw-on, html.cw-on body { overflow: hidden; }
 .cs { --pad: clamp(1.2rem, 4vw, 3.5rem); max-width: 1180px; margin: 0 auto; padding: clamp(1.6rem, 4vw, 3.2rem) var(--pad) clamp(2rem, 5vw, 4rem); display: grid; gap: clamp(2rem, 4.5vw, 3.6rem); }
 .cs-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
 .cs-logo { display: inline-flex; align-items: center; height: 50px; padding: 0 1rem; border-radius: 12px; background: #fff; margin-bottom: 1.3rem; }
-.cs-ey { margin: 0 0 .8rem; font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: #f1dcae; }
+.cs-ey { margin: 0 0 .8rem; font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: #8fd3f4; }
 .cs h2 { margin: 0; font: 400 clamp(2rem, 3.6vw, 3.1rem)/1.06 "Sora", sans-serif; letter-spacing: -.035em; color: var(--ink); }
 .cs-lede { margin: 1rem 0 0; font-size: 1.04rem; line-height: 1.6; color: var(--mute); max-width: 52ch; }
 .cs-ctas { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
-.cs-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.25rem; border-radius: 999px; background: #f3efe6; color: #050b16; font-weight: 500; font-size: .94rem; text-decoration: none; transition: transform .25s var(--ease), background .2s; }
+.cs-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.25rem; border-radius: 999px; background: #eaf3fa; color: #050b16; font-weight: 500; font-size: .94rem; text-decoration: none; transition: transform .25s var(--ease), background .2s; }
 .cs-btn:hover { transform: translateY(-2px); background: #fff; }
 .cs-btn.ghost { background: transparent; color: var(--ink); border: 1px solid rgba(255, 255, 255,.2); }
 .cs-btn.ghost:hover { background: rgba(255, 255, 255,.06); }
-.cs-btn:focus-visible { outline: 2px solid #f1dcae; outline-offset: 3px; }
+.cs-btn:focus-visible { outline: 2px solid #8fd3f4; outline-offset: 3px; }
 .cs-shot { margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255, 255, 255,.12); box-shadow: 0 30px 80px -30px rgba(0, 0, 0,.8); background: #111; }
 .cs-shot img { display: block; width: 100%; height: auto; }
 
@@ -103,7 +103,7 @@ html.cw-on, html.cw-on body { overflow: hidden; }
 .cs-ring circle.v { stroke: #28c840; stroke-linecap: round; stroke-dasharray: 0 100; transition: stroke-dasharray 1.2s var(--ease) .3s; }
 .cw.in .cs-ring circle.v { stroke-dasharray: var(--s) 100; }
 .cs-ring b { font: 500 1.05rem/1 "Sora", sans-serif; color: #5be08a; }
-.cs-note { margin: .9rem 0 0; font-size: .78rem; color: rgba(242, 237, 226,.45); }
+.cs-note { margin: .9rem 0 0; font-size: .78rem; color: rgba(242, 246, 250,.45); }
 
 .cs-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
 .cs-gallery figure { margin: 0; display: grid; gap: .7rem; align-content: start; }

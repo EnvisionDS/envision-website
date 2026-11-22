@@ -4,16 +4,16 @@
 
 /* the header above the wheel: a tag and heading on the left, a short note on the right */
 .gv-tag { display: inline-flex; align-items: center; gap: .5rem; padding: .4rem .75rem; border-radius: 8px; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-          color: #d2b27a; background: rgba(210, 178, 122,.08); border: 1px solid rgba(210, 178, 122,.22); }
+          color: #5b9be6; background: rgba(91, 155, 230,.08); border: 1px solid rgba(91, 155, 230,.22); }
 .gv-tag svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .bo-top { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; align-items: end; }
 .bo-h { font-size: clamp(1.8rem, 3.4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -.03em; margin: .9rem 0 0; text-wrap: balance; }
-.bo-h .grad { background: linear-gradient(90deg, #5b9be6, #f1dcae 60%, #d2b27a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bo-h .grad { background: linear-gradient(90deg, #5b9be6, #8fd3f4 60%, #5b9be6); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .bo-side { display: grid; gap: 1rem; justify-items: start; }
 .bo-side p { color: var(--muted); margin: 0; max-width: 46ch; }
 @media (max-width: 960px) { .bo-top { grid-template-columns: 1fr; gap: 1rem; } }
-:root[data-theme="light"] .gv-tag { color: #7a8a5a; background: rgba(23, 151, 122,.08); border-color: rgba(23, 151, 122,.3); }
-:root[data-theme="light"] .bo-h .grad { background-image: linear-gradient(90deg, #1561ad, #2f80c9 60%, #7a8a5a); }
+:root[data-theme="light"] .gv-tag { color: #3d82d6; background: rgba(21, 97, 173,.08); border-color: rgba(21, 97, 173,.3); }
+:root[data-theme="light"] .bo-h .grad { background-image: linear-gradient(90deg, #1561ad, #2f80c9 60%, #3d82d6); }
 
 /* the values wheel */
 .vw-pts svg { width: 16px; height: 16px; flex: none; margin-top: .15em; fill: none; stroke: var(--c); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
@@ -33,7 +33,7 @@
 .vw-arm.on .base { opacity: 0; } .vw-arm.on .lit { opacity: 1; }
 /* each ring is a button sitting on the drawing's ring; its icon and label turn the other way so they stay upright */
 .vw-ring { position: absolute; width: calc(var(--u) * 16.4); height: calc(var(--u) * 16.4); transform: translate(-50%, -50%); border-radius: 50%; padding: 0; cursor: pointer;
-           border: calc(var(--u) * 3.4) solid rgba(241, 220, 174,.42); background: #0b1017; color: #b9c0c9; display: grid; place-items: center;
+           border: calc(var(--u) * 3.4) solid rgba(143, 211, 244,.42); background: #0b1017; color: #b9c0c9; display: grid; place-items: center;
            transition: border-color .5s, background .5s, box-shadow .5s, color .5s; }
 .vw-ring span, .vw-label span { display: block; transform: rotate(calc(-1 * var(--rot))); transition: transform 1.1s cubic-bezier(.65,0,.25,1); }
 .vw-ring svg { display: block; width: calc(var(--u) * 5.4); height: calc(var(--u) * 5.4); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -48,7 +48,7 @@
            background: linear-gradient(90deg, var(--c, #5b9be6), transparent); box-shadow: 0 0 12px var(--c, #5b9be6); animation: vwBeam .9s .9s both; }
 @keyframes vwBeam { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 /* the panel: every item is in the page; with the script running only the chosen one shows */
-.vw-panel { --c: #c8734f; position: relative; border-radius: 26px; padding: clamp(1.5rem, 2.8vw, 2.4rem); display: flex; flex-direction: column; gap: 2rem; min-height: 470px;
+.vw-panel { --c: #5b9be6; position: relative; border-radius: 26px; padding: clamp(1.5rem, 2.8vw, 2.4rem); display: flex; flex-direction: column; gap: 2rem; min-height: 470px;
             background: radial-gradient(90% 60% at 0% 50%, color-mix(in srgb, var(--c) 13%, transparent), transparent 70%), #0a1426;
             border: 1px solid color-mix(in srgb, var(--c) 35%, #16202f); transition: border-color .6s; }
 .vw-item { display: flex; flex-direction: column; gap: .9rem; }

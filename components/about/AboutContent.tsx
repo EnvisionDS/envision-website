@@ -280,7 +280,7 @@ export default function AboutContent() {
                   <div className="vw-spin" id="vwSpin"></div>
                 </div>
                 <div className="vw-panel" id="vwPanel" aria-live="polite">
-                  <article className="vw-item" id="vw-mission" style={{ "--c": "#c8734f" }} data-label="Mission">
+                  <article className="vw-item" id="vw-mission" style={{ "--c": "#5b9be6" }} data-label="Mission">
                     {" "}
                     <span className="vw-ico" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
@@ -316,7 +316,7 @@ export default function AboutContent() {
                       </li>
                     </ul>
                   </article>
-                  <article className="vw-item" id="vw-vision" style={{ "--c": "#f1dcae" }} data-label="Vision">
+                  <article className="vw-item" id="vw-vision" style={{ "--c": "#8fd3f4" }} data-label="Vision">
                     {" "}
                     <span className="vw-ico" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
@@ -391,7 +391,7 @@ export default function AboutContent() {
                       </li>
                     </ul>
                   </article>
-                  <article className="vw-item" id="vw-integrity" style={{ "--c": "#d2b27a" }} data-label="Integrity">
+                  <article className="vw-item" id="vw-integrity" style={{ "--c": "#5b9be6" }} data-label="Integrity">
                     {" "}
                     <span className="vw-ico" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
@@ -429,7 +429,7 @@ export default function AboutContent() {
                   <article
                     className="vw-item"
                     id="vw-reliability"
-                    style={{ "--c": "#e39b4f" }}
+                    style={{ "--c": "#3f86dd" }}
                     data-label="Reliability"
                   >
                     {" "}
@@ -466,7 +466,7 @@ export default function AboutContent() {
                       </li>
                     </ul>
                   </article>
-                  <article className="vw-item" id="vw-resilience" style={{ "--c": "#b7a3c9" }} data-label="Resilience">
+                  <article className="vw-item" id="vw-resilience" style={{ "--c": "#a9c7e8" }} data-label="Resilience">
                     {" "}
                     <span className="vw-ico" aria-hidden="true">
                       <svg viewBox="0 0 24 24">
@@ -503,7 +503,7 @@ export default function AboutContent() {
                   <article
                     className="vw-item"
                     id="vw-adaptability"
-                    style={{ "--c": "#8db2b0" }}
+                    style={{ "--c": "#8fd3f4" }}
                     data-label="Adaptability"
                   >
                     {" "}
@@ -540,7 +540,7 @@ export default function AboutContent() {
                       </li>
                     </ul>
                   </article>
-                  <article className="vw-item" id="vw-clarity" style={{ "--c": "#c9b45a" }} data-label="Clarity">
+                  <article className="vw-item" id="vw-clarity" style={{ "--c": "#2f80c9" }} data-label="Clarity">
                     {" "}
                     <span className="vw-ico" aria-hidden="true">
                       <svg viewBox="0 0 24 24">

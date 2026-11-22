@@ -10,7 +10,7 @@ export type LegalSection = { id: string; title: string; body: ReactNode };
 export default function LegalPage({ title, updated, intro, sections }: { title: string; updated: string; intro: string; sections: LegalSection[] }) {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: "body{--c:#e3cfa4}" }} />
+      <style dangerouslySetInnerHTML={{ __html: "body{--c:#8fd3f4}" }} />
       <a className="skip" href="#main">
         Skip to content
       </a>
