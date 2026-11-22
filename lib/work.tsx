@@ -1,8 +1,13 @@
 // Our work: the projects shown on the homepage, and the case study each one opens in its pop-up window.
-// Every fact and number here comes from the project itself (its code and documents) or from the live site. Add measured
-// results (enquiries, traffic) only once the client has shared them.
+// Every fact and number here comes from the project itself (its code and documents) or from the live site. Measured
+// results (enquiries, traffic) go in `results`, and only once the client has shared them (EdenCare's are from their
+// monthly report).
 export type Stat = { value: string; label: string };
 export type Score = { label: string; score: number };
+// measured results the client has shared (from their monthly report): the month, where the figures come from, and each
+// figure with what it counts and how it changed on the month before
+export type Result = { value: string; label: string; change?: string };
+export type Results = { period: string; source: string; items: Result[] };
 export type Shot = { src: string; alt: string; caption: string };
 export type Case = {
   id: string;
@@ -24,6 +29,7 @@ export type Case = {
   gallery: Shot[];
   stack: string[];
   scores: Score[];
+  results?: Results;
 };
 
 // Google Lighthouse, desktop, measured on the live sites (re-measure before quoting new figures)
@@ -85,6 +91,19 @@ export const CASES: Case[] = [
       { label: "SEO", score: 100 },
       { label: "Accessibility", score: 96 },
     ],
+    // EdenCare's monthly marketing report for October 2026 (the second full month of Google Ads), compared with
+    // September. Left out on purpose: the ads' cost per enquiry, which the report itself says looks better than it is
+    // (most of those enquiries followed searches for other providers).
+    results: {
+      period: "October 2026",
+      source: "From EdenCare's monthly report: Google Analytics, Google Ads and Google Business Profile, compared with September.",
+      items: [
+        { value: "16", label: "enquiries through the website: phone taps, contact forms and email clicks", change: "Up 45% on September" },
+        { value: "13", label: "taps on the phone number on the website", change: "Up 44% on September" },
+        { value: "183", label: "times their Google Business Profile was seen on Search and Maps", change: "Up 16% on September" },
+        { value: "7.5%", label: "of people who saw the Google ads clicked through to the site", change: "Up from 7.2% in September" },
+      ],
+    },
   },
   {
     id: "greater-health",

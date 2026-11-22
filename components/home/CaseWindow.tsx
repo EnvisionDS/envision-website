@@ -39,6 +39,28 @@ function Study({ c }: { c: Case }) {
         ))}
       </section>
 
+      {c.results ? (
+        <section className="cs-results" aria-labelledby={`cs-r-${c.id}`}>
+          <div className="cs-results-head">
+            <p className="cs-label" id={`cs-r-${c.id}`}>{`Results · ${c.results.period}`}</p>
+            <p className="cs-note">{c.results.source}</p>
+          </div>
+          <div className="cs-stats">
+            {c.results.items.map((r) => (
+              <div className="cs-stat" key={r.label}>
+                <b>{r.value}</b>
+                <span>{r.label}</span>
+                {r.change ? (
+                  <em className="cs-up">
+                    <span aria-hidden="true">&uarr;</span> {r.change}
+                  </em>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="cs-two">
         <div>
           <p className="cs-label">The brief</p>

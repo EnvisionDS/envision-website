@@ -139,3 +139,10 @@ html[data-theme="light"] .proj .tag { color: #1561ad; }
 :root .to-top .tt-track { stroke: rgba(91, 155, 230, .25); }
 :root .to-top .tt-fill { stroke: #5b9be6; filter: drop-shadow(0 0 4px rgba(21, 97, 173, .6)); }
 :root .to-top:hover { box-shadow: 0 0 0 6px rgba(21, 97, 173, .14), 0 0 26px rgba(21, 97, 173, .45); }
+
+/* a case study's measured results (lib/work.tsx `results`): the month, where the figures come from, and each figure with
+   how it changed on the month before */
+.cs-results-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .4rem 1.5rem; margin-bottom: .9rem; }
+.cs-results-head .cs-label, .cs-results-head .cs-note { margin: 0; }
+.cs-up { font-style: normal; font-size: .82rem; font-weight: 500; color: color-mix(in srgb, var(--c) 75%, #fff); }
+.cs-up span { display: inline-block; margin-right: .15rem; }
