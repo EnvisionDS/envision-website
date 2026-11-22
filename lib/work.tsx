@@ -12,7 +12,6 @@ export type Score = { label: string; score: number };
 // under a short name
 export type Result = { value: string; label: string; change?: string; icon: StatIcon; short: string; series: number[] };
 export type Results = { period: string; months: string[]; source: string; items: Result[] };
-export type Shot = { src: string; alt: string; caption: string };
 export type Case = {
   id: string;
   name: string;
@@ -27,11 +26,13 @@ export type Case = {
   headline: string;
   summary: string;
   tags: string[];
-  brief: string;
+  // the case study tells it in order: who they are, the challenge, how we approached it (with what we built), results
+  lede: string;
+  about: string;
+  challenge: string;
+  approach: string;
   built: string[];
   stats: Stat[];
-  gallery: Shot[];
-  stack: string[];
   scores: Score[];
   results?: Results;
 };
@@ -62,8 +63,14 @@ export const CASES: Case[] = [
     summary:
       "A Melbourne provider of NDIS disability support, in-home aged care and allied health. The site sets out their services, from daily living support and dementia care to nursing and 24/7 support, and introduces their team.",
     tags: ["NDIS", "Aged care", "Allied health"],
-    brief:
-      "EdenCare's previous website was hard to find your way around: several services had no description, and there was no clear path for the people looking for support or for the professionals referring them. They wanted a site that felt warm and trustworthy, not clinical, and made the next step obvious.",
+    lede:
+      "A warmer, clearer website for a Melbourne care provider, then the ads and monthly reporting to bring people to it.",
+    about:
+      "EdenCare Support Services is a Melbourne provider of NDIS disability support, in-home aged care and allied health. Their 12 services run from daily living support and dementia care to nursing and 24/7 support, 7 days a week, and they work alongside each person and their family to build a care plan around them.",
+    challenge:
+      "Their previous website was hard to find your way around: several services had no description, and there was no clear path for the people looking for support or for the professionals referring them. It needed to feel warm and trustworthy, not clinical, and make the next step obvious. Once it was live, it also needed the right people to find it.",
+    approach:
+      "We started with the two groups who come to the site, people looking for support and the professionals who refer them, and gave each a clear path from the first screen. Then we rebuilt every page in a warm, plain-English voice, gave each service its own page, and put the team in charge of their own content. Once the site was live, we sent Google Ads to it and report on what they bring in every month.",
     built: [
       "A full rebuild in a warm, plain-English voice",
       "Two clear paths from the first screen: “I'm looking for support” and “I'm a referral partner”",
@@ -78,19 +85,6 @@ export const CASES: Case[] = [
       { value: "4", label: "online forms, from referrals to job applications", icon: "forms" },
       { value: "1–2", label: "business days to reply to a referral", icon: "clock" },
     ],
-    gallery: [
-      {
-        src: "/img/work/eden-about.jpg",
-        alt: "EdenCare's introduction: a trusted NDIS, aged care and allied health provider",
-        caption: "Who they are, in a sentence, with the essentials beside it: registered NDIS provider, 12 services, 7 days a week.",
-      },
-      {
-        src: "/img/work/eden-services.jpg",
-        alt: "EdenCare's services, each in its own card",
-        caption: "Every service in one place, each with a clear description and its own page.",
-      },
-    ],
-    stack: ["Next.js", "Vercel (Sydney)", "PostgreSQL", "Resend email", "Google Tag Manager"],
     scores: [
       { label: "SEO", score: 100 },
       { label: "Accessibility", score: 96 },
@@ -126,8 +120,14 @@ export const CASES: Case[] = [
     summary:
       "A mobile exercise physiology provider covering 64 suburbs across Melbourne's South East, with hydrotherapy and clinical Pilates. The site brings online booking, referrals for GPs and case managers, and seven funding pathways into one clear journey.",
     tags: ["Online booking", "Referrals", "Local service areas"],
-    brief:
-      "Greater Health's referral forms lived on an older website, so the buttons sent people somewhere else, and some funding schemes had no form at all. They wanted one clear, phone-friendly site, with separate paths for families and for the GPs and case managers who refer to them.",
+    lede:
+      "One clear, phone-friendly site for a mobile exercise physiology team, with a path for families and one for referrers.",
+    about:
+      "Greater Health is a mobile exercise physiology provider covering 64 suburbs across Melbourne's South East. Their exercise physiologists come to clients at home, the gym, the pool or the studio, with hydrotherapy and clinical Pilates, and they work across seven funding pathways.",
+    challenge:
+      "Their referral forms lived on an older website, so the buttons sent people somewhere else, and some funding schemes had no form at all. Families and the GPs and case managers who refer to them need different things, and they wanted one clear, phone-friendly site that served both.",
+    approach:
+      "We brought everything onto one site and split it from the first screen: Contact us for families, Make a referral for professionals. Each funding pathway got its own referral form, so no one is sent elsewhere, and we explained exercise physiology in plain language with real client video. Then we made it easy for everyone to use, from a larger-text switch to generous touch targets.",
     built: [
       "A new site that explains exercise physiology in plain language, with real client video",
       "Separate paths for families (Contact us) and professionals (Make a referral)",
@@ -142,19 +142,6 @@ export const CASES: Case[] = [
       { value: "4", label: "places they come to you: home, gym, pool or studio", icon: "home" },
       { value: "144", label: "automated checks run on every change", icon: "check" },
     ],
-    gallery: [
-      {
-        src: "/img/work/gh-ep.jpg",
-        alt: "Greater Health explains exercise physiology, with myth-or-fact cards",
-        caption: "Exercise physiology, explained simply, with quick myth-or-fact cards.",
-      },
-      {
-        src: "/img/work/gh-how.jpg",
-        alt: "How it works: from a free chat to your goal",
-        caption: "How it works, from a free chat to your goal, in three steps.",
-      },
-    ],
-    stack: ["Eleventy", "Vercel (Sydney)", "Amazon SES email", "Halaxy booking", "GSAP animation"],
     scores: [
       { label: "SEO", score: 100 },
       { label: "Accessibility", score: 90 },
@@ -175,8 +162,14 @@ export const CASES: Case[] = [
     summary:
       "A national urban economics, property research and planning consultancy, advising developers, investors and government since 1985. The site opens on an interactive 3D map of real places and shows how Macroplan thinks, through its projects, sectors and people.",
     tags: ["Interactive 3D map", "Project pages", "Sector pages"],
-    brief:
-      "Macroplan has been answering big questions about places for 40 years, for clients such as the Victoria State Government, Mirvac, Lendlease and Coles. The new site needed to show how they think, not just list what they do, and make that work easy to explore for developers, investors and government.",
+    lede:
+      "A website that shows how a national urban economics consultancy thinks, starting with a 3D map of real places.",
+    about:
+      "Macroplan is a national urban economics, property research and planning consultancy, advising developers, investors and government since 1985. Clients include the Victoria State Government, Mirvac, Lendlease and Coles, and the team works from offices in Melbourne, Sydney and Brisbane.",
+    challenge:
+      "Macroplan has been answering big questions about places for 40 years. The new site needed to show how they think, not just list what they do, and make that work easy to explore for three very different audiences: developers, investors and government.",
+    approach:
+      "We built the site around questions, the way Macroplan works. The homepage opens on an interactive 3D map of real places, each with the question Macroplan helps answer. Every project page is set out the same way, the question, what Macroplan did and the published figures, and each sector page starts with the question a client brings.",
     built: [
       "An interactive 3D map on the homepage: four real places, from the Melbourne CBD to the regions, each with the question Macroplan helps answer",
       "A page for each of seven projects, set out the same way: the question, what Macroplan did, and the published figures",
@@ -191,19 +184,6 @@ export const CASES: Case[] = [
       { value: "6", label: "sectors, each with its own page", icon: "grid" },
       { value: "3", label: "offices: Melbourne, Sydney and Brisbane", icon: "building" },
     ],
-    gallery: [
-      {
-        src: "/img/work/macro-work.jpg",
-        alt: "Macroplan's work page: We answer the big questions",
-        caption: "Seven projects, each set out the same way: the question, what Macroplan did, and the figures.",
-      },
-      {
-        src: "/img/work/macro-sector.jpg",
-        alt: "Macroplan's retail sector page: Places people choose",
-        caption: "A page for every sector, starting with the question a client brings.",
-      },
-    ],
-    stack: ["Next.js", "Vercel", "WebGL 3D map", "GSAP animation", "Lenis smooth scrolling"],
     scores: [
       { label: "SEO", score: 100 },
       { label: "Accessibility", score: 100 },

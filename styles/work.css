@@ -87,7 +87,16 @@ html.cw-on, html.cw-on body { overflow: hidden; }
 .cs-stat b { font: 300 clamp(2.2rem, 4vw, 3.2rem)/1 "Sora", sans-serif; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.4px color-mix(in srgb, var(--c) 90%, #fff); paint-order: stroke fill; }
 .cs-stat span { font-size: .9rem; line-height: 1.45; color: var(--mute); }
 
-.cs-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 4vw, 3.5rem); }
+/* the story: four numbered chapters, each heading on the left and its content on the right; the results run full width */
+.cs-ch { display: grid; grid-template-columns: minmax(0, .38fr) minmax(0, 1fr); gap: clamp(1.2rem, 4vw, 3.5rem); padding-top: clamp(1.6rem, 3.4vw, 2.6rem); border-top: 1px solid var(--line); }
+.cs-ch-wide { grid-template-columns: minmax(0, 1fr); }
+.cs-ch-h { display: grid; align-content: start; gap: .5rem; }
+.cs-ch-wide .cs-ch-h { grid-auto-flow: column; justify-content: start; align-items: end; gap: 1rem; }
+.cs-n { font: 300 clamp(2.4rem, 4.6vw, 3.6rem)/.9 "Sora", sans-serif; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.2px color-mix(in srgb, var(--c) 80%, #fff); }
+.cs-ch-h h3 { margin: 0; font: 400 clamp(1.3rem, 2.2vw, 1.7rem)/1.15 "Sora", sans-serif; letter-spacing: -.02em; color: var(--ink); }
+.cs-say { margin: 0; max-width: 62ch; font-size: clamp(1.04rem, 1.5vw, 1.2rem); line-height: 1.65; color: var(--ink); }
+.cs-ch .cs-built { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cs-res-all { display: grid; gap: clamp(1.8rem, 3.5vw, 2.8rem); }
 .cs-label { margin: 0 0 .8rem; font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--c); }
 .cs-gap { margin-top: 2rem; }
 .cs-text { margin: 0; font-size: 1.04rem; line-height: 1.65; color: var(--ink); }
@@ -105,26 +114,20 @@ html.cw-on, html.cw-on body { overflow: hidden; }
 .cs-ring b { font: 500 1.05rem/1 "Sora", sans-serif; color: #5be08a; }
 .cs-note { margin: .9rem 0 0; font-size: .78rem; color: rgba(242, 246, 250,.45); }
 
-.cs-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
-.cs-gallery figure { margin: 0; display: grid; gap: .7rem; align-content: start; }
-.cs-gallery img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 12px; border: 1px solid rgba(255, 255, 255,.1); }
-.cs-gallery figcaption { font-size: .9rem; line-height: 1.5; color: var(--mute); }
 
-.cs-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.6rem; padding-top: clamp(1.5rem, 3vw, 2.4rem); border-top: 1px solid var(--line); }
-.cs-stack { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
-.cs-stack li { font-size: .82rem; padding: .35rem .75rem; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); }
-.cs-next { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.cs-next { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; padding-top: clamp(1.5rem, 3vw, 2.4rem); border-top: 1px solid var(--line); }
 .cs-next p { margin: 0; font: 400 1.15rem/1.3 "Sora", sans-serif; color: var(--ink); }
 
 @media (max-width: 900px) {
-  .cs-hero, .cs-two { grid-template-columns: minmax(0, 1fr); }
+  .cs-hero, .cs-ch { grid-template-columns: minmax(0, 1fr); }
+  .cs-ch-h { grid-auto-flow: column; justify-content: start; align-items: end; gap: 1rem; }
   .cs-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cw-nav { display: none; }
 }
 @media (max-width: 600px) {
+  .cs-ch .cs-built { grid-template-columns: minmax(0, 1fr); }
   .cw-win { inset: 0; border-radius: 0; }
   .cw-bar { gap: .6rem; }
-  .cs-gallery { grid-template-columns: minmax(0, 1fr); }
   .cw-live { padding: .45rem .7rem; } .cw-url em { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {

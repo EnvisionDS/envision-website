@@ -43,7 +43,7 @@ function Study({ c }: { c: Case }) {
           <span className="cs-logo">{c.logo}</span>
           <p className="cs-ey">{`${c.sector} · ${c.place}`}</p>
           <h2 id={`cs-h-${c.id}`}>{`How we helped ${c.name}`}</h2>
-          <p className="cs-lede">{c.summary}</p>
+          <p className="cs-lede">{c.lede}</p>
           <div className="cs-ctas">
             <a className="cs-btn" href={c.url} target="_blank" rel="noopener">
               Visit the live site <span aria-hidden="true">&#8599;</span>
@@ -58,93 +58,22 @@ function Study({ c }: { c: Case }) {
         </figure>
       </div>
 
-      {/* at a glance: the figures form out of light one after another in 3D (lib/client/grand-scenes.js, "reel"), and the
-          card for the figure on show lights up beside it */}
-      <section className="cs-glance" aria-label="At a glance">
-        <div className="cs-reel" data-scene="reel" data-items={JSON.stringify(c.stats.map((s) => s.value))} aria-hidden="true"></div>
-        <div className="cs-stats">
-          {c.stats.map((s) => (
-            <div className="cs-stat" key={s.label}>
-              <StatIco name={s.icon} />
-              <b data-count={s.value}>{s.value}</b>
-              <span>{s.label}</span>
-            </div>
-          ))}
-        </div>
+      {/* THE STORY, in four numbered chapters: who they are, the challenge, how we approached it, the results */}
+      <section className="cs-ch" aria-labelledby={`cs-a-${c.id}`}>
+        <Head n="01" id={`cs-a-${c.id}`} t="Who they are" />
+        <p className="cs-say">{c.about}</p>
       </section>
 
-      {c.results ? (
-        <section className="cs-results" aria-labelledby={`cs-r-${c.id}`}>
-          <div className="cs-results-head">
-            <p className="cs-label" id={`cs-r-${c.id}`}>{`Results · ${c.results.period}`}</p>
-            <p className="cs-note">{c.results.source}</p>
-          </div>
-          <div className="cs-res-grid">
-            {/* each month side by side, oldest first, as bars rising in 3D (lib/client/grand-scenes.js, "bars") */}
-            <figure className="cs-chart">
-              <div
-                className="cs-bars"
-                data-scene="bars"
-                data-bars={JSON.stringify(c.results.items.map((r) => r.series))}
-                aria-hidden="true"
-              ></div>
-              <ol className="cs-bars-key">
-                {c.results.items.map((r) => (
-                  <li key={r.short}>
-                    <b>{r.short}</b>
-                    <span>{r.series.join(" → ")}</span>
-                  </li>
-                ))}
-              </ol>
-              <figcaption className="cs-legend">
-                {c.results.months.map((m, i) => (
-                  <span className={`m${i === c.results!.months.length - 1 ? " now" : i === 0 ? " was" : " mid"}`} key={m}>
-                    {m}
-                  </span>
-                ))}
-              </figcaption>
-            </figure>
-          <div className="cs-stats">
-            {c.results.items.map((r) => (
-              <div className="cs-stat" key={r.label}>
-                <StatIco name={r.icon} />
-                <b data-count={r.value}>{r.value}</b>
-                <span>{r.label}</span>
-                {r.change ? (
-                  <em className="cs-up">
-                    <span aria-hidden="true">&uarr;</span> {r.change}
-                  </em>
-                ) : null}
-              </div>
-            ))}
-          </div>
-          </div>
-        </section>
-      ) : null}
+      <section className="cs-ch" aria-labelledby={`cs-c-${c.id}`}>
+        <Head n="02" id={`cs-c-${c.id}`} t="The challenge" />
+        <p className="cs-say">{c.challenge}</p>
+      </section>
 
-      <section className="cs-two">
+      <section className="cs-ch" aria-labelledby={`cs-p-${c.id}`}>
+        <Head n="03" id={`cs-p-${c.id}`} t="How we approached it" />
         <div>
-          <p className="cs-label">The brief</p>
-          <p className="cs-text">{c.brief}</p>
-          <p className="cs-label cs-gap">Scores on the live site</p>
-          <div className="cs-scores">
-            {c.scores.map((s) => (
-              <div className="cs-score" style={{ "--s": s.score }} key={s.label}>
-                <span className="cs-ring" aria-hidden="true">
-                  <svg viewBox="0 0 36 36">
-                    <circle cx="18" cy="18" r="15.9" />
-                    <circle className="v" cx="18" cy="18" r="15.9" pathLength="100" />
-                  </svg>
-                  <b>{s.score}</b>
-                </span>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
-          <p className="cs-note">{`Google Lighthouse, desktop, measured ${SCORES_MEASURED}.`}</p>
-        </div>
-        <div>
-          <p className="cs-label">What we built</p>
+          <p className="cs-say">{c.approach}</p>
+          <p className="cs-label cs-gap">What we built</p>
           <ul className="cs-built">
             {c.built.map((b) => (
               <li key={b}>
@@ -156,32 +85,114 @@ function Study({ c }: { c: Case }) {
         </div>
       </section>
 
-      <section className="cs-gallery" aria-label="Pages from the site">
-        {c.gallery.map((g) => (
-          <figure key={g.src}>
-            <img src={g.src} alt={g.alt} loading="lazy" />
-            <figcaption>{g.caption}</figcaption>
-          </figure>
-        ))}
+      <section className="cs-ch cs-ch-wide" aria-labelledby={`cs-r-${c.id}`}>
+        <Head n="04" id={`cs-r-${c.id}`} t="The results" />
+        <div className="cs-res-all">
+          {c.results ? (
+            <div className="cs-results">
+              <div className="cs-results-head">
+                <p className="cs-label">{`Measured · ${c.results.period}`}</p>
+                <p className="cs-note">{c.results.source}</p>
+              </div>
+              <div className="cs-res-grid">
+                {/* each month side by side, oldest first, as bars rising in 3D (lib/client/grand-scenes.js, "bars") */}
+                <figure className="cs-chart">
+                  <div
+                    className="cs-bars"
+                    data-scene="bars"
+                    data-bars={JSON.stringify(c.results.items.map((r) => r.series))}
+                    aria-hidden="true"
+                  ></div>
+                  <ol className="cs-bars-key">
+                    {c.results.items.map((r) => (
+                      <li key={r.short}>
+                        <b>{r.short}</b>
+                        <span>{r.series.join(" → ")}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <figcaption className="cs-legend">
+                    {c.results.months.map((m, i) => (
+                      <span className={`m${i === c.results!.months.length - 1 ? " now" : i === 0 ? " was" : " mid"}`} key={m}>
+                        {m}
+                      </span>
+                    ))}
+                  </figcaption>
+                </figure>
+                <div className="cs-stats">
+                  {c.results.items.map((r) => (
+                    <div className="cs-stat" key={r.label}>
+                      <StatIco name={r.icon} />
+                      <b data-count={r.value}>{r.value}</b>
+                      <span>{r.label}</span>
+                      {r.change ? (
+                        <em className="cs-up">
+                          <span aria-hidden="true">&uarr;</span> {r.change}
+                        </em>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {/* what the new site delivers: the figures form out of light one after another in 3D (lib/client/grand-scenes.js,
+              "reel"), and the card for the figure on show lights up beside it */}
+          <div>
+            <p className="cs-label">What the new site delivers</p>
+            <div className="cs-glance">
+              <div className="cs-reel" data-scene="reel" data-items={JSON.stringify(c.stats.map((s) => s.value))} aria-hidden="true"></div>
+              <div className="cs-stats">
+                {c.stats.map((s) => (
+                  <div className="cs-stat" key={s.label}>
+                    <StatIco name={s.icon} />
+                    <b data-count={s.value}>{s.value}</b>
+                    <span>{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p className="cs-label">Scores on the live site</p>
+            <div className="cs-scores">
+              {c.scores.map((s) => (
+                <div className="cs-score" style={{ "--s": s.score }} key={s.label}>
+                  <span className="cs-ring" aria-hidden="true">
+                    <svg viewBox="0 0 36 36">
+                      <circle cx="18" cy="18" r="15.9" />
+                      <circle className="v" cx="18" cy="18" r="15.9" pathLength="100" />
+                    </svg>
+                    <b>{s.score}</b>
+                  </span>
+                  <span>{s.label}</span>
+                </div>
+              ))}
+            </div>
+            <p className="cs-note">{`Google Lighthouse, desktop, measured ${SCORES_MEASURED}.`}</p>
+          </div>
+        </div>
       </section>
 
-      <div className="cs-foot">
-        <div>
-          <p className="cs-label">Built with</p>
-          <ul className="cs-stack">
-            {c.stack.map((t) => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="cs-next">
-          <p>Want a website that does this for your business?</p>
-          <a className="cs-btn" href="/contact">
-            Book a discovery call <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+      <div className="cs-next">
+        <p>Want a website that does this for your business?</p>
+        <a className="cs-btn" href="/contact">
+          Book a discovery call <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </article>
+  );
+}
+
+// a chapter's heading: its number, drawn as an outline, over the title
+function Head({ n, id, t }: { n: string; id: string; t: string }) {
+  return (
+    <header className="cs-ch-h">
+      <span className="cs-n" aria-hidden="true">{n}</span>
+      <h3 id={id}>{t}</h3>
+    </header>
   );
 }
 
