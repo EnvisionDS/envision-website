@@ -66,43 +66,43 @@ export default function AboutContent() {
   return (
     <>
       <main id="main" className="ag">
-        {/* the opening: the mark built of light, and the page's title */}
-        <section className="ag-hero" aria-labelledby="ag-h">
-          <div className="ag-stage" data-scene="mark" aria-hidden="true"></div>
-          <div className="ag-hero-veil" aria-hidden="true"></div>
-          <div className="ag-wrap ag-hero-in">
-            <p className="ag-crumbs">
-              <a href="/" data-home="">
-                Home
-              </a>
-              <span aria-hidden="true">/</span>
-              <span>About us</span>
-            </p>
-            <p className="ag-kicker">Envision Digital Solutions · Melbourne</p>
-            <h1 id="ag-h" className="ag-title">
-              Digital marketing meets <em>smarter</em> decision-making.
-            </h1>
-            <div className="ag-hero-foot">
-              <p className="wr">
-                A Melbourne team of strategists, developers and creative thinkers, helping local businesses get found,
-                earn trust and turn interest into real enquiries.
-              </p>
-              <div className="ag-ctas">
-                <a className="ag-btn" href="/contact">
-                  Book a discovery call{" "}
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    {LIGHT}
-                  </svg>
+        {/* the opening, built like every other page's hero (styles/service.css .hero, as on Services): the copy on the
+            left in the site's column, the Envision mark turning in 3D on the right; it fills the first screen */}
+        <section className="hero ag-hero" aria-labelledby="ag-h">
+          <div className="g-stage" data-scene="mark" aria-hidden="true"></div>
+          <div className="g-veil left" aria-hidden="true"></div>
+          <div className="wrap ag-hero-grid">
+            <div className="hero-copy">
+              <p className="crumbs">
+                <a href="/" data-home="">
+                  Home
                 </a>
-                <a className="ag-btn ghost" href="/#work" data-home="">
+                <span aria-hidden="true">/</span>
+                <span>About us</span>
+              </p>
+              <p className="vf">
+                <span className="vf-ret" aria-hidden="true">
+                  <i></i>
+                </span>
+                <span>About Envision</span>
+              </p>
+              <h1 id="ag-h">
+                Digital marketing meets <em>smarter</em> decision-making.
+              </h1>
+              <p className="lede">
+                A Melbourne team of strategists, developers and creative thinkers, helping local businesses get found, earn
+                trust and turn interest into real enquiries.
+              </p>
+              <div className="ctas">
+                <a className="btn" href="/contact">
+                  Book a discovery call <span aria-hidden="true">&rarr;</span>
+                </a>
+                <a className="btn ghost" href="/#work" data-home="">
                   See our work
                 </a>
               </div>
             </div>
           </div>
-          <a className="ag-scroll" href="#ag-manifesto" aria-label="Scroll to the next section">
-            <span></span>
-          </a>
         </section>
 
         {/* the manifesto: lit word by word as it arrives */}

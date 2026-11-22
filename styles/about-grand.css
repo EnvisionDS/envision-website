@@ -51,18 +51,15 @@ body:has(main.ag) { --bg: #050b16; }
 .ag-eyebrow.rv.in { animation-name: rvLabel; }
 
 /* ---------- the opening ---------- */
-.ag-hero { position: relative; isolation: isolate; min-height: calc(100svh - 74px); display: grid; align-items: end; padding: 16vh 0 11vh; overflow: hidden; }
-.ag-hero-veil { position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--void) 82%, transparent) 0%, color-mix(in srgb, var(--void) 70%, transparent) 30%, transparent 62%), linear-gradient(0deg, color-mix(in srgb, var(--void) 82%, transparent) 0%, transparent 35%); }
-.ag-crumbs { display: flex; gap: .6rem; margin: 0 0 3rem; font-size: .85rem; color: var(--faint); }
-.ag-crumbs a { color: var(--soft); text-decoration: none; } .ag-crumbs a:hover { color: var(--gold-2); }
-.ag-title { margin: 0 0 3rem; max-width: 11.5ch; font-size: clamp(3.4rem, 9vw, 9rem); line-height: .94; }
-.ag-title .mo-m { white-space: nowrap; }   /* a hyphenated word (decision-making) stays on one line as it rises */
-.ag-hero-foot { display: grid; grid-template-columns: minmax(0, 44ch) auto; gap: 2rem 4rem; align-items: end; justify-content: space-between; }
-.ag-hero-foot p { margin: 0; color: var(--soft); font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.65; }
-.ag-scroll { position: absolute; left: 50%; bottom: 2.2rem; width: 1px; height: 64px; background: var(--hair); overflow: hidden; }
-.ag-scroll span { position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: linear-gradient(transparent, var(--gold)); animation: agDrop 2.4s cubic-bezier(.6,0,.3,1) infinite; }
-@keyframes agDrop { to { top: 110%; } }
+/* the opening: built like every other page's hero (styles/service.css .hero, as on Services), filling the first screen:
+   the copy in the site's column on the left, the mark in 3D on the right */
+.ag-hero { position: relative; isolation: isolate; overflow: hidden; min-height: calc(100svh - 74px); display: grid; align-items: center; }
+.ag-hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+.ag-hero { padding-block: clamp(1.2rem, 4.5vh, 3.5rem); }
+:root main.ag .ag-hero h1 { max-width: 9em; font-size: clamp(2.6rem, min(6.4vw, 10.5vh), 5.6rem); }
+.ag-hero .crumbs { margin-bottom: clamp(.8rem, 2.6vh, 1.6rem); }
+.ag-hero h1 .mo-m { white-space: nowrap; }   /* a hyphenated word (decision-making) stays on one line as it rises */
+.ag-hero .lede { max-width: 46ch; }
 
 /* ---------- the manifesto ---------- */
 .ag-manifesto { padding: clamp(7rem, 18vh, 12rem) 0 clamp(6rem, 14vh, 10rem); }
@@ -207,8 +204,7 @@ body:has(main.ag) { --bg: #050b16; }
 
 /* ---------- smaller screens ---------- */
 @media (max-width: 960px) {
-  .ag-hero-foot { grid-template-columns: 1fr; }
-  .ag-hero-veil { background: linear-gradient(0deg, color-mix(in srgb, var(--void) 80%, transparent) 8%, color-mix(in srgb, var(--void) 55%, transparent) 55%, transparent 85%); }
+  .ag-hero-grid { grid-template-columns: 1fr; }
   .ag-two { grid-template-columns: 1fr; }
   .ag-pillars { flex-direction: column; min-height: 0; }
   .ag-pillar { min-height: 320px; }
@@ -220,10 +216,8 @@ body:has(main.ag) { --bg: #050b16; }
   .ag-screen { aspect-ratio: 4 / 5; }
   .ag-caps { bottom: 6.2rem; }
   .ag-track span { display: none; }
-  .ag-hero { padding-top: 40svh; min-height: 0; }   /* the mark gets the top of the screen, the title sits below it */
-  .ag-crumbs { margin-bottom: 2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ag-mq, .ag-scroll span, .ag-close-glow, .ag-pin i::after, .ag-bars::after, .ag-pillar.in .ag-shine { animation: none; }
+  .ag-mq, .ag-close-glow, .ag-pin i::after, .ag-bars::after, .ag-pillar.in .ag-shine { animation: none; }
   .ag-pillar { transition: none; }
 }
