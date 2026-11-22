@@ -177,6 +177,58 @@ export default function ServicesIndex() {
       })}
       </div>
 
+      {/* how the four areas fit together: held on screen while the visitor scrolls through it; four rings of light, one
+          per area, each swinging round to face you in turn as its area is told, then lining up as one system
+          (lib/client/grand-scenes.js, "areas") */}
+      <section className="ix-story" aria-labelledby="ix-story-h">
+        <div className="ix-story-pin">
+          <div className="g-stage ix-story-stage" data-scene="areas" aria-hidden="true"></div>
+          <div className="ix-story-veil" aria-hidden="true"></div>
+          <div className="wrap ix-story-in">
+            <ol className="ix-steps">
+              <li className="ix-step on">
+                <p className="label">How it fits together</p>
+                <h2 id="ix-story-h" className="ix-sh">
+                  Four areas, <em>one system.</em>
+                </h2>
+                <p>Each area does its own job. Scroll on to see what each one brings, and how they work together.</p>
+              </li>
+              {GROUPS.map((g, i) => (
+                <li className="ix-step" style={{ "--c": g.color }} key={g.id}>
+                  <p className="label">{`${String(i + 1).padStart(2, "0")} / ${String(GROUPS.length).padStart(2, "0")}`}</p>
+                  <span className="ix-step-ico" aria-hidden="true">
+                    <Icon>{g.icon}</Icon>
+                  </span>
+                  <h3 className="ix-sh">{g.name}</h3>
+                  <p>{g.summary}</p>
+                  <a className="ix-step-go" href={`#${g.id}`}>
+                    {`See the ${g.items.length} services `}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </li>
+              ))}
+              <li className="ix-step">
+                <p className="label">Together</p>
+                <h3 className="ix-sh">
+                  Strongest <em>together.</em>
+                </h3>
+                <p>
+                  A website that&apos;s easy to find, marketing that brings people to it, follow-up that never forgets, and a plan
+                  holding it all in line.
+                </p>
+              </li>
+            </ol>
+            <ol className="ix-story-dots" aria-hidden="true">
+              <li className="on"></li>
+              {GROUPS.map((g) => (
+                <li key={g.id}></li>
+              ))}
+              <li></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
       {/* ways in by goal, for anyone who knows the problem but not the service */}
       <section className="band" aria-labelledby="goal-h">
         <div className="wrap">

@@ -158,3 +158,39 @@
   .ix-bar { top: 66px; }
 }
 @media (prefers-reduced-motion: reduce) { .ix-jump-a, .ix-card, .ix-gh-rule { transition: none; } .ix-jump-a:hover, .ix-card:hover { transform: none; } }
+
+/* ---------- how it fits together: held on screen while the scroll turns the four rings (lib/client/grand-scenes.js "areas") ---------- */
+.ix-story { position: relative; height: 560vh; }
+.ix-story-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; }
+.ix-story-pin > .ix-story-stage { position: absolute; inset: 0; z-index: 0; }
+.ix-story-veil { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 80%, transparent) 0%, color-mix(in srgb, var(--bg) 35%, transparent) 36%, transparent 60%); }
+.ix-story-in { position: relative; z-index: 2; height: 100%; display: grid; grid-template-rows: 1fr auto; padding-block: calc(74px + 4vh) 7vh; }
+.ix-steps { list-style: none; margin: 0; padding: 0; display: grid; align-items: center; }
+.ix-step { grid-area: 1 / 1; max-width: 30rem; display: grid; gap: 1rem; justify-items: start; opacity: 0; translate: 0 30px; filter: blur(8px); pointer-events: none;
+  transition: opacity .6s ease, translate .8s cubic-bezier(.2,.8,.2,1), filter .6s ease; }
+.ix-step.on { opacity: 1; translate: none; filter: none; pointer-events: auto; transition-delay: .1s; }
+.ix-step .label { margin: 0; color: var(--brand-ink, #5b9be6); }
+.ix-sh { margin: 0; font-family: var(--serif, Georgia, serif); font-weight: 400; font-size: clamp(2.6rem, 5.4vw, 4.8rem); line-height: 1; letter-spacing: -.015em; }
+.ix-step > p:not(.label) { margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.65; max-width: 40ch; }
+.ix-step-ico { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: var(--ink); border: 1px solid color-mix(in srgb, var(--c) 50%, transparent);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--c) 30%, transparent); }
+.ix-step-ico svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ix-step-go { color: var(--brand-ink, #5b9be6); text-decoration: none; font: 500 .78rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; }
+.ix-step-go:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ix-story-dots { list-style: none; margin: 0; padding: 0; display: flex; gap: .5rem; }
+.ix-story-dots li { width: 28px; height: 2px; background: var(--line); transition: background .4s; }
+.ix-story-dots li.on { background: var(--brand-ink, #5b9be6); }
+@media (max-width: 900px) {
+  .ix-steps { align-items: end; padding-bottom: 2.4rem; }
+  .ix-story-veil { background: linear-gradient(0deg, color-mix(in srgb, var(--bg) 88%, transparent) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 42%, transparent 64%); }
+  .ix-sh { font-size: clamp(2.2rem, 9vw, 3rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ix-story { height: auto; }
+  .ix-story-pin { position: relative; height: auto; }
+  .ix-story-in { padding-block: 6rem; }
+  .ix-steps { gap: 3.5rem; }
+  .ix-step { grid-area: auto; opacity: 1; translate: none; filter: none; pointer-events: auto; }
+  .ix-story-dots { display: none; }
+}
