@@ -4,13 +4,11 @@
 // monthly report).
 // the animated icon beside a figure (components/home/CaseWindow.tsx draws them)
 export type StatIcon = "pages" | "paths" | "forms" | "clock" | "pin" | "home" | "check" | "map" | "folder" | "grid" | "building" | "inbox" | "phone" | "eye" | "cursor";
-export type Stat = { value: string; label: string; icon: StatIcon };
-export type Score = { label: string; score: number };
-// measured results the client has shared (from their monthly report): the month, where the figures come from, and each
-// figure with what it counts and how it changed on the month before
-// a result: what's shown, plus each month's figure (oldest first, one per entry in Results.months) for the 3D chart,
-// under a short name
-export type Result = { value: string; label: string; change?: string; icon: StatIcon; short: string; series: number[] };
+// measured results the client has shared (from their monthly reports): how each figure moved month by month, from
+// where we started to now. The case study plays through the months as you scroll (components/home/CaseWindow.tsx).
+// a result: its figure for each month in Results.months (oldest first), what it counts, a short name for the chart key,
+// how it changed overall, and whether it's a percentage
+export type Result = { short: string; label: string; series: number[]; change: string; icon: StatIcon; unit?: "%" };
 export type Results = { period: string; months: string[]; source: string; items: Result[] };
 export type Case = {
   id: string;
@@ -32,13 +30,8 @@ export type Case = {
   challenge: string;
   approach: string;
   built: string[];
-  stats: Stat[];
-  scores: Score[];
   results?: Results;
 };
-
-// Google Lighthouse, desktop, measured on the live sites (re-measure before quoting new figures)
-export const SCORES_MEASURED = "November 2026";
 
 export const CASES: Case[] = [
   {
@@ -79,31 +72,22 @@ export const CASES: Case[] = [
       "A dashboard where the team edits services, FAQs, testimonials and blog posts, and manages job applications",
       "Google Ads landing pages with conversion tracking",
     ],
-    stats: [
-      { value: "12", label: "services, each explained on its own page", icon: "pages" },
-      { value: "2", label: "clear paths: for participants and for referral partners", icon: "paths" },
-      { value: "4", label: "online forms, from referrals to job applications", icon: "forms" },
-      { value: "1–2", label: "business days to reply to a referral", icon: "clock" },
-    ],
-    scores: [
-      { label: "SEO", score: 100 },
-      { label: "Accessibility", score: 96 },
-    ],
     // EdenCare's monthly marketing report for October 2026 (the second full month of Google Ads), compared with
     // September. Left out on purpose: the ads' cost per enquiry, which the report itself says looks better than it is
     // (most of those enquiries followed searches for other providers).
     results: {
-      period: "September–October 2026",
+      period: "August to October 2026",
       months: ["August", "September", "October"],
       source:
-        "From EdenCare's monthly reports for September and October: Google Analytics, Google Ads and Google Business Profile. August, before the first full month of ads, is the starting point.",
+        "From EdenCare's monthly reports: Google Analytics, Google Ads and Google Business Profile. August, the month before their first full month of ads, is where we started.",
       items: [
-        { value: "27", label: "enquiries through the website over the two months: phone taps, contact forms and email clicks", change: "More than doubled: 7 in August, 16 in October", icon: "inbox", short: "Enquiries", series: [7, 11, 16] },
-        { value: "22", label: "taps on the phone number on the website over the two months", change: "More than doubled: 6 in August, 13 in October", icon: "phone", short: "Phone taps", series: [6, 9, 13] },
-        { value: "341", label: "times their Google Business Profile was seen on Search and Maps over the two months", change: "Up 25%: 146 in August, 183 in October", icon: "eye", short: "Profile views", series: [146, 158, 183] },
-        { value: "7.3%", label: "of people who saw the Google ads clicked through to the site, across both months", change: "Up from 5.1% in August", icon: "cursor", short: "Click rate (%)", series: [5.1, 7.2, 7.5] },
+        { short: "Enquiries", label: "enquiries a month through the website: phone taps, contact forms and email clicks", series: [7, 11, 16], change: "More than doubled since August", icon: "inbox" },
+        { short: "Phone taps", label: "taps a month on the phone number on the website", series: [6, 9, 13], change: "More than doubled since August", icon: "phone" },
+        { short: "Profile views", label: "views a month of their Google Business Profile on Search and Maps", series: [146, 158, 183], change: "Up 25% since August", icon: "eye" },
+        { short: "Ad click rate", label: "of people who saw the Google ads clicked through to the site", series: [5.1, 7.2, 7.5], change: "Up from 5.1% in August", icon: "cursor", unit: "%" },
       ],
     },
+
   },
   {
     id: "greater-health",
@@ -136,16 +120,6 @@ export const CASES: Case[] = [
       "Booking for a free 10-minute chat",
       "Built to be easy for everyone to use: a larger-text switch, a pause-motion switch and generous touch targets",
     ],
-    stats: [
-      { value: "64", label: "suburbs covered across the South East", icon: "pin" },
-      { value: "7", label: "funding pathways, each with its own referral form", icon: "paths" },
-      { value: "4", label: "places they come to you: home, gym, pool or studio", icon: "home" },
-      { value: "144", label: "automated checks run on every change", icon: "check" },
-    ],
-    scores: [
-      { label: "SEO", score: 100 },
-      { label: "Accessibility", score: 90 },
-    ],
   },
   {
     id: "macroplan",
@@ -177,16 +151,6 @@ export const CASES: Case[] = [
       "A section on Brian Haratsis's new book, AI Cities, with his recent talks and earlier books",
       "The national team, and the Melbourne, Sydney and Brisbane offices on a map",
       "An enquiry form that asks which sector the question is about",
-    ],
-    stats: [
-      { value: "4", label: "real places on the interactive map, each with its own question", icon: "map" },
-      { value: "7", label: "projects, each told on its own page", icon: "folder" },
-      { value: "6", label: "sectors, each with its own page", icon: "grid" },
-      { value: "3", label: "offices: Melbourne, Sydney and Brisbane", icon: "building" },
-    ],
-    scores: [
-      { label: "SEO", score: 100 },
-      { label: "Accessibility", score: 100 },
     ],
   },
 ];
