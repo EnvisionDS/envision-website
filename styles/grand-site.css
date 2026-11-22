@@ -227,7 +227,7 @@ html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 :root[data-theme="light"] body section.block.panel.tone-slate, :root[data-theme="light"] body section.block.panel.tone-ink, :root[data-theme="light"] body section.block.panel.navy {
   background: radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 70%), rgba(255, 252, 245, .62); }
 :root .top { background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); }
-:root nav:not(.blue) { background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); }
+:root nav:has(> #topLinks):not(.blue) { background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); }
 /* the veils behind the openings' text fade to clear rather than to a flat colour, so the ground shows through */
 .g-veil.left { background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 85%, transparent) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 34%, transparent 64%); }
 .g-veil.bottom { background: linear-gradient(0deg, color-mix(in srgb, var(--bg) 70%, transparent) 0%, transparent 40%); }

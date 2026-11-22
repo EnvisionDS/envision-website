@@ -8,6 +8,7 @@ import { initValuesWheel } from "@/lib/client/about";
 import { initContactPage } from "@/lib/client/contact-page";
 import { initServicesIndex } from "@/lib/client/services-index";
 import { initGrandScenes } from "@/lib/client/grand-scenes";
+import { initBlog } from "@/lib/client/blog";
 
 // Runs the page's behaviour once it is on screen: the theme switch, the nav, the reveals, the Services menu and the
 // three.js scenes (lib/client/grand-scenes.js) on every page, plus the values wheel on About, the enquiry form on Contact and the sticky bar on Services. Each runs once per page load.
@@ -22,6 +23,7 @@ export default function ServiceScripts({ page }: { page?: "about" | "contact" | 
     if (page === "about") { initValuesWheel(); initAboutGrand(); }
     if (page === "contact") initContactPage();
     if (page === "services") initServicesIndex();
+    if (page === "blog") initBlog();
     if (page !== "about") initGrandScenes(); // About starts its own, with its film
   }, [page]);
   return null;
