@@ -133,6 +133,10 @@ export function BlogPost({ p }: { p: Post }) {
   });
   return (
     <main id="main" style={{ "--c": g.color }}>
+      {/* how far through the article the reader is (lib/client/blog.js) */}
+      <div className="bl-progress" aria-hidden="true">
+        <i></i>
+      </div>
       <section className="hero bl-hero">
         <div className="g-stage" data-scene="dust" aria-hidden="true"></div>
         <div className="g-veil left" aria-hidden="true"></div>

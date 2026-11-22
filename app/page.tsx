@@ -36,6 +36,7 @@ import "@/styles/home.css";
 import "@/styles/home-light.css";
 import "@/styles/work.css";
 import "@/styles/home-blog.css";
+import "@/styles/home-who.css";
 import "@/lib/fonts/grand";
 import "@/styles/grand-site.css";
 

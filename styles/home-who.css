@@ -1,0 +1,35 @@
+/* The homepage's Who we are (components/home/WhoWeAre.tsx), held on screen while the visitor scrolls through it: one
+   line at a time beside a 3D scene that follows the scroll (lib/client/grand-scenes.js, "team"). */
+section.block.who.wa { display: block; height: 330vh; padding: 0; }
+.wa-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; }
+.wa-pin > .wa-stage { position: absolute; inset: 0; z-index: 0; }
+.wa-in { position: relative; z-index: 1; height: 100%; max-width: 1200px; margin: 0 auto; padding: calc(74px + 7vh) max(6vw, 20px) 9vh;
+  display: grid; grid-template-rows: auto 1fr auto; }
+section.block.who.wa .about-intro > .eyebrow { display: flex; align-items: center; gap: .8rem; }
+section.block.who.wa .about-intro > .eyebrow::before { content: counter(sec, decimal-leading-zero); font-family: "Sora", sans-serif; color: var(--brand-ink, #5b9be6); letter-spacing: .1em; }
+section.block.who.wa .about-intro > .eyebrow::after { content: ""; width: 34px; height: 1px; background: var(--brand-ink, #5b9be6); opacity: .6; }
+.wa-steps { list-style: none; margin: 0; padding: 0; display: grid; align-items: center; }
+.wa-step { grid-area: 1 / 1; max-width: 36rem; opacity: 0; translate: 0 30px; filter: blur(8px); pointer-events: none;
+  transition: opacity .6s ease, translate .8s cubic-bezier(.2,.8,.2,1), filter .6s ease; }
+.wa-step.on { opacity: 1; translate: none; filter: none; pointer-events: auto; transition-delay: .1s; }
+.wa-step .wl-t { font-size: clamp(2.6rem, 5vw, 4.4rem); }
+.wa-p { margin: 1.3rem 0 0 72px; max-width: 44ch; color: var(--muted); font-size: 1.08rem; line-height: 1.65; }
+.wa-step .who-more { margin: 1.2rem 0 0 72px; }
+.wa-dots { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.6rem; }
+.wa-dots li { display: grid; gap: .5rem; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); opacity: .55; transition: opacity .4s; }
+.wa-dots i { display: block; width: 44px; height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.wa-dots i::after { content: ""; position: absolute; inset: 0; background: var(--brand-ink, #5b9be6); transform: scaleX(0); transform-origin: left; transition: transform .5s ease; }
+.wa-dots li.on { opacity: 1; } .wa-dots li.on i::after { transform: none; }
+@media (max-width: 860px) {
+  .wa-steps { align-items: end; }
+  .wa-in { padding-bottom: 7vh; }
+  .wa-p, .wa-step .who-more { margin-left: 0; }
+  .wa-step .wl-t { font-size: clamp(2.2rem, 9vw, 3rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  section.block.who.wa { height: auto; }
+  .wa-pin { position: relative; height: auto; min-height: 100svh; }
+  .wa-steps { gap: 3rem; }
+  .wa-step { grid-area: auto; opacity: 1; translate: none; filter: none; pointer-events: auto; }
+  .wa-dots { display: none; }
+}
