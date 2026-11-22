@@ -97,7 +97,7 @@ export default function Finder() {
             </div>
             <div className="fd-acts">
               {" "}
-              <a className="pill call fd-talk" href="mailto:hello@envisionds.com.au">
+              <a className="pill call fd-talk" href="/contact">
                 Talk to us about this
                 <span className="ph" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
