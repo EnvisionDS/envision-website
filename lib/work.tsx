@@ -2,12 +2,15 @@
 // Every fact and number here comes from the project itself (its code and documents) or from the live site. Measured
 // results (enquiries, traffic) go in `results`, and only once the client has shared them (EdenCare's are from their
 // monthly report).
-export type Stat = { value: string; label: string };
+// the animated icon beside a figure (components/home/CaseWindow.tsx draws them)
+export type StatIcon = "pages" | "paths" | "forms" | "clock" | "pin" | "home" | "check" | "map" | "folder" | "grid" | "building" | "inbox" | "phone" | "eye" | "cursor";
+export type Stat = { value: string; label: string; icon: StatIcon };
 export type Score = { label: string; score: number };
 // measured results the client has shared (from their monthly report): the month, where the figures come from, and each
 // figure with what it counts and how it changed on the month before
-export type Result = { value: string; label: string; change?: string };
-export type Results = { period: string; source: string; items: Result[] };
+// a result: what's shown, plus the month before and this month as numbers for the 3D chart, under a short name
+export type Result = { value: string; label: string; change?: string; icon: StatIcon; short: string; before: number; after: number };
+export type Results = { period: string; before: string; source: string; items: Result[] };
 export type Shot = { src: string; alt: string; caption: string };
 export type Case = {
   id: string;
@@ -69,10 +72,10 @@ export const CASES: Case[] = [
       "Google Ads landing pages with conversion tracking",
     ],
     stats: [
-      { value: "12", label: "services, each explained on its own page" },
-      { value: "2", label: "clear paths: for participants and for referral partners" },
-      { value: "4", label: "online forms, from referrals to job applications" },
-      { value: "1–2", label: "business days to reply to a referral" },
+      { value: "12", label: "services, each explained on its own page", icon: "pages" },
+      { value: "2", label: "clear paths: for participants and for referral partners", icon: "paths" },
+      { value: "4", label: "online forms, from referrals to job applications", icon: "forms" },
+      { value: "1–2", label: "business days to reply to a referral", icon: "clock" },
     ],
     gallery: [
       {
@@ -96,12 +99,13 @@ export const CASES: Case[] = [
     // (most of those enquiries followed searches for other providers).
     results: {
       period: "October 2026",
+      before: "September 2026",
       source: "From EdenCare's monthly report: Google Analytics, Google Ads and Google Business Profile, compared with September.",
       items: [
-        { value: "16", label: "enquiries through the website: phone taps, contact forms and email clicks", change: "Up 45% on September" },
-        { value: "13", label: "taps on the phone number on the website", change: "Up 44% on September" },
-        { value: "183", label: "times their Google Business Profile was seen on Search and Maps", change: "Up 16% on September" },
-        { value: "7.5%", label: "of people who saw the Google ads clicked through to the site", change: "Up from 7.2% in September" },
+        { value: "16", label: "enquiries through the website: phone taps, contact forms and email clicks", change: "Up 45% on September", icon: "inbox", short: "Enquiries", before: 11, after: 16 },
+        { value: "13", label: "taps on the phone number on the website", change: "Up 44% on September", icon: "phone", short: "Phone taps", before: 9, after: 13 },
+        { value: "183", label: "times their Google Business Profile was seen on Search and Maps", change: "Up 16% on September", icon: "eye", short: "Profile views", before: 158, after: 183 },
+        { value: "7.5%", label: "of people who saw the Google ads clicked through to the site", change: "Up from 7.2% in September", icon: "cursor", short: "Click rate (%)", before: 7.2, after: 7.5 },
       ],
     },
   },
@@ -131,10 +135,10 @@ export const CASES: Case[] = [
       "Built to be easy for everyone to use: a larger-text switch, a pause-motion switch and generous touch targets",
     ],
     stats: [
-      { value: "64", label: "suburbs covered across the South East" },
-      { value: "7", label: "funding pathways, each with its own referral form" },
-      { value: "4", label: "places they come to you: home, gym, pool or studio" },
-      { value: "144", label: "automated checks run on every change" },
+      { value: "64", label: "suburbs covered across the South East", icon: "pin" },
+      { value: "7", label: "funding pathways, each with its own referral form", icon: "paths" },
+      { value: "4", label: "places they come to you: home, gym, pool or studio", icon: "home" },
+      { value: "144", label: "automated checks run on every change", icon: "check" },
     ],
     gallery: [
       {
@@ -180,10 +184,10 @@ export const CASES: Case[] = [
       "An enquiry form that asks which sector the question is about",
     ],
     stats: [
-      { value: "4", label: "real places on the interactive map, each with its own question" },
-      { value: "7", label: "projects, each told on its own page" },
-      { value: "6", label: "sectors, each with its own page" },
-      { value: "3", label: "offices: Melbourne, Sydney and Brisbane" },
+      { value: "4", label: "real places on the interactive map, each with its own question", icon: "map" },
+      { value: "7", label: "projects, each told on its own page", icon: "folder" },
+      { value: "6", label: "sectors, each with its own page", icon: "grid" },
+      { value: "3", label: "offices: Melbourne, Sydney and Brisbane", icon: "building" },
     ],
     gallery: [
       {

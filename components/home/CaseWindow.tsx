@@ -1,10 +1,38 @@
-import { CASES, SCORES_MEASURED, type Case } from "@/lib/work";
+import type { ReactNode } from "react";
+import { CASES, SCORES_MEASURED, type Case, type StatIcon } from "@/lib/work";
 
 const TICK = (
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M5 12.5l4.5 4.5L19 7.5" />
   </svg>
 );
+
+// the animated icon beside each figure: drawn in as its section arrives, then its accent (.ca) keeps moving
+// (styles/work.css)
+const ICONS: Record<StatIcon, ReactNode> = {
+  pages: (<><rect x="5" y="3" width="11" height="14" rx="1.5" /><rect className="ca" x="8" y="7" width="11" height="14" rx="1.5" /></>),
+  paths: (<><path d="M12 21v-8M12 13L6 7M12 13l6-6" /><circle className="ca" cx="6" cy="6" r="1.8" /><circle className="ca" cx="18" cy="6" r="1.8" /></>),
+  forms: (<><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M8 8h8M8 12h8" /><path className="ca" d="M8.5 16.5l2 2 4-4" /></>),
+  clock: (<><circle cx="12" cy="12" r="8.5" /><path className="ca" d="M12 7v5l3 2" /></>),
+  pin: (<><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z" /><circle className="ca" cx="12" cy="10" r="2.2" /></>),
+  home: (<><path d="M4 11l8-7 8 7" /><path d="M6 10v10h12V10" /><path className="ca" d="M10 20v-5h4v5" /></>),
+  check: (<><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /><path className="ca" d="M8.5 12.5l2.5 2.5 4.5-5" /></>),
+  map: (<><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" /><path d="M9 4v14M15 6v14" /><circle className="ca" cx="12" cy="11" r="1.7" /></>),
+  folder: (<><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path className="ca" d="M8 13h8" /></>),
+  grid: (<><rect x="4" y="4" width="7" height="7" rx="1" /><rect x="13" y="4" width="7" height="7" rx="1" /><rect x="4" y="13" width="7" height="7" rx="1" /><rect className="ca" x="13" y="13" width="7" height="7" rx="1" /></>),
+  building: (<><path d="M5 21V5l7-2v18M12 8l7 2v11" /><path d="M3 21h18" /><path className="ca" d="M8 8v.01M8 12v.01M8 16v.01M16 13v.01M16 17v.01" /></>),
+  inbox: (<><path d="M4 13l2.5-7h11L20 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M4 13h4l1.5 2.5h5L16 13h4" /><path className="ca" d="M12 2.5v6M9.5 6L12 8.5 14.5 6" /></>),
+  phone: (<><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" /><path className="ca" d="M15 3.5a6 6 0 0 1 5.5 5.5M15 7a2.5 2.5 0 0 1 2 2" /></>),
+  eye: (<><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" /><circle className="ca" cx="12" cy="12" r="3" /></>),
+  cursor: (<><path d="M5 4l5.5 15 2-6.5 6.5-2z" /><circle className="ca" cx="5" cy="4" r="3.2" /></>),
+};
+function StatIco({ name }: { name: StatIcon }) {
+  return (
+    <span className={`ci ci-${name}`} aria-hidden="true">
+      <svg viewBox="0 0 24 24">{ICONS[name]}</svg>
+    </span>
+  );
+}
 
 // One project's case study, as the page inside the window
 function Study({ c }: { c: Case }) {
@@ -30,13 +58,19 @@ function Study({ c }: { c: Case }) {
         </figure>
       </div>
 
-      <section className="cs-stats" aria-label="At a glance">
-        {c.stats.map((s) => (
-          <div className="cs-stat" key={s.label}>
-            <b>{s.value}</b>
-            <span>{s.label}</span>
-          </div>
-        ))}
+      {/* at a glance: the figures form out of light one after another in 3D (lib/client/grand-scenes.js, "reel"), and the
+          card for the figure on show lights up beside it */}
+      <section className="cs-glance" aria-label="At a glance">
+        <div className="cs-reel" data-scene="reel" data-items={JSON.stringify(c.stats.map((s) => s.value))} aria-hidden="true"></div>
+        <div className="cs-stats">
+          {c.stats.map((s) => (
+            <div className="cs-stat" key={s.label}>
+              <StatIco name={s.icon} />
+              <b data-count={s.value}>{s.value}</b>
+              <span>{s.label}</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       {c.results ? (
@@ -45,10 +79,33 @@ function Study({ c }: { c: Case }) {
             <p className="cs-label" id={`cs-r-${c.id}`}>{`Results · ${c.results.period}`}</p>
             <p className="cs-note">{c.results.source}</p>
           </div>
+          <div className="cs-res-grid">
+            {/* the month before against this month, as bars rising in 3D (lib/client/grand-scenes.js, "bars") */}
+            <figure className="cs-chart">
+              <div
+                className="cs-bars"
+                data-scene="bars"
+                data-bars={JSON.stringify(c.results.items.map((r) => ({ b: r.before, a: r.after })))}
+                aria-hidden="true"
+              ></div>
+              <ol className="cs-bars-key">
+                {c.results.items.map((r) => (
+                  <li key={r.short}>
+                    <b>{r.short}</b>
+                    <span>{`${r.before} → ${r.after}`}</span>
+                  </li>
+                ))}
+              </ol>
+              <figcaption className="cs-legend">
+                <span className="was">{c.results.before}</span>
+                <span className="now">{c.results.period}</span>
+              </figcaption>
+            </figure>
           <div className="cs-stats">
             {c.results.items.map((r) => (
               <div className="cs-stat" key={r.label}>
-                <b>{r.value}</b>
+                <StatIco name={r.icon} />
+                <b data-count={r.value}>{r.value}</b>
                 <span>{r.label}</span>
                 {r.change ? (
                   <em className="cs-up">
@@ -57,6 +114,7 @@ function Study({ c }: { c: Case }) {
                 ) : null}
               </div>
             ))}
+          </div>
           </div>
         </section>
       ) : null}
