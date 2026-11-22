@@ -8,9 +8,10 @@ export type Stat = { value: string; label: string; icon: StatIcon };
 export type Score = { label: string; score: number };
 // measured results the client has shared (from their monthly report): the month, where the figures come from, and each
 // figure with what it counts and how it changed on the month before
-// a result: what's shown, plus the month before and this month as numbers for the 3D chart, under a short name
-export type Result = { value: string; label: string; change?: string; icon: StatIcon; short: string; before: number; after: number };
-export type Results = { period: string; before: string; source: string; items: Result[] };
+// a result: what's shown, plus each month's figure (oldest first, one per entry in Results.months) for the 3D chart,
+// under a short name
+export type Result = { value: string; label: string; change?: string; icon: StatIcon; short: string; series: number[] };
+export type Results = { period: string; months: string[]; source: string; items: Result[] };
 export type Shot = { src: string; alt: string; caption: string };
 export type Case = {
   id: string;
@@ -98,14 +99,15 @@ export const CASES: Case[] = [
     // September. Left out on purpose: the ads' cost per enquiry, which the report itself says looks better than it is
     // (most of those enquiries followed searches for other providers).
     results: {
-      period: "October 2026",
-      before: "September 2026",
-      source: "From EdenCare's monthly report: Google Analytics, Google Ads and Google Business Profile, compared with September.",
+      period: "September–October 2026",
+      months: ["August", "September", "October"],
+      source:
+        "From EdenCare's monthly reports for September and October: Google Analytics, Google Ads and Google Business Profile. August, before the first full month of ads, is the starting point.",
       items: [
-        { value: "16", label: "enquiries through the website: phone taps, contact forms and email clicks", change: "Up 45% on September", icon: "inbox", short: "Enquiries", before: 11, after: 16 },
-        { value: "13", label: "taps on the phone number on the website", change: "Up 44% on September", icon: "phone", short: "Phone taps", before: 9, after: 13 },
-        { value: "183", label: "times their Google Business Profile was seen on Search and Maps", change: "Up 16% on September", icon: "eye", short: "Profile views", before: 158, after: 183 },
-        { value: "7.5%", label: "of people who saw the Google ads clicked through to the site", change: "Up from 7.2% in September", icon: "cursor", short: "Click rate (%)", before: 7.2, after: 7.5 },
+        { value: "27", label: "enquiries through the website over the two months: phone taps, contact forms and email clicks", change: "More than doubled: 7 in August, 16 in October", icon: "inbox", short: "Enquiries", series: [7, 11, 16] },
+        { value: "22", label: "taps on the phone number on the website over the two months", change: "More than doubled: 6 in August, 13 in October", icon: "phone", short: "Phone taps", series: [6, 9, 13] },
+        { value: "341", label: "times their Google Business Profile was seen on Search and Maps over the two months", change: "Up 25%: 146 in August, 183 in October", icon: "eye", short: "Profile views", series: [146, 158, 183] },
+        { value: "7.3%", label: "of people who saw the Google ads clicked through to the site, across both months", change: "Up from 5.1% in August", icon: "cursor", short: "Click rate (%)", series: [5.1, 7.2, 7.5] },
       ],
     },
   },

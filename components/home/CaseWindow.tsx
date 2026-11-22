@@ -80,25 +80,28 @@ function Study({ c }: { c: Case }) {
             <p className="cs-note">{c.results.source}</p>
           </div>
           <div className="cs-res-grid">
-            {/* the month before against this month, as bars rising in 3D (lib/client/grand-scenes.js, "bars") */}
+            {/* each month side by side, oldest first, as bars rising in 3D (lib/client/grand-scenes.js, "bars") */}
             <figure className="cs-chart">
               <div
                 className="cs-bars"
                 data-scene="bars"
-                data-bars={JSON.stringify(c.results.items.map((r) => ({ b: r.before, a: r.after })))}
+                data-bars={JSON.stringify(c.results.items.map((r) => r.series))}
                 aria-hidden="true"
               ></div>
               <ol className="cs-bars-key">
                 {c.results.items.map((r) => (
                   <li key={r.short}>
                     <b>{r.short}</b>
-                    <span>{`${r.before} → ${r.after}`}</span>
+                    <span>{r.series.join(" → ")}</span>
                   </li>
                 ))}
               </ol>
               <figcaption className="cs-legend">
-                <span className="was">{c.results.before}</span>
-                <span className="now">{c.results.period}</span>
+                {c.results.months.map((m, i) => (
+                  <span className={`m${i === c.results!.months.length - 1 ? " now" : i === 0 ? " was" : " mid"}`} key={m}>
+                    {m}
+                  </span>
+                ))}
               </figcaption>
             </figure>
           <div className="cs-stats">
