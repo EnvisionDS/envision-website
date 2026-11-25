@@ -96,6 +96,11 @@ export default function Footer({ onHome = false }: { onHome?: boolean }) {
           </a>
         </span>
       </div>
+      {/* the sign-off: ENVISION written in light across the foot of the page, gathering as you arrive and lit by the
+          cursor (lib/client/grand-scenes.js, "sign"); the word in type shows until the light takes over, or without it */}
+      <div className="fsign" data-scene="sign" aria-hidden="true">
+        <span className="fsign-word">ENVISION</span>
+      </div>
     </footer>
   );
 }
